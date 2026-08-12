@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Ogork" nameDescription="an ogork" race="blood" experience="30000" speed="200" tier="6" items="acc">
+	<health now="10000000" max="10000000" />
+	<look type="1146" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+    		<attack name="physical" interval="1500" chance="100" length="8" spread="0" min="-50000" max="-50000">
+      			<attribute key="areaEffect" value="395" />
+    	</attack>
+	</attacks>
+	<level min="80" max="80" />
+	<defenses armor="350" defense="350">
+	</defenses>
+	<elements>
+	</elements>
+
+	<voices interval="3000" chance="50">
+		<voice sentence="Must! Chop! Food! Raahh!" />
+		<voice sentence="You tasty!" />
+		<voice sentence="UGGA UGGA!!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

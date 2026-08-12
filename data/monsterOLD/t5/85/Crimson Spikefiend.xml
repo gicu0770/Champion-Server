@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Crimson Spikefiend" nameDescription="an Crimson Spikefiend" race="blood" experience="30000" speed="200" tier="6" items="acc">
+	<health now="10000000" max="10000000" />
+	<look type="2310" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+    		<attack name="physical" interval="1500" chance="100" length="7" spread="3" target="1" min="-50000" max="-50000">
+      			<attribute key="areaEffect" value="409" />
+    	</attack>
+	</attacks>
+	<level min="85" max="85" />
+	<defenses armor="350" defense="350">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="3000" chance="50">
+		<voice sentence="Your blood will nourish me!" />
+		<voice sentence="Feel the sting of agony!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

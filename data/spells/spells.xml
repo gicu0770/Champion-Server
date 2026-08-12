@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spells> 
+	<instant group="attack" spellid="111" name="GM" words="exori vision" level="1" manapercent="5" type="Target,Damage,Earth" desc="Deals %s of attack power." power="0" icon="buff_hunter_passive" image="frame-2-orange" premium="0" selftarget="1" cooldown="2000" groupcooldown="2000" blockwalls="1" needlearn="1" script="gm.lua">
+		<vocation name="None" />
+	</instant>
+</spells>

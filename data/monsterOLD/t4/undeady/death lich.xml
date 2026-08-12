@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Death Lich" nameDescription="a death lich" race="undead" experience="12500" speed="200" tier="4" items="set">
+	<health now="1000000" max="1000000" />
+	<look type="1220" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags> 
+		<flag summonable="0" /> 
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="2" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	
+	</flags>
+	<attacks>
+		<attack name="death" interval="2000" chance="100" target="1" range="4" radius="3" min="-6000" max="-6000">
+			<attribute key="shootEffect" value="suddendeath" />
+			<attribute key="areaEffect" value="mortarea" />
+		</attack>
+	</attacks>
+	<level min="55" max="55" />
+	<defenses armor="160" defense="160">
+
+	</defenses>
+	<elements>
+
+	</elements>
+
+	<loot>
+
+	</loot>
+</monster>

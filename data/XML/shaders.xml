@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shaders>
+    <shader id="1" name="Red Rage" rarity="2" />
+    <shader id="2" name="Green Rage" rarity="2" />
+    <shader id="3" name="Drunk" rarity="3" />
+    <shader id="4" name="test" rarity="3" />
+    <shader id="5" name="Rainbow" rarity="5" />
+    <shader id="6" name="Ghost" rarity="3" />
+    <shader id="7" name="Unwind" rarity="3" />
+    <!-- <shader id="4" name="Shimmering" rarity="3" /> -->
+</shaders>

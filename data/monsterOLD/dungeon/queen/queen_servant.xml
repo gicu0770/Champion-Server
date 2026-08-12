@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Queen Servant" nameDescription="a Queen Servant" race="undead" experience="6000" speed="200" tier="1" items="fungus">
+	<health now="100000" max="100000" />
+	<look type="1186" head="114" body="76" legs="114" feet="76" addons="3" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" target="0" length="4" spread="3" min="-100" max="-100">
+			<attribute key="areaEffect" value="1" />
+		</attack>
+	</attacks>
+	<level min="22" max="22" />
+	<defenses armor="60" defense="60">
+	</defenses>
+	<elements>
+	</elements>
+	<immunities>
+	</immunities>
+	<voices interval="5000" chance="10">
+		<voice sentence="Munch munch munch!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

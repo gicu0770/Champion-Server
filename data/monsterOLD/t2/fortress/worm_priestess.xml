@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Worm Priestess" nameDescription="a worm priestess" race="blood" experience="1500" speed="200">
+	<health now="2000" max="2000" />
+	<look type="613" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="100" health="0" damage="0" random="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="2" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="death" interval="2000" chance="100" range="4" target="1" radius="3" min="-160" max="-160">
+			<attribute key="shootEffect" value="death" />
+			<attribute key="areaEffect" value="mortarea" />
+		</attack>
+	</attacks>
+	<level min="33" max="33" />
+	<defenses armor="20" defense="20">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="2000" chance="5">
+		<voice sentence="An enemy of the worm shall become his food!" />
+		<voice sentence="The great worm will swallow you!" />
+		<voice sentence="From the earthy depths he comes and brings freedom!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

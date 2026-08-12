@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Celestial Crawler" nameDescription="an Celestial Crawler" race="blood" experience="250" speed="250" zone="40" bestiaryId="103">
+	<health now="250" max="250" />
+	<look type="876" head="0" body="91" legs="0" feet="0" addons="3" corpse="27196" />
+	<targetchange interval="5000" chance="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="85" />
+		<flag runonhealth="0" />
+	
+	
+	</flags>
+	<attacks>
+	<attack name="energy" interval="2000" chance="100" range="6" min="-6000" max="-6000">
+			<attribute key="shootEffect" value="204" />
+			<attribute key="areaEffect" value="192" />
+		</attack>
+	</attacks>
+	<level min="80" max="80" />
+	<defenses armor="15" defense="15" />
+	<immunities>
+	</immunities>
+	<voices interval="5000" chance="10">
+		<voice sentence="Kzzchhh!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

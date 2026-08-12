@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Dragon Lord Hatchling" nameDescription="a dragon lord hatchling" race="blood" experience="700" speed="190">
+	<health now="750" max="750" />
+	<look type="272" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="2" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	
+	
+	</flags>
+	<attacks>
+		<attack name="fire" interval="2000" chance="100" range="4" radius="3" target="1" min="-50" max="-50">
+			<attribute key="shootEffect" value="fire" />
+			<attribute key="areaEffect" value="firearea" />
+		</attack>
+	</attacks>
+	<level min="12" max="12" />
+	<defenses armor="20" defense="20">
+
+	</defenses>
+
+	<voices interval="5000" chance="10">
+		<voice sentence="Fchu?" />
+		<voice sentence="Rooawwrr" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

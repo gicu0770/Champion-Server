@@ -1,0 +1,344 @@
+<!-- RARITYS_STORE = {
+  NORMAL = 1,
+  COMMON = 2,
+  MAGIC = 3,
+  RARE = 4,
+  LEGENDARY = 5,
+  LIMITED = 6,
+  SPECIAL = 7,
+} -->
+<?xml version="1.0" encoding="UTF-8"?>
+<outfits>
+
+	<!-- TEST Outfits -->
+	<outfit type="1" rarity="6" looktype="2837" name="TEST" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2837" name="TEST" unlocked="no" enabled="yes" />
+	
+	
+	<outfit type="1" rarity="6" looktype="2836" name="TEST" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2836" name="TEST" unlocked="no" enabled="yes" />
+	
+	<outfit type="1" rarity="6" looktype="2599" name="TEST" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2598" name="TEST" unlocked="no" enabled="yes" />
+	
+	
+	<outfit type="1" rarity="6" looktype="2596" name="TEST" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2596" name="TEST" unlocked="no" enabled="yes" />
+	
+	<outfit type="1" rarity="6" looktype="2588" name="TEST" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2587" name="TEST" unlocked="no" enabled="yes" />
+	
+	
+	<outfit type="1" rarity="6" looktype="2830" name="Tung Sahur" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2830" name="Tung Sahu" unlocked="no" enabled="yes" />
+	
+	<outfit type="1" rarity="6" looktype="2576" name="Thor" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2576" name="Thor" unlocked="no" enabled="yes" />
+
+	<outfit type="1" rarity="6" looktype="2633" name="Vampir" unlocked="no" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2633" name="Vampir" unlocked="no" enabled="yes" />
+
+	<!-- DODANE outfits -->
+	<outfit type="0" rarity="5" looktype="1145" name="Golden" unlocked="yes" enabled="yes" />
+	<outfit type="1" rarity="5" looktype="1144" name="Golden" unlocked="yes" enabled="yes" />
+	<!-- LIMITED -->
+	<outfit type="1" rarity="6" looktype="2610" name="Void Wizard" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2610" name="Void Wizard" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="6" looktype="2589" name="Void Elf" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2589" name="Void Elf" unlocked="yes" enabled="yes" />
+	
+	<outfit type="1" rarity="6" looktype="2590" name="Void Warrior" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="2590" name="Void Warrior" unlocked="yes" enabled="yes" />
+
+	
+	<outfit type="1" rarity="6" looktype="1231" name="Revenant" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="1232" name="Revenant" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="6" looktype="153" name="Beggar" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="6" looktype="157" name="Beggar" unlocked="yes" enabled="yes" />
+
+	<!-- NORMAL -->
+	<outfit type="0" rarity="1" looktype="136" name="Citizen" free="yes" unlocked="yes" enabled="yes" />
+	<outfit type="1" rarity="1" looktype="128" name="Citizen" free="yes" unlocked="yes" enabled="yes" />
+
+	<!-- COMMON -->
+	<outfit type="1" rarity="2" looktype="129" name="Hunter" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="2" looktype="137" name="Hunter" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="2" looktype="130" name="Mage" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="2" looktype="138" name="Mage" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="2" looktype="131" name="Knight" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="2" looktype="139" name="Knight" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="2" looktype="144" name="Druid" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="2" looktype="148" name="Druid" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="2" looktype="134" name="Warrior" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="2" looktype="142" name="Warrior" unlocked="yes" enabled="yes" />
+
+	<!-- MAGIC -->
+	<outfit type="1" rarity="3" looktype="328" name="Newly Wed" unlocked="yes" enabled="yes" />  <!-- 14.11.2025 Dodane -->	
+	<outfit type="1" rarity="3" looktype="133" name="Summoner" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="3" looktype="141" name="Summoner" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="3" looktype="143" name="Barbarian" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="3" looktype="147" name="Barbarian" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="3" looktype="145" name="Wizard" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="3" looktype="149" name="Wizard" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="3" looktype="146" name="Oriental" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="3" looktype="150" name="Oriental" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="3" looktype="152" name="Assassin" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="3" looktype="156" name="Assassin" unlocked="yes" enabled="yes" />
+
+		
+	<!-- RARE -->
+	<outfit type="1" rarity="4" looktype="463" name="Deepling" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="4" looktype="464" name="Deepling" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="4" looktype="465" name="Insectoid" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="4" looktype="466" name="Insectoid" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="4" looktype="472" name="Entrepreneur" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="4" looktype="471" name="Entrepreneur" unlocked="yes" enabled="yes" />
+
+	<outfit type="1" rarity="4" looktype="2344" name="Fencer" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="4" looktype="2345" name="Fencer" unlocked="yes" enabled="yes" />	
+
+	<!-- LEGENDARY -->
+	<outfit type="1" rarity="5" looktype="2012" name="Reaper Of Souls" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="5" looktype="2012" name="Reaper Of Souls" unlocked="yes" enabled="yes" />	
+	
+	<outfit type="1" rarity="5" looktype="2081" name="Demonic Knight" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="5" looktype="2081" name="Demonic Knight" unlocked="yes" enabled="yes" />	
+	
+	<outfit type="1" rarity="5" looktype="2083" name="Battle Wizard" unlocked="yes" enabled="yes" />
+	<outfit type="0" rarity="5" looktype="2083" name="Battle Wizard" unlocked="yes" enabled="yes" />
+	
+	
+	<outfit type="1" rarity="5" looktype="2015" name="Tyrael" unlocked="yes" enabled="yes" />	
+	<outfit type="0" rarity="5" looktype="2082" name="High Elf" unlocked="yes" enabled="yes" />	
+	<outfit type="1" rarity="5" looktype="2082" name="High Elf" unlocked="yes" enabled="yes" />	
+	
+	<outfit type="1" rarity="5" looktype="2090" name="Gentelman" unlocked="yes" enabled="yes" />
+	
+	
+	<outfit type="0" rarity="5" looktype="2079" name="Dragon Knight" unlocked="yes" enabled="yes" />	<!-- 14.11.2025 Dodane -->	
+	<outfit type="1" rarity="5" looktype="2078" name="Dragon Knight" unlocked="yes" enabled="yes" />	<!-- 14.11.2025 Dodane -->	
+
+
+	<outfit type="1" rarity="6" looktype="2286" name="Enlightened Mage" unlocked="yes" enabled="yes" />  <!--LIMITOWANY 14.11.2026 Dodane -->	
+	<outfit type="0" rarity="6" looktype="2286" name="Enlightened Mage" unlocked="yes" enabled="yes" />  <!--LIMITOWANY 14.11.2026 Dodane -->	
+
+	<outfit type="0" rarity="6" looktype="2390" name="Soulbinder" unlocked="yes" enabled="yes" />	 <!--LIMITOWANY 16.01.2026 Dodane -->	
+	<outfit type="1" rarity="6" looktype="2391" name="Soulbinder" unlocked="yes" enabled="yes" />	 <!--LIMITOWANY 16.01.2026 Dodane -->	
+
+	<outfit type="1" rarity="6" looktype="2385" name="Demonbane" unlocked="yes" enabled="yes" />	<!--LIMITOWANY 16.01.2026 Dodane -->	
+
+
+	<!-- NIE DODANE outfits -->		
+	<outfit type="0" looktype="140" name="Noblewoman" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="155" name="Pirate" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="158" name="Shaman" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="252" name="Norsewoman" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="269" name="Nightmare" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="270" name="Jester" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="279" name="Brotherhood" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="288" name="Demon Hunter" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="324" name="Yalaharian" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="329" name="Newly Wed" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="336" name="Warmaster" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="366" name="Wayfarer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="433" name="Elementalist" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="513" name="Crystal Warlord" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="514" name="Soil Guardian" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="542" name="Demon Outfit" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="575" name="Cave Explorer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="578" name="Dream Warden" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="618" name="Glooth Engineer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="620" name="Jersey" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="632" name="Champion" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="635" name="Conjurer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="636" name="Beastmaster" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="664" name="Chaos Acolyte" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="666" name="Death Herald" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="683" name="Ranger" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="694" name="Ceremonial Garb" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="696" name="Puppeteer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="698" name="Spirit Caller" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="732" name="Seaweaver" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="745" name="Recruiter" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="749" name="Sea Dog" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="759" name="Royal Pumpkin" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="845" name="Rift Warrior" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="852" name="Winter Warden" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="874" name="Philosopher" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="885" name="Arena Champion" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="900" name="Lupine Warden" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="926" name="Festive" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="947" name="Pharaoh" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="949" name="Trophy Hunter" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="992" name="Grove Keeper" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="994" name="Sun Priest" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1013" name="Makeshift Warrior" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1020" name="Siege Master" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1026" name="Mercenary" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1039" name="Battle Mage" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1052" name="Discoverer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1055" name="Sinister Archer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1080" name="Royal Pumpkin" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1097" name="Dream Warrior" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1106" name="Percht Raider" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1116" name="Owl Keeper" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1125" name="Guidon Bearer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1137" name="Void Master" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1139" name="Veteran Paladin" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1141" name="Lion of War" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1164" name="Hand of the Inquisition" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1166" name="Breezy Garb" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1167" name="Herbalist" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1171" name="Orcsoberfest Garb" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1171" name="Bloody Orc" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1187" name="Poltergeist" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1194" name="Herder" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1197" name="Falconer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1201" name="Dragon Slayer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1206" name="Trailblazer" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1237" name="Jouster" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1993" name="Rascoohan" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="1995" name="Rascon" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2050" name="Santa Elf" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2052" name="Rune Master" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2054" name="Citizen of Issavi" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2068" name="Clober" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2077" name="Royal Bounacean Advisor" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2093" name="Evoker" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2272" name="Bunny Girl" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2323" name="Doom Knight" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2325" name="Draccoon Herald" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2329" name="Blade Dancer" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2331" name="Rootwalker" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2333" name="Beekeeper" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2335" name="Arbalester" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2336" name="Royal Costume" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2341" name="Nordic Chieftain" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2343" name="Fire-Fighter" unlocked="no" enabled="yes" />				
+	<outfit type="0" looktype="2347" name="Ancient Aucar" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2349" name="Frost Tracer" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2351" name="Armoured Archer" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2353" name="Decaying Defender" unlocked="no" enabled="yes" />	
+	<outfit type="0" looktype="2321" name="Darklight Evoker" unlocked="no" enabled="yes" />
+	<outfit type="0" looktype="2389" name="Spiritcaller" unlocked="no" enabled="yes" />	
+
+
+	<outfit type="0" looktype="2089" name="None" unlocked="no" enabled="yes" />
+	
+	
+	<!-- NIE DODANE outfits -->		
+	<outfit type="1" looktype="132" name="Nobleman" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="151" name="Pirate" unlocked="no" enabled="yes" />
+
+	<outfit type="1" looktype="154" name="Shaman" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="253" name="Barbarian Headsplitter" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="268" name="Nightmare" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="273" name="Jester" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="278" name="Brotherhood" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="289" name="Demon Hunter" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="325" name="Yalaharian" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="335" name="Warmaster" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="367" name="Wayfarer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="432" name="Elementalist" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="512" name="Crystal Warlord" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="516" name="Soil Guardian" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="541" name="Demon Outfit" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="574" name="Cave Explorer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="577" name="Dream Warden" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="610" name="Glooth Engineer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="619" name="Jersey" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="633" name="Champion" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="634" name="Conjurer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="637" name="Beastmaster" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="665" name="Chaos Acolyte" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="667" name="Death Herald" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="684" name="Ranger" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="695" name="Ceremonial Garb" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="697" name="Puppeteer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="699" name="Spirit Caller" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="725" name="Evoker" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="733" name="Seaweaver" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="746" name="Recruiter" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="750" name="Sea Dog" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="760" name="Royal Pumpkin" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="846" name="Rift Warrior" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="853" name="Winter Warden" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="873" name="Philosopher" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="884" name="Arena Champion" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="899" name="Lupine Warden" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="927" name="Festive" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="946" name="Pharaoh" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="948" name="Trophy Hunter" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="991" name="Grove Keeper" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="993" name="Sun Priest" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1096" name="Dream Warrior" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1079" name="Royal Pumpkin" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1054" name="Sinister Archer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1051" name="Discoverer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1038" name="Battle Mage" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1025" name="Mercenary" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1019" name="Siege Master" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1012" name="Makeshift Warrior" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1197" name="Falconer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1193" name="Herder" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1186" name="Poltergeist" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1170" name="Orcsoberfest Garb" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1171" name="Bloody Orc" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1167" name="Herbalist" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1165" name="Breezy Garb" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1163" name="Hand of the Inquisition" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1140" name="Lion of War" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1138" name="Veteran Paladin" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1136" name="Void Master" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1124" name="Guidon Bearer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1115" name="Owl Keeper" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1107" name="Percht Raider" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1202" name="Dragon Slayer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1205" name="Trailblazer" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1236" name="Jouster" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1992" name="Rascoohan" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="1995" name="Rascon" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2049" name="Santa Elf" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2051" name="Rune Master" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2053" name="Citizen of Issavi" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2067" name="Clober" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2076" name="Royal Bounacean Advisor" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2273" name="Bunny Man" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2274" name="Bunny" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2284" name="Gogeta" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2300" name="Blacksmith" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2322" name="Doom Knight" unlocked="no" enabled="yes" />
+	<outfit type="1" looktype="2324" name="Draccoon Herald" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2328" name="Blade Dancer" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2330" name="Rootwalker" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2332" name="Beekeeper" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2334" name="Arbalester" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2337" name="Royal Costume" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2340" name="Nordic Chieftain" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2342" name="Fire-Fighter" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2346" name="Ancient Aucar" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2348" name="Frost Tracer" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2350" name="Armoured Archer" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2352" name="Decaying Defender" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2354" name="Darklight Evoker" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2384" name="Amethyst Warden" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2385" name="Demonbane" unlocked="no" enabled="yes" />		
+	<outfit type="1" looktype="2388" name="Spiritcaller" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2430" name="Nightpiercer" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2431" name="Hidden Shadow" unlocked="no" enabled="yes" />	
+	<outfit type="1" looktype="2433" name="Dark Warlock" unlocked="no" enabled="yes" />	
+
+	<outfit type="1" looktype="2089" name="None" unlocked="no" enabled="yes" />
+</outfits>

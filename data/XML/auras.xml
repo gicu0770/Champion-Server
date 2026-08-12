@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auras>
+	
+	<!-- TESTOWANE -->
+	<aura id="2841" name="TEEST" rarity="5" /> 		
+	<aura id="2842" name="TEEST" rarity="5" /> 		
+	<aura id="2843" name="TEEST" rarity="5" /> 		
+	<aura id="2844" name="TEEST" rarity="5" /> 		
+	
+	<aura id="2840" name="TEEST" rarity="5" /> 		
+	<aura id="2839" name="TEEST" rarity="5" /> 			
+	<!-- LEGENDARY -->
+	<aura id="2512" name="Void Flame" rarity="6" />  <!-- LIMITOWANY 10.04.2026 Dodane -->
+	<aura id="2530" name="Void Aura" rarity="6" />  <!-- LIMITOWANY 10.04.2026 Dodane -->
+	<aura id="2456" name="Elements" rarity="6" />  <!-- LIMITOWANY 10.04.2026 Dodane -->
+	
+	<aura id="2126" name="Fire Aura" rarity="5" /> 			<!-- 16.01.2026 Dodane -->
+
+	<aura id="2288" name="Solari Flare" rarity="6" />   <!-- LIMITOWANY na ten sezon 14.11.2025 Dodane -->
+	<aura id="2547" name="Rainbow Energy" rarity="6" />     <!-- LIMITOWANY na ten sezon 14.11.2025 Dodane -->
+	<aura id="2571" name="Flamebound Essence" rarity="5" /> <!-- 14.11.2025 Dodane -->
+	<aura id="2108" name="Candle Aura" rarity="5" />     <!-- 14.11.2025 Dodane -->
+	<aura id="2136" name="Rainbow Sky" rarity="5" />     <!-- 14.11.2025 Dodane -->
+	<aura id="2137" name="Rainbow Grace" rarity="5" />	 <!-- 14.11.2025 Dodane -->
+	<aura id="2523" name="Arcane Wisp" rarity="5" />
+	<aura id="2524" name="Verdant Wisp" rarity="5" />
+	<aura id="2525" name="Solar Wisp" rarity="5" />
+	<aura id="2526" name="Ember Wisp" rarity="5" />
+	<aura id="2527" name="Frost Wisp" rarity="5" />
+	<aura id="2528" name="Lumen Wisp" rarity="5" />
+	<aura id="2529" name="Void Wisp" rarity="5" />
+
+	<!-- RARE -->
+	<aura id="2149" name="Blood Skulls Spin" rarity="4" />
+	<aura id="2150" name="Blood Skulls Crash" rarity="4" />
+	<aura id="2235" name="Rain Aura" rarity="4" />
+	<aura id="2098" name="Angel Orb" rarity="4" />
+	<aura id="2102" name="Decay Aura" rarity="4" />
+	<aura id="2154" name="SkeletonSoul Aura" rarity="4" />
+	<aura id="2092" name="Dollar" rarity="4" />
+
+	<!-- MAGIC -->
+	<aura id="2018" name="Bats" rarity="3" />
+	<aura id="2040" name="Demonic Aura" rarity="3" />
+	<aura id="2042" name="Archangel Aura" rarity="3" />
+	<aura id="2386" name="Lightning Pulse" rarity="3" />
+	<aura id="2041" name="Black Devil Aura" rarity="3" />
+	<aura id="2095" name="Demonic Tamer" rarity="3" />
+	<aura id="2030" name="Charge" rarity="3" />
+
+	<!-- COMMON -->
+	<aura id="2033" name="Black Orbs" rarity="2" />
+	<aura id="2007" name="Bloody" rarity="2" />
+	<aura id="2043" name="Fairy Aura" rarity="2" />
+	<aura id="2047" name="Elven Aura" rarity="2" />
+
+	<!-- <aura id="2021" name="Icicle" />
+	<aura id="2019" name="Electric" rarity="2" />
+	<aura id="2023" name="Light Circle" />
+	<aura id="2030" name="Charge" />
+	<aura id="2034" name="Violet" />
+	<aura id="2041" name="Black Devil Aura" />
+	<aura id="2043" name="Fairy Aura" />
+	<aura id="2044" name="Reaper Aura" />
+	<aura id="2046" name="Violet Aura" />
+	<aura id="2047" name="Elven Aura" />
+	<aura id="2092" name="Dollar" />
+	<aura id="2095" name="Demonic Tamer" />
+	<aura id="2098" name="Angel Orb" />
+	<aura id="2099" name="Angel Ankh" />
+	<aura id="2100" name="Angel Full" />
+	<aura id="2102" name="Decay Aura" />
+	<aura id="2104" name="Energy Aura" />
+	<aura id="2106" name="Sharp Aura" />
+	<aura id="2110" name="Pentagram Aura" />
+	<aura id="2111" name="Bubbles Crystal Aura" />
+	<aura id="2113" name="Gems Aura" />
+	<aura id="2115" name="Lighting Aura" />
+	<aura id="2117" name="Red Gem Aura" />
+
+
+	<aura id="2123" name="Bloody Aura" />
+	<aura id="2124" name="Galactic Aura" />
+	<aura id="2125" name="Cloud Aura" />
+	<aura id="2128" name="Electric Aura" />
+	<aura id="2130" name="Leaf Aura" />
+	<aura id="2132" name="Hand Aura" />
+	<aura id="2134" name="Poison Aura" />
+	<aura id="2139" name="Black&White Aura" />
+	<aura id="2141" name="Reaven Aura" />
+	<aura id="2143" name="Water Elemental Aura" />
+	<aura id="2146" name="ProjectV1 Aura" />
+	<aura id="2147" name="ProjectV2 Aura" />
+	<aura id="2152" name="Black Fire Aura" />
+	<aura id="2154" name="SkeletonSoul Aura" />
+	<aura id="2160" name="Ethercraft Earth Aura" />
+	<aura id="2161" name="Ethercraft Energ Aura" />
+	<aura id="2162" name="Ethercraft Fire Aura" />
+	<aura id="2163" name="Ethercraft Water Aura" />
+	<aura id="2164" name="Ethercraft Wind Aura" />
+	
+	<aura id="2169" name="Necrolord Red Aura" />
+	<aura id="2170" name="Necrolord Galaxy Aura" />
+	<aura id="2171" name="Necrolord White Aura" />
+	<aura id="2172" name="Necrolord Blue Aura" />
+	<aura id="2174" name="Illusionist Aura" />
+	<aura id="2176" name="Divine Arcane Aura" />
+	<aura id="2178" name="Oblivion Aura" />
+	<aura id="2180" name="Glimmerwood Aura" />
+	<aura id="2182" name="Transcendence Aura" />
+	<aura id="2184" name="Plumist Aura" />
+	<aura id="2186" name="Fallenangel Aura" />
+	<aura id="2214" name="Transcendence Aura" />
+	<aura id="2216" name="Web Aura" />
+	<aura id="2218" name="ParrotV1 Aura" />
+	<aura id="2220" name="ParrotV2 Aura" />
+	<aura id="2233" name="Flowers Butterfly Aura" />
+	<aura id="2237" name="Tempest Rain Aura" />
+	<aura id="2239" name="Sunny Aura" />
+	<aura id="2241" name="Stone Aura" />
+	<aura id="2243" name="Heart Aura" />
+	<aura id="2283" name="Light Ocean Aura" />
+	<aura id="2290" name="Corrupted Crystal Aura" />
+	<aura id="2292" name="Dark Anjo Aura" />
+	<aura id="2294" name="Light Carrier Aura" />
+	<aura id="2297" name="Purified Crystals Aura" />
+	<aura id="2298" name="Better Gems Aura" />
+	<aura id="2299" name="Better Gem Aura" />
+
+	<aura id="2316" name="Candle Light" />
+	<aura id="2318" name="Light Lightning" />
+	<aura id="2319" name="Dark Shrine" />
+	<aura id="2386" name="Lightning Pulse" />
+
+	<aura id="2444" name="Bluesky Aura" />
+	<aura id="2445" name="Greensky Aura" />
+	<aura id="2446" name="Violetsky Aura" />
+	<aura id="2447" name="Purplesky Aura" />
+	<aura id="2448" name="Whitesky Aura" />
+	<aura id="2449" name="Rainbowsky Aura" />
+	<aura id="2456" name="Elements Aura" />
+	<aura id="2465" name="Darkress Aura" />
+	
+	<aura id="2512" name="Mystic Sparks" />
+	<aura id="2513" name="Flame Particles" />
+	<aura id="2514" name="Frost Shards" />
+	<aura id="2515" name="Toxin Sparks" />
+	<aura id="2516" name="Spirit Drift" />
+	
+	<aura id="2517" name="Shield" />
+	
+	<aura id="2518" name="Mystic Seal" />
+	<aura id="2519" name="Flame Seal" />
+	<aura id="2520" name="Frost Seal" />
+	<aura id="2521" name="Poison Seal" />
+	<aura id="2522" name="Neutral Seal" />
+	
+	<aura id="2530" name="TEST" />
+	<aura id="2531" name="TEST1" />
+	<aura id="2532" name="TEST2" />
+	
+	<aura id="2533" name="TEST3" />
+	<aura id="2534" name="TEST4" />
+	<aura id="2535" name="TEST5" />
+	<aura id="2536" name="TEST6" />
+	<aura id="2537" name="TEST7" />
+	<aura id="2538" name="TEST8" />
+	<aura id="2539" name="TEST9" />
+	<aura id="2540" name="TEST10" />
+	<aura id="2541" name="TEST11" />
+	<aura id="2542" name="TEST12" />
+	<aura id="2543" name="TEST13" />
+	<aura id="2544" name="TEST14" />
+	<aura id="2545" name="TEST15" />
+	<aura id="2546" name="TEST16" />
+	<aura id="2548" name="TEST18" />
+	<aura id="2549" name="TEST19" />
+	<aura id="2550" name="TEST20" />
+	<aura id="2551" name="TEST21" />
+	<aura id="2552" name="TEST22" />
+	<aura id="2553" name="TEST23" />
+	<aura id="2574" name="Celestial Flow" rarity="5" />
+	<aura id="2568" name="Infernal Halo" rarity="5" />
+	<aura id="2569" name="Arcane Vortex" rarity="5" />
+	<aura id="2570" name="Verdant Aura" rarity="5" />	-->
+</auras>

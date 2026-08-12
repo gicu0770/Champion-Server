@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<globalevents>
+	<globalevent type="startup" name="ServerStartup" script="startup.lua" />
+	<globalevent type="shutdown" name="ServerShutdown" script="shutdown.lua" />
+	<globalevent type="record" name="PlayerRecord" script="record.lua" />
+	<globalevent type="preremoveitem" name="ConverItemsToPowder" script="powder_convert.lua" />
+	<globalevent name="Save10" interval="1800000" script="save10.lua" />
+	<globalevent name="CleanMemory" interval="3600000" script="cleanmemory.lua" />
+	<!-- <globalevent name="MsgInfo" interval="900000" script="infomsg.lua" /> -->
+
+<!-- <globalevent name="WorldBoss" time="15:00:00" script="worldboss.lua" /> -->	
+</globalevents>

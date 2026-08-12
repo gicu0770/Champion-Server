@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Knowledge Elemental" nameDescription="a knowledge elemental" race="undead" experience="12500" speed="200" zone="17" bestiaryId="44">
+	<health now="390000" max="390000" />
+	<look type="1034" corpse="27196" />
+	<targetchange interval="5000" chance="8" />
+	<targetstrategies nearest="100" health="0" damage="0" random="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="6" target="1" radius="4" min="-4200" max="-4200">
+			<attribute key="shootEffect" value="227" />
+			<attribute key="areaEffect" value="48" />
+		</attack>
+	</attacks>
+	<level min="42" max="42" />
+	<defenses armor="90" defense="90">
+</defenses>
+	<elements>
+</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="For ze emperor!" />
+		<voice sentence="You will die zhouzandz deazhz!" />
+	</voices>
+	<loot>
+</loot>
+</monster>

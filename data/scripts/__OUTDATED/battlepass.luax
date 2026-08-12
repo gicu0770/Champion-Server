@@ -1,0 +1,278 @@
+local CLIENT_BATTLEPASS = {}
+local SAVEDATA_BATTLEPASS = {}
+local perFetch = 10
+
+local LoginEvent = CreatureEvent("BattlePassLogin")
+function LoginEvent.onLogin(player)
+  player:getClientBattlePassData()
+  player:registerEvent("BattlePassExtendedEvent")
+  player:sendBattlePassList()
+  return true
+end
+
+local LogoutEvent = CreatureEvent("BattlePassLogout")
+function LogoutEvent.onLogout(player)
+  local playerData = SAVEDATA_BATTLEPASS[player:getId()] 
+  if playerData then
+    setSeasonLevel(player, playerData.level)
+    setSeasonPoints(player, playerData.points)
+    setSeasonRewardFree(player, playerData.rewardFree)
+    setSeasonRewardPremium(player, playerData.rewardPremium)
+  end
+  return true
+end
+
+local ExtendedEvent = CreatureEvent("BattlePassExtendedEvent")
+function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
+  if opcode == ExtendedOPCodes.CODE_BATTLE_PASS then
+    local status, json_data =
+      pcall(
+      function()
+        return json.decode(buffer)
+      end
+    )
+    if not status then
+      return false
+    end
+
+    if json_data.action == "open" then
+      player:sendUpdateBattlePass()
+    end
+	  
+    if json_data.action == "claim" then
+      player:claimReward(json_data.id, json_data.prem)
+    end
+  end
+end
+
+function Player:getClientBattlePassData()
+  SAVEDATA_BATTLEPASS[self:getId()] = {
+    sex = self:getSex(),
+    pass = hasSeasonPass(self),
+    level = getSeasonLevel(self),
+    points = getSeasonPoints(self),
+    rewardFree = getSeasonRewardFree(self),
+    rewardPremium = getSeasonRewardPremium(self),
+  }
+  return SAVEDATA_BATTLEPASS[self:getId()]
+end
+
+function Player:sendUpdateBattlePass(update, dontopen)
+  local data = SAVEDATA_BATTLEPASS[self:getId()]
+  if not data or update then
+    data = self:getClientBattlePassData()
+  end
+  data.dontopen = dontopen or false
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_BATTLE_PASS, json.encode({action = "update", data = data}))
+end
+
+function Player:claimReward(id, prem)
+  if BATTLEPASS[id] then
+    local playerData = SAVEDATA_BATTLEPASS[self:getId()]
+    if not playerData then
+      playerData = self:getClientBattlePassData()
+    end
+
+    if prem == 1 and not playerData.pass == 1 then
+      dprint("Player " .. self:getName() .. " is not premium")
+      return
+    end
+
+    if prem == 1 then
+      if id ~= playerData.rewardPremium and id ~= playerData.level then
+        dprint("Player " .. self:getName() .. " already claimed premium reward " .. id)
+        return
+      end
+    else
+      if id ~= playerData.rewardFree and id ~= playerData.level then
+        dprint("Player " .. self:getName() .. " already claimed free reward " .. id)
+        return
+      end
+    end
+
+    local reward = BATTLEPASS[id][prem]
+    if reward then
+      for i = 1, #reward do
+        local data = reward[i]
+        if data.type == "item" then
+          for i = 1, #data.id do
+            local itemx = Game.createItem(data.id[i], data.count[i])
+            self:getInbox():addItemEx(itemx, INDEX_WHEREEVER, FLAG_NOLIMIT)
+          end
+        elseif data.type == "buff" then
+          for j = 1, #data.id do
+            self:addBuff(data.id[j], data.time[j])
+          end
+        elseif data.type == "points" then
+          local points = getPoints(self)
+          local aid = self:getAccountId()
+          db.query("UPDATE `znote_accounts` set `points` = `points` + " .. data.count .. " WHERE `account_id` = " .. aid)
+          db.asyncQuery(
+            "INSERT INTO `shop_history` VALUES (NULL, '" ..
+              aid .. "', '" .. self:getGuid() .. "', NOW(), " .. "'Points'" .. ", '" .. "+" .. data.count .. "', " .. 0 .. ", NULL)"
+          )
+          addEvent(gameStoreUpdateHistory, 1000, self:getId())
+          addEvent(gameStoreUpdatePoints, 1000, self:getId())
+        elseif data.type == "outfit" then
+          if outfit.wings then
+            self:addWings(outfit.wings)
+          end
+          if outfit.type then
+            self:addOutfit(outfit.type)
+          end
+          if outfit.aura then
+            self:addAura(outfit.aura)
+          end
+          if outfit.shader then
+            --self:addShader(outfit.shader)
+          end
+          if outfit.addons then
+            self:addOutfitAddon(outfit.type, outfit.addons)
+          end
+        elseif data.type == "function" then
+          data.func(self)
+        end
+      end
+      if prem == 1 then
+        setSeasonRewardPremium(self, id + 1)
+      else
+        setSeasonRewardFree(self, id + 1)
+      end
+      self:sendUpdateBattlePass(true)
+    end
+  end
+end
+
+function Player:sendBattlePassList(last)
+  if not last then
+    last = 1
+  end
+
+  local available = {}
+  for i = last, math.min(last + perFetch - 1, #CLIENT_BATTLEPASS) do
+    table.insert(available, CLIENT_BATTLEPASS[i])
+  end
+
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_BATTLE_PASS, json.encode({action = "fetch", data = available}))
+  last = last + perFetch
+  if last < #CLIENT_BATTLEPASS then
+    self:sendBattlePassList(last)
+  else
+    local playerData = SAVEDATA_BATTLEPASS[self:getId()]
+    if not playerData then
+      playerData = self:getClientBattlePassData()
+    end
+    self:sendExtendedOpcode(ExtendedOPCodes.CODE_BATTLE_PASS, json.encode({action = "fetch_end", data = playerData}))
+  end
+end
+
+function Player:addBattlePassPoints(points)
+  local playerData = SAVEDATA_BATTLEPASS[self:getId()]
+  if not playerData then
+    playerData = self:getClientBattlePassData()
+  end
+
+  if playerData.points + points >= 2500 then
+    setSeasonLevel(self, playerData.level + 1)
+    setSeasonPoints(self, 0)
+    self:sendUpdateBattlePass(true, true)
+  else
+    SAVEDATA_BATTLEPASS[self:getId()].points = playerData.points + points
+  end
+end
+
+local DeathMonster = CreatureEvent("BattlePassDeath")
+function DeathMonster.onDeath(creature, corpse, killer, mostDamage, unjustified, mostDamage_unjustified)
+	if not creature or creature:isPlayer() or creature:getMaster() then
+		return true
+	end
+	if killer then
+    local party = killer:getParty()
+    if party and party:isSharedExperienceActive() then
+      local members = party:getMembers()
+      for i = 1, #members do
+        local member = members[i]
+        if member then
+          member:addBattlePassPoints(1)
+        end
+      end
+
+      local leader = party:getLeader()
+      if leader then
+        leader:addBattlePassPoints(1)
+      end
+    else
+      killer:addBattlePassPoints(1)
+    end
+  end
+	return true
+end
+
+function createClientBattlePassTable()
+  for i = 1, #BATTLEPASS do
+    local reward = {}
+    for k = 1, #BATTLEPASS[i] do
+      local rewardTemp = {}
+      for p = 1, #BATTLEPASS[i][k] do
+        local data = {}
+        if BATTLEPASS[i][k][p].type == "function" then
+          data.type = "function"
+          data.info = BATTLEPASS[i][k][p].info
+          data.icon = BATTLEPASS[i][k][p].icon
+        elseif BATTLEPASS[i][k][p].type == "item" then
+          data.type = "item"
+          local items = {}
+          for c = 1, #BATTLEPASS[i][k][p].id do
+            local item = Game.createItem(BATTLEPASS[i][k][p].id[c], 1)
+            if item then
+              local item_data = builtdItemTooltip(item, nil, true)
+              item_data.count = BATTLEPASS[i][k][p].count[c]
+              table.insert(items, item_data)
+              item:remove()
+            else
+              dprint("Item with id " .. BATTLEPASS[i][k][p].id[c] .. " not found.")
+            end
+          end
+          data.items = items
+        elseif BATTLEPASS[i][k][p].type == "outfit" then
+          data.type = "outfit"
+          data.outfit = BATTLEPASS[i][k][p].outfit
+          data.info = BATTLEPASS[i][k][p].info
+        elseif BATTLEPASS[i][k][p].type == "buff" then
+          local buffTable = {}
+          for j = 1, #BATTLEPASS[i][k][p].id do
+            local buff = BUFFS[BATTLEPASS[i][k][p].id[j]]
+            local buffData = {}
+            if buff then
+              buffData.name = buff.name
+              buffData.icon = buff.icon
+              buffData.time = BATTLEPASS[i][k][p].time[j]
+              buffData.description = buff.description
+              table.insert(buffTable, buffData)
+            else
+              dprint("Buff with id " .. BATTLEPASS[i][k][p].id[j] .. " not found.")
+            end
+          end
+          data.buff = buffTable
+          data.type = "buff"
+        elseif BATTLEPASS[i][k][p].type == "points" then
+          data.type = "points"
+          data.count = BATTLEPASS[i][k][p].count
+        end
+        table.insert(rewardTemp, p, data)
+      end
+      table.insert(reward, k, rewardTemp)
+    end
+    table.insert(CLIENT_BATTLEPASS, i, reward)
+  end
+end
+
+createClientBattlePassTable()
+LoginEvent:type("login")
+LoginEvent:register()
+LogoutEvent:type("logout")
+LogoutEvent:register()
+DeathMonster:type("death")
+DeathMonster:register()
+ExtendedEvent:type("extendedopcode")
+ExtendedEvent:register()

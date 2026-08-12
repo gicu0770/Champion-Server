@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Ember Crusher" nameDescription="a Ember Crusher" race="undead" experience="12500" speed="300" zone="51" bestiaryId="147">
+	<health now="1000000" max="1000000" />
+	<look type="2823" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags> 
+		<flag summonable="0" />
+		<flag attackable="1" /> 
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	
+	</flags>
+	<attacks>
+		<attack name="physical" interval="1500" chance="100" range="6" radius="1" target="1" min="-6000" max="-6000">
+				<attribute key="shootEffect" value="138"/>
+       			<attribute key="areaEffect" value="1"/>
+		</attack>
+	</attacks>
+	<level min="550" max="550" />
+	<defenses armor="160" defense="160">
+	</defenses>
+	<elements>
+	</elements>
+
+	<voices interval="5000" chance="10">
+		<voice sentence="Spores for the feast!" />
+		<voice sentence="Decay is my domain!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

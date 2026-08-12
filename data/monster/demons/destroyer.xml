@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Destroyer" nameDescription="a destroyer" race="undead" experience="2500" speed="200" zone="6" bestiaryId="17">
+	<health now="3700" max="3700" />
+	<look type="236" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	
+	
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="6" radius="2" target="1" min="-200" max="-200">
+			<attribute key="shootEffect" value="largerock" />
+			<attribute key="areaEffect" value="explosion" />
+		</attack>
+	</attacks>
+	<level min="19" max="19" />
+	<defenses armor="30" defense="30">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="COME HERE AND DIE!" />
+		<voice sentence="Destructiooooon!" />
+		<voice sentence="It's a good day to destroy!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Zuzgil" nameDescription="a zuzgil" race="venom" experience="30000" speed="250" zone="29" bestiaryId="72">
+	<health now="10000000" max="10000000" />
+	<look type="1148" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="2" />
+		<flag staticattack="80" />
+		<flag runonhealth="0" />
+	
+	</flags>
+	<attacks>
+		<attack name="earth" interval="1500" chance="100" range="6" radius="4" target="1" min="-50000" max="-50000">
+			<attribute key="shootEffect" value="420" effect="true"/>
+			<attribute key="areaEffect" value="62" />
+		</attack>
+	</attacks>
+	<level min="80" max="80" />
+	<defenses armor="350" defense="350">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="Doomed be the living!" />
+		<voice sentence="Death awaits all!" />
+		<voice sentence="Thy living flesh offends me!" />
+		<voice sentence="Death and Decay!" />
+		<voice sentence="You will endure agony beyond thy death!" />
+		<voice sentence="Pain sweet pain!" />
+		<voice sentence="Come to me my children!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

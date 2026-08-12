@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raids>
+	<!--
+		<raid name="Testraid" file="testraid.xml" interval2="30" margin="0" />
+		executed on average once every 30 minutes
+	
+	<raid name="WorldBoss1" file="worldBoss1.xml" interval2="99999999" margin="0" />
+	<raid name="WorldBoss2" file="worldBoss2.xml" interval2="99999999" margin="0" />
+	<raid name="WorldBoss3" file="worldBoss3.xml" interval2="99999999" margin="0" />
+	-->
+</raids>

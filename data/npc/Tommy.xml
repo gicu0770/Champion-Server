@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Tommy" script="daily.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="2187" head="40" body="94" legs="95" feet="0" addons="3"/>
+	<parameters>
+		<!--MESSAGES-->
+		<parameter key="message_greet" value="Greetings, |PLAYERNAME|. Do you wanna free daily self boosts?!. {Daily}"/>
+		<parameter key="message_farewell" value="Good bye, |PLAYERNAME|."/>
+	</parameters>
+</npc>

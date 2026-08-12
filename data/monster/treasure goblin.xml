@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Treasure Goblin" nameDescription="a treasure goblin" race="blood" experience="0" speed="220" bestiaryId="123" items="goblin">
+	<!-- script="goblin.lua -->
+	<health now="10" max="10" />
+	<look type="2838" corpse="27196" />
+	<targetchange interval="4000" chance="20" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="0" />
+		<flag staticattack="90" />
+		<flag lightlevel="0" />
+		<flag lightcolor="0" />
+		<flag targetdistance="2" />
+		<flag runonhealth="90000000" />
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="6" radius="2" target="1" min="-50" max="-50">
+			<attribute key="shootEffect" value="209" />
+			<attribute key="areaEffect" value="405" />
+		</attack>
+	</attacks>
+	<defenses armor="500" defense="500">
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="Crackle!" />
+		<voice sentence="Tsshh" />
+	</voices>
+	<immunities>
+		<immunity drown="1" />
+		<immunity lifedrain="1" />
+		<immunity paralyze="1" />
+		<immunity invisible="1" />
+	</immunities>
+	<elements>
+		<element energyPercent="0" />
+		<element icePercent="0" />
+		<element firePercent="0" />
+		<element holyPercent="0" />
+		<element earthPercent="0" />
+		<element physicalPercent="0" />
+		<element deathPercent="0" />
+	</elements>
+	<loot>
+	</loot>
+</monster>

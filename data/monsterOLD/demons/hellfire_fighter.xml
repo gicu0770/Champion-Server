@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Hellfire Fighter" nameDescription="a hellfire fighter" race="fire" experience="3900" speed="200">
+	<health now="3800" max="3800" />
+	<look type="243" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	
+	</flags>
+	<attacks>
+		
+		<attack name="fire" interval="2000" chance="100" target="0" length="8" spread="0" min="-400" max="-400">
+			<attribute key="areaEffect" value="fireattack" />
+		</attack>
+	</attacks>
+	<level min="19" max="19" />
+	<defenses armor="35" defense="35" />
+	<elements>
+
+	</elements>
+	<loot>
+	</loot>
+</monster>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Infernal Demon" nameDescription="a infernal demon" race="fire" experience="26000" speed="250" zone="28" bestiaryId="68">
+	<health now="32000" max="32000" />
+	<look type="1225" corpse="27196" />
+	<targetchange interval="4000" chance="20" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" length="8" spread="2" target="1" min="-1300" max="-2480">
+			<attribute key="areaEffect" value="221" />
+		</attack>
+	</attacks>
+	<level min="75" max="75" />
+	<defenses armor="144" defense="144">
+	</defenses>
+	<elements>
+	</elements>
+	<immunities>
+	</immunities>
+	<voices interval="5000" chance="10">
+		<voice sentence="The smell of fear follows you." />
+		<voice sentence="Your soul will burn." />
+	</voices>
+	<loot>
+	</loot>
+</monster>

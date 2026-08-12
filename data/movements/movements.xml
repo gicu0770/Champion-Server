@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movements>
+
+	<movevent event="StepIn" actionid="27561" script="mine.lua"/>    <!--  VOORT boss endgame -->
+    <movevent event="StepIn" actionid="27570" script="mine.lua"/>    <!--  Yeti boss endgame -->
+    <movevent event="StepIn" actionid="27571" script="mine.lua"/>    <!--  grim boss endgame -->
+    <movevent event="StepIn" actionid="27572" script="mine.lua"/>    <!--  rot boss endgame -->
+    <movevent event="StepIn" actionid="27573" script="mine.lua"/>    <!--  Lava golem boss endgame -->
+	<movevent event="StepIn" actionid="27574" script="mine.lua"/>    <!--  specialization boss -->
+	<movevent event="StepIn" actionid="27575" script="mine.lua"/>    <!--  nowa linia boss -->
+
+    <movevent event="StepIn" itemid="37278" script="monstersoul.lua"/>	<!--  exp globes -->
+	<movevent event="StepIn" fromid="37279" toid="37281" script="monstersoul.lua"/>	<!--  small globes -->
+	<movevent event="StepIn" fromid="37275" toid="37277" script="monstersoul.lua"/>	<!--  globes -->
+
+	<movevent event="StepIn" actionid="27569" script="dungeonUnlocked.lua"/> <!-- Swamp Pit -->
+	<movevent event="StepIn" actionid="27568" script="dungeonUnlocked.lua"/> <!-- flame Cave -->
+	<movevent event="StepIn" actionid="27567" script="dungeonUnlocked.lua"/> <!--  vampire lair -->
+
+	<movevent event="StepIn" actionid="43147" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43146" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43145" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43144" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43143" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43142" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43141" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43140" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43139" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43138" script="dungeon_frozen_lair.lua" /> <!-- raid 5 -->
+
+
+	<movevent event="StepIn" actionid="27595" script="paragon.lua"/> <!--  paragon PORTAL -->
+	<movevent event="StepIn" actionid="27594" script="paragon.lua"/> <!--  paragon PORTAL t10 acc -->
+	<movevent event="StepIn" actionid="27593" script="paragon.lua"/> <!--  paragon PORTAL t10 set -->
+	<movevent event="StepIn" actionid="27592" script="paragon.lua"/> <!--  paragon PORTAL t9 set -->
+	<movevent event="StepIn" actionid="27591" script="paragon.lua"/> <!--  paragon PORTAL t9 acc  -->
+	<!--
+	<movevent event="StepIn" actionid="27588" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27587" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27586" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27585" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27584" script="expRoomEnter.lua"/>
+	<movevent event="StepIn" actionid="27583" script="expRoomEnter.lua"/>
+	<movevent event="StepIn" actionid="27582" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27581" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27580" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27579" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27578" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27577" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27576" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27575" script="expRoomEnter.lua"/> 
+	<movevent event="StepIn" actionid="27574" script="expRoomEnter.lua"/> 
+	-->
+	<movevent event="StepIn" actionid="27566" script="back.lua"/> <!--  back player and creature -->
+	<movevent event="StepIn" actionid="27565" script="frozen.lua"/> <!--  exp 1500 -->
+	<movevent event="StepIn" actionid="27564" script="frozen.lua"/> <!--  exp 1200 -->
+	<movevent event="StepIn" actionid="27562" script="monstersoul.lua" />
+		<!-- Town Portal -->
+	<movevent event="StepIn" actionid="5623" script="town_portal.lua" />
+	<movevent event="StepIn" actionid="5624" script="town_portal.lua" />
+
+
+	<movevent event="StepIn" actionid="27560" script="frozen.lua"/> <!--  ACCESORIES T8 MOBY -->
+	<movevent event="StepIn" actionid="27559" script="frozen.lua"/> <!--  SET T8 MOBY -->
+	<movevent event="StepIn" actionid="27558" script="frozen.lua"/> <!--  Access T8  SET -->
+	<movevent event="StepIn" actionid="27563" script="frozen.lua"/> <!--  Access T8 accesories -->
+	<movevent event="StepIn" actionid="27557" script="frozen.lua"/> <!--  raid 2 -->
+	
+	<movevent event="StepIn" actionid="27556" script="frozen.lua"/> <!--  Access T6 accesories BACK -->
+	<movevent event="StepIn" actionid="27555" script="frozen.lua"/> <!--  Access T7 accesories/SET chyba -->
+	<movevent event="StepIn" actionid="27554" script="frozen.lua"/> <!--  Access T6 accesories -->
+	<movevent event="StepIn" actionid="27551" script="mushroomHeal.lua"/>
+	<movevent event="StepIn" actionid="27550" script="ogres.lua"/>
+	<movevent event="StepIn" actionid="27549" script="boss_block_spawn.lua" />
+	<movevent event="StepIn" actionid="27548" script="Drakenboss/orclops.lua"/>
+	<movevent event="StepIn" actionid="27547" script="Drakenboss/rage.lua"/>
+	<movevent event="StepIn" actionid="27546" script="trainers.lua" />
+	<movevent event="StepIn" actionid="27545" script="desert.lua" />
+	<movevent event="StepIn" actionid="27544" script="dark_castle.lua" />
+	<movevent event="StepIn" actionid="27541" script="plague.lua"/>
+	<movevent event="StepIn" actionid="27542" script="plague.lua"/>
+	<!-- Dark Tower
+	<movevent event="StepIn" actionid="27540" script="darkTower.lua"/>
+	-->
+	<!-- Demon Oak Quest -->
+	<movevent event="StepIn" actionid="8801" script="DemonOak/demonoak.lua"/>
+	<!-- Trip Quest -->
+	<movevent event="StepIn" actionid="9118" script="Trip/tripWater.lua"/>
+	
+	<!-- Dungeons -->
+	<movevent event="StepIn" actionid="6435" script="dungeon_finish.lua" />
+	<movevent event="StepIn" actionid="43100" script="dungeon_tp.lua" />
+	<movevent event="StepIn" actionid="27543" script="dungeon_boss_entry.lua" />
+			<!-- Frozen Lair Dungeons -->
+	<movevent event="StepIn" actionid="43101" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43102" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43103" script="dungeon_frozen_lair.lua" />
+	
+		<!-- Crystal Dungeons -->
+	<movevent event="StepIn" actionid="43104" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43105" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43106" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43107" script="dungeon_frozen_lair.lua" />
+	<!-- raid 2 -->
+	<movevent event="StepIn" actionid="43108" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43109" script="dungeon_frozen_lair.lua" />
+	
+		<!-- raid 3 -->
+	<movevent event="StepIn" actionid="43110" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43111" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43112" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43113" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43114" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43115" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43116" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43117" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43118" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43119" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43120" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43121" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43122" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43123" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43124" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43125" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43126" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43127" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43128" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43129" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43130" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43131" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43132" script="dungeon_frozen_lair.lua" />
+	
+	<movevent event="StepIn" actionid="43133" script="dungeon_frozen_lair.lua" />
+	<movevent event="StepIn" actionid="43134" script="dungeon_frozen_lair.lua" />
+
+	<movevent event="StepIn" actionid="43135" script="dungeon_frozen_lair.lua" /> <!-- t10 boss tp -->
+	<movevent event="StepIn" actionid="43136" script="dungeon_frozen_lair.lua" /> <!-- t10 boss tp -->
+	<movevent event="StepIn" actionid="43137" script="dungeon_frozen_lair.lua" /> <!-- t10 boss tp -->
+
+	
+	
+	<movevent event="StepIn" actionid="30303" script="demonEssense.lua"/>
+	<movevent event="StepIn" actionid="30304" script="frozen.lua"/>
+	<movevent event="StepIn" actionid="30305" script="mining.lua"/>
+	<movevent event="StepIn" actionid="30306" script="mining2.lua"/>
+
+
+	<!-- Teleport bossy -->
+	<movevent event="StepIn" actionid="25611" script="Drakenboss/DrakenTp.lua"/>
+	<movevent event="StepIn" actionid="25612" script="Queenboss/QueenTp.lua"/>
+	<movevent event="StepIn" actionid="25613" script="Kingboss/KingTp.lua"/>
+	<movevent event="StepIn" actionid="25614" script="Brother/BrotherTP.lua"/>
+	<movevent event="StepIn" actionid="25615" script="Book/BookTP.lua"/>
+	<movevent event="StepIn" actionid="25616" script="Undead/undeadTP.lua"/>
+	<movevent event="StepIn" actionid="25617" script="Royal/royalTP.lua"/>
+	
+
+
+
+	<movevent event="StepIn" actionid="8583" script="Forei/enter_to_positions.lua"/>
+	<movevent event="StepIn" actionid="32001" script="Citizen/back1.lua"/>
+	<movevent event="StepIn" actionid="32002" script="Citizen/back2.lua"/>
+
+	<!-- NOWE QUESTY -->
+
+	<movevent event="StepIn" actionid="25601" script="Banshe Quest/statuetsCombat.lua"/>
+	<movevent event="StepIn" actionid="25610" script="Banshe Quest/WarlockTp.lua"/>
+	<movevent event="StepIn" actionid="2012" script="Drakenberg/bossEnter.lua"/>
+	<movevent event="StepIn" actionid="4236" script="waypoints.lua" />
+	<movevent event="StepOut" actionid="4236" script="waypoints.lua" />
+
+
+
+	<movevent event="Equip" itemid="7364" level="20" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7364" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="7839" level="35" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7839" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="7840" level="35" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7840" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="7850" level="35" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7850" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="15648" level="50" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="15648" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="7365" level="70" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7365" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="18437" level="90" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="18437" function="onDeEquipItem" />
+		<movevent event="Equip" itemid="18304" level="130" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="18304" function="onDeEquipItem" />
+	
+	
+	
+	
+	
+	<movevent event="Equip" itemid="7363" level="30" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="7363" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="15649" level="40" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="15649" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="2547" level="55" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="2547" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="18436" level="70" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="18436" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="18435" level="90" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="18435" function="onDeEquipItem" />
+	<movevent event="Equip" itemid="6529" level="130" function="onEquipItem">
+		<vocation name="Archer" />
+		<vocation name="Swift Archer" showInDescription="0" />
+		<vocation name="Sniper" showInDescription="0" />
+		<vocation name="Deadly Sniper" showInDescription="0" />
+		<vocation name="Shadow" />
+		<vocation name="Hidden Shadow" showInDescription="0" />
+		<vocation name="Dark Shadow" showInDescription="0" />
+		<vocation name="Void Shadow" showInDescription="0" />
+	</movevent>
+	<movevent event="DeEquip" itemid="6529" function="onDeEquipItem" />
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- PETS 
+	<movevent event="Equip" itemid="36660" function="script" slot="cztery" script="Pets/empty.lua"/>
+	<movevent event="DeEquip" itemid="36660" function="script" slot="cztery" script="Pets/empty.lua"/>
+	
+	<movevent event="Equip" itemid="36643" function="script" slot="cztery" script="Pets/pet1.lua"/>
+	<movevent event="DeEquip" itemid="36643" function="script" slot="cztery" script="Pets/pet1.lua"/>
+
+	<movevent event="Equip" itemid="36658" function="script" slot="cztery" script="Pets/pet2.lua"/>
+	<movevent event="DeEquip" itemid="36658" function="script" slot="cztery" script="Pets/pet2.lua"/>
+
+	<movevent event="Equip" itemid="36655" function="script" slot="cztery" script="Pets/pet3.lua"/>
+	<movevent event="DeEquip" itemid="36655" function="script" slot="cztery" script="Pets/pet3.lua"/>
+
+	<movevent event="Equip" itemid="36663" function="script" slot="cztery" script="Pets/pet4.lua"/>
+	<movevent event="DeEquip" itemid="36663" function="script" slot="cztery" script="Pets/pet4.lua"/>
+
+	<movevent event="Equip" itemid="36652" function="script" slot="cztery" script="Pets/pet5.lua"/>
+	<movevent event="DeEquip" itemid="36652" function="script" slot="cztery" script="Pets/pet5.lua"/>
+
+	<movevent event="Equip" itemid="36664" function="script" slot="cztery" script="Pets/pet6.lua"/>
+	<movevent event="DeEquip" itemid="36664" function="script" slot="cztery" script="Pets/pet6.lua"/>
+	-->
+	<!-- ARTEFAKT -->
+    <movevent event="Equip" itemid="21471" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="21471" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="13030" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="13030" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="16108" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="16108" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="24332" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="24332" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="24683" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="24683" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="13581" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="13581" function="onDeEquipItem" />
+
+    <movevent event="Equip" itemid="26339" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="26339" function="onDeEquipItem" />
+
+    <movevent event="Equip" itemid="26336" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="26336" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="25546" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="25546" function="onDeEquipItem" />
+	
+    <movevent event="Equip" itemid="25545" function="onEquipItem"/>
+    <movevent event="DeEquip" itemid="25545" function="onDeEquipItem" />
+	
+</movements>

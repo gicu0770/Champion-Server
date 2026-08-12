@@ -1,0 +1,750 @@
+<?xml version="1.0"?>
+<spawns>
+	<spawn centerx="424" centery="192" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="448" centery="192" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="371" centery="193" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="429" centery="193" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="435" centery="193" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="461" centery="193" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="394" centery="194" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="194" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="425" centery="194" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="451" centery="194" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="374" centery="195" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="438" centery="195" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="397" centery="196" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="424" centery="196" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="428" centery="196" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="365" centery="197" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="371" centery="197" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="390" centery="197" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="431" centery="197" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="462" centery="197" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="368" centery="199" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="393" centery="199" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="199" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="396" centery="201" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="370" centery="205" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="450" centery="205" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="391" centery="206" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="373" centery="207" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="418" centery="207" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="383" centery="208" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="394" centery="208" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="208" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="453" centery="209" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="397" centery="211" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="420" centery="211" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="456" centery="211" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="462" centery="211" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="376" centery="212" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="393" centery="212" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="367" centery="214" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="396" centery="214" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="370" centery="216" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="392" centery="216" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="457" centery="216" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="342" centery="217" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="418" centery="217" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="338" centery="218" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="219" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="341" centery="220" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="366" centery="220" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="387" centery="220" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="397" centery="221" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="331" centery="222" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="390" centery="222" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="393" centery="222" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="456" centery="222" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="312" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="316" centery="223" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="318" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="336" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="351" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="359" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="405" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="450" centery="223" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="325" centery="224" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="328" centery="224" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="396" centery="224" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="400" centery="224" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="425" centery="224" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="435" centery="224" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="459" centery="224" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="321" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="339" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="354" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="362" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="369" centery="225" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="408" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="413" centery="225" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="453" centery="225" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="331" centery="226" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="345" centery="226" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="425" centery="226" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="428" centery="226" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="438" centery="226" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="372" centery="227" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="387" centery="227" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="380" centery="228" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="392" centery="228" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="416" centery="228" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="377" centery="229" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="390" centery="229" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="369" centery="230" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="383" centery="230" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="395" centery="230" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="419" centery="230" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="231" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="365" centery="231" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="462" centery="232" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="368" centery="233" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="419" centery="233" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="441" centery="233" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="234" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="235" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="365" centery="235" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="393" centery="235" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="235" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="450" centery="235" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="389" centery="236" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="446" centery="236" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="343" centery="237" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="363" centery="237" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="368" centery="237" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="438" centery="237" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="392" centery="238" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="420" centery="238" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="464" centery="238" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="453" centery="239" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="397" centery="240" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="443" centery="240" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="447" centery="240" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="438" centery="241" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="369" centery="243" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="383" centery="243" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="341" centery="244" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="418" centery="244" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="443" centery="244" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="452" centery="244" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="372" centery="245" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="386" centery="245" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="392" centery="245" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="246" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="439" centery="246" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="390" centery="247" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="395" centery="247" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="386" centery="248" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="250" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="389" centery="250" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="437" centery="250" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="461" centery="250" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="369" centery="251" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="372" centery="251" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="452" centery="251" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="343" centery="252" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="365" centery="252" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="440" centery="252" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="464" centery="252" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="375" centery="253" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="389" centery="253" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="368" centery="254" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="341" centery="256" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="389" centery="256" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="419" centery="256" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="337" centery="257" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="344" centery="257" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="385" centery="257" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="417" centery="257" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="257" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="332" centery="258" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="413" centery="258" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="422" centery="258" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="461" centery="258" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="259" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="347" centery="259" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="366" centery="259" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="388" centery="259" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="449" centery="259" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="335" centery="260" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="351" centery="260" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="391" centery="260" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="416" centery="260" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="439" centery="260" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="464" centery="260" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="369" centery="261" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="445" centery="261" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="452" centery="261" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="379" centery="262" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="394" centery="262" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="413" centery="262" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="374" centery="264" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="382" centery="264" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="416" centery="264" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="332" centery="266" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="451" centery="266" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="339" centery="268" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="370" centery="268" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="418" centery="268" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="444" centery="268" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="438" centery="269" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="342" centery="270" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="373" centery="270" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="270" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="448" centery="270" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="270" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="379" centery="271" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="441" centery="271" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="461" centery="271" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="451" centery="272" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="382" centery="273" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="387" centery="273" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="464" centery="273" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="275" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="343" centery="277" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="442" centery="277" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="378" centery="278" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="420" centery="279" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="445" centery="279" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="459" centery="280" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="381" centery="282" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="341" centery="283" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="418" centery="283" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="462" centery="283" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="421" centery="285" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="285" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="379" centery="287" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="340" centery="288" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="382" centery="289" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="466" centery="289" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="462" centery="290" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="465" centery="292" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="382" centery="293" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="420" centery="293" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="341" centery="294" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="348" centery="294" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="350" centery="294" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="368" centery="294" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="378" centery="294" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="414" centery="294" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="440" centery="294" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="444" centery="294" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="458" centery="294" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="344" centery="295" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="387" centery="295" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="403" centery="295" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="410" centery="295" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="423" centery="295" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="431" centery="295" centerz="6" radius="1">
+		<monster name="Frostfang Wolf" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="452" centery="295" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="353" centery="296" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="359" centery="296" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="371" centery="296" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="381" centery="296" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="398" centery="296" centerz="6" radius="1">
+		<monster name="Ice Golem" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="447" centery="296" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="461" centery="296" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="347" centery="297" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="390" centery="297" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="406" centery="297" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="413" centery="297" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+	<spawn centerx="434" centery="297" centerz="6" radius="1">
+		<monster name="Frost Giant" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
+</spawns>

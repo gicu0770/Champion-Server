@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wings>
+
+
+	<!-- TESTOWANE -->
+	<!-- LIMITED -->
+	<wing id="2011" name="Devil Wings" rarity="6" />
+	<wing id="2289" name="Void Crystal Wings" rarity="6" />	 <!-- 10.04.2026 Dodane -->
+
+	<!-- COMMON -->
+	<wing id="2509" name="Crimson Wings" rarity="2" />	
+	<wing id="2510" name="Emerald Wings" rarity="2" />	
+	<wing id="2511" name="Amethyst Wings" rarity="2" />
+	<wing id="2458" name="Crystal Wings" rarity="2" />
+	<wing id="2009" name="Fading Wings" rarity="2" />
+	<wing id="2010" name="Tyrael Wings" rarity="2" />
+
+	<!-- MAGIC -->
+	<wing id="2045" name="Reaper Wings" rarity="3" />
+	<wing id="2037" name="Fairy Wings" rarity="3" />
+	
+	<!-- RARE -->
+	<wing id="2035" name="Fire Wings" rarity="4" />	
+	<wing id="2440" name="Rainbow Crystal Wings" rarity="4" />	
+	<wing id="2036" name="Black Devil Wings" rarity="4" />
+	<wing id="2234" name="Cloudd Wings" rarity="4" />
+	<wing id="2039" name="Saint Wings" rarity="4" />
+	<wing id="2016" name="Dragon Wings" rarity="4" />
+	<wing id="2094" name="Demon Slayer Wings" rarity="4" />
+	<wing id="2038" name="Elven Wings" rarity="4" />
+	
+	
+	<!-- LEGENDARY -->
+	<wing id="2131" name="Hand Wings" rarity="5" /> <!-- 10.04.2026 Dodane -->
+	<wing id="2101" name="Angel Wings" rarity="5" />	
+	<wing id="2103" name="Decay Wings" rarity="5" />	
+	<wing id="2153" name="Skeleton Wings" rarity="5" />	
+	<wing id="2091" name="Dollar Wings" rarity="5" />		
+	<wing id="2135" name="Rainbow Wings" rarity="5" />	    <!-- 14.11.2025 Dodane -->
+	<wing id="2109" name="Pentagram Wings" rarity="5" />	<!-- 14.11.2025 Dodane -->
+	<wing id="2140" name="Reaven" rarity="5" />	 			<!-- 14.11.2025 Dodane -->
+	<wing id="2567" name="Crimson Wings" rarity="6" />	 	<!-- LIMITOWANY na ten sezon 14.11.2025 Dodane -->
+	<wing id="2287" name="Solari Orbs" rarity="6" />	 	<!-- LIMITOWANY na ten sezon 14.11.2025 Dodane -->
+	
+	<wing id="2119" name="Fire Wings" rarity="5" />			<!-- 16.01.2026 Dodane -->
+	<wing id="2469" name="Bloodflame Wings" rarity="6" />	<!-- LIMITOWANY na ten sezon 16.01.2026 Dodane -->
+	
+	<!-- <wing id="2016" name="Dragon Wings" />
+	<wing id="2034" name="Archangel Wings" />
+	<wing id="2039" name="Saint Wings" />
+	<wing id="2038" name="Elven Wings" />
+	<wing id="2091" name="Dollar Wings" />
+	<wing id="2094" name="Demon Slayer Wings" />
+	<wing id="2153" name="Skeleton Wings" />
+	<wing id="2101" name="Angel Wings" />
+	<wing id="2103" name="Decay Wings" />
+	<wing id="2105" name="Energy Wings" />
+	<wing id="2107" name="Sharp Wings" />
+	<wing id="2112" name="Blue Crystal Wings" />
+	<wing id="2114" name="Green Crystal Wings" />
+	<wing id="2116" name="Purple Crystal Wings" />
+	<wing id="2118" name="Red Crystal Wings" />
+	<wing id="2455" name="Butterfly Glory Wings" rarity="5" />	
+	<wing id="2295" name="Ghost Carrier Wings" rarity="5" />
+
+
+	<wing id="2120" name="Cloud Wings" />
+	<wing id="2121" name="Galaxy Wings" />
+	<wing id="2122" name="Bloody Wings" />
+	<wing id="2127" name="Electric Wings" />
+	<wing id="2129" name="Leaf Wings" />
+	<wing id="2131" name="Hand Wings" />
+	<wing id="2133" name="Poison Wings" />
+	<wing id="2138" name="Black&White Wings" />
+	<wing id="2142" name="Water Elemental Wings" />
+	<wing id="2144" name="ProjectV1 Wings" />
+	<wing id="2145" name="ProjectV2 Wings" />
+	<wing id="2148" name="Tree Wings" />
+	<wing id="2151" name="Burning Tree Wings" />
+	<wing id="2155" name="Ethercraft Earth Wings" />
+	<wing id="2156" name="Ethercraft Energy Wings" />
+	<wing id="2157" name="Ethercraft Fire Wings" />
+	<wing id="2158" name="Ethercraft Water Wings" />
+	<wing id="2159" name="Ethercraft Wind Wings" />
+	<wing id="2165" name="Necrolord Red Wings" />
+	<wing id="2166" name="Nectolord Galaxy Wings" />
+	<wing id="2167" name="Nectolord White Wings" />
+	<wing id="2168" name="Nectolord Blue Wings" />
+	<wing id="2173" name="Illusionist Wings" />
+	<wing id="2175" name="Divine Arcane Wings" />
+	<wing id="2177" name="Oblivion Wings" />
+	<wing id="2179" name="Glimmerwood Wings" />
+	<wing id="2181" name="Transcendence Wings" />
+	<wing id="2183" name="Plumist Wings" />
+	<wing id="2185" name="Fallenangel Wings" />
+	<wing id="2213" name="Transcendence Wings" />
+	<wing id="2215" name="Web Wings" />
+	<wing id="2217" name="ParrotV1 Wings" />
+	<wing id="2219" name="ParrotV2 Wings" />
+	<wing id="2232" name="Flowers Butterfly Wings" />
+	<wing id="2234" name="Cloudd Wings" />
+	<wing id="2236" name="Tempest Cloud Wings" />
+	<wing id="2238" name="Sunny Cloud Wings" />
+	<wing id="2240" name="Stone Wings" />
+	<wing id="2242" name="Parrot Tapestry" />
+	<wing id="2282" name="Light Ocean Wings" />
+	<wing id="2291" name="Dark Anjo Wings" />	
+	<wing id="2293" name="Light Carrier Wings" />	
+	<wing id="2296" name="Purified Crystals Wings" />
+	
+	
+	<wing id="2317" name="Bat Wing" />
+	<wing id="2416" name="Blue Shrine" />
+	<wing id="2417" name="White Glory" />	
+	<wing id="2418" name="Fire Phoenix" />	
+	<wing id="2419" name="Electro Wings" />	
+	<wing id="2420" name="Red Bones" />	
+	<wing id="2421" name="Toxic Wings" />	
+	<wing id="2441" name="Blue Abyss Wings" />	
+	<wing id="2442" name="Green Abyss Wings" />	
+	<wing id="2443" name="Purple Abyss Wings" />
+	<wing id="2461" name="Red Abyss Wings" />		
+	<wing id="2450" name="Vampire Wings" />	
+	<wing id="2451" name="Angelic Wings" />	
+	<wing id="2452" name="Magic Fairy Wings" />	
+	<wing id="2453" name="Dragon Scale Wings" />	
+	<wing id="2457" name="Dragonic Wings" />	
+	<wing id="2459" name="Mystwings" />	
+	<wing id="2460" name="Sorcerer Wings" />	
+	<wing id="2462" name="Arcwing Sigil" />	
+	<wing id="2463" name="Twilight Wings" />	
+	<wing id="2464" name="Buttelfly Holywings" />	
+	
+	<wing id="2468" name="Dreadspire Wings" />	
+	<wing id="2470" name="Shadowfrost Wings" />	
+	<wing id="2471" name="Eclipseborn Wings" />	
+	<wing id="2505" name="Ballons" />	
+	
+	<wing id="2506" name="Grey Bones Wings" />	
+	<wing id="2507" name="Frost Bones Wings" />	
+	<wing id="2508" name="Bones Wings" />
+	<wing id="2573" name="Amber Wings" rarity="6" />
+	<wing id="2572" name="Void Wings" rarity="6" />
+	<wing id="2565" name="Infernal Wings" rarity="6" />
+	<wing id="2566" name="Frostfire Wings" rarity="6" />	-->
+</wings>

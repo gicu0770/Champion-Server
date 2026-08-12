@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Dungeon Master" script="dungeon.lua" walkinterval="0" floorchange="0">
+	<health now="185" max="185"/>
+	<look type="2391" head="132" body="78" legs="115" feet="114" addons="3"/>
+	<parameters>
+	    <parameter key="message_greet" value="Hello |PLAYERNAME|!" />
+	</parameters>
+</npc>

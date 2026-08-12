@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Draken Warmaster" nameDescription="a draken warmaster" race="blood" experience="7000" speed="200">
+	<health now="100000" max="100000" />
+	<look type="334" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="3" min="-160" max="-160">
+			<attribute key="shootEffect" value="25" />
+			<attribute key="areaEffect" value="explosionarea" />
+		</attack>
+	</attacks>
+		<level min="36" max="36" />
+	<defenses armor="90" defense="90">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="Attack aggrezzively! Dezztroy zze intruderzz!" />
+		<voice sentence="Hizzzzz!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

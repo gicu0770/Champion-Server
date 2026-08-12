@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Frostfang Wolf" nameDescription="Frostfang Wolf" race="blood" experience="1000" speed="200">
+	<health now="1100" max="1100" />
+	<look type="391" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="melee" interval="1500" min="-150" max="-150"/>
+		<attack name="physical" interval="3000" chance="50" target="0" length="4" spread="3" min="-100" max="-100">
+			<attribute key="areaEffect" value="108"/>
+		</attack>
+	</attacks>
+	<level min="90" max="90" />
+	<defenses armor="25" defense="25" />
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="Peeex!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

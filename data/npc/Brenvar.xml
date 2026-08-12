@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Brenvar" script="support5.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="319" head="57" body="114" legs="124" feet="123" addons="1"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. I sell support runes. {trade}" />
+		<parameter key="message_decline" value="Is |TOTALCOST| gold coins too much for you? Get out of here!" />
+	</parameters>
+</npc>

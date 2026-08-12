@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Dark Monk" nameDescription="a dark monk" race="blood" experience="1" speed="200" zone="5" bestiaryId="14">
+	<health now="190" max="190" />
+	<look type="225" corpse="27196" />
+	<targetchange interval="5000" chance="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />	
+	</flags>
+	<attacks>
+		<attack name="death" interval="2000" chance="100" target="1" range="6" radius="3" min="-6000" max="-6000">
+			<attribute key="shootEffect" value="suddendeath" />
+			<attribute key="areaEffect" value="mortarea" />
+		</attack>
+	</attacks>
+	<level min="15" max="15" />
+	<defenses armor="22" defense="22">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="You are no match to us!" />
+		<voice sentence="This is where your path will end!" />
+		<voice sentence="Your end has come!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

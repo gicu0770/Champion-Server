@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Orclops Doomhauler" nameDescription="an orclops doomhauler" race="blood" experience="7000" speed="200" manacost="290" tier="2" items="acc">
+	<health now="100000" max="100000" />
+	<look type="930" corpse="27196" />
+	<targetchange interval="5000" chance="0" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" /> 
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" radius="5" target="0" min="-1500" max="-1500" ><!-- means min. 25dmg and max. 50dmg per turn -->
+			<attribute key="areaEffect" value="explosion" />
+	</attack>
+   </attacks>
+		<level min="39" max="39" />
+	<defenses armor="90" defense="90">
+	</defenses>
+ 	<elements>
+	</elements>
+	<voices interval="2000" chance="7">
+		<voice sentence="Me mash!" />
+		<voice sentence="GRRRRR!" />
+		<voice sentence="Muhahaha!" />
+		<voice sentence="Me strong, you weak!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

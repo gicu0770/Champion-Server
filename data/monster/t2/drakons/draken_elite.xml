@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Draken Elite" nameDescription="a draken elite" race="blood" experience="7000" speed="200" zone="13" bestiaryId="34">
+	<health now="100000" max="100000" />
+	<look type="362" corpse="27196" />
+	<targetchange interval="5000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="earth" interval="2000" chance="100" target="1" range="6" radius="4" min="-1000" max="-1000">
+			<attribute key="shootEffect" value="15" />
+			<attribute key="areaEffect" value="17" />
+		</attack>
+	</attacks>
+	<level min="36" max="36" />
+	<defenses armor="90" defense="90">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="For ze emperor!" />
+		<voice sentence="You will die zhouzandz deazhz!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

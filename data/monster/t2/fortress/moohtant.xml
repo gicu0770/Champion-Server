@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Moohtant" nameDescription="a moohtant" race="blood" experience="2600" speed="200" zone="12" bestiaryId="32">
+	<health now="4000" max="4000" />
+	<look type="607" corpse="27196" />
+	<targetchange interval="2000" chance="3" />
+	<targetstrategies nearest="100" health="0" damage="0" random="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" length="5" spread="1" min="-220" max="-220">
+			<attribute key="areaEffect" value="groundshaker" />
+		</attack>
+	</attacks>
+	<level min="33" max="33" />
+	<defenses armor="40" defense="45">
+	</defenses>
+	<elements>
+	</elements>
+	<loot>
+	</loot>
+</monster>

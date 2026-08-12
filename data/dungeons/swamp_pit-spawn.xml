@@ -1,0 +1,751 @@
+<?xml version="1.0"?>
+<spawns>
+	<spawn centerx="1037" centery="1031" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1094" centery="1032" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1033" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1038" centery="1034" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1035" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1034" centery="1036" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1044" centery="1036" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1061" centery="1036" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1036" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1078" centery="1036" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1084" centery="1036" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1036" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1038" centery="1037" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1051" centery="1038" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1038" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1071" centery="1038" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1075" centery="1038" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1038" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1032" centery="1039" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1046" centery="1039" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1055" centery="1039" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1039" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1039" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1082" centery="1039" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1039" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1036" centery="1040" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1041" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1042" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1042" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1043" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1094" centery="1045" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1046" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1047" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1055" centery="1047" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1047" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1067" centery="1048" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1048" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1052" centery="1049" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1073" centery="1049" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1049" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1037" centery="1050" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1050" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1077" centery="1050" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1061" centery="1051" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1051" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1052" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1050" centery="1053" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1054" centery="1053" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1053" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1075" centery="1053" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1080" centery="1053" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1054" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1038" centery="1055" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1055" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1057" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1058" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1058" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1058" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1059" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1062" centery="1059" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1059" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1060" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1073" centery="1061" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1037" centery="1062" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1062" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1062" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1063" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1063" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1063" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1070" centery="1064" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1074" centery="1065" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1066" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1066" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1008" centery="1067" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1038" centery="1067" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1112" centery="1067" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1012" centery="1068" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1053" centery="1068" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1072" centery="1068" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1116" centery="1068" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1016" centery="1069" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1057" centery="1069" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1069" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1124" centery="1069" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1020" centery="1070" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1070" centery="1070" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1077" centery="1070" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1010" centery="1071" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1059" centery="1071" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1062" centery="1071" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1092" centery="1071" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1114" centery="1071" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1072" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1055" centery="1072" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1096" centery="1072" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1108" centery="1072" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1018" centery="1073" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1073" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1068" centery="1073" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1076" centery="1073" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1102" centery="1073" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1112" centery="1073" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1117" centery="1073" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1022" centery="1074" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1025" centery="1074" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1033" centery="1074" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1121" centery="1074" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1094" centery="1075" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1007" centery="1076" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1037" centery="1076" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1100" centery="1076" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1110" centery="1076" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1011" centery="1077" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1057" centery="1077" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1077" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1074" centery="1077" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1119" centery="1077" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1015" centery="1078" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1079" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1079" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1073" centery="1079" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1013" centery="1081" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1081" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1088" centery="1081" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1114" centery="1081" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1043" centery="1082" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1051" centery="1082" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1082" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1078" centery="1082" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1085" centery="1082" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1092" centery="1082" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1121" centery="1082" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1083" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1075" centery="1083" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1041" centery="1085" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1085" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1086" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1067" centery="1087" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1088" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1090" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1091" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1093" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1038" centery="1094" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1095" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1091" centery="1095" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1096" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1033" centery="1099" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1042" centery="1099" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1086" centery="1099" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1037" centery="1100" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1046" centery="1100" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1100" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1101" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1097" centery="1101" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1102" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1103" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1044" centery="1103" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1088" centery="1103" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1094" centery="1103" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1104" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1085" centery="1104" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1067" centery="1105" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1040" centery="1106" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1106" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1044" centery="1107" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1094" centery="1107" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1098" centery="1107" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1052" centery="1108" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1108" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1072" centery="1108" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1075" centery="1108" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1081" centery="1108" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1047" centery="1109" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1109" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1109" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1077" centery="1109" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1085" centery="1109" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1110" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1042" centery="1110" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1092" centery="1110" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1093" centery="1114" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1034" centery="1115" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1030" centery="1122" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1033" centery="1122" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1122" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1122" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1067" centery="1122" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1122" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1037" centery="1123" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1044" centery="1123" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1048" centery="1123" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1123" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1071" centery="1123" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1099" centery="1123" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1124" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1078" centery="1124" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1082" centery="1124" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1054" centery="1125" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1125" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1035" centery="1126" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1126" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1126" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1097" centery="1126" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1031" centery="1127" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1090" centery="1127" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1039" centery="1128" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1034" centery="1129" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1129" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1095" centery="1129" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1098" centery="1129" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1061" centery="1131" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1065" centery="1132" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1135" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1136" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1136" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1137" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1070" centery="1137" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1054" centery="1138" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1140" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1068" centery="1140" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1142" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1143" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1062" centery="1143" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1144" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1055" centery="1145" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Wild Creeper" x="-1" y="1" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1145" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1076" centery="1145" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1146" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1073" centery="1146" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1147" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1061" centery="1148" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1149" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1071" centery="1149" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1150" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1070" centery="1151" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1054" centery="1152" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1056" centery="1152" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1060" centery="1153" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1055" centery="1154" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1068" centery="1154" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1058" centery="1156" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1064" centery="1156" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1068" centery="1157" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1059" centery="1159" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1063" centery="1160" centerz="7" radius="1">
+		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1066" centery="1160" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1069" centery="1160" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1061" centery="1163" centerz="7" radius="1">
+		<monster name="Swamp Blob" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="1068" centery="1163" centerz="7" radius="1">
+		<monster name="Wild Creeper" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+</spawns>

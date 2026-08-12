@@ -1,0 +1,14 @@
+build/
+vc14/
+core
+tfs
+cmake/
+backups/
+*.dll
+START.bat
+START.lnk
+theforgottenserver-AVX512.pdb
+theforgottenserver-AVX512.exe
+config.lua
+backup.sh
+*.log

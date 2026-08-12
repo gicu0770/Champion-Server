@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Hideous Fungus" nameDescription="a hideous fungus" race="venom" experience="6000" speed="200" tier="1" items="fungus">
+	<health now="100000" max="100000" />
+	<look type="499" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="earth" interval="2000" chance="100" range="1" min="-1000" max="-1000">
+			<attribute key="shootEffect" value="smallearth" />
+			<attribute key="areaEffect" value="smallplants" />
+		</attack>
+		
+	</attacks>
+	<level min="26" max="26" />
+	<defenses armor="60" defense="60">
+
+	</defenses>
+	<elements>
+
+
+	</elements>
+	<immunities>
+
+	</immunities>
+	<voices interval="5000" chance="10">
+		<voice sentence="Munch munch munch!" />
+	</voices>
+	<loot>
+		<item name="gold coin" countmax="50" chance="50000" />
+	</loot>
+</monster>

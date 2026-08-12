@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Ethereal Scarab" nameDescription="a Ethereal Scarab" race="blood" experience="5000" speed="200">
+	<health now="600000" max="600000" />
+	<look type="1990" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="holy" interval="3000" chance="50" range="3" radius="2" target="1" min="-8000" max="-8000">
+			<attribute key="shootEffect" value="31" />
+			<attribute key="areaEffect" value="40" />
+		</attack>
+		<attack name="physical" interval="1500" chance="100" length="8" spread="0" min="-8000" max="-8000">
+			<attribute key="areaEffect" value="redspark" />
+		</attack>
+	</attacks>
+	<level min="80" max="80" />
+	<defenses armor="150" defense="150"/>
+	<elements>
+	</elements>
+	<immunities>
+	</immunities>
+	<voices interval="5000" chance="10">
+		<voice sentence="Szzz... decay..." />
+		<voice sentence="Chhhzzz... darkness calls!" />
+	</voices>
+</monster>

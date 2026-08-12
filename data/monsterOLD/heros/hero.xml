@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Hero" nameDescription="a hero" race="blood" experience="1" speed="200">
+	<health now="1400" max="1400" />
+	<look type="73" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="3" min="-150" max="-150">
+			<attribute key="shootEffect" value="arrow" />
+		</attack>
+	</attacks>
+	<level min="15" max="15" />
+	<defenses armor="35" defense="35">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="Let's have a fight!" />
+		<voice sentence="Welcome to my battleground." />
+		<voice sentence="Have you seen princess Lumelia?" />
+		<voice sentence="I will sing a tune at your grave." />
+	</voices>
+	<loot>
+	</loot>
+</monster>

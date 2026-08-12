@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Bloodstone Golem" nameDescription="an Bloodstone Golem" race="blood" experience="30000" speed="250" zone="31" bestiaryId="75">
+	<health now="10000000" max="10000000" />
+	<look type="2307" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="fire" interval="1500" chance="100" range="6" radius="4" target="1" min="-50000" max="-50000">
+			<attribute key="shootEffect" value="200" />
+			<attribute key="areaEffect" value="380" />
+		</attack>
+	</attacks>
+	<level min="85" max="85" />
+	<defenses armor="350" defense="350">
+	</defenses>
+	<elements>
+
+	</elements>
+
+	<voices interval="3000" chance="50">
+		<voice sentence="I am unbreakable!" />
+		<voice sentence="Stone will crush you!" />
+	</voices>
+	<loot>
+
+	</loot>
+</monster>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<outlines>
+
+    <!-- Base Colors -->
+    <outline id="1" shader="outline" name="Blue Outline"   color="#0000FF" rarity="3" />
+    <outline id="2" shader="outline" name="Red Outline"    color="#FF0000" rarity="3" />
+    <outline id="3" shader="outline" name="Green Outline"  color="#00FF00" rarity="3" />
+    <outline id="4" shader="outline" name="Purple Outline" color="#800080" rarity="3" />
+    <outline id="5" shader="outline" name="Gold Outline"   color="#FFA500" rarity="3" />
+    <outline id="6" shader="outline" name="Black Outline"  color="#000000" rarity="3" />
+    <outline id="7" shader="outline" name="White Outline"  color="#FFFFFF" rarity="3" />
+    <outline id="8" shader="outline" name="Cyan Outline"   color="#00FFFF" rarity="3" />
+
+    <outline id="9" shader="outline" name="Rainbow Outline" color="#FFFFF0" rarity="5" />
+</outlines>

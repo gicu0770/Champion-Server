@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<creaturescripts>
+	<event type="login" name="PlayerLogin" script="login.lua" />
+	<event type="logout" name="PlayerLogout" script="logout.lua" />
+	<event type="login" name="FirstItems" script="firstitems.lua" />
+	<event type="login" name="OfflineTraining" script="offlinetraining.lua" />
+	<event type="login" name="RegenerateStamina" script="regeneratestamina.lua" />
+	<event type="death" name="PlayerDeath" script="playerdeath.lua" />
+	<event type="modalwindow" name="ModalWindowHelper" script="modalwindowhelper.lua" />
+	<event type="advance" name="LevelUp" script="advance.lua" />
+	<event type="death" name="ExpLoss" script="exp_loss.lua" />
+	<event type="logout" name="TownPortalsLogout" script="town_portal.lua" />
+
+	<event type="extendedopcode" name="CharacterStats" script="character_stats.lua" />
+	<event type="advance" name="CharacterStatsAdvance" script="character_stats.lua"/>
+
+	<!-- Dungeon Boss TP codes 	-->	
+	<event type="death" name="DungeonBossTP" script="dungeonTP.lua" />
+	<event type="kill" name="DungeonBossRemoveItem" script="dungeonRemoveItem.lua" />
+	<event type="preparedeath" name="DungeonDeath" script="dungeon_death.lua" /> 
+	<!-- OP codes 	-->
+	<event type="extendedopcode" name="ExtendedOpcode" script="extendedopcode.lua" />
+	<event type="extendedopcode" name="Options" script="options.lua" />
+	<event type="extendedopcode" name="bot" script="bot.lua" />
+	<!-- Inspect -->
+	<event type="extendedopcode" name="Inspect" script="inspect.lua" />
+	<!-- ATR 	-->
+	<event type="extendedopcode" name="AtrributeSkills" script="attribute_skills.lua" />
+	<event type="extendedopcode" name="Waypoints" script="waypoints.lua" />
+	<!-- UPGRADE SYSTEM -->
+	<event type="login" name="UpgradeSystemLogin" script="upgrade_system_cs.lua" />
+	<event type="death" name="UpgradeSystemDeath" script="upgrade_system_cs.lua" />
+	<event type="kill" name="UpgradeSystemKill" script="upgrade_system_cs.lua" />
+	<event type="healthchange" name="UpgradeSystemHealth" script="upgrade_system_cs.lua" />
+	<event type="manachange" name="UpgradeSystemMana" script="upgrade_system_cs.lua" />
+	<event type="preparedeath" name="UpgradeSystemPD" script="upgrade_system_cs.lua" /> 
+	<!-- Elite Monsters System 	  -->	
+	<event type="healthchange" name="EliteAffixHP" script="elite.lua" />
+	<event type="manachange" name="EliteAffixMANA" script="elite.lua" />
+	<event type="death" name="BossDeath" script="boss_death.lua" /> 
+	<!-- DPS Dummy -->
+	<!-- <event type="healthchange" name="EventDPS" script="dps.lua" /> -->
+<!--	<event type="healthchange" name="Goblin" script="goblin.lua" /> -->
+	<!-- Waypoints -->
+	<event type="ModalWindow" name="WaypointsModal" script="modal_windows.lua"/>
+	<event type="ModalWindow" name="ModalWindow_Tutorial" script="modal_windows.lua"/>
+	<event type="ModalWindow" name="ModalWindow_Third_Promotion" script="modal_windows.lua"/>
+	<event type="think" name="BonusOnTime" script="bonus.lua" />
+	<event type="think" name="Ghost" script="ghost.lua" />
+	<event type="think" name="SpellActiva" script="spellActive.lua" />
+</creaturescripts>

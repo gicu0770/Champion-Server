@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Skeletal Marksman" nameDescription="a Skeletal Marksman" race="venom" experience="40000" speed="200" tier="7" items="set">
+	<health now="50000000" max="50000000" />
+	<look type="2226" head="19" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<targetstrategies nearest="70" health="10" damage="10" random="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="3" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	
+	
+	
+	</flags>
+	
+	<attacks>
+ 		<attack name="physical" interval="1500" chance="100" range="4" target="1" radius="1" min="-150000" max="-150000">
+			<attribute key="shootEffect" value="3" />
+			<attribute key="areaEffect" value="244" />
+		</attack>
+   	</attacks>
+	<level min="90" max="90" />
+	<defenses armor="400" defense="400">
+	</defenses>
+	<elements>
+	</elements>
+	<voices interval="2000" chance="7">
+		<voice sentence="One shot, one grave!" />
+		<voice sentence="You can’t outrun death!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

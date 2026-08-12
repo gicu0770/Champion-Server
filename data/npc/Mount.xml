@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="" walkinterval="0" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="393" head="115" body="101" legs="77" feet="128" addons="3" mount="0" />
+	<parameters>
+	</parameters>
+</npc>

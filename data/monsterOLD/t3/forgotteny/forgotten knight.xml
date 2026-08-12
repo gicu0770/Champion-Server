@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Forgotten Knight" nameDescription="a forgotten knight" race="blood" experience="8500" speed="200" tier="3" items="set">
+	<health now="300000" max="300000" />
+		<look type="1140" head="38" body="57" legs="97" feet="97" addons="0" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" radius="3" min="-3000" max="-3000">
+			<attribute key="areaEffect" value="groundshaker" />
+		</attack>
+	</attacks>
+		<level min="47" max="47" />
+	<defenses armor="120" defense="120">
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="Ugggh!" />
+		<voice sentence="Gll" />
+	</voices>
+</monster>

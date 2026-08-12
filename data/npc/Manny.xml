@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Manny" script="support2.lua" walkinterval="0" floorchange="0">
+	<health now="150" max="150"/>
+	<look type="104" head="0" body="0" legs="0" feet="0"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. I sell support runes. {trade}" />
+		<parameter key="message_decline" value="Is |TOTALCOST| gold coins too much for you? Get out of here!" />
+	</parameters>
+</npc>

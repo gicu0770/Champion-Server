@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Undead Warrior" nameDescription="an undead warrior" race="undead" experience="12500" speed="200" tier="4" items="set">
+	<health now="1000000" max="1000000" />
+	<look type="1155" addons="3" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags> 
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	
+	
+	</flags>
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" length="8" spread="2" target="1" min="-6000" max="-6000">
+			<attribute key="shootEffect" value="whirlwindsword" />
+			<attribute key="areaEffect" value="redspark" />
+		</attack>
+	</attacks>
+	<level min="55" max="55" />
+	<defenses armor="160" defense="160">
+
+	</defenses>
+	<elements>
+
+	</elements>
+
+	<voices interval="5000" chance="10">
+		<voice sentence="Let's battle it out in a duel!" />
+		<voice sentence="Bring it!" />
+		<voice sentence="I'll fight here in eternity and beyond." />
+		<voice sentence="I will not give up!" />
+		<voice sentence="Another foolish adventurer who tries to beat me." />
+	</voices>
+	<loot>
+
+	</loot>
+</monster>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Sanctified Shellwalker" nameDescription="a Sanctified Shellwalker" race="blood" experience="700" speed="250" zone="40" bestiaryId="105">
+	<health now="6000" max="6000" />
+	<look type="875" head="79" body="98" legs="78" feet="79" addons="3" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="2" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="holy" interval="2000" chance="100" range="6" target="1" radius="4" min="-380" max="-380">
+			<attribute key="areaEffect" value="436" />
+			<attribute key="shootEffect" value="215" />
+		</attack>
+	</attacks>
+	<level min="80" max="80" />
+	<defenses armor="20" defense="20"/>
+	<elements>
+	</elements>
+	<voices interval="5000" chance="10">
+		<voice sentence="Tip tap tip tap!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

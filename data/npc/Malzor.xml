@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Malzor" script="crystals.lua" walkinterval="0" floorchange="0">
+	<health now="185" max="185"/>
+	<title text="Crystal Forger" font="Reggae One-10px-bordered" color="white" />
+	<look type="2310"/>
+	<parameters>
+		<parameter key="message_greet" value="Ah, |PLAYERNAME|... the crystals whispered of your arrival. What brings you here?{Forge with crystals}{Ask about crystals}"/>
+		<parameter key="message_farewell" value="Farewell, |PLAYERNAME|. May the crystal light your path."/>
+	</parameters>
+</npc>

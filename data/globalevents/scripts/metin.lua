@@ -1,0 +1,3 @@
+function onThink(interval)
+
+end

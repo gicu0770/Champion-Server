@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weapons>
+
+<!--	<melee id="2400" unproperly="1" script="test.lua" />
+		<melee id="2401" unproperly="1" script="test.lua" /> -->
+		
+		
+
+
+	<!-- Ammunition -->
+	<distance id="1294" /> <!-- small stone -->
+	<distance id="2111"  /> <!-- snowball -->
+	<distance id="2389" breakchance="3" /> <!-- spear -->
+	<distance id="2399" breakchance="10" /> <!-- throwing star -->
+	<distance id="2410" breakchance="7" /> <!-- throwing knife -->
+	<distance id="2543"  /> <!-- bolt -->
+	<distance id="2544"  /> <!-- arrow -->
+	
+	<distance id="7364"  unproperly="1" level="20" /> <!-- Sniper Arrow -->
+	<distance id="7838"  unproperly="1" level="35" /> <!-- Flash Arrow -->
+	<distance id="7839"  unproperly="1" level="35" /> <!-- Shiver Arrow -->
+	<distance id="7840" unproperly="1" level="35" /> <!-- Flaming Arrow -->
+	<distance id="7850"  unproperly="1" level="35" /> <!-- Earth Arrow -->	
+	<distance id="15648"  unproperly="1" level="50" /> <!-- Tarsal Arrow -->
+	<distance id="7365"  unproperly="1" level="70" /> <!-- Onyx Arrow -->	
+	<distance id="18437"  unproperly="1" level="90" /> <!-- Envenomed Arrow -->
+	<distance id="18304"  unproperly="1" level="130" /> <!-- Crystalline Arrow -->
+
+
+
+	<distance id="7363"  unproperly="1" level="30" /> <!-- Piercing Bolt -->
+	<distance id="15649"  unproperly="1" level="40" /> <!-- Vortex Bolt -->
+	<distance id="2547"  unproperly="1" level="55" /> <!-- Power Bolt -->
+	<distance id="18436"  unproperly="1" level="70" /> <!-- Drill Bolt -->
+	<distance id="18435"  unproperly="1" level="90" /> <!-- Prismatic Bolt -->
+	<distance id="6529"  unproperly="1" level="130" /> <!-- Infernal Bolt -->
+
+
+
+
+	<distance id="7367" breakchance="1" unproperly="1" level="42" /> <!-- Enchanted Spear -->
+	<distance id="7368" breakchance="33" unproperly="1" level="80" /> <!-- Assassin Star -->
+	<distance id="7378" breakchance="3" unproperly="1" level="25" /> <!-- Royal Spear -->
+
+	<distance id="18303"  /> <!-- crystal bolt -->
+
+
+
+	<distance id="23529" breakchance="31" unproperly="1" level="60" /> <!-- Glooth Spear -->
+	<distance id="23839"  unproperly="0" level="1" /> <!-- Simple Arrow -->
+	<distance id="25526" breakchance="10" /> <!-- throwing star of Sula -->
+	<distance id="29058"  unproperly="1" level="150" /> <!-- spectral bolt -->
+	<distance id="3965" breakchance="6" unproperly="1" level="20" /> <!-- Hunting Spear -->
+	
+
+	<!-- Side Wands -->
+	<wand id="18390" mana="0" type="energy"> <!--  -->
+	</wand>
+	<wand id="38656" mana="0" type="fire"> <!-- inferno staff -->
+	</wand>	 
+	<wand id="38346" mana="0" type="earth"> <!-- vine staff -->
+	</wand>	
+	<wand id="35921" mana="0" type="fire"> <!-- adaptive wand -->
+	</wand>	
+	<wand id="26596" mana="0" type="fire" >
+	</wand>
+	<wand id="2187" mana="0" type="fire"> <!-- wand of inferno -->
+	
+	</wand>
+	<wand id="8912" mana="0" type="earth"> <!-- springsprout rod -->
+	
+	</wand>
+	<wand id="2191" mana="0" type="fire"> <!-- wand of dragonbreath -->
+	
+	</wand>
+	
+	<wand id="8910" mana="0" type="death"> <!-- underworld rod -->
+	</wand>
+	<wand id="38657" mana="0" type="death"> <!-- Skull Blade Staff -->
+	</wand>
+	<wand id="38814" mana="0" type="holy"> <!-- Blessed Staff -->
+	</wand>	
+	<wand id="8921" mana="0" type="fire"> <!-- wand of draconia -->
+	
+	</wand>	
+		<wand id="2186" mana="0" type="ice"> <!-- wand of draconia -->
+	
+	</wand>	
+	<wand id="7410" mana="0" type="holy"> <!-- yalahari wand -->
+	
+	</wand>		
+	<wand id="2189" mana="0" type="energy"> <!-- yalahari wand -->
+	</wand>	
+	<wand id="38677" mana="0" type="energy"> <!-- blitz staff -->
+	</wand>	
+	<wand id="38372" mana="0" type="energy"> <!-- Storm Unbound Staff -->
+	</wand>	
+	<wand id="36134" mana="0" type="energy"> <!-- yalahari wand -->
+	</wand>	
+	<wand id="36136" mana="0" type="energy"> <!-- gilded wand -->
+	
+	</wand>		
+	<wand id="31589" mana="0" type="earth"> <!-- cobra wand -->
+	
+	</wand>		
+	
+	<!-- Rods -->
+	<wand id="37966" mana="0" type="energy" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="37965" mana="0" type="energy" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="18411" mana="0" type="earth" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="35778" mana="0" type="fire" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="12648" mana="0" type="energy" > <!-- Wooden Rod -->
+	</wand>
+
+	<wand id="26637" mana="0" type="energy" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="26632" mana="0" type="energy" > <!-- xxx Rod -->
+	</wand>
+	<wand id="37923" mana="0" type="fire" > <!-- Flaming Staff -->
+	</wand>
+	<wand id="37821" mana="0" type="ice" > <!-- Crozen Staff -->
+	</wand>
+	<wand id="2188" mana="0" type="death" > <!-- druid rod -->
+	</wand>
+	<wand id="2182" mana="0" type="earth" > <!-- druid rod -->
+	</wand>
+	<wand id="2183" mana="0" type="ice" > <!-- druid rod -->
+	</wand>
+	<wand id="2181" mana="0" type="earth" > <!-- druid rod -->
+	</wand>
+	<wand id="2190" mana="0" type="energy" > <!-- Wooden Rod -->
+		
+	</wand>
+	<wand id="36696" mana="0" type="fire" > <!-- Wooden Rod -->
+	</wand>
+	<wand id="26552" mana="0" type="energy" > <!-- elder rod -->
+		
+	</wand>
+	<wand id="26445" mana="0" type="earth" > <!-- druid rod -->
+	
+	</wand>
+	<wand id="26462" mana="0" type="death" > <!-- tribal mage wand -->
+	
+		</wand>
+	<wand id="26538" mana="0" type="death" > <!-- BLOODY tribal mage wand -->
+	
+		</wand>
+	<wand id="26590" mana="0" type="death" > <!-- Skull STAFF  -->
+	
+		</wand>
+	<wand id="26551" mana="0" type="ice" >
+		
+	</wand>
+	<wand id="26631" mana="0" type="ice" >   <!-- BLOODY galaxy wand -->
+		
+	</wand>
+	<wand id="26603" mana="0" type="earth" > <!-- forest wand -->
+		
+	</wand>
+	<wand id="26607" mana="0" type="earth" >  <!-- BLOODY forest wand -->
+		
+	</wand>
+	<wand id="26544" mana="0" type="energy" >
+		
+	</wand>
+	<wand id="26468" mana="0" type="ice" > 
+
+	</wand>
+	<wand id="26630" mana="0" type="death" >
+		
+	</wand>
+	<wand id="26604" mana="0" type="death" > <!-- BLOODY death wand -->
+		
+	</wand>
+	<wand id="35946" mana="0" type="earth" >	<!-- T6 -->
+		
+	</wand>
+	<wand id="36248" mana="0" type="earth" > <!-- T6 AOE -->
+		
+	</wand>
+	<wand id="38538" mana="0" type="earth" > <!-- The Last Druid Staff -->
+
+	</wand>
+	<wand id="35945" mana="0" type="energy" >	<!-- T7 -->
+		
+	</wand>
+
+	<wand id="35798" mana="0" type="holy" >	<!-- T7 -->
+		
+	</wand>
+
+
+	<wand id="36008" mana="0" type="energy" >	<!-- T7 -->
+		
+	</wand>
+
+	<wand id="36249" mana="0" type="energy" > <!-- T7 AOE -->
+		
+	</wand>
+	<wand id="35727" mana="0" type="death" >	<!-- T8 -->
+		
+	</wand>
+	<wand id="35941" mana="0" type="death" > <!-- T8 AOE -->
+		
+	</wand>
+	<wand id="37072" mana="0" type="death" >	<!-- T9 -->
+		
+	</wand>
+	<wand id="35758" mana="0" type="death" > <!-- T9 AOE -->
+		
+	</wand>
+	<wand id="37083" mana="0" type="death" >	<!-- T10 -->
+		
+	</wand>
+	<wand id="37084" mana="0" type="death" > <!-- T10 AOE -->
+		
+	</wand>
+</weapons>
