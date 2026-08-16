@@ -371,9 +371,8 @@ function Player:updateKillCount(task, creatureName, memberCount)
 end
 
 function getOutfitForTasks()
-  local monster = MonsterType("Wolf")
+  local monster = MonsterType("Wolf") or MonsterType("wolf")
   if not monster then
-    print("[TASKS] nie znaleziono monstera")
     addEvent(getOutfitForTasks, 1000)
     return
   end
@@ -381,9 +380,9 @@ function getOutfitForTasks()
     GRIZZLY_TASKS[i].outfits = {}
     GRIZZLY_TASKS[i].id = i
     for x = 1, #GRIZZLY_TASKS[i].monsters do
-      local name = GRIZZLY_TASKS[i].monsters[x]
-      name = name:gsub("(%l)(%w*)", function(a,b) return string.upper(a)..b end)
-      local monster = MonsterType(name)
+      local rawName = GRIZZLY_TASKS[i].monsters[x]
+      local name = rawName:gsub("(%l)(%w*)", function(a,b) return string.upper(a)..b end)
+      local monster = MonsterType(name) or MonsterType(rawName) or MonsterType(rawName:lower())
       if monster then
         local outfitM = monster:getOutfit()
         local outfit = {}
@@ -419,7 +418,7 @@ function getOutfitForTasks()
         end
         table.insert(GRIZZLY_TASKS[i].outfits, outfit)
       else
-        print("[TASKS] Nie znaleziono monstera: " .. name)
+        print("[TASKS] Nie znaleziono monstera: " .. rawName)
       end
     end
 

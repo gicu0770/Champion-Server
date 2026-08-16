@@ -649,7 +649,7 @@ bool Spell::playerSpellCheck(Player* player) const
 		return false;
 	}
 
-	if (player->getMana() < getManaCost(player) && !player->hasFlag(PlayerFlag_HasInfiniteMana)) {
+	if (player->getMana() < static_cast<int64_t>(getManaCost(player)) && !player->hasFlag(PlayerFlag_HasInfiniteMana)) {
 		player->sendCancelMessage(RETURNVALUE_NOTENOUGHMANA);
 		g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
 		return false;

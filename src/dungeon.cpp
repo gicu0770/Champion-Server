@@ -24,9 +24,12 @@
  #include "game.h"
  #include "events.h"
  #include "monster.h"
+ #include "configmanager.h"
+ #include <atomic>
  
  extern Events* g_events;
  extern Game g_game;
+ extern ConfigManager g_config;
  
  static uint16_t lastChunkInstanceId = 0;
 
@@ -543,10 +546,21 @@
      return time;
  }
  
+ static std::atomic<size_t> s_totalDungeonMaps{0};
+ static std::atomic<size_t> s_loadedDungeonMaps{0};
+ static int64_t s_dungeonStartTime = 0;
+
  void Dungeon::preBuild()
  {
      const std::string& path = "data/dungeons/" + mapFile + ".otbm";
- 
+
+     if (s_totalDungeonMaps == 0) {
+         s_dungeonStartTime = OTSYS_TIME();
+         std::cout << ">> Loading dungeon maps..." << std::endl;
+     }
+
+     s_totalDungeonMaps += instances.size();
+
      for (DungeonInstance* instance : instances) {
          const Position& position = instance->getPosition();
          g_dispatcher.addTask([path, position]() {
@@ -555,6 +569,50 @@
              }
              catch (const std::exception& e) {
                  std::cout << "[Error - Dungeon::preBuild] Failed to load map: " << e.what() << std::endl;
+             }
+
+             size_t loaded = ++s_loadedDungeonMaps;
+             size_t total = s_totalDungeonMaps.load();
+             if (total > 0) {
+                 size_t percent = (loaded * 100) / total;
+                 if (isInteractiveTerminal()) {
+                     int barWidth = 30;
+                     int posBar = static_cast<int>((percent * barWidth) / 100);
+                     std::cout << "\r   [";
+                     for (int b = 0; b < barWidth; ++b) {
+                         if (b < posBar) {
+                             std::cout << "=";
+                         } else if (b == posBar) {
+                             std::cout << ">";
+                         } else {
+                             std::cout << " ";
+                         }
+                     }
+                     std::cout << "] " << percent << "% (" << loaded << "/" << total << " maps)" << std::flush;
+                 } else {
+                     static size_t lastDungPercent = 101;
+                     if ((percent % 10 == 0 && percent != lastDungPercent) || loaded == total) {
+                         lastDungPercent = percent;
+                         int barWidth = 30;
+                         int posBar = static_cast<int>((percent * barWidth) / 100);
+                         std::cout << ">> Dungeons: [";
+                         for (int b = 0; b < barWidth; ++b) {
+                             if (b < posBar) {
+                                 std::cout << "=";
+                             } else if (b == posBar) {
+                                 std::cout << ">";
+                             } else {
+                                 std::cout << " ";
+                             }
+                         }
+                         std::cout << "] " << percent << "% (" << loaded << "/" << total << " maps)" << std::endl;
+                     }
+                 }
+
+                 if (loaded >= total) {
+                     std::cout << std::endl << ">> All dungeon maps loaded in " << (OTSYS_TIME() - s_dungeonStartTime) / 1000.0 << "s" << std::endl;
+                     std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " Server Online!!" << std::endl << std::endl;
+                 }
              }
           });
      }

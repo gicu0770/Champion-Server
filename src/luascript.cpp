@@ -503,31 +503,36 @@ void LuaScriptInterface::reportError(const char* function, const std::string& er
 	LuaScriptInterface* scriptInterface;
 	getScriptEnv()->getEventInfo(scriptId, scriptInterface, callbackId, timerEvent);
 
-	std::cout << std::endl << "Lua Script Error: ";
+	std::ostringstream ss;
+	ss << "Lua Script Error: ";
 
 	if (scriptInterface) {
-		std::cout << '[' << scriptInterface->getInterfaceName() << "] " << std::endl;
+		ss << "[" << scriptInterface->getInterfaceName() << "] ";
 
 		if (timerEvent) {
-			std::cout << "in a timer event called from: " << std::endl;
+			ss << "in a timer event called from: ";
 		}
 
 		if (callbackId) {
-			std::cout << "in callback: " << scriptInterface->getFileById(callbackId) << std::endl;
+			ss << "in callback: " << scriptInterface->getFileById(callbackId) << " ";
 		}
 
-		std::cout << scriptInterface->getFileById(scriptId) << std::endl;
+		ss << scriptInterface->getFileById(scriptId) << ": ";
 	}
 
 	if (function) {
-		std::cout << function << "(). ";
+		ss << function << "(). ";
 	}
 
 	if (stack_trace && scriptInterface) {
-		std::cout << scriptInterface->getStackTrace(error_desc) << std::endl;
+		ss << scriptInterface->getStackTrace(error_desc);
 	} else {
-		std::cout << error_desc << std::endl;
+		ss << error_desc;
 	}
+
+	std::string fullError = ss.str();
+	std::cout << std::endl << fullError << std::endl;
+	logError(fullError);
 }
 
 bool LuaScriptInterface::pushFunction(int32_t functionId)
@@ -21292,7 +21297,6 @@ int LuaScriptInterface::luaRegisterDungeon(lua_State* L)
 		dungeon->setId(g_game.dungeons.size() + 1);
 		dungeon->preBuild();
 		g_game.dungeons.push_back(dungeon);
-		std::cout << "[Dungeons Info] Registered dungeon " << dungeon->getTitle() << std::endl;
 		pushBoolean(L, true);
 	}
 	else {

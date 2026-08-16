@@ -27,11 +27,69 @@
 #include "tools.h"
 #include "configmanager.h"
 
-extern ConfigManager g_config;
+#include <mutex>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/rotating_file_sink.h>
+
+#ifdef _WIN32
+	#include <io.h>
+	#include <stdio.h>
+#else
+	#include <unistd.h>
+	#include <cstdio>
+#endif
+
+bool isInteractiveTerminal()
+{
+#ifdef _WIN32
+	return _isatty(_fileno(stdout)) != 0;
+#else
+	return isatty(fileno(stdout)) != 0;
+#endif
+}
+
+static std::shared_ptr<spdlog::logger> getErrorLogger()
+{
+	static std::shared_ptr<spdlog::logger> serverLogger;
+	static std::once_flag initFlag;
+	std::call_once(initFlag, []() {
+		try {
+			time_t now = time(nullptr);
+			char timeBuf[64];
+			strftime(timeBuf, sizeof(timeBuf), "%Y-%m-%d_%H-%M-%S", localtime(&now));
+			std::string fileName = "logs/error_" + std::string(timeBuf) + ".log";
+			
+			serverLogger = spdlog::rotating_logger_mt("server_error_logger", fileName, 1024 * 1024 * 10, 5);
+			serverLogger->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%l] %v");
+			serverLogger->flush_on(spdlog::level::warn);
+		} catch (const spdlog::spdlog_ex& ex) {
+			std::cerr << "Log initialization failed: " << ex.what() << std::endl;
+		}
+	});
+	return serverLogger;
+}
+
+void logError(const std::string& message)
+{
+	auto logger = getErrorLogger();
+	if (logger) {
+		logger->error(message);
+	}
+}
+
+void logWarning(const std::string& message)
+{
+	auto logger = getErrorLogger();
+	if (logger) {
+		logger->warn(message);
+	}
+}
 
 void printXMLError(const std::string& where, const std::string& fileName, const pugi::xml_parse_result& result)
 {
-	std::cout << '[' << where << "] Failed to load " << fileName << ": " << result.description() << std::endl;
+	std::string errorHeader = "[" + where + "] Failed to load " + fileName + ": " + result.description();
+	std::cout << errorHeader << std::endl;
+	logError(errorHeader);
 
 	FILE* file = fopen(fileName.c_str(), "rb");
 	if (!file) {

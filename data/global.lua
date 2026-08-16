@@ -3542,7 +3542,6 @@ end
 local function loadTableFromFile(filePath)
 	local file, err = io.open(filePath, "r")
 	if not file then
-			print("Could not open file for reading: " .. err)
 			return nil
 	end
 
@@ -3560,13 +3559,13 @@ function saveBuffs()
 			end
 	end
 
-	saveTableToFile(GLOBAL_ACTIVE_BUFFS, "/home/ubuntu/forgottenserver/data/temp/global_buff.json")
-	saveTableToFile(CREATURE_ACTIVE_BUFFS, "/home/ubuntu/forgottenserver/data/temp/creature_buff.json")
+	saveTableToFile(GLOBAL_ACTIVE_BUFFS, "data/temp/global_buff.json")
+	saveTableToFile(CREATURE_ACTIVE_BUFFS, "data/temp/creature_buff.json")
 end
 
 function loadBuffs()
-	GLOBAL_ACTIVE_BUFFS = loadTableFromFile("/home/ubuntu/forgottenserver/data/temp/global_buff.json") or {}
-	CREATURE_ACTIVE_BUFFS = loadTableFromFile("/home/ubuntu/forgottenserver/data/temp/creature_buff.json") or {}
+	GLOBAL_ACTIVE_BUFFS = loadTableFromFile("data/temp/global_buff.json") or {}
+	CREATURE_ACTIVE_BUFFS = loadTableFromFile("data/temp/creature_buff.json") or {}
 end
 
 function shortNumbers(num, places)

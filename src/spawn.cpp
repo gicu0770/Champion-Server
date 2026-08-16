@@ -41,14 +41,16 @@ bool Spawns::loadFromXml(const std::string& filename, int8_t instance)
 		return true;
 	}
 
+	int64_t start = OTSYS_TIME();
 	npcList.reserve(1000 * (instance+1));
 	spawnList.reserve(1000 * (instance+1));
 
-	std::cout << "Loading instance: " << instance << "..." << std::endl;
+	std::cout << ">> Loading spawns (instance " << (int)instance << ")..." << std::flush;
 
 	pugi::xml_document doc;
 	pugi::xml_parse_result result = doc.load_file(filename.c_str());
 	if (!result) {
+		std::cout << std::endl;
 		printXMLError("Error - Spawns::loadFromXml", filename, result);
 		return false;
 	}
@@ -134,6 +136,8 @@ bool Spawns::loadFromXml(const std::string& filename, int8_t instance)
 			}
 		}
 	}
+
+	std::cout << " done (in " << (OTSYS_TIME() - start) / 1000.0 << "s)" << std::endl;
 	return true;
 }
 

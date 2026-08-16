@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "tfs-vision",
+  "version": "1.0.0",
+  "description": "VisionOT - The Forgotten Server custom build",
+  "dependencies": [
+    "boost-asio",
+    "boost-system",
+    "boost-filesystem",
+    "boost-iostreams",
+    "boost-date-time",
+    "boost-lockfree",
+    "openssl",
+    "zlib",
+    "pugixml",
+    "spdlog",
+    "luajit",
+    {
+      "name": "libmysql",
+      "platform": "windows"
+    },
+    {
+      "name": "mpir",
+      "platform": "windows"
+    }
+  ]
+}

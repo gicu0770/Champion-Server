@@ -12494,7 +12494,7 @@
 	<item id="7365" article="an" name="onyx arrow">
 		<attribute key="weight" value="70" />
 		<attribute key="weaponType" value="ammunition" />
-		<attribute key="ammoType" value="arrow" />""
+		<attribute key="ammoType" value="arrow" />
 		<attribute key="shootType" value="onyxarrow" />
 		<attribute key="maxHitChance" value="94" />
 		<attribute key="description" value="Penetrates armor dealing additional damage. More then Tarsal Arrow.  Level 70" />

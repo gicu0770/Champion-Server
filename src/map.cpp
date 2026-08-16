@@ -36,7 +36,7 @@ void Map::setLoaded()
 bool Map::loadMap(const std::string& identifier, bool loadHouses, const Position& pos, bool unload, bool lua, int8_t instance)
 {
 	IOMap loader;
-	if (!loader.loadMap(this, identifier, pos, unload)) {
+	if (!loader.loadMap(this, identifier, pos, unload, loadHouses)) {
 		std::cout << "[Fatal - Map::loadMap] " << loader.getLastErrorString() << std::endl;
 		return false;
 	}
@@ -48,12 +48,19 @@ bool Map::loadMap(const std::string& identifier, bool loadHouses, const Position
 	}
 
 	if (loadHouses) {
+		std::cout << ">> Loading house data..." << std::flush;
 		if (!IOMap::loadHouses(this)) {
-			std::cout << "[Warning - Map::loadMap] Failed to load house data." << std::endl;
+			std::cout << " failed!" << std::endl;
+		} else {
+			std::cout << " done" << std::endl;
 		}
 
 		IOMapSerialize::loadHouseInfo();
+
+		std::cout << ">> Loading house items..." << std::flush;
+		int64_t itemsStart = OTSYS_TIME();
 		IOMapSerialize::loadHouseItems(this);
+		std::cout << " done (in " << (OTSYS_TIME() - itemsStart) / 1000.0 << "s)" << std::endl;
 	}
 	return true;
 }

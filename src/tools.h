@@ -27,6 +27,9 @@
 #include "enums.h"
 
 void printXMLError(const std::string& where, const std::string& fileName, const pugi::xml_parse_result& result);
+void logError(const std::string& message);
+void logWarning(const std::string& message);
+bool isInteractiveTerminal();
 
 std::string transformToSHA1(const std::string& input);
 std::string transformToAES(const std::string& input);

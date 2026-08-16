@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tfs", "tfs.vcxproj", "{B236F6E9-2041-4545-9852-F7306D94E349}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B236F6E9-2041-4545-9852-F7306D94E349}.Debug|x64.ActiveCfg = Debug|x64
+		{B236F6E9-2041-4545-9852-F7306D94E349}.Debug|x64.Build.0 = Debug|x64
+		{B236F6E9-2041-4545-9852-F7306D94E349}.Release|x64.ActiveCfg = Release|x64
+		{B236F6E9-2041-4545-9852-F7306D94E349}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86100222-68D7-4B2E-8E54-E82512F988A9}
+	EndGlobalSection
+EndGlobal

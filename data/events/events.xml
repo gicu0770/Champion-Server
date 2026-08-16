@@ -40,8 +40,8 @@
     <event class="Player" method="onBossDisappear" enabled="1" />
     <event class="Player" method="onQueueLeave" enabled="1" />
 	<!-- Private Shop -->
-	<event class="Player" method="onTileWidgetAppear" enabled="1" />"
-	<event class="Player" method="onMarketOfferAdd" enabled="1" />"
+	<event class="Player" method="onTileWidgetAppear" enabled="1" />
+	<event class="Player" method="onMarketOfferAdd" enabled="1" />
 
 <!--	<event class="Player" method="onChangeHPMP" enabled="1" />	-->
 	

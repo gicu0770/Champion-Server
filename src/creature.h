@@ -908,7 +908,7 @@ class Creature : virtual public Thing
 		Creature* followCreature = nullptr;
 		Creature* fearedCreature = nullptr;
 		uint32_t fearInterval = 0;
-		uint64_t fearEndtime = 0;
+		int64_t fearEndtime = 0;
 		uint64_t eventWalk = 0;
 
 		uint64_t lastStep = 0;

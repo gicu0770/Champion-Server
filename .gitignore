@@ -1,6 +1,5 @@
 build/
 vc14/
-core
 tfs
 cmake/
 backups/
@@ -12,3 +11,8 @@ theforgottenserver-AVX512.exe
 config.lua
 backup.sh
 *.log
+/vcpkg_installed
+/vc17/Debug
+tfs.exe
+tfs.pdb
+/vc17/Release

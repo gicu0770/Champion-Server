@@ -1,6 +1,6 @@
 local downgrade_chance = 7
 local UPGRADE_CRYSTAL = 26555
-local PREFECT_UPGRADE_CRYSTAL = 0 -- 38496
+local PREFECT_UPGRADE_CRYSTAL = 38496
 local ANTI_DOWNGRADE_SCROLL = 38409
 local MAX_UPGRADE_LEVEL = 15
 
@@ -368,7 +368,7 @@ function Item:convertToPowder()
   return index, powder
 end
 
-OnUseAction:id(UPGRADE_CRYSTAL, PREFECT_UPGRADE_CRYSTAL)
+OnUseAction:id(UPGRADE_CRYSTAL)
 OnUseAction:register()
 LoginEvent:type("login")
 LoginEvent:register()

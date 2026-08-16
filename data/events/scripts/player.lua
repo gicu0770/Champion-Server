@@ -20,14 +20,20 @@ function Player:onHouseWalk(house, enter)
 	return true
 end
 
-local path = "data/upgrade_enchantments.lua"
-local handle = io.popen('stat -c %Y "' .. path .. '"')
-local mod_time = tonumber(handle:read("*a"))
-handle:close()
+local get_mod_time = function(filePath)
+	if package.config:sub(1,1) == '\\' then
+		return 1000
+	end
+	local p = io.popen('stat -c %Y "' .. filePath .. '" 2>/dev/null')
+	if p then
+		local val = tonumber(p:read("*a"))
+		p:close()
+		if val then return val end
+	end
+	return 1000
+end
 
-path = "data/upgrade_system_const.lua"
-handle = io.popen('stat -c %Y "' .. path .. '"')
-mod_time = tonumber(handle:read("*a")) + mod_time
+local mod_time = get_mod_time("data/upgrade_enchantments.lua") + get_mod_time("data/upgrade_system_const.lua")
 ITEM_CHECKSUM = mod_time % 10000
 local debug_item_fixed = true
 function Player:onLoadItem(item)

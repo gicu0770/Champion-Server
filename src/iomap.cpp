@@ -76,7 +76,7 @@ Tile* IOMap::createTile(Item*& ground, Item* item, uint16_t x, uint16_t y, uint8
 	return tile;
 }
 
-bool IOMap::loadMap(Map* map, const std::string& fileName, const Position& pos, bool unload)
+bool IOMap::loadMap(Map* map, const std::string& fileName, const Position& pos, bool unload, bool showProgressBar)
 {
 	if (!fs::exists(fileName)) {
 		setLastErrorString("Failed to load " + fileName + ": File doesn't exist.");
@@ -127,25 +127,83 @@ bool IOMap::loadMap(Map* map, const std::string& fileName, const Position& pos, 
 		return false;
 	}
 
+	size_t totalNodes = mapNode.children.size();
+	size_t processed = 0;
+	size_t lastPercent = 101;
+	bool renderBar = showProgressBar;
+
+	if (renderBar) {
+		std::cout << ">> Loading map file: " << fileName << std::endl;
+	}
+
+	bool interactive = isInteractiveTerminal();
+
 	for (auto& mapDataNode : mapNode.children) {
+		++processed;
+		if (renderBar && totalNodes > 0) {
+			size_t percent = (processed * 100) / totalNodes;
+			if (interactive) {
+				if (percent != lastPercent || processed == totalNodes) {
+					lastPercent = percent;
+					int barWidth = 30;
+					int posBar = static_cast<int>((percent * barWidth) / 100);
+					std::cout << "\r>> Loading: [";
+					for (int b = 0; b < barWidth; ++b) {
+						if (b < posBar) {
+							std::cout << "=";
+						} else if (b == posBar) {
+							std::cout << ">";
+						} else {
+							std::cout << " ";
+						}
+					}
+					std::cout << "] " << percent << "% (" << processed << "/" << totalNodes << " areas)" << std::flush;
+				}
+			} else {
+				if ((percent % 10 == 0 && percent != lastPercent) || processed == totalNodes) {
+					lastPercent = percent;
+					int barWidth = 30;
+					int posBar = static_cast<int>((percent * barWidth) / 100);
+					std::cout << ">> Loading: [";
+					for (int b = 0; b < barWidth; ++b) {
+						if (b < posBar) {
+							std::cout << "=";
+						} else if (b == posBar) {
+							std::cout << ">";
+						} else {
+							std::cout << " ";
+						}
+					}
+					std::cout << "] " << percent << "%" << std::endl;
+				}
+			}
+		}
+
 		if (mapDataNode.type == OTBM_TILE_AREA) {
 			if (!parseTileArea(loader, mapDataNode, *map, pos, unload, (headerVersion == 0))) {
+				if (renderBar) std::cout << std::endl;
 				return false;
 			}
 		} else if (mapDataNode.type == OTBM_TOWNS) {
 			if (!parseTowns(loader, mapDataNode, *map)) {
+				if (renderBar) std::cout << std::endl;
 				return false;
 			}
 		} else if (mapDataNode.type == OTBM_WAYPOINTS && headerVersion > 1) {
 			if (!parseWaypoints(loader, mapDataNode, *map)) {
+				if (renderBar) std::cout << std::endl;
 				return false;
 			}
 		} else {
+			if (renderBar) std::cout << std::endl;
 			setLastErrorString("Unknown map node.");
 			return false;
 		}
 	}
 
+	if (renderBar) {
+		std::cout << std::endl << ">> Map loaded in " << (OTSYS_TIME() - start) / 1000.0 << "s" << std::endl;
+	}
 	return true;
 }
 

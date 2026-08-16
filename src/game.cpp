@@ -236,7 +236,9 @@ void Game::saveGameState()
 		setGameState(GAME_STATE_NORMAL);
 	}
 
+#if !defined(_WIN32)
 	malloc_trim(0);
+#endif
 }
 
 void Game::saveGameStateAsync(uint32_t delayBetweenPlayers)

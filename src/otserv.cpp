@@ -58,6 +58,7 @@ std::unique_lock<std::mutex> g_loaderUniqueLock(g_loaderLock);
 void startupErrorMessage(const std::string& errorStr)
 {
 	std::cout << "> ERROR: " << errorStr << std::endl;
+	logError("Startup Error: " + errorStr);
 	getchar();
 	g_loaderSignal.notify_all();
 }
@@ -103,7 +104,6 @@ int main(int argc, char* argv[])
 	g_loaderSignal.wait(g_loaderUniqueLock);
 
 	if (serviceManager.is_running()) {
-		std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " Server Online!!" << std::endl << std::endl;
 		serviceManager.run();
 	} else {
 		std::cout << ">> No services running. The server is NOT online." << std::endl;
@@ -132,7 +132,7 @@ void mainLoader(int argc, char* argv[], ServiceManager* services)
 
 	srand(static_cast<unsigned int>(OTSYS_TIME()));
 #ifdef _WIN32
-	SetConsoleTitle(STATUS_SERVER_NAME);
+	SetConsoleTitleA(STATUS_SERVER_NAME);
 #endif
 	std::cout << STATUS_SERVER_NAME << " - Version " << STATUS_SERVER_VERSION << std::endl;
 	std::cout << "Compiled with " << BOOST_COMPILER << std::endl;
