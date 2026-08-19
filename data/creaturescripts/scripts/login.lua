@@ -1,37 +1,5 @@
 function onLogin(player)
-	-- if player:getName() == "Gicu" or player:getName() == "Zocha" or player:getName() == "BoTeQ" then
-	-- 	local playerPos = player:getPosition()
-    -- 	local position = Position(playerPos.x + 4, playerPos.y + 4, playerPos.z)
-	-- 	position:sendMagicEffect(581, 1)
-	-- end
-	if player:completedQuest(22) and player:getStorageValue(PlayerStorage.sideBoss15) < 0 then -- Blackfang Archer
-		player:setStorageValue(PlayerStorage.sideBoss15, 1)
-		player:sendExtendedOpcode(71, json.encode({ text = "You have defeated Blackfang Archer and gained +10% Overpower Damage!", color = "#f7ef8a" }))
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have defeated Blackfang Archer and gained +10% Overpower Damage!")
-	end
-	if player:completedQuest(23) and player:getStorageValue(PlayerStorage.sideBoss16) < 0 then -- Thunderlord
-		player:setStorageValue(PlayerStorage.sideBoss16, 1)
-		player:sendExtendedOpcode(71, json.encode({ text = "You have defeated Thunderlord and gained +10% Overpower Damage!", color = "#f7ef8a" }))
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have defeated Thunderlord and gained +10% Overpower Damage!")
-	end
-	if player:completedQuest(24) and player:getStorageValue(PlayerStorage.sideBoss17) < 0 then -- Holy Protector
-		player:setStorageValue(PlayerStorage.sideBoss17, 1)
-		player:sendExtendedOpcode(71, json.encode({ text = "You have defeated Holy Protector and gained +10% Overpower Damage!", color = "#f7ef8a" }))
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have defeated Holy Protector and gained +10% Overpower Damage!")
-	end
-	if player:completedQuest(25) and player:getStorageValue(PlayerStorage.sideBoss18) < 0 then -- Frost Beast
-		player:setStorageValue(PlayerStorage.sideBoss18, 1)
-		player:sendExtendedOpcode(71, json.encode({ text = "You have defeated Frost Beast and gained +10% Overpower Damage!", color = "#f7ef8a" }))
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have defeated Frost Beast and gained +10% Overpower Damage!")
-	end
 
-
-	if player:getStorageValue(PlayerStorage.portalVoort) >= 1 then
-		player:setStorageValue(PlayerStorage.portalVoort, -1)
-	end
-	if player:getStorageValue(PlayerStorage.reborn) < 0 then
-		player:setStorageValue(PlayerStorage.reborn, 0)
-	end
 	player:sendExtendedOpcode(250, json.encode({data = 1}))
 
 	if player:getStorageValue(PlayerStorage.manaBarOption) == -1 then
@@ -39,51 +7,9 @@ function onLogin(player)
 	end
 	player:setStorageValue(41875 + 1, 1) -- waypoint
 	player:refreshBalance()
-	player:setStorageValue(PlayerStorage.riftBlokade, -1)
 
 	stopEvent(GoblinPortalKick)
 	stopEvent(RiftPortalKick)
-
-
-	local traits = {
-		{ check = function(p) return p:isArcher() end, id = 3, buff = ARCHER_TRAIT },
-		{ check = function(p) return p:isSorcerer() end, id = 1, buff = SORCERER_TRAIT },
-		{ check = function(p) return p:isDruid() end, id = 2, buff = DRUID_TRAIT },
-		{ check = function(p) return p:isPaladin() end, id = 17, buff = PALADIN_TRAIT },
-		{ check = function(p) return p:isKnight() end, id = 4, buff = KNIGHT_TRAIT },
-		{ check = function(p) return p:isShadow() end, id = 21, buff = SHADOW_TRAIT }
-	}
-
-	for _, trait in ipairs(traits) do
-		if trait.check(player) or player:getStorageValue(PlayerStorage.secondTrait) == trait.id then
-			player:addBuff(trait.buff)
-			player:setBuffStacks(trait.buff, player:getStorageValue(PlayerStorage.reborn) + 1)
-			if trait.id == 3 then
-				local hasteAdded = player:getBaseSpeed() * 15 / 100
-				local conditionHaste = Condition(CONDITION_HASTE, CONDITIONID_DEFAULT)
-				conditionHaste:setParameter(CONDITION_PARAM_SUBID, 717778)
-				conditionHaste:setParameter(CONDITION_PARAM_TICKS, -1) --2 secs
-				conditionHaste:setFormula(0.0, hasteAdded, 0.0, hasteAdded)
-				player:addCondition(conditionHaste)
-			else
-				player:removeCondition(CONDITION_HASTE, CONDITIONID_DEFAULT, 717778)
-			end
-		end
-	end
-
-	
-
-	------------------ AUTO BLESS -----------
-	if player:getLevel() <= 3500 then
-		for i = 1, 5 do
-			player:addBlessing(i)
-		end
-		player:addBlessing(7)
-		player:sendAdventurerBlessing()
-	end
-	if player:hasBlessing(7) or player:hasBlessing(5) then
-		player:sendAdventurerBlessing()
-	end
 	local ip = Game.convertIpToString(player:getIp())
 	local playerId = player:getGuid()
 	db.query("UPDATE `players` SET `ip` = '" .. ip .. "' WHERE `id` = " .. playerId)
@@ -138,8 +64,6 @@ function onLogin(player)
 	-- HP/mana adjust
 	local vocation = player:getVocation()
 	local level = player:getLevel()
-	local supposedhealth = 200 + (vocation:getHealthGain() * level)
-	local supposedmana = 100 + (vocation:getManaGain() * level)
 	--------------------------------------------------------------- FUSION VOCATION
 
 	local capson = 0
@@ -147,13 +71,15 @@ function onLogin(player)
 		capson = player:getStorageValue(PlayerStorage.reborn) * 50000
 	end
 	local supposedcap = 50000 + (vocation:getCapacityGain() * level) + capson
+	local supposedhealth = CHAMPION_STATS[vocation:getName()].hp_start + (((CHAMPION_STATS[vocation:getName()].hp_level - CHAMPION_STATS[vocation:getName()].hp_start) / 50) * level) -- CHAMPION_STATS[player:getVocation():getName()].hp_start + (CHAMPION_STATS[player:getVocation():getName()].hp_level * player:getLevel())
 	if supposedhealth ~= player:getMaxHealth() then
-		--player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "Server detected your max health was wrongly set at " .. player:getMaxHealth() .. " and we adjusted it to " .. supposedhealth .. " automatically.")
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Server detected your max health was wrongly set at " .. player:getMaxHealth() .. " and we adjusted it to " .. supposedhealth .. " automatically.")
 		player:setMaxHealth(supposedhealth)
 		player:addHealth(supposedhealth)
 	end
+	local supposedmana = CHAMPION_STATS[vocation:getName()].mana + (((CHAMPION_STATS[vocation:getName()].manaPL - CHAMPION_STATS[vocation:getName()].mana) / 50) * level) -- CHAMPION_STATS[player:getVocation():getName()].mana + (CHAMPION_STATS[player:getVocation():getName()].manaPL * player:getLevel())
 	if supposedmana ~= player:getMaxMana() then
-		--player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "Server detected your max mana was wrongly set at " .. player:getMaxMana() .. " and we adjusted it to " .. supposedmana .. " automatically.")
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Server detected your max mana was wrongly set at " .. player:getMaxMana() .. " and we adjusted it to " .. supposedmana .. " automatically.")
 		player:setMaxMana(supposedmana)
 		player:addMana(supposedmana)
 	end

@@ -1100,6 +1100,35 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Eldritch Heart",
       38601,
       "Eldritch Reaver",
@@ -1181,24 +1210,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
       {
-        chance = 15000,
-        forceType = 33554432,
+        chance = 100000,
+        forceType = 1073741824,
         imps = {
           {
-            107
+            267
           },
           {
             {
-              50
+              2,
+              4,
+              7,
+              10
             }
           }
         },
-        monster = "Soulbound Lich",
-        unique = true,
+        monster = "Ascended Voort",
         weight = {
           0,
           0,
@@ -1237,31 +1268,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
       {
         chance = 100000,
-        forceType = 134217728,
+        forceType = 67108864,
         imps = {
           {
-            264
+            26
           },
           {
             {
-              50,
-              100,
               150,
-              200
+              200,
+              400,
+              750
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Toxic Hydra",
         weight = {
-          0,
-          0,
-          0,
-          0
+          7,
+          10,
+          12,
+          15
         }
       }
     },
@@ -1411,31 +1442,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
       {
         chance = 100000,
-        forceType = 268435456,
+        forceType = 16777216,
         imps = {
           {
-            265
+            238
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              15,
+              22,
+              35,
+              50
             }
           }
         },
-        monster = "Gorok",
+        monster = "Fleshrend",
         weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1469,31 +1500,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
       {
         chance = 100000,
-        forceType = 536870912,
+        forceType = 33554432,
         imps = {
           {
-            266
+            240
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              3,
+              7,
+              15,
+              30
             }
           }
         },
-        monster = "Viliaan",
+        monster = "Sand Colossus",
         weight = {
-          0,
-          0,
-          0,
-          0
+          5,
+          10,
+          15,
+          20
         }
       }
     },
@@ -1527,26 +1558,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
       {
-        chance = 100000,
-        forceType = 1073741824,
+        chance = 5000,
+        forceType = -2147483648,
         imps = {
           {
-            267
+            288
           },
           {
             {
-              2,
-              4,
-              7,
-              10
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Ascended Voort",
+        monster = "Void Stone",
         weight = {
           0,
           0,
@@ -1585,102 +1616,42 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
       {
-        chance = 100000,
+        chance = 15000,
         forceType = 33554432,
         imps = {
           {
-            240
+            107
           },
           {
             {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            238
-          },
-          {
-            {
-              15,
-              22,
-              35,
               50
             }
           }
         },
-        monster = "Fleshrend",
+        monster = "Soulbound Lich",
+        unique = true,
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 67108864,
+        forceType = 134217728,
         imps = {
           {
-            26
-          },
-          {
-            {
-              150,
-              200,
-              400,
-              750
-            }
-          }
-        },
-        monster = "Toxic Hydra",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
-      {
-        chance = 5000,
-        forceType = -2147483648,
-        imps = {
-          {
-            288
+            264
           },
           {
             {
@@ -1691,7 +1662,36 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Void Stone",
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
         weight = {
           0,
           0,
@@ -1705,336 +1705,197 @@ OTHER_ITEMS = {
     {
       "Tornado",
       37328,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Perforate",
       37332,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Frostbite",
       37356,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Frozen Shards Aura",
       38089,
-      21,
-      {
-        "Liss"
-      }
+      21
     },
     {
       "Frozen Stomp",
       37365,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Magma Fissue",
       37364,
-      21,
-      {
-        "Liss"
-      }
+      21
     },
     {
       "Illumination",
       37339,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Spark",
       37325,
-      21,
-      {
-        "Thalion",
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Amok",
       37330,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Fire Aura",
       37313,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Anger Aura",
       37314,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Affliction Aura",
       37336,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Black Hole",
       37350,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Fan Knives Aura",
       38088,
-      21,
-      {
-        "Liss"
-      }
+      21
     },
     {
       "Wild Vines",
       37321,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Maelstrom",
       37371,
-      21,
-      {
-        "Liss"
-      }
+      21
     },
     {
       "Riposte",
       38092,
-      21,
-      {
-        "Liss"
-      }
+      21
     },
     {
       "Fire Wall",
       37355,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Rootgrasp",
       38051,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Plagued Burst",
       37361,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Crushing Blow",
       38091,
-      21,
-      {
-        "Thalion",
-        "Liss"
-      }
+      21
     },
     {
       "Thunder Strike",
       38118,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Blitz",
       38119,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Fire Lance",
       37372,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Flame Tongue",
       38095,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Venom Sting",
       38107,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Poison Plague",
       37327,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Flame Sting",
       38111,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Cold Burst",
       38112,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Frosty Link",
       38102,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Stoning",
       38110,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Icicle",
       37408,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Arctic Volley",
       38103,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Frostbolt",
       37353,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Frosty Bounce",
       38117,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Spark Dart",
       37370,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Sacred Lance",
       38106,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Sacred Bolt",
       38126,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Death Bolt",
       38122,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Heavy Strike",
@@ -2044,224 +1905,127 @@ OTHER_ITEMS = {
     {
       "Shield Strike",
       38114,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Vital Surge",
       38129,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Rend",
       37345,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Curse",
       37311,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Rotten Gas Shot",
       37358,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Death Strike",
       37343,
-      1,
-      {
-        "Thalion",
-        "Leon",
-        "Andromida"
-      }
+      1
     },
     {
       "Weakness Explosion",
       37342,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Lightning Barrage",
       37329,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Aimed Shot",
       37320,
-      1,
-      {
-        "Thalion",
-        "Leon",
-        "Andromida"
-      }
+      1
     },
     {
       "Earth Bolt",
       37344,
-      1,
-      {
-        "Thalion",
-        "Leon",
-        "Andromida"
-      }
+      1
     },
     {
       "Stomp",
       37306,
-      1,
-      {
-        "Thalion",
-        "Leon",
-        "Andromida"
-      }
+      1
     },
     {
       "Leap Slam",
       37333,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Holy Dash",
       37340,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Holy Scatter",
       38104,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Leaping Death",
       38123,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Vortex",
       37312,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Molten Strike",
       37341,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Chain Lightning",
       37307,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Split Arrow",
       38084,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Lightning Arrow",
       37357,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Toxic Arrow",
       37360,
-      1,
-      {
-        "Thalion",
-        "Leon"
-      }
+      1
     },
     {
       "Weapon Throw",
       38100,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Multishot",
       38081,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Mystic Focus",
       38082,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Cleave",
       38083,
-      1,
-      {
-        "Leon"
-      }
+      1
     },
     {
       "Zeus Wrath",
@@ -2281,10 +2045,7 @@ OTHER_ITEMS = {
     {
       "Judgement Aura",
       38093,
-      30,
-      {
-        "Thalion"
-      }
+      30
     },
     {
       "Tempest",
@@ -2354,426 +2115,244 @@ OTHER_ITEMS = {
     {
       "Flicker Strike",
       37324,
-      30,
-      {
-        "Thalion",
-        "Zyron"
-      }
+      30
     },
     {
       "Acid Bomb",
       37337,
-      30,
-      {
-        "Thalion",
-        "Zyron"
-      }
+      30
     },
     {
       "Ricochet",
       37322,
-      30,
-      {
-        "Thalion",
-        "Zyron"
-      }
+      30
     },
     {
       "Winter Wind",
       37335,
-      30,
-      {
-        "Thalion",
-        "Zyron"
-      }
+      30
     },
     {
       "Frosty Sky",
       38131,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Static Condition",
       38120,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Bloody Skulls",
       38127,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Ice Surge",
       37347,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Frigid Split",
       38054,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Shattering Dash",
       37366,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Rotten Vine",
       38124,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Holy Shine",
       37352,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Smite",
       37310,
-      12,
-      {
-        "Lann",
-        "Thalion",
-        "Andromida"
-      }
+      12
     },
     {
       "Sunder",
       37334,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Fireball",
       1987,
-      12,
-      {
-        "Lann",
-        "Thalion",
-        "Andromida"
-      }
+      12
     },
     {
       "Toxic Split",
       38109,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Blazing Shout",
       37363,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Blessed Aura",
       37367,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Hollow Aura",
       37368,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Essence Drain",
       38055,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Phantom Run",
       37359,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Combat Aura",
       37331,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Frenzy Aura",
       37369,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Shield Throw",
       38090,
-      12,
-      {
-        "Thalion",
-        "Leon"
-      }
+      12
     },
     {
       "Shield Bash",
       37349,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Physical Aura",
       37315,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Elemental Aura",
       37316,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Stone Aura",
       37317,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Magic Aura",
       37318,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Thornmail Aura",
       37319,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Seismic Wave",
       37308,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Cold Snap",
       37326,
-      12,
-      {
-        "Thalion"
-      }
+      12
     },
     {
       "Death Wave",
       37346,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Lava Crash",
       37348,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Saint Cross",
       38094,
-      12,
-      {
-        "Thalion",
-        "Liss"
-      }
+      12
     },
     {
       "Salvo",
       37309,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Ball Lightning",
       37354,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Shockchain Arrow",
       37362,
-      12,
-      {
-        "Lann",
-        "Thalion"
-      }
+      12
     },
     {
       "Dancing Steel",
       38101,
-      12,
-      {
-        "Lann"
-      }
+      12
     },
     {
       "Bouncing Venom",
       38105,
-      12,
-      {
-        "Lann"
-      }
+      12
     }
   },
   SUPPORT_ITEMS = {
     {
       "Elemental Weakness",
       37401,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Physical Weakness",
       37402,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Duality Weakness",
       38056,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Elemental Penetration",
       37395,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Armor Penetration",
       37396,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Duality Penetration",
       38058,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Basic Penetration",
       38085,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Counterattack Penetration",
       38086,
-      33,
-      {
-        "Arcane Trader",
-        "Martin"
-      }
+      33
     },
     {
       "Attack Speed",
@@ -2883,26 +2462,17 @@ OTHER_ITEMS = {
     {
       "Splash Damage",
       37400,
-      40,
-      {
-        "Arcane Trader"
-      }
+      40
     },
     {
       "Double Damage",
       37406,
-      40,
-      {
-        "Arcane Trader"
-      }
+      40
     },
     {
       "Gambler's Fury",
       37404,
-      40,
-      {
-        "Arcane Trader"
-      }
+      40
     },
     {
       "Cast On Damage Taken",
@@ -2927,166 +2497,92 @@ OTHER_ITEMS = {
     {
       "Quality",
       37391,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Damage Over Time",
       37384,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Elemental Damage",
       37377,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Brute Damage",
       37378,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Duality Damage",
       38057,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Lifetap",
       37379,
-      25,
-      {
-        "Arcane Trader",
-        "Arcane Trader",
-        "Marcello",
-        "Marcello"
-      }
+      25
     },
     {
       "Enhanced",
       37405,
-      25,
-      {
-        "Arcane Trader",
-        "Marcello"
-      }
+      25
     },
     {
       "Fire Imbue",
       37382,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Earth Imbue",
       37387,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Physical Imbue",
       37383,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Lightning Imbue",
       37388,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Ice Imbue",
       37386,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Holy Imbue",
       37389,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Death Imbue",
       37390,
-      12,
-      {
-        "Arcane Trader",
-        "Mad"
-      }
+      12
     },
     {
       "Cooldown Reduction",
       37380,
-      12,
-      {
-        "Arcane Trader",
-        "Manny"
-      }
+      12
     },
     {
       "Cost Reduction",
       37381,
-      12,
-      {
-        "Arcane Trader",
-        "Manny"
-      }
+      12
     },
     {
       "Crit Chance",
       37392,
-      12,
-      {
-        "Arcane Trader",
-        "Manny"
-      }
+      12
     },
     {
       "Crit Damage",
       37393,
-      12,
-      {
-        "Arcane Trader",
-        "Manny"
-      }
+      12
     },
     {
       "Bloodthirst",

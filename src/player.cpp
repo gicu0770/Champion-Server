@@ -2574,15 +2574,15 @@ ReturnValue Player::queryAdd(int32_t index, const Thing& thing, uint32_t count, 
 	}
 
 	switch (index) {
-		case CONST_SLOT_HEAD: {
-			if (slotPosition & SLOTP_HEAD) {
-				ret = RETURNVALUE_NOERROR;
-			}
-			break;
-		}
-
-		case CONST_SLOT_NECKLACE: {
-			if (slotPosition & SLOTP_NECKLACE) {
+		case CONST_SLOT_HEAD:
+		case CONST_SLOT_NECKLACE:
+		case CONST_SLOT_ARMOR:
+		case CONST_SLOT_LEGS:
+		case CONST_SLOT_FEET:
+		case CONST_SLOT_RING:
+		case CONST_SLOT_GLOVES:
+		case CONST_SLOT_RING2: {
+			if (slotPosition & (SLOTP_HEAD | SLOTP_NECKLACE | SLOTP_ARMOR | SLOTP_LEGS | SLOTP_FEET | SLOTP_RING | SLOTP_GLOVES | SLOTP_RING2 | SLOTP_LEFT | SLOTP_RIGHT | SLOTP_TWO_HAND | SLOTP_HAND)) {
 				ret = RETURNVALUE_NOERROR;
 			}
 			break;
@@ -2590,13 +2590,6 @@ ReturnValue Player::queryAdd(int32_t index, const Thing& thing, uint32_t count, 
 
 		case CONST_SLOT_BACKPACK: {
 			if (slotPosition & SLOTP_BACKPACK) {
-				ret = RETURNVALUE_NOERROR;
-			}
-			break;
-		}
-
-		case CONST_SLOT_ARMOR: {
-			if (slotPosition & SLOTP_ARMOR) {
 				ret = RETURNVALUE_NOERROR;
 			}
 			break;
@@ -2658,40 +2651,6 @@ ReturnValue Player::queryAdd(int32_t index, const Thing& thing, uint32_t count, 
 						ret = RETURNVALUE_NOERROR;
 					}
 				}
-			}
-			break;
-		}
-
-		case CONST_SLOT_LEGS: {
-			if (slotPosition & SLOTP_LEGS) {
-				ret = RETURNVALUE_NOERROR;
-			}
-			break;
-		}
-
-		case CONST_SLOT_FEET: {
-			if (slotPosition & SLOTP_FEET) {
-				ret = RETURNVALUE_NOERROR;
-			}
-			break;
-		}
-
-		case CONST_SLOT_RING: {
-			if ((slotPosition & SLOTP_RING2) || (slotPosition & SLOTP_RING)) {
-				ret = RETURNVALUE_NOERROR;
-			}
-			break;
-		}
-		
-		case CONST_SLOT_GLOVES: {
-				if (slotPosition & SLOTP_GLOVES) {
-						ret = RETURNVALUE_NOERROR;
-				}
-				break;
-		}
-		case CONST_SLOT_RING2: {
-			if ((slotPosition & SLOTP_RING2) || (slotPosition & SLOTP_RING)) {
-				ret = RETURNVALUE_NOERROR;
 			}
 			break;
 		}

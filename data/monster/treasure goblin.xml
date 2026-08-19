@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<monster name="Treasure Goblin" nameDescription="a treasure goblin" race="blood" experience="0" speed="220" bestiaryId="123" items="goblin">
-	<!-- script="goblin.lua -->
+<monster name="Treasure Goblin" nameDescription="a treasure goblin" race="blood" experience="0" speed="350" script="goblin.lua" items="onehit">
 	<health now="10" max="10" />
-	<look type="2838" corpse="27196" />
+	<look type="1998" corpse="27196" />
 	<targetchange interval="4000" chance="20" />
 	<flags>
 		<flag summonable="0" />
@@ -15,16 +14,22 @@
 		<flag staticattack="90" />
 		<flag lightlevel="0" />
 		<flag lightcolor="0" />
-		<flag targetdistance="2" />
+		<flag targetdistance="3" />
 		<flag runonhealth="90000000" />
 	</flags>
 	<attacks>
-		<attack name="physical" interval="2000" chance="100" range="6" radius="2" target="1" min="-50" max="-50">
-			<attribute key="shootEffect" value="209" />
-			<attribute key="areaEffect" value="405" />
-		</attack>
+		<attack name="melee" interval="2000" min="-20" max="-20" />
 	</attacks>
-	<defenses armor="500" defense="500">
+	<defenses armor="10" defense="10">
+		<defense name="speed" interval="10000" chance="100" speedchange="2000" duration="5000">
+			<attribute key="areaEffect" value="redshimmer" />
+		</defense>
+		<defense name="speed" interval="5000" chance="50" speedchange="1000" duration="1500">
+			<attribute key="areaEffect" value="redshimmer" />
+		</defense>
+		<defense name="healing" interval="20000" chance="10" min="20" max="20">
+			<attribute key="areaEffect" value="greenshimmer" />
+		</defense>
 	</defenses>
 	<voices interval="5000" chance="10">
 		<voice sentence="Crackle!" />
@@ -36,15 +41,10 @@
 		<immunity paralyze="1" />
 		<immunity invisible="1" />
 	</immunities>
-	<elements>
-		<element energyPercent="0" />
-		<element icePercent="0" />
-		<element firePercent="0" />
-		<element holyPercent="0" />
-		<element earthPercent="0" />
-		<element physicalPercent="0" />
-		<element deathPercent="0" />
-	</elements>
 	<loot>
+		<item id="2157" countmax="3" chance="100000" />
+		<item id="26805" countmax="2" chance="100000" />
+		<item id="26806" countmax="2" chance="100000" />
+		<item id="26807" countmax="2" chance="100000" />
 	</loot>
 </monster>

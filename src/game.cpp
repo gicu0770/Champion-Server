@@ -2038,19 +2038,28 @@ void Game::playerEquipItem(Player* player, uint64_t uid)
 
 	const ItemType& it = Item::items[item->getID()];
 	slots_t slot = getSlotType(it);
-	Position fromPos, toPos;
-	uint8_t fromStackPos, toStackPos;
+
+	if (it.slotPosition & (SLOTP_HEAD | SLOTP_NECKLACE | SLOTP_ARMOR | SLOTP_LEGS | SLOTP_FEET | SLOTP_RING | SLOTP_GLOVES | SLOTP_RING2 | SLOTP_LEFT | SLOTP_RIGHT)) {
+		static const std::vector<slots_t> eqSlots = {
+			CONST_SLOT_HEAD, CONST_SLOT_ARMOR, CONST_SLOT_LEGS,
+			CONST_SLOT_NECKLACE, CONST_SLOT_RING, CONST_SLOT_GLOVES
+		};
+		for (slots_t s : eqSlots) {
+			if (!player->getInventoryItem(s)) {
+				slot = s;
+				break;
+			}
+		}
+	}
+
+	Position fromPos;
+	uint8_t fromStackPos = 0;
 
 	if (item) {
 		internalGetPosition(item, fromPos, fromStackPos);
 	}
 
-	Item* oldItem = player->getInventoryItem(slot);
-	ReturnValue ret = RETURNVALUE_NOERROR;
-	if (oldItem) {
-		internalGetPosition(oldItem, toPos, toStackPos);
-	}
-	
+	Position toPos(0xFFFF, static_cast<uint16_t>(slot), 0);
 	playerMoveItem(player, fromPos, item->getClientID(), fromStackPos, toPos, 1, item, player);
 }
 

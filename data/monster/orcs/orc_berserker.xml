@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Orc Berserker" nameDescription="an orc berserker" race="blood" experience="1" tier="3" speed="120" manacost="590">
+	<health now="350" max="350" />
+	<look type="8" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" min="-160" max="-160" />
+	</attacks>
+	<defenses armor="0" defense="0">
+		<defense name="speed" interval="10000" chance="100" speedchange="200" duration="3000">
+			<attribute key="areaEffect" value="redshimmer" />
+		</defense>
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="KRAK ORRRRRRK!" yell="1" />
+	</voices>
+</monster>

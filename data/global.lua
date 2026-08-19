@@ -166,159 +166,85 @@ DUNGEON_MOD_ATTR_ADDED = {
 	[21] = PlayerStorage.monsterModifier_extracurrency,
 }
 
-SIDE_BOSSES = {
-	["Elder Beholder"] = {id = 1, storage = PlayerStorage.sideBoss1, reward = function(player) -- +100 Health
-		local message = "You have defeated Elder Beholder and increase your Health +100!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Barbarian Brutetamer"] = {id = 2, storage = PlayerStorage.sideBoss2, reward = function(player) -- +100 Energy Shield
-		local message = "You have defeated Barbarian Brutetamer and increase your Energy Shield by +100!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Blightworm"] = {id = 3, storage = PlayerStorage.sideBoss3, reward = function(player) -- +100 Mana and 1 Mana Regeneration
-		local message = "You have defeated Blightworm and increase you Mana by +100 and Mana Regeneration by +1!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Grand Master"] = {id = 4, storage = PlayerStorage.sideBoss4, reward = function(player) -- +2 Character Points
-		local message = "You have defeated Grand Master and gained 2 Character Points!"
-		player:addStatsPoints(2)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Ancient Scarab"] = {id = 5, storage = PlayerStorage.sideBoss5, reward = function(player) -- +2 Character Points
-		local message = "You have defeated Ancient Scarab and gained 2 Character Points!"
-		player:addStatsPoints(2)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Animated Feather"] = {id = 6, storage = PlayerStorage.sideBoss6, reward = function(player) -- +10% Physical Protection
-		local message = "You have defeated Animated Feather and increase your Physical Protection by 10%!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Undead Dragon"] = {id = 7, storage = PlayerStorage.sideBoss7, reward = function(player) -- +10% Duality Protection
-		local message = "You have defeated Undead Dragon and increase your Duality Protection by 10%!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Braindeath"] = {id = 8, storage = PlayerStorage.sideBoss8, reward = function(player) -- +10% Elemental Protection
-		local message = "You have defeated Braindeath and increase your Elemental Protection by 10%!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Serpivorn"] = {id = 9, storage = PlayerStorage.sideBoss9, reward = function(player) -- +3 Character Points
-		local message = "You have defeated Serpivorn and gained 3 Character Points!"
-		player:addStatsPoints(3)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Smashgaze"] = {id = 10, storage = PlayerStorage.sideBoss10, reward = function(player) -- +3 Character Points
-		local message = "You have defeated Smashgaze and gained 3 Character Points!"
-		player:addStatsPoints(3)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Forsaken Gladiator"] = {id = 11, storage = PlayerStorage.sideBoss11, reward = function(player) -- +5 Character Points
-		local message = "You have defeated Forsaken Gladiator and gained +250 Health, Energy Shield, and Mana! Also, 5 Character Points!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Decay Archdemon"] = {id = 12, storage = PlayerStorage.sideBoss12, reward = function(player) -- +5 Character Points
-		local message = "You have defeated Decay Archdemon and gained +10% Health, Energy Shield, and Mana! Also, 5 Character Points!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Rustwidow"] = {id = 13, storage = PlayerStorage.sideBoss13, reward = function(player) -- +5 Character Points
-		local message = "You have defeated Rustwidow and gained +15% Overpower Damage! Also, 5 Character Points!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Deepclaw"] = {id = 14, storage = PlayerStorage.sideBoss14, reward = function(player) -- +5 Character Points
-		local message = "You have defeated Deepclaw and gained +15% Overpower Damage! Also, 5 Character Points!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	-- Realm Bosses
-	["Blackfang Archer"] = {id = 15, storage = PlayerStorage.sideBoss15, reward = function(player) 
-		local message = "You have defeated Blackfang Archer and gained +10% Overpower Damage!"
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Thunderlord"] = {id = 16, storage = PlayerStorage.sideBoss16, reward = function(player) 
-		local message = "You have defeated Thunderlord and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Holy Protector"] = {id = 17, storage = PlayerStorage.sideBoss17, reward = function(player) 
-		local message = "You have defeated Thunderlord and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Frost Beast"] = {id = 18, storage = PlayerStorage.sideBoss18, reward = function(player)
-		local message = "You have defeated Thunderlord and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	--[[
-	["Eldritch Reaver"] = {id = 19, storage = PlayerStorage.sideBoss19, reward = function(player)
-		local message = "You have defeated Eldritch Reaver and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Grave Spearlord"] = {id = 20, storage = PlayerStorage.sideBoss20, reward = function(player)
-		local message = "You have defeated Grave Spearlord and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Minotaur Liberator"] = {id = 21, storage = PlayerStorage.sideBoss21, reward = function(player)
-		local message = "You have defeated Minotaur Liberator and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	["Soulbound Lich"] = {id = 22, storage = PlayerStorage.sideBoss22, reward = function(player)
-		local message = "You have defeated Soulbound Lich and gained +10% Overpower Damage!"
-		player:addStatsPoints(5)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-		player:sendExtendedOpcode(71, json.encode({ text = message, color = "#f7ef8a" }))
-	end},
-	--]]
+function Player.getCharacterType(self)
+	local typeEx = 1
+	if CHAMPION_STATS[self:getVocation():getName()].physical_character then
+		typeEx = self:getPhysicalAttack()
+	elseif CHAMPION_STATS[self:getVocation():getName()].magic_character then
+		typeEx = self:getMagicAttack()
+	end
+	return typeEx
+end
 
-}
 
-BOSS_TIER = {
-	[1] = { relictWeight = 30, storage = 1, name = "Venomgrizzle", message = "You have defeated {Venomgrizzle}! Prepare for the next challenge! Relict Box weight set to 60.", color = "#ff8800" }, -- T20 boss
-	[2] = { relictWeight = 30, storage = 1, name = "Bonebound Stalker", message = "You have defeated {Bonebound Stalker}! The journey continues! Relict Box weight set to 90.", color = "#ff8800" }, -- T50 boss teleport linie map
-	[3] = { relictWeight = 30, storage = 3, name = "Blood Fury", message = "You have defeated {Blood Fury}! Challenge begine now! Relict Box weight set to 120.", color = "#ff8800" }, -- Linia pokonanie odblokowuje t71 mapy
-	[4] = { relictWeight = 30, storage = 4, name = "Voidflare Wisp", message = "You have defeated {Voidflare Wisp}! Only one remains! Relict Box weight set to 150.", color = "#ff8800" }, -- odblokowuje t91 mapy
-	[5] = { relictWeight = 30, storage = 5, name = "Reaper Shade", message = "You have defeated {Reaper Shade}! All bosses conquered! Relict Box weight set to 180.\nTraits have reached level 5!", color = "#00ff00" },
---	[4] = { relictWeight = 20, storage = 5, name = "XXX", message = "You have defeated {XXX}! All bosses conquered! Relict Box weight set to 140.", color = "#00ff00" }, -- Nowy Boss
-}
+function Player.getPhysicalAttack(self)
+	if not self then return 0 end
+	local getPhysicalAttack = CHAMPION_STATS[self:getVocation():getName()].physical_attack + (((CHAMPION_STATS[self:getVocation():getName()].physical_attackPL - CHAMPION_STATS[self:getVocation():getName()].physical_attack) / 50) * self:getLevel())
+	if colleftInfo[self:getId()].attributesItems[6] then
+		getPhysicalAttack = getPhysicalAttack + colleftInfo[self:getId()].attributesItems[6].value
+	end
+	return getPhysicalAttack
+end
 
-BOSS_FRAGMENTS_SPECIAL = {
-	{id = 37132, fragmentSetitemLevel = false, tier = 80, count = 250, reward = 2092, overtier = true, message = "You have exchanged 100 Tar Fragments for a Key to fight Blackfang Archer!"},
-	{id = 37129, fragmentSetitemLevel = false, tier = 80, count = 250, reward = 2087, overtier = true, message = "You have exchanged 100 Golden Fragments for a Key to fight Holy Protector!"},
-	{id = 37136, fragmentSetitemLevel = false, tier = 80, count = 250, reward = 2089, overtier = true, message = "You have exchanged 100 Peaks Fragments for a Key to fight Thunderlord!"},
-	{id = 37142, fragmentSetitemLevel = false, tier = 80, count = 250, reward = 2088, overtier = true, message = "You have exchanged 100 Iced Fragments for a Key to fight Frost Beast!"},
+function Player.getMagicAttack(self)
+	if not self then return 0 end
+	local getMagicAttack = CHAMPION_STATS[self:getVocation():getName()].magic_attack + (((CHAMPION_STATS[self:getVocation():getName()].magic_attackPL - CHAMPION_STATS[self:getVocation():getName()].magic_attack) / 50) * self:getLevel()) 
+	if colleftInfo[self:getId()].attributesItems[7] then
+		getMagicAttack = getMagicAttack + colleftInfo[self:getId()].attributesItems[7].value
+	end
+	return getMagicAttack
+end
 
-	{id = 37147, itemLevel = 265, count = 100, reward = 22605, tier = 21, message = "You have exchanged 100 Gate Fragments for a Key to First Tier Boss Venomgrizzle!"},
-	{id = 37155, itemLevel = 600, count = 100, reward = 22606, tier = 51, message = "You have exchanged 100 Gate Fragments for a Key to Second Tier Boss Bonebound Stalker!"},
-	-- T70 to dodatkowa linia
-	{id = 37139, itemLevel = 1350, count = 100, reward = 22604, tier = 91, message = "You have exchanged 100 Gate Fragments for a Key to Third Tier Boss Voidflare Wisp!"},
-	{id = 37145, itemLevel = 2500, count = 100, reward = 22607, tier = 121, message = "You have exchanged 100 Gate Fragments for a Key to Fourth Tier Boss Reaper Shade!"},
-}
+function Player.getPhysicalDamage(self)
+	if not self then return 0 end
+	local getPhysicalDamage = 0
+	if colleftInfo[self:getId()].attributesItems[3] then
+		getPhysicalDamage = getPhysicalDamage + colleftInfo[self:getId()].attributesItems[3].value
+	end
+	return getPhysicalDamage
+end
+
+function Player.getMagicDamage(self)
+	if not self then return 0 end
+	local getMagicDamage = 0
+	if colleftInfo[self:getId()].attributesItems[4] then
+		getMagicDamage = getMagicDamage + colleftInfo[self:getId()].attributesItems[4].value
+	end
+	return getMagicDamage
+end
+
+function Player.getPhysicalDefense(self)
+	if not self then return 0 end
+	local getPhysicalDefense = 0
+	getPhysicalDefense = CHAMPION_STATS[self:getVocation():getName()].physical_defense + (((CHAMPION_STATS[self:getVocation():getName()].physical_defensePL - CHAMPION_STATS[self:getVocation():getName()].physical_defense) / 50) * self:getLevel())
+	if colleftInfo[self:getId()].attributesItems[8] then
+		getPhysicalDefense = getPhysicalDefense + colleftInfo[self:getId()].attributesItems[8].value
+	end
+	return getPhysicalDefense
+end
+
+function Player.getPhysicalDefensePercent(self)
+	if not self then return 0 end
+	local getPhysicalDefensePercent = math.ceil((self:getPhysicalDefense() / (100 + self:getPhysicalDefense())) * 100)
+	return getPhysicalDefensePercent
+end
+
+
+function Player.getMagicDefense(self)
+	if not self then return 0 end
+	local getMagicDefense = 0
+	getMagicDefense = CHAMPION_STATS[self:getVocation():getName()].magic_defense + (((CHAMPION_STATS[self:getVocation():getName()].magic_defensePL - CHAMPION_STATS[self:getVocation():getName()].magic_defense) / 50) * self:getLevel())
+	if colleftInfo[self:getId()].attributesItems[9] then
+		getMagicDefense = getMagicDefense + colleftInfo[self:getId()].attributesItems[9].value
+	end
+	return getMagicDefense
+end
+
+function Player.getMagicDefensePercent(self)
+	if not self then return 0 end
+	local getMagicDefensePercent = math.ceil((self:getPhysicalDefense() / (100 + self:getPhysicalDefense())) * 100)
+	return getMagicDefensePercent
+end
 
 function calculateUpgradeValue(upgradeLevel)
     -- Definicje stałych
@@ -4916,29 +4842,10 @@ function Player.getTotalAttackSpeed(self, checkCollectInfo)
 		return 0
 	end
 
-	local as = 0
-	if self:hasBuff(AMOK) then
-		as = as + (self:getBuff(AMOK).stacks * 5)
-	end
-	if colleftInfo[self:getId()].attributesItems[55] then
-		as = as + colleftInfo[self:getId()].attributesItems[55].value
-	end
-	if self:hasBuff(SWIFT_KILLER) then
-		as = as + (self:getBuff(SWIFT_KILLER).stacks * 1)
-	end
+	local as = (CHAMPION_STATS[self:getVocation():getName()].asPL / 60) * self:getLevel()
 
-	if self:hasBuff(FRENZY_AURA) then
-		as = as + (10 + self:getBuff(FRENZY_AURA).stacks * 0.37)
-	end
-	if self:getCharacterStat(CHARSTAT_CRITICAL_DAMAGE) then
-		as = as + self:getCharacterStat(CHARSTAT_CRITICAL_DAMAGE)
-	end
-	if self:hasBuff(SHRINE_ATTACKSPEED) then
-		as = as + 300
-	end
-	-- Trait
-	if self:hasBuff(ARCHER_TRAIT) then
-		as = as + (5 + self:getBuff(ARCHER_TRAIT).stacks * 5)
+	if colleftInfo[self:getId()].attributesItems[11] then
+		as = as + colleftInfo[self:getId()].attributesItems[11].value
 	end
 	if as == 0 then
 		self:removeCondition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT, 712345)
@@ -6297,127 +6204,36 @@ function Player.setStatistics(self)
 	local manaPercent = 0
 	local energyshieldregen = 1
 	-- bazowa regeneracja
-	local base_healthRegen = 5
-	local base_manaRegen = 5
+	local base_healthRegen = 1
+	local base_manaRegen = 1
 
 
-	if self:getStorageValue(PlayerStorage.reborn) >= 0 then
-		base_healthRegen = base_healthRegen + (self:getStorageValue(PlayerStorage.reborn) * 5)
-		base_manaRegen = base_manaRegen + (self:getStorageValue(PlayerStorage.reborn) * 1)
-		energyshieldregen = energyshieldregen + (self:getStorageValue(PlayerStorage.reborn) * 5)
-	end
-	base_healthRegen = base_healthRegen + (self:getLevel() * 1)
-	energyshieldregen = energyshieldregen + (self:getLevel() * 1)
-	if self:getStorageValue(PlayerStorage.sideBoss1) >= 1 then
-		Healthadded = Healthadded + 100
-	end
-	if self:getStorageValue(PlayerStorage.sideBoss2) >= 1 then
-		energyShieldadded = energyShieldadded + 100
-	end
-	if self:getStorageValue(PlayerStorage.sideBoss3) >= 1 then
-		Manaadded = Manaadded + 100
-		base_manaRegen = base_manaRegen + 1
-	end
-	if self:getStorageValue(PlayerStorage.sideBoss11) >= 1 then -- values
-		Healthadded = Healthadded + 250
-		Manaadded = Manaadded + 250
-		energyShieldadded = energyShieldadded + 250
-	end
-	if self:getStorageValue(PlayerStorage.sideBoss12) >= 1 then -- percent
-		healthPercent = healthPercent + 10
-		manaPercent = manaPercent + 10
-		energyShieldPercent = energyShieldPercent + 10
-	end
+
+
 	self:addHealthGain(1, base_healthRegen, true)
 	self:addManaGain(1, base_manaRegen, true)
-	if colleftInfo[self:getId()].attributesItems[26] then -- Energy Shield Regeneration
-		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[26].value
+	if colleftInfo[self:getId()].attributesItems[4] then -- health regeneration
+		healthRegen = healthRegen + colleftInfo[self:getId()].attributesItems[4].value
 	end
-	if colleftInfo[self:getId()].attributesItems[23] then -- health regeneration
-		healthRegen = healthRegen + colleftInfo[self:getId()].attributesItems[23].value
+	if colleftInfo[self:getId()].attributesItems[5] then -- mana regeneration
+		manaRegen = manaRegen + colleftInfo[self:getId()].attributesItems[5].value
 	end
-	if colleftInfo[self:getId()].attributesItems[247] then -- health regeneration percent per second
-		healthRegen = healthRegen + (self:getMaxHealth() * (colleftInfo[self:getId()].attributesItems[247].value / 100))
+	if colleftInfo[self:getId()].attributesItems[20] then -- Energy Shield Regeneration
+		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[20].value
 	end
-	if colleftInfo[self:getId()].attributesItems[248] then -- energy shield regeneration percent per second
-		energyshieldregen = energyshieldregen + (self:getMaxEnergyShield() * colleftInfo[self:getId()].attributesItems[248].value / 100)
-	end
-	if colleftInfo[self:getId()].attributesItems[24] then -- mana regeneration
-		manaRegen = manaRegen + colleftInfo[self:getId()].attributesItems[24].value
-	end
-	if colleftInfo[self:getId()].attributesItems[74] then -- health regeneration percent
-		healthRegenPercent = healthRegenPercent + colleftInfo[self:getId()].attributesItems[74].value
-	end
-	if self:getStorageValue(435024) == 13 then --- Knight + Paladin Crusader
-		healthRegenPercent = healthRegenPercent + math.ceil(self:getMaxHealth() / FUSION_SCALING[13].hp)
-	end
-	if colleftInfo[self:getId()].attributesItems[218] then -- Dragon Vitality
-		healthRegenPercent = healthRegenPercent + math.floor(self:getEffectiveSkillLevel(SKILL_SHIELD) / 3)
-	end
-	if colleftInfo[self:getId()].attributesItems[75] then -- mana regeneration percent
-		manaRegenPercent = manaRegenPercent + colleftInfo[self:getId()].attributesItems[75].value
-	end
-	if colleftInfo[self:getId()].attributesItems[6] then
-		allAttributes = allAttributes + colleftInfo[self:getId()].attributesItems[6].value
-	end
+
+--	if colleftInfo[self:getId()].attributesItems[247] then -- health regeneration percent per second
+--		healthRegen = healthRegen + (self:getMaxHealth() * (colleftInfo[self:getId()].attributesItems[247].value / 100))
+--	end
 	if colleftInfo[self:getId()].attributesItems[27] then
 		movementSpeed = movementSpeed + colleftInfo[self:getId()].attributesItems[27].value
 	end
-	if colleftInfo[self:getId()].attributesItems[73] then -- Energy Shield Regeneration Percent
-		energyShieldPercentRegen = energyShieldPercentRegen + colleftInfo[self:getId()].attributesItems[73].value
-	end
+
 	self:addHealthGain(2, healthRegen, true)
 	self:addManaGain(2, manaRegen, true)
 	self:addHealthPrecentGain(1, healthRegenPercent, true)
 	self:addManaPrecentGain(1, manaRegenPercent, true)
 	self:addEnergyShieldPrecentGainForce(1, energyShieldPercentRegen, true)
-
-
-	if colleftInfo[self:getId()].attributesItems[130] then -- Subklas Magic Shield
-		local manatoES = self:getMaxMana() * US_ENCHANTMENTS[130].subvalue
-		local conditionES = Condition(CONDITION_ATTRIBUTES)
-		conditionES:setParameter(CONDITION_PARAM_SUBID, 810001)
-		conditionES:setParameter(CONDITION_PARAM_TICKS, -1)
-		conditionES:setParameter(CONDITION_PARAM_STAT_MAXENERGYSHIELD, manatoES)
-		self:addCondition(conditionES)
-	end
-
-	if colleftInfo[self:getId()].attributesItems[216] then -- Unique Mana Fusion
-		local manatoES = self:getMaxMana() * US_ENCHANTMENTS[216].subvalue
-		local conditionES = Condition(CONDITION_ATTRIBUTES)
-		conditionES:setParameter(CONDITION_PARAM_SUBID, 810002)
-		conditionES:setParameter(CONDITION_PARAM_TICKS, -1)
-		conditionES:setParameter(CONDITION_PARAM_STAT_MAXENERGYSHIELD, manatoES)
-		self:addCondition(conditionES)
-	end
-
-	local block = 0
-	if self:getStorageValue(435024) == 15 then -- Paladin + Shadow Abyssal Cleric
-		CriticalChance = CriticalChance + FUSION_SCALING[15].chance
-	end
-	-- TRAIT
-    if self:getBuff(DRUID_TRAIT) then
-        manaPercent = manaPercent + ( 20 + (self:getBuff(DRUID_TRAIT).stacks * 5))
-    end
-    if self:getBuff(PALADIN_TRAIT) then
-        energyShieldPercent = energyShieldPercent + ( 10 + (self:getBuff(PALADIN_TRAIT).stacks * 5))
-    end
-	if self:hasBuff(KNIGHT_TRAIT) then
-		healthPercent = healthPercent + ( 10 + (self:getBuff(KNIGHT_TRAIT).stacks * 5))
-	end
-	if self:hasBuff(SHADOW_TRAIT) then
-		CriticalChance = CriticalChance + 5
-	end
-	if colleftInfo[self:getId()].attributesItems[8] then -- Block Chance
-		block = block + colleftInfo[self:getId()].attributesItems[8].value
-	end
-	if colleftInfo[self:getId()].attributesItems[137] then -- subklas Energy Imbue
-		energyShieldPercent = energyShieldPercent + US_ENCHANTMENTS[137].subvalue
-		healthPercent = healthPercent - US_ENCHANTMENTS[137].subvalue2
-	end
-	if colleftInfo[self:getId()].attributesItems[167] then -- subklas Titan Vitality
-		healthPercent = healthPercent + US_ENCHANTMENTS[167].subvalue
-	end
 
 	if manaPercent > 0 or manaPercent < 0 then
 		local conditionES = Condition(CONDITION_ATTRIBUTES)
@@ -6426,36 +6242,9 @@ function Player.setStatistics(self)
 		conditionES:setParameter(CONDITION_PARAM_STAT_MAXMANAPOINTSPERCENT, manaPercent)
 		self:addCondition(conditionES)
 	end
-	-- local totalHpRegen = self:getTotalHealthGain()
-	-- local totalManaRegen = self:getTotalManaGain()
-
-	--[[	
-	local ESregenBase = math.ceil(self:getMaxEnergyShield() * 0.20)
-	if energyShieldRechargRate > 0 then
-		ESregenBase = ESregenBase + (ESregenBase * energyShieldRechargRate / 100)
-	end
-	--]]
 
 	self:addHealthGain(5, 0, true)
-	-- self:addEnergyShieldGain(1, ESregenBase, true)
-	-- self:getTotalHealthGain()
-	-- self:getTotalManaGain()
 
-
-	-- id, value
-	-- self:addEnergyShieldGain(1, 15)
-	-- self:addHealthGain(1, 5)
-	-- self:addManaGain(1, 2)
-	-- self:removeEnergyShieldGain(1)
-
-
-	if colleftInfo[self:getId()].attributesItems[76] then -- Unique You do not regenerate health
-		self:addHealthGain(1, 0)
-		self:addHealthGain(2, 0)
-		self:addHealthGain(3, 0)
-		self:addHealthGain(4, 0)
-		self:addHealthGain(5, 0)
-	end
 	if energyshieldregen > 0 then
 		self:addEnergyShieldGainForce(1, energyshieldregen, true)
 	end
@@ -6600,27 +6389,6 @@ function Player.setStatistics(self)
 		self:addCondition(maxMP)
 	end
 
-	if colleftInfo[self:getId()].attributesItems[184] then -- unique Mana Core
-		if self:getMaxMana() >= US_ENCHANTMENTS[184].subvalue2 then
-			Healthadded = Healthadded + self:getMaxMana() * US_ENCHANTMENTS[184].subvalue
-		end
-	end
-	if self:getStorageValue(435024) == 3 or self:getStorageValue(435024) == 6 or self:getStorageValue(435024) == 8 then -- Battlemage Toxic Hunter Hieropath
-		local totalAilment = 0
-		if colleftInfo[self:getId()].totalailmentChances then
-			totalAilment = colleftInfo[self:getId()].totalailmentChances * FUSION_SCALING[3].defense
-		end
-		Healthadded = Healthadded + totalAilment
-		energyShieldadded = energyShieldadded + totalAilment
-	end
-	if self:getStorageValue(435024) == 7 then -- Druid + Knight Warden
-		Healthadded = Healthadded + (self:getMaxMana() * FUSION_SCALING[7].mana)
-		energyShieldadded = energyShieldadded + (self:getMaxMana() * FUSION_SCALING[7].mana)
-	end
-	if self:getStorageValue(435024) == 4 then -- Sorcerer + Paladin Inquisitor
-		Healthadded = Healthadded + (self:getMaxMana() * FUSION_SCALING[4].mana)
-		energyShieldadded = energyShieldadded + (self:getMaxMana() * FUSION_SCALING[4].mana)
-	end
 	if Healthadded > 0 then
 		local maxHP = Condition(CONDITION_ATTRIBUTES)
 		maxHP:setParameter(CONDITION_PARAM_TICKS, -1)
@@ -6641,24 +6409,6 @@ function Player.setStatistics(self)
 		conditionES:setParameter(CONDITION_PARAM_TICKS, -1)
 		conditionES:setParameter(CONDITION_PARAM_STAT_MAXHITPOINTSPERCENT, healthPercent)
 		self:addCondition(conditionES)
-	end
-	if colleftInfo[self:getId()].attributesItems[220] then -- Evolved Attribute
-		local str, int, dex = self:getEffectiveSkillLevel(SKILL_MELEE), self:getEffectiveSkillLevel(SKILL_FISHING), self:getEffectiveSkillLevel(SKILL_DISTANCE)
-		local maxValue = math.max(str, int, dex)
-		local minValue = math.min(str, int, dex)
-		local atributeAdd = CONDITION_PARAM_SKILL_DISTANCE
-		if minValue == str then
-			atributeAdd = CONDITION_PARAM_SKILL_MELEE
-		elseif minValue == int then
-			atributeAdd = CONDITION_PARAM_SKILL_FISHING
-		elseif minValue == dex then
-			atributeAdd = CONDITION_PARAM_SKILL_DISTANCE
-		end
-		local infSkills = Condition(CONDITION_ATTRIBUTES)
-		infSkills:setParameter(CONDITION_PARAM_TICKS, -1)
-		infSkills:setParameter(atributeAdd, math.floor(maxValue / 2))
-		infSkills:setParameter(CONDITION_PARAM_SUBID, 731571)
-		self:addCondition(infSkills)
 	end
 
 	if energyShieldPercent > 0 then

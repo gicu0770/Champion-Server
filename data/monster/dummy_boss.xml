@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <monster name="Dummy Boss" nameDescription="an dummy boss" race="boss" experience="25" speed="0" items="dummy" manacost="300">
-	<health now="70000000000000000" max="70000000000000000" />
-	<look type="2014" corpse="27196" healthbar="3" />
+	<health now="700000000000000" max="700000000000000" />
+	<look type="2014" corpse="27196" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="1" />
@@ -15,11 +15,11 @@
 		<flag targetdistance="1" />
 		<flag staticattack="90" />
 		<flag runonhealth="15" />
+
 	</flags>
 	<attacks>
-		<attack name="melee" interval="2000" min="-495" max="-495" />
+		<attack name="melee" interval="2000" min="-1" max="-2" />
 	</attacks>
-	<level min="100" max="100" />
 	<defenses armor="500" defense="500">
 		<defense name="healing" interval="7000" chance="100" min="300000000000000" max="300000000000000">
 			<attribute key="areaEffect" value="blueshimmer" />

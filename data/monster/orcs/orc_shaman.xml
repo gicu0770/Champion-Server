@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Orc Shaman" nameDescription="an orc shaman" race="blood" experience="1" tier="3" speed="120">
+	<health now="350" max="350" />
+	<look type="6" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="2" />
+		<flag staticattack="0" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="5" min="-30" max="-30">
+			<attribute key="shootEffect" value="energyball" />
+		</attack>
+	</attacks>
+	<defenses armor="0" defense="0">
+		<defense name="healing" interval="5000" chance="100" min="10" max="10">
+			<attribute key="areaEffect" value="blueshimmer" />
+		</defense>
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="Huumans stinkk!" />
+		<voice sentence="Grak brrretz gulu." />
+	</voices>
+
+</monster>

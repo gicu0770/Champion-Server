@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Goblin Scavenger" nameDescription="a goblin scavenger" race="blood" experience="5" speed="120" tier="1" manacost="310">
+	<health now="120" max="120" />
+	<look type="297" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="2" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+
+	</flags>
+	<attacks>
+		<attack name="death" interval="2000" chance="100" range="3" min="-15" max="-15">
+			<attribute key="shootEffect" value="suddendeath" />
+			<attribute key="areaEffect" value="mortarea" />
+			<attribute key="areaEffect" value="smallclouds" />
+		</attack>
+	</attacks>
+	<defenses armor="0" defense="0" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Shiny, Shiny!" />
+		<voice sentence="You mean!" />
+		<voice sentence="All mine!" />
+		<voice sentence="Uhh!" />
+	</voices>
+	<loot>
+
+	</loot>
+</monster>

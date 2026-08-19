@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<monster name="Dummy" nameDescription="an dummy" race="Undead" experience="25" speed="0" items="dummy" manacost="300">
-	<health now="70000000000000000" max="70000000000000000" />
-	<look type="2014" corpse="27196"/>
+<monster name="Dummy" nameDescription="an dummy" race="blood" experience="25" speed="0" tier="1" items="dummy" manacost="300">
+	<health now="700000000000000" max="700000000000000" />
+	<look type="2013" corpse="27196" />
 	<targetchange interval="4000" chance="0" />
 	<flags>
 		<flag summonable="1" />
@@ -15,12 +15,17 @@
 		<flag targetdistance="1" />
 		<flag staticattack="90" />
 		<flag runonhealth="15" />
+
 	</flags>
-	<defenses armor="500" defense="500">
-	<defense name="healing" interval="7000" chance="100" min="300000000000000" max="300000000000000">
-		<attribute key="areaEffect" value="blueshimmer" />
-	</defense>
+	<attacks>
+		<attack name="melee" interval="100" min="-1" max="-2" />
+	</attacks>
+	<defenses armor="0" defense="0">
+		<defense name="healing" interval="7000" chance="100" min="300000000000000" max="300000000000000">
+			<attribute key="areaEffect" value="blueshimmer" />
+		</defense>
 	</defenses>
+
 	<loot>
 
 	</loot>
