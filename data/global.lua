@@ -246,6 +246,42 @@ function Player.getMagicDefensePercent(self)
 	return getMagicDefensePercent
 end
 
+function Player.getPhysicalSteal(self)
+	if not self then return 0 end
+	local getPhysicalSteal = 0
+	if colleftInfo[self:getId()].attributesItems[17] then
+		getPhysicalSteal = getPhysicalSteal + colleftInfo[self:getId()].attributesItems[17].value
+	end
+	return getPhysicalSteal
+end
+
+function Player.getMagicSteal(self)
+	if not self then return 0 end
+	local getMagicSteal = 0
+	if colleftInfo[self:getId()].attributesItems[18] then
+		getMagicSteal = getMagicSteal + colleftInfo[self:getId()].attributesItems[18].value
+	end
+	return getMagicSteal
+end
+
+function Player.getPhysicalPenetration(self)
+	if not self then return 0 end
+	local getPhysicalPenetration = 0
+	if colleftInfo[self:getId()].attributesItems[16] then
+		getPhysicalPenetration = getPhysicalPenetration + colleftInfo[self:getId()].attributesItems[16].value
+	end
+	return getPhysicalPenetration
+end
+
+function Player.getMagicPenetration(self)
+	if not self then return 0 end
+	local getMagicPenetration = 0
+	if colleftInfo[self:getId()].attributesItems[15] then
+		getMagicPenetration = getMagicPenetration + colleftInfo[self:getId()].attributesItems[15].value
+	end
+	return getMagicPenetration
+end
+
 function calculateUpgradeValue(upgradeLevel)
     -- Definicje stałych
     local MAX_LEVEL = 10
@@ -861,240 +897,53 @@ function totalAttackPower(player, type, spellId, baseChange, shield)
 end
 
 function getDetails(target)
-	local armorAmount = 0
-	local armorAmountPercent = 0
-	local armorDamageReduction = 0
-	if colleftInfo[target:getId()].armor then
-	  armorAmount = armorAmount + colleftInfo[target:getId()].armor
-	end
-	if colleftInfo[target:getId()].attributesItems[53] then -- armor
-	  armorAmount = armorAmount + colleftInfo[target:getId()].attributesItems[53].value
-	end
-	armorAmount = armorAmount + (armorAmount * armorAmountPercent / 100)
-	armorDamageReduction = math.ceil(armorAmount / (armorAmount + 1000) * 100)
-	if colleftInfo[target:getId()].attributesItems[22] then -- Damage Reduction 22
-		armorDamageReduction = armorDamageReduction + colleftInfo[target:getId()].attributesItems[22].value
-	end
-	if colleftInfo[target:getId()].attributesItems[34] then -- Mastery
-		armorDamageReduction = armorDamageReduction + (colleftInfo[target:getId()].attributesItems[34].value * 0.1)
-	end
-	if target:getCharacterStat(CHARSTAT_LIFE) then
-		armorDamageReduction = armorDamageReduction + (target:getCharacterStat(CHARSTAT_LIFE) * 0.5)
-	end
-
-	local healthRegenPercent = 0
-	local manaRegenPercent = 0
-	local maxhealth = 0
-	local maxmana = 0
-	local physicalProtection = 0
-	local elementalProtection = 0
-	local dodge = 0
-	local avoid = 0
-	local recoveryEffectivnes = 0
-	local dualityProtection = 0
-	local physicalMitigation = 0
-	local elementalMitigation = 0
-	local dualityMitigation = 0
-	local mitigation = 0
-	if colleftInfo[target:getId()].attributesItems[161] then -- subklas Unbroken
-		mitigation = mitigation + US_ENCHANTMENTS[161].subvalue
-	end
-	if target:isPlayer() and colleftInfo[target:getId()].attributesItems[136] then -- Subklas Cold Skin
-		if target:getHealth() >= (target:getMaxHealth() * US_ENCHANTMENTS[136].subvalue) then
-			mitigation = mitigation + US_ENCHANTMENTS[136].subvalue2
-		end
-	end
-	if colleftInfo[target:getId()].attributesItems[185] then -- subklas Inflexibility
-		if target:getHealth() >= (target:getMaxHealth() * US_ENCHANTMENTS[185].subvalue) then
-			mitigation = mitigation + US_ENCHANTMENTS[185].subvalue2
-		end
-	end
-	if colleftInfo[target:getId()].attributesItems[131] then -- subklas Fire Barrier
-		elementalMitigation = elementalMitigation + US_ENCHANTMENTS[131].subvalue
-	end
-	if target:hasBuff(FLEETFOOT) then -- subklas Fleetfoot
-		mitigation = mitigation + US_ENCHANTMENTS[172].subvalue2
-	end
-	if colleftInfo[target:getId()].attributesItems[237] then -- Physical Mitigation
-		physicalMitigation = physicalMitigation + colleftInfo[target:getId()].attributesItems[237].value
-	end
-	if colleftInfo[target:getId()].attributesItems[238] then -- Elemental Mitigation
-		elementalMitigation = elementalMitigation + colleftInfo[target:getId()].attributesItems[238].value
-	end
-	if colleftInfo[target:getId()].attributesItems[239] then -- Duality Mitigation
-		dualityMitigation = dualityMitigation + colleftInfo[target:getId()].attributesItems[239].value
-	end
-
-	if target:getStorageValue(PlayerStorage.reborn) >= 0 then
-		physicalProtection = physicalProtection - (target:getStorageValue(PlayerStorage.reborn) * 5)
-		elementalProtection = elementalProtection - (target:getStorageValue(PlayerStorage.reborn) * 5)
-		dualityProtection = dualityProtection - (target:getStorageValue(PlayerStorage.reborn) * 5)
-		if target:getStorageValue(PlayerStorage.endGame) >= 0 then
-			physicalProtection = physicalProtection - 10
-			elementalProtection = elementalProtection - 10
-			dualityProtection = dualityProtection - 10
-		end
-	end
-	if target:getStorageValue(PlayerStorage.sideBoss6) >= 1 then
-		physicalProtection = physicalProtection + 10
-	end
-	if target:getStorageValue(PlayerStorage.sideBoss7) >= 1 then
-		dualityProtection = dualityProtection + 10
-	end
-	if target:getStorageValue(PlayerStorage.sideBoss8) >= 1 then
-		elementalProtection = elementalProtection + 10
-	end
-	-- Subklas
-	if colleftInfo[target:getId()].attributesItems[16] then --  Recovery Effectiveness
-	  recoveryEffectivnes = recoveryEffectivnes + colleftInfo[target:getId()].attributesItems[16].value
-	end
-	if target:getCharacterStat(CHARSTAT_TWO) then -- Recovery Effectiveness character stat
-        recoveryEffectivnes = recoveryEffectivnes + target:getCharacterStat(CHARSTAT_TWO)
-    end
-	if colleftInfo[target:getId()].attributesItems[13] then --  Physical Protection
-	  physicalProtection = physicalProtection + colleftInfo[target:getId()].attributesItems[13].value
-	end
-	if colleftInfo[target:getId()].attributesItems[14] then --  Elemental Protection
-	  elementalProtection = elementalProtection + colleftInfo[target:getId()].attributesItems[14].value
-	end
-	if target:hasBuff(AURA_PHYSICAL_PROTECTION) then
-	  physicalMitigation = physicalMitigation + (15 + (target:getBuff(AURA_PHYSICAL_PROTECTION).stacks * 0.1))
-	end
-	if target:hasBuff(AURA_ELEMENTAL_PROTECTION) then
-	  elementalMitigation = elementalMitigation + (15 + (target:getBuff(AURA_ELEMENTAL_PROTECTION).stacks * 0.1))
-	end
-	if target:hasBuff(AURA_BLESSED) then
-	  dualityMitigation = dualityMitigation + (15 + (target:getBuff(AURA_BLESSED).stacks * 0.1))
-	end
-	if target:hasBuff(PALADIN_TRAIT) then -- Paladin Trait
-		elementalProtection = elementalProtection + 20
-	end
-	if target:hasBuff(KNIGHT_TRAIT) then
-		physicalProtection = physicalProtection + 20
-	end
-
-	local block = 0
-	if colleftInfo[target:getId()].attributesItems[197] then -- Duality Protection
-		dualityProtection = dualityProtection + colleftInfo[target:getId()].attributesItems[197].value
-	end
-	if colleftInfo[target:getId()].attributesItems[8] then -- Block Chance
-		block = block + colleftInfo[target:getId()].attributesItems[8].value
-	end
-	if colleftInfo[target:getId()].attributesItems[159] and colleftInfo[target:getId()].isTwoHanded then -- Subklas Heaven's Fury
-		block = block + US_ENCHANTMENTS[159].subvalue
-	end
-	if colleftInfo[target:getId()].attributesItems[74] then
-	  healthRegenPercent = healthRegenPercent + colleftInfo[target:getId()].attributesItems[74].value
-	end
-	if colleftInfo[target:getId()].attributesItems[75] then
-	  manaRegenPercent = manaRegenPercent + colleftInfo[target:getId()].attributesItems[75].value
-	end
-	if target:getEffectiveSkillLevel(SKILL_SHIELD) then
-	  maxhealth = maxhealth + (target:getEffectiveSkillLevel(SKILL_SHIELD) * 1.5)
-	  maxmana = maxmana + (target:getEffectiveSkillLevel(SKILL_SHIELD) * 1)
-	end
-	if colleftInfo[target:getId()].attributesItems[9] then -- Dodge
-	  dodge = dodge + colleftInfo[target:getId()].attributesItems[9].value
-	end
-	if colleftInfo[target:getId()].attributesItems[35] then -- Spell Avoid
-	  avoid = avoid + colleftInfo[target:getId()].attributesItems[35].value
-	end
-	if target:hasBuff(SHADOW_TRAIT) then
-		avoid = avoid + ( 2 + (target:getBuff(SHADOW_TRAIT).stacks * 2))
-	end
-	if target:getEffectiveSkillLevel(SKILL_DISTANCE) then
-	  dodge = dodge + (target:getEffectiveSkillLevel(SKILL_DISTANCE) / 10)
-	end
-	if colleftInfo[target:getId()].attributesItems[204] then -- Spell Dodge
-	  local unique = math.floor(dodge / 3)
-	  avoid = avoid + unique
-	end
-	if target:isPlayer() and target:getMagicLevel() then
-	  physicalProtection = physicalProtection + math.ceil(target:getMagicLevel() / 10)
-	  elementalProtection = elementalProtection + math.ceil(target:getMagicLevel() / 10)
-	  dualityProtection = dualityProtection + math.ceil(target:getMagicLevel() / 10)
-	end
-	if armorDamageReduction > 0 then
-		physicalProtection = physicalProtection + armorDamageReduction
-		elementalProtection = elementalProtection + armorDamageReduction
-		dualityProtection = dualityProtection + armorDamageReduction
-	end
-	if mitigation > 0 then
-		physicalMitigation = physicalMitigation + mitigation
-		elementalMitigation = elementalMitigation + mitigation
-		dualityMitigation = dualityMitigation + mitigation
-	end
 	local attrs = colleftInfo[target:getId()].attributesItems
 
-	local function capValue(prot, attrId)
-		if prot < 70 then return "" end
-		local add = attrs[attrId] and attrs[attrId].value or 0
-		local cap = 70 + add
-		cap = math.min(cap, 90) -- ograniczenie do 90
-		return "(" .. cap .. "%)"
-	end
 
-	local PhysCap  = capValue(physicalProtection, 232)
-	local EleCap   = capValue(elementalProtection, 233)
-	local DualCap  = capValue(dualityProtection, 234)
-	local BlockCap = capValue(block, 236)
-
-	-- mastery do total reduction 
-	local attackpower = totalAttackPower(target, 2000)
-	if colleftInfo[target:getId()].isShield then
-		attackpower = totalAttackPower(target, 2000, nil, false, true)
-	end
-	local attributesToCheck = {89, 90, 91}
-	local attackerId = target:getId()
-	local attackerInfo = colleftInfo[attackerId]
 	local attackspeed = math.floor((1000 / target:getAttackSpeed()) * 100 + 0.5) / 100
 	local attackspeedPercent = target:getVarStats(STAT_ATTACKSPEED)
 	local movementSpeedPercent = (((200 - target:getSpeed()) / 200) * 100) * -1
-	local hpPercent = target:getPrecentHealthMultiplier() * 100 - 100
-	local hpPer = math.floor(target:getMaxHealth() * hpPercent / 100)
-	local manaPercent = target:getPrecentManaMultiplier() * 100 - 100
-	local manaPer = math.floor(target:getMaxMana() * manaPercent / 100)
-
-	if physicalMitigation >= 75 or mitigation >= 75  then
-		physicalMitigation = "(75%) "..physicalMitigation..""
-	end
-	if elementalMitigation >= 75 or mitigation >= 75  then
-		elementalMitigation = "(75%) "..elementalMitigation..""
-	end
-	if dualityMitigation >= 75 or mitigation >= 75 then
-		dualityMitigation = "(75%) "..dualityMitigation..""
-	end
 	local details = {}
 	details[1] = target:getMaxHealth()
-	details[2] = target:getMaxMana()
-	details[3] = hpPercent --string.format("%.2f | %.2f", hpPer, hpPercent) -- target:getPrecentHealthMultiplier() * 100 - 100
-	details[4] = manaPercent --string.format("%.2f | %.2f", manaPer, manaPercent) -- target:getPrecentManaMultiplier() * 100 - 100
-	details[5] = attackpower -- math.ceil(target:getAttackPower())
-	details[6] = math.ceil(armorDamageReduction) -- math.ceil(((target:getTotalArmor() / (4000 + target:getTotalArmor())) * 100)) >= 85 and 85 or math.ceil(((target:getTotalArmor() / (4000 + target:getTotalArmor())) * 100))
-	details[7] = string.format("%s %s", PhysCap, physicalProtection ) -- physicalProtection + math.ceil(armorDamageReduction)
-	details[8] = string.format("%s %s", EleCap, elementalProtection ) -- elementalProtection + math.ceil(armorDamageReduction)
-	details[9] = string.format("%s %s", DualCap, dualityProtection ) -- dualityProtection + math.ceil(armorDamageReduction)
-	details[10] = string.format("%s %s", BlockCap, block ) --block BlockCap
-	details[11] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE)
-	details[12] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
-	details[13] = string.format("%.2f | %s%%", attackspeed, attackspeedPercent) -- target:getAttackSpeed() -- target:getTotalAttackSpeed() -- target:getSpecialSkill(SPECIALSKILL_LIFELEECHAMOUNT)
-	details[14] = target:getCooldownReduction() -- target:getSpecialSkill(SPECIALSKILL_MANALEECHAMOUNT)
-	details[15] = math.floor(target:getTotalHealthGain())
-	details[16] = math.floor(target:getTotalPrecentHealthGain())
-	details[17] = math.floor(target:getTotalManaGain())
-	details[18] = math.floor(target:getTotalPrecentManaGain())
-	details[19] = math.floor(target:getMaxEnergyShield())
-	details[20] = math.floor(target:getPrecentEnergyShieldMultiplier() * 100 - 100) -- target:getVarStats(STAT_MAXENERGYSHIELDPERCENT) + target:getEffectiveSkillLevel(SKILL_FISHING) -- energyShieldPercent
-	details[21] = math.floor(target:getEnergyShieldGainForceTotal() + (target:getEnergyShieldGainForceTotal() * target:getEnergyShieldPrecentGainForceTotal() / 100)) -- recoveryEffectivnes
-	details[22] = math.floor(target:getEnergyShieldPrecentGainForceTotal())
-	details[23] = math.floor(dodge)
-	details[24] = math.floor(avoid)
-	details[25] = string.format("%s | %s%%", target:getSpeed(), movementSpeedPercent) -- target:getSpeed()
-	details[26] = string.format("%s", physicalMitigation )
-	details[27] = string.format("%s", elementalMitigation )
-	details[28] = string.format("%s", dualityMitigation )	
+	details[2] = math.floor(target:getTotalHealthGain())
+	details[3] = target:getMaxMana()
+	details[4] = math.floor(target:getTotalManaGain())
+	details[5] = math.ceil(target:getPhysicalAttack())
+	details[6] = math.ceil(target:getMagicAttack())
+	details[7] = math.ceil(target:getPhysicalDefense())
+	details[8] = math.ceil(target:getMagicDefense())
+	details[9] = string.format("%.2f | %s%%", attackspeed, attackspeedPercent)
+	details[10] = target:getCooldownReduction()
+	details[11] = target:getPhysicalSteal()
+  	details[12] = target:getMagicSteal()
+  	details[13] = target:getPhysicalPenetration() -- target:getSpecialSkill(SPECIALSKILL_MANALEECHAMOUNT)
+  	details[14] = target:getMagicPenetration() -- target:getSpecialSkill(SPECIALSKILL_MANALEECHAMOUNT)
+	details[15] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE)
+	details[16] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
+	details[17] = string.format("%s | %s%%", target:getSpeed(), movementSpeedPercent) -- target:getSpeed()
+	details[18] = 0 -- Resilience
 	return details
   end
+
+  --[[
+details[1] = target:getMaxHealth()
+  details[2] = target:getMaxMana()
+  details[3] = math.ceil(target:getPhysicalAttack())
+  details[4] = math.ceil(target:getMagicAttack())
+  details[5] = math.ceil(target:getPhysicalDefense())
+  details[6] = math.ceil(target:getMagicDefense())
+  details[7] = target:getAttackSpeedValue()
+  details[8] = target:getHaste()
+  details[9] = target:getHealthRegen()
+  details[10] = target:getManaRegen()
+  details[11] = target:getPhysicalSteal()
+  details[12] = target:getMagicSteal()
+  details[13] = target:getPhysicalPenetration() -- target:getSpecialSkill(SPECIALSKILL_MANALEECHAMOUNT)
+  details[14] = target:getMagicPenetration() -- target:getSpecialSkill(SPECIALSKILL_MANALEECHAMOUNT)
+  details[15] = target:getSpeed()
+  details[16] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE)
+  details[17] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
+  --]]
 
 CHANNEL_LOOT = 15
 

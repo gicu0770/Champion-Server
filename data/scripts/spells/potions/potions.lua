@@ -1,5 +1,5 @@
 POTION_CONFIG = {
-  [7618] = {health = {120, 120}, level = 1, effect = 304}, -- health potion
+  [7618] = {health = {100, 100}, level = 1, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
 
   [7588] = {health = {180, 180}, level = 15, description = "Only for players of level 15 or above may drink this fluid.", effect = 304}, -- strong health potion
 
@@ -16,12 +16,50 @@ POTION_CONFIG = {
   [26917] = {health = {520, 520}, level = 72, description = "Only for players of level 72 or above may drink this fluid.", effect = 304}, -- energy shield
 }
 
+local POTION_CHARGES_REGEN = {}
+
+local function startPotionChargesRegen(playerId, itemUid, regenTime, maxCharges)
+  if POTION_CHARGES_REGEN[itemUid] then
+    return
+  end
+  POTION_CHARGES_REGEN[itemUid] = true
+
+  local function regenCharge()
+    local item = Game.getRealUniqueItem(itemUid)
+    if not item then
+      POTION_CHARGES_REGEN[itemUid] = nil
+      return
+    end
+
+    local currentCharges = item:getCustomAttribute("charges") or maxCharges
+    if currentCharges < maxCharges then
+      currentCharges = currentCharges + 1
+      item:setCustomAttribute("charges", currentCharges)
+
+      local player = Player(playerId)
+      if player then
+        player:sendTextMessage(MESSAGE_STATUS_SMALL, "Potion charge restored (" .. currentCharges .. "/" .. maxCharges .. ").")
+      end
+
+      if currentCharges < maxCharges then
+        addEvent(regenCharge, regenTime)
+      else
+        POTION_CHARGES_REGEN[itemUid] = nil
+      end
+    else
+      POTION_CHARGES_REGEN[itemUid] = nil
+    end
+  end
+
+  addEvent(regenCharge, regenTime)
+end
+
 local function onUse(player, item, button)
   if not player then return end
   if player:hasCondition(CONDITION_SPELLCOOLDOWN, button+150) then
     return
   end
-  local cooldownPotion = 3000
+  local cooldownPotion = 1000
   local quality = item:isQuality()
   local potion = POTION_CONFIG[item:getId()]
   if not potion then
@@ -37,6 +75,30 @@ local function onUse(player, item, button)
     return true
   end
 
+  -- Charges System Check
+  if potion.maxCharges then
+    local maxCharges = potion.maxCharges
+    local charges = item:getCustomAttribute("charges")
+    if charges == nil then
+      charges = maxCharges
+      item:setCustomAttribute("charges", charges)
+    end
+
+    if charges <= 0 then
+      player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have any potion charges left.")
+      return true
+    end
+
+    -- Consume 1 charge
+    charges = charges - 1
+    item:setCustomAttribute("charges", charges)
+    player:sendTextMessage(MESSAGE_STATUS_SMALL, "Potion used (" .. charges .. "/" .. maxCharges .. " charges remaining).")
+
+    -- Start regenerating charges every regenTime (default 3 seconds)
+    local regenTime = potion.regenTime or 3000
+    startPotionChargesRegen(player:getId(), item:getRealUID(), regenTime, maxCharges)
+  end
+
   if potion.cooldownPotion then
     cooldownPotion = potion.cooldownPotion
   end
@@ -44,62 +106,11 @@ local function onUse(player, item, button)
     if potion.health then
       local regenT = "health"
       local HP = item:getCustomAttribute("potionHealth") or 0
-      if colleftInfo[player:getId()].attributesItems[249] then -- energy shield regeneration percent per second
-        HP = HP + colleftInfo[player:getId()].attributesItems[249].value
+      if HP == 0 and potion.health then
+        HP = potion.health[1]
       end
-      local hpIncreased = 0
-      if quality then
-        hpIncreased = quality
-      end
-      if colleftInfo[player:getId()].attributesItems[16] then -- Recovery Effectiveness
-        hpIncreased = colleftInfo[player:getId()].attributesItems[16].value
-      end
-      if player:getCharacterStat(CHARSTAT_TWO) then -- Recovery Effectiveness character stat
-        hpIncreased = hpIncreased + player:getCharacterStat(CHARSTAT_TWO)
-      end
-      local upgradeLevel = item:getUpgradeLevel() or 0
-      if upgradeLevel > 0 then
-       hpIncreased = hpIncreased + calculateUpgradeValue(upgradeLevel)
-      end
-      if hpIncreased > 0 then
-        HP = math.ceil(HP + ((HP * hpIncreased) / 100))
-      end
-      if colleftInfo[player:getId()].attributesItems[95] then -- Health Recovery
-        HP = HP + colleftInfo[player:getId()].attributesItems[95].value
-      end
-      if colleftInfo[player:getId()].attributesItems[119] then -- Energy Shield Recovery
-        player:addEnergyShield(colleftInfo[player:getId()].attributesItems[119].value)
-      end
-      if player:getBuff(BOSS_HEALING_REDUCTION) then
-        HP = HP / 2
-      end
-      if colleftInfo[player:getId()].attributesItems[123] then -- Quick Heal
-        local instaHeal = HP * (colleftInfo[player:getId()].attributesItems[123].value / 100)
-        HP = HP - instaHeal
-        if colleftInfo[player:getId()].attributesItems[116] then -- Health Barrier
-          player:addEnergyShield(instaHeal)
-        else
-          doTargetCombat(player:getId(), player:getId(), COMBAT_HEALING, instaHeal, instaHeal)
-        end
-      end
-      if colleftInfo[player:getId()].attributesItems[118] then -- Haste
-        local hasteAdded = player:getBaseSpeed() * colleftInfo[player:getId()].attributesItems[118].value / 100
-        local conditionHaste = Condition(CONDITION_HASTE, CONDITIONID_DEFAULT)
-        conditionHaste:setParameter(CONDITION_PARAM_SUBID, 777776)
-        conditionHaste:setParameter(CONDITION_PARAM_TICKS, 1 * 1000) -- 2 secs
-        conditionHaste:setFormula(0.0, hasteAdded, 0.0, hasteAdded)
-        player:addCondition(conditionHaste)
-        player:addBuff(HASTE_ITEM)
-      end
-      if colleftInfo[player:getId()].attributesItems[115] then -- Mana Recovery
-				player:addMana(colleftInfo[player:getId()].attributesItems[115].value, true)
-			end
-      if colleftInfo[player:getId()].attributesItems[116] then -- Health Barrier
-        regenT = "energyshield"
-        HP = HP * (1 + (colleftInfo[player:getId()].attributesItems[116].value / 100))
-			end
+
       resourceRegen(player, HP, 3, 10, regenT)
-      --doTargetCombat(player:getId(), player:getId(), COMBAT_HEALING, HP, HP)
     end
 
     if potion.mana then

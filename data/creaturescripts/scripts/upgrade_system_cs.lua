@@ -154,14 +154,8 @@ MONSTER_CONFIG = {
 function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
 	-- GRACZ ATAKUJE
 	if attacker:isPlayer() then -- atakujacym jest gracz
-		local physical_penetration = 0
-		if colleftInfo[attacker:getId()].attributesItems[14] then
-			physical_penetration = colleftInfo[attacker:getId()].attributesItems[14].value
-		end
-		local magic_penetration = 0
-		if colleftInfo[attacker:getId()].attributesItems[15] then
-			magic_penetration = colleftInfo[attacker:getId()].attributesItems[15].value
-		end
+		local physical_penetration = attacker:getPhysicalPenetration()
+		local magic_penetration = attacker:getMagicPenetration()
 		attacker:getTotalAttackSpeed()
 		local player_damage = attacker:getCharacterType()
 		local physical_damage = 0

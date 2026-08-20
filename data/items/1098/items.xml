@@ -3749,15 +3749,33 @@
 		<attribute key="hitChance" value="1" />
 		<attribute key="slotType" value="two-handed" />
 	</item>
+
+
 	<item id="2456" article="a" name="Bow">
 		<attribute key="weight" value="3100" />
-		<attribute key="attack" value="4" />
-		<attribute key="weaponType" value="distance"/>
-		<attribute key="shootType" value="arrow"/>
+		<attribute key="attack" value="1" />
+		<attribute key="weaponType" value="distance" />
+		<attribute key="shootType" value="arrow" />
 		<attribute key="range" value="6" />
 		<attribute key="hitChance" value="1" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="moveable" value="0" />
 	</item>
+	<item id="36666" article="a" name="crimson sword">
+		<attribute key="weight" value="3600" />
+		<attribute key="attack" value="1" />
+		<attribute key="weaponType" value="sword" />
+		<attribute key="moveable" value="0" />
+	</item>
+	<item id="26637" article="a" name="wooden rod">
+		<attribute key="weight" value="1900" />
+		<attribute key="weaponType" value="wand" />
+		<attribute key="shootType" value="energy" />
+		<attribute key="attack" value="1" />
+		<attribute key="range" value="4" />
+		<attribute key="moveable" value="0" />
+	</item>
+
+
 	<item id="35765" article="a" name="Frosty Bow">
 		<attribute key="weight" value="3100" />
 		<attribute key="attack" value="1" />
@@ -12615,11 +12633,6 @@
 		<attribute key="weight" value="3600" />
 		<attribute key="defense" value="20" />
 		<attribute key="attack" value="28" />
-		<attribute key="weaponType" value="sword" />
-	</item>
-	<item id="36666" article="a" name="crimson sword">
-		<attribute key="weight" value="3600" />
-		<attribute key="attack" value="6" />
 		<attribute key="weaponType" value="sword" />
 	</item>
 	<item id="7386" article="a" name="mercenary sword">
@@ -36703,13 +36716,7 @@
 		<attribute key="weight" value="1800" />
 		<attribute key="weaponType" value="shield" />
 	</item>	
-	<item id="26637" article="a" name="wooden rod">
-		<attribute key="weight" value="1900" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="98" />
-		<attribute key="range" value="5" />
-		<attribute key="attack" value="2" />
-	</item>	
+
 		<!-- PALADIN SETY             1      -->
 	<item id="26519" article="a" name="scout helmet">
 		<attribute key="weight" value="800" />

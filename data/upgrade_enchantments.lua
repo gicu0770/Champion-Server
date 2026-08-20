@@ -63,7 +63,7 @@ US_ENCHANTMENTS = {
         itemType = US_ITEM_TYPES.ALL
     },
     [8] = {
-        name = "Physical Protection",
+        name = "Physical Defense",
         desc = "Reduces damage taken from physical damage.",
         category = 2,
         percent = true,
@@ -71,7 +71,7 @@ US_ENCHANTMENTS = {
         itemType = US_ITEM_TYPES.ALL
     },
     [9] = {
-        name = "Magic Protection",
+        name = "Magic Defense",
         desc = "Reduces damage taken from magic damage.",
         category = 2,
         percent = true,
@@ -152,7 +152,7 @@ US_ENCHANTMENTS = {
         itemType = US_ITEM_TYPES.ALL
     },
     [19] = {
-        name = "Resilience ",
+        name = "Resilience",
         desc = "Redukuje czas CC.",
         category = 3,
         percent = true,
