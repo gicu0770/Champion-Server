@@ -1100,6 +1100,143 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
+      {
+        chance = 100000,
+        forceType = 134217728,
+        imps = {
+          {
+            264
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            69
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Eldritch Reaver",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            68
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Grave Spearlord",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Minotaur Helmet",
+      38562,
+      "Minotaur Liberator",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            70
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Minotaur Liberator",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            107
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Soulbound Lich",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Vampire Heart",
       38239,
       "Vampire Queen",
@@ -1216,31 +1353,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "Energy Soulstone",
+      38639,
+      "Ethereal Seraph",
       {
         chance = 100000,
-        forceType = 268435456,
+        forceType = 16777216,
         imps = {
           {
-            265
+            72
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              5,
+              10,
+              23,
+              42
             }
           }
         },
-        monster = "Gorok",
+        monster = "Ethereal Seraph",
         weight = {
-          0,
-          0,
-          0,
-          0
+          7,
+          10,
+          12,
+          15
         }
       }
     },
@@ -1274,31 +1411,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
       {
         chance = 100000,
-        forceType = 536870912,
+        forceType = 16777216,
         imps = {
           {
-            266
+            237
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              15,
+              22,
+              35,
+              50
             }
           }
         },
-        monster = "Viliaan",
+        monster = "Tidal Overlord",
         weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1332,31 +1469,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
       {
         chance = 100000,
-        forceType = 1073741824,
+        forceType = 16777216,
         imps = {
           {
-            267
+            239
           },
           {
             {
-              2,
-              4,
-              7,
-              10
+              15,
+              22,
+              35,
+              50
             }
           }
         },
-        monster = "Ascended Voort",
+        monster = "Arbaziloth",
         weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1477,73 +1614,44 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 1073741824,
         imps = {
           {
-            239
+            267
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              2,
+              4,
+              7,
+              10
             }
           }
         },
-        monster = "Arbaziloth",
+        monster = "Ascended Voort",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 536870912,
         imps = {
           {
-            237
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Tidal Overlord",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
+            266
           },
           {
             {
@@ -1554,7 +1662,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Viliaan",
         weight = {
           0,
           0,
@@ -1564,134 +1672,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Energy Soulstone",
-      38639,
-      "Ethereal Seraph",
+      "Champion Trophy",
+      38736,
+      "Gorok",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 268435456,
         imps = {
           {
-            72
+            265
           },
           {
             {
-              5,
-              10,
-              23,
-              42
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Ethereal Seraph",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            69
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Eldritch Reaver",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Minotaur Helmet",
-      38562,
-      "Minotaur Liberator",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            70
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Minotaur Liberator",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            107
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Soulbound Lich",
-        unique = true,
+        monster = "Gorok",
         weight = {
           0,
           0,

@@ -1,241 +1,13 @@
 function spellGlobalTotalDamage(player, CONFIG, dot, type)
   local totalDamage = 0
-  local typePerLement = {
-    [1] = 11,-- COMBAT_PHYSICALDAMAGE, -- 1
-    [2] = 59,-- COMBAT_ENERGYDAMAGE,  -- 2
-    [4] = 60,-- COMBAT_EARTHDAMAGE,   -- 4
-    [8] = 57,-- COMBAT_FIREDAMAGE,    -- 8
-    [512] = 58,-- COMBAT_ICEDAMAGE,   -- 512
-    [1024] = 62,-- COMBAT_HOLYDAMAGE, -- 1024
-    [2048] = 61,-- COMBAT_DEATHDAMAGE, -- 2048
-  }
-  if player:getStorageValue(PlayerStorage.specialization) >= 0 then
-    if colleftInfo[player:getId()].totalailmentChances then
-      totalDamage = totalDamage + colleftInfo[player:getId()].totalailmentChances
-    end
-  end
-  if player:isPlayer() and player:getMagicLevel() then
-    totalDamage = totalDamage + (player:getMagicLevel() * 1)
-  end
-  if player:hasBuff(AURA_PHYSICAL) then
-    if type == COMBAT_PHYSICALDAMAGE then
-      totalDamage = totalDamage + (25 + (player:getBuff(AURA_PHYSICAL).stacks * 1.2))
-    end
-  end
-	if player:hasBuff(ILLUMINATION_DOT_UNIQUE) then
-		if type == COMBAT_HOLYDAMAGE then
-			totalDamage = totalDamage + (player:getBuff(ILLUMINATION_DOT_UNIQUE).stacks * 5)
-		end
-	end
-  if player:hasBuff(AURA_ELEMENTAL) then
-    if type == COMBAT_FIREDAMAGE or type == COMBAT_ICEDAMAGE or type == COMBAT_EARTHDAMAGE or type == COMBAT_ENERGYDAMAGE then
-      totalDamage = totalDamage + (25 + (player:getBuff(AURA_ELEMENTAL).stacks * 1.2))
-    end
-  end
-  if player:hasBuff(AURA_HOLLOW) then
-    if type == COMBAT_DEATHDAMAGE or type == COMBAT_HOLYDAMAGE then
-      totalDamage = totalDamage + (25 + (player:getBuff(AURA_HOLLOW).stacks * 1.2))
-    end
-  end
-  if colleftInfo[player:getId()].attributesItems[18] then -- Spell Damage
-    totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[18].value
-  end
-  if colleftInfo[player:getId()].attributesItems[108] then -- Brute
-    if type == COMBAT_PHYSICALDAMAGE then
-      totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[108].value
-    end
-  end
-	if player:hasBuff(SORCERER_TRAIT) then
-		totalDamage = totalDamage + (player:getBuff(SORCERER_TRAIT).stacks * 5)
-		if type == COMBAT_FIREDAMAGE or type == COMBAT_ICEDAMAGE or type == COMBAT_EARTHDAMAGE or type == COMBAT_ENERGYDAMAGE then
-			totalDamage = totalDamage + 20
-		end
-	end
-  if dot then
-    if colleftInfo[player:getId()].attributesItems[47] then -- DoT Damage
-      totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[47].value
-    end
-  end
-  if colleftInfo[player:getId()].attributesItems[20] then -- damage
-    totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[20].value
-  end
-  if typePerLement[type] then
-    if colleftInfo[player:getId()].attributesItems[typePerLement[type]] then -- type damage
-      totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[typePerLement[type]].value
-    end
-  end
-  if type == COMBAT_FIREDAMAGE or type == COMBAT_ICEDAMAGE or type == COMBAT_EARTHDAMAGE or type == COMBAT_ENERGYDAMAGE then
-    if colleftInfo[player:getId()].attributesItems[12] then -- elemental damage
-      totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[12].value
-    end
-  end
-  if type == COMBAT_DEATHDAMAGE or type == COMBAT_HOLYDAMAGE then
-    if colleftInfo[player:getId()].attributesItems[196] then -- duality damage
-      totalDamage = totalDamage + colleftInfo[player:getId()].attributesItems[196].value
-    end
-  end
+--	if player:hasBuff(ILLUMINATION_DOT_UNIQUE) then
+--		if type == COMBAT_HOLYDAMAGE then
+--			totalDamage = totalDamage + (player:getBuff(ILLUMINATION_DOT_UNIQUE).stacks * 5)
+--		end
+--	end
   return totalDamage
 end
 
-function spellMoreDamage(player, type, spellId, dot)
-  local morePrimal = 0
-    if player:hasBuff(MONSTER_SOUL_DAMAGE) then
-      morePrimal = morePrimal + 20
-    end
-    -- Fusion
-    if player:getStorageValue(435024) == 1 then -- Sorcerer + Druid Elementalist
-				if player:hasBuff(FIRE) then
-					morePrimal = morePrimal + FUSION_SCALING[1].bonus
-				elseif player:hasBuff(ICE) then
-					morePrimal = morePrimal + FUSION_SCALING[1].bonus
-				elseif player:hasBuff(LIGHTNING) then
-					morePrimal = morePrimal + FUSION_SCALING[1].bonus
-				elseif player:hasBuff(EARTH) then
-					morePrimal = morePrimal + FUSION_SCALING[1].bonus
-				end
-				morePrimal = morePrimal + (player:getEffectiveSkillLevel(SKILL_FISHING) * FUSION_SCALING[1].scaling)
-		end
-		if player:getStorageValue(435024) == 2 then -- Sorcerer + Archer  "Thundershot"
-				local movementSpeedPercent = (((200 - player:getSpeed()) / 200) * 100) * -1
-				morePrimal = morePrimal + (movementSpeedPercent * FUSION_SCALING[2].scaling)
-		end
-		if player:getStorageValue(435024) == 3 then -- Sorcerer + Knight Battlemage
-			if colleftInfo[player:getId()].totalailmentChances then
-				morePrimal = morePrimal + (colleftInfo[player:getId()].totalailmentChances * FUSION_SCALING[3].scaling)
-			end
-		end
-		if player:getStorageValue(435024) == 4 then -- Sorcerer + Paladin Inquisitor
-			morePrimal = morePrimal + (player:getMaxMana() * FUSION_SCALING[4].scaling) -- (math.max(player:getEffectiveSkillLevel(SKILL_MELEE), player:getEffectiveSkillLevel(SKILL_FISHING)) * FUSION_SCALING[4].scaling)
-		end
-		if player:getStorageValue(435024) == 5 then -- Sorcerer + Shadow Warlock
-			morePrimal = morePrimal + (math.max(player:getEffectiveSkillLevel(SKILL_DISTANCE), player:getEffectiveSkillLevel(SKILL_FISHING)) * FUSION_SCALING[5].scaling)
-		end
-		if player:getStorageValue(435024) == 6 then -- Druid + Archer Toxic hunter
-			if colleftInfo[player:getId()].totalailmentChances then
-				morePrimal = morePrimal + (colleftInfo[player:getId()].totalailmentChances * FUSION_SCALING[6].scaling)
-			end
-		end
-		if player:getStorageValue(435024) == 7 then -- Druid + Knight Warden
-			morePrimal = morePrimal + FUSION_SCALING[7].bonus + (player:getMaxMana() * FUSION_SCALING[7].scaling)
-		end
-		if player:getStorageValue(435024) == 8 then -- Druid + Paladin Hierophant
-			if colleftInfo[player:getId()].totalailmentChances then
-				morePrimal = morePrimal + (colleftInfo[player:getId()].totalailmentChances * FUSION_SCALING[8].scaling)
-			end
-		end
-		if player:getStorageValue(435024) == 9 then -- -- Druid + Shadow Umbral Shaman
-			morePrimal = morePrimal + (math.max(player:getEffectiveSkillLevel(SKILL_DISTANCE), player:getEffectiveSkillLevel(SKILL_FISHING)) * FUSION_SCALING[9].scaling)
-		end
-		if player:getStorageValue(435024) == 10 then -- Archer + Knight Siegebreaker
-			morePrimal = morePrimal + math.floor(player:getVarStats(STAT_ATTACKSPEED) * FUSION_SCALING[10].scaling)
-		end
-		if player:getStorageValue(435024) == 11 then -- Archer + Paladin Dawnstalker
-			-- morePrimal = morePrimal + (math.max(player:getEffectiveSkillLevel(SKILL_DISTANCE), player:getEffectiveSkillLevel(SKILL_MELEE)) * FUSION_SCALING[11].scaling)
-      	local movementSpeedPercent = (((200 - player:getSpeed()) / 200) * 100) * -1
-				morePrimal = morePrimal + (movementSpeedPercent * FUSION_SCALING[11].scaling)
-		end
-		if player:getStorageValue(435024) == 12 then -- Archer + Shadow Nightstalker
-			morePrimal = morePrimal + math.floor(player:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE) * FUSION_SCALING[12].scaling)
-		end
-		if player:getStorageValue(435024) == 13 then -- Knight + Paladin Crusader
-			morePrimal = morePrimal + FUSION_SCALING[13].bonus + (player:getEffectiveSkillLevel(SKILL_MELEE) *  FUSION_SCALING[13].scaling)
-		end
-		if player:getStorageValue(435024) == 14 then -- Knight + Shadow Bloody Slayer
-			morePrimal = morePrimal + math.floor(player:getVarStats(STAT_ATTACKSPEED) * FUSION_SCALING[14].scaling)
-		end
-		if player:getStorageValue(435024) == 15 then -- Paladin + Shadow Abyssal Cleric
-			morePrimal = morePrimal + math.floor(player:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE) * FUSION_SCALING[15].scaling)
-		end
-  -- Subklas
-  -- Archer
-  	if colleftInfo[player:getId()].attributesItems[180] then -- subklas Static Conduit
-			morePrimal = morePrimal + US_ENCHANTMENTS[180].subvalue3
-		end
-		if colleftInfo[player:getId()].attributesItems[176] then -- subklas Culling Strike
-			morePrimal = morePrimal + US_ENCHANTMENTS[176].subvalue2
-		end
-  -- Knight
-    if player:getBuff(RAGE) then -- subklas Rage
-      morePrimal = morePrimal + player:getBuff(RAGE).stacks * 2
-    end
-    if colleftInfo[player:getId()].attributesItems[168] then -- subklas Determination
-      morePrimal = morePrimal + US_ENCHANTMENTS[168].subvalue
-    end
-  -- Shadow
-    if colleftInfo[player:getId()].attributesItems[188] then -- subklas Quick Slash
-      if player:getVarStats(STAT_ATTACKSPEED) >= 100 then
-        morePrimal = morePrimal + US_ENCHANTMENTS[188].subvalue
-      end
-    end
-		if colleftInfo[player:getId()].attributesItems[194] then -- subklas Unstable Darkness
-			morePrimal = morePrimal + 50
-		end
-  -- Sorcerer
-  	if colleftInfo[player:getId()].attributesItems[129] then -- subklas Storm Overlord
-			morePrimal = morePrimal + 50
-		end
-
-  return morePrimal
-end
-
-function spellOverpower(player, type, spellId, dot)
-		local overpower = 0
-		if player:hasBuff(SHRINE_DAMAGE) then
-			overpower = overpower + 50
-		end
-		if player:hasBuff(VOID_WALKER) then
-			overpower = overpower + (player:getBuff(VOID_WALKER).stacks * 20)
-		end
-		if player:hasBuff(VOIDSTONE_BUFF) then
-			overpower = overpower + (player:getBuff(VOIDSTONE_BUFF).stacks * 2)
-		end
-		if colleftInfo[player:getId()].attributesItems[240] then -- Physical Damage Overpower 240
-			if type == COMBAT_PHYSICALDAMAGE then
-				overpower = overpower + colleftInfo[player:getId()].attributesItems[240].value
-			end
-		end
-		if colleftInfo[player:getId()].attributesItems[241] then -- Elemental Damage Overpower 241
-			if type == COMBAT_FIREDAMAGE or type == COMBAT_ICEDAMAGE or type == COMBAT_ENERGYDAMAGE or type == COMBAT_EARTHDAMAGE then
-				overpower = overpower + colleftInfo[player:getId()].attributesItems[241].value
-			end
-		end
-		if colleftInfo[player:getId()].attributesItems[242] then -- Duality Damage Overpower 242
-			if type == COMBAT_HOLYDAMAGE or type == COMBAT_DEATHDAMAGE then
-				overpower = overpower + colleftInfo[player:getId()].attributesItems[242].value
-			end
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss13) >= 1 then -- miniboss overpower 15%
-			overpower = overpower + 15
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss14) >= 1 then -- miniboss overpower 15%
-			overpower = overpower + 15
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss15) >= 1 then -- Realm Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss16) >= 1 then -- Realm Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss17) >= 1 then -- Realm Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss18) >= 1 then -- Realm Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss19) >= 1 then -- Bridge Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss20) >= 1 then -- Bridge Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss21) >= 1 then -- Bridge Boss Overpower 10%
-			overpower = overpower + 10
-		end
-		if player:getStorageValue(PlayerStorage.sideBoss22) >= 1 then -- Bridge Boss Overpower 10%
-			overpower = overpower + 10
-		end
-  return overpower
-end
 
 function autoattackFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra)
   local attackpower = totalAttackPower(player, CONFIG_SUP.type, CONFIG.spellId)
@@ -245,51 +17,10 @@ function autoattackFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra
   return attackpower
 end
 function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra)
-  local extraDmg = 0
-  local dotDamage = 0
-  local double = 1
-  local health = player:getHealth()
-  if CONFIG_SUP.bloodThrist > 0 then
-    if health <= (player:getMaxHealth() * 0.5) then
-      extraDmg = extraDmg + (CONFIG_SUP.bloodThrist/100)
-    end
-  end
-  if math.random(1, 100) <= CONFIG_SUP.doubleDamage then
-    double = 2
-  end
-  if dot then
-    dotDamage = CONFIG_SUP.dotExtra
-  end
-  local enancment = 0
-
-  local attackpower = totalAttackPower(player, CONFIG_SUP.type, CONFIG.spellId)
-  if CONFIG.spellId == 45 or CONFIG.spellId == 85 or CONFIG.spellId == 86 or CONFIG.spellId == 87 or CONFIG.spellId == 107 or CONFIG.spellId == 108 then
-    attackpower = totalAttackPower(player, CONFIG_SUP.type, CONFIG.spellId, false, true)
-  end
-
-  local max = attackpower * (GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].multipler + getSpellPowerTotal(player, CONFIG.spellId, item, CONFIG_SUP.quality, CONFIG_SUP.level) + enancment + extraDmg) -- dotDamage  trzeba dodac CONFIG_SUP.extraDmg[CONFIG_SUP.type] dotDamage
-  if dotDamageExtra then
-    max = colleftInfo[player:getId()].attackPower
-  end
-  max = max + (max * (CONFIG_SUP.extraDmg[CONFIG_SUP.type] + dotDamage + extraDmg))
-  max = max * double
+  local attackpower = player:getCharacterType()
+  local max = attackpower
   max = math.ceil(max)
   local max2 = 0
-
-  if dot then
-    local critDamage = player:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
-    local critChance = player:getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE)
-    local crit = false
-    if math.random(100) <= critChance then
-      max = max * (1 + (critDamage / 100))
-      crit = true
-    end
-    if colleftInfo[player:getId()].attributesItems[187] then -- Subklas Unrelenting Strike
-			if crit then
-				max = max * US_ENCHANTMENTS[187].subvalue
-			end
-		end
-  end
   return {-max,-max2}
 end
 
@@ -302,37 +33,13 @@ function spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, area, dot)
   infoToSend.area = area or CONFIG.defualtArea
   infoToSend.baseArea = CONFIG.defualtArea
   infoToSend.type = CONFIG_SUP.type
-  if CONFIG_SUP.type then -- spellGlobalTotalDamage items and talents increased damage
+  if CONFIG_SUP.type then
     local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot)
-    dmg[1] = dmg[1] + (dmg[1] * (spellGlobalTotalDamage(player, CONFIG, dot, CONFIG_SUP.type)) / 100)
-    dmg[1] = dmg[1] + (dmg[1] * (spellMoreDamage(player, CONFIG_SUP.type, CONFIG.spellId, dot)) / 100)
-		if player:hasBuff(CLEAVE) or player:hasBuff(MULTISHOT) or player:hasBuff(MYSTIC_FOCUS) then
-			dmg[1] = dmg[1] / 4
-		end
-    if spellOverpower(player, type, spellId, dot) > 0 then
-      dmg[1] = dmg[1] + (dmg[1] * (spellOverpower(player, CONFIG_SUP.type, CONFIG.spellId, dot)) / 100)
-    end
-    infoToSend.dmg = math.ceil(dmg[1]) -- math.ceil(dmg[1] * GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].hits / (CONFIG_SUP.cooldown / 1000))  -- math.ceil(dmg[1]) / (CONFIG_SUP.cooldown / 1000) -- DPS
-    infoToSend.ap = spellGetAP(player, CONFIG, CONFIG_SUP, item)
-    local damageDPS =  math.ceil(dmg[2]) -- math.ceil(dmg[2] * GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].hits / (CONFIG_SUP.cooldown / 1000))
+    dmg[1] = dmg[1] + (dmg[1] * spellGlobalTotalDamage(player, CONFIG, dot, type))
+    infoToSend.dmg = math.ceil(dmg[1])
+    infoToSend.ap = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].multipler
+    local damageDPS =  math.ceil(dmg[2])
     infoToSend.dmg2 = damageDPS and math.ceil(damageDPS) or nil
-  elseif CONFIG.autoAttackFormule then
-    local dmg = autoattackFormule(player, CONFIG, CONFIG_SUP, item)
-    local auraBuff = 0
-    auraBuff = CONFIG_SUP.level
-    local ap = (1.5 + (	( (auraBuff * 0.15)) )	)
-    dmg = dmg * (1.5 + (	( (auraBuff * 0.15)) )	)
-  	if player:hasBuff(BASIC_DAMAGE_SUPPORT) then
-			dmg = dmg * (1 + (player:getBuff(BASIC_DAMAGE_SUPPORT).stacks / 100))
-		end
-		if player:hasBuff(MULTI_STRIKE) then
-			dmg = dmg * 2
-		end
-    dmg = dmg + (dmg * (spellGlobalTotalDamage(player, CONFIG, dot, CONFIG_SUP.type)) / 100)
-    dmg = dmg + (dmg * (spellMoreDamage(player, CONFIG_SUP.type, CONFIG.spellId, dot)) / 100)
-    infoToSend.dmg = -dmg
-    infoToSend.ap = ap
-    infoToSend.type = CONFIG.autoAttackFormule
   end
 
   infoToSend.type2 = CONFIG_SUP.convert and CONFIG_SUP.convert[2] or nil
@@ -379,19 +86,6 @@ function spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, area, dot)
   end
   --]]
   return infoToSend
-end
-
-function spellGetAP(player, CONFIG, CONFIG_SUP, item)
-  local ap = 0
-  local enancment = 0
-  if getSpellTotalLevel(player, CONFIG.spellId, item) < CONFIG_SUP.level then
-    local levelsIt = getSpellTotalLevel(player, CONFIG.spellId, item)
-    enancment = CONFIG_SUP.level - levelsIt
-    enancment = enancment * 0.02
-    enancment = enancment * GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].multipler
-  end
-  ap = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].multipler + getSpellPowerTotal(player, CONFIG.spellId, item, CONFIG_SUP.quality, CONFIG_SUP.level) + enancment -- extraQuality
-  return ap
 end
 
 function spellSetupAuraCast(player, CONFIG, CONFIG_SUP, item)

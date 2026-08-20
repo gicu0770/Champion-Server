@@ -1843,11 +1843,11 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 	local party = self:getParty()
 	if not party or (party and not party:isSharedExperienceEnabled()) then
 		sendExp(self, exp)
-		if self:getLevel() >= 100 then
-			self:addExpToSpells(exp * 2)
-		else
-			self:addExpToSpells(exp)
-		end
+	--	if self:getLevel() >= 100 then
+	--		self:addExpToSpells(exp * 2)
+	--	else
+	--		self:addExpToSpells(exp)
+	--	end
 	end
 
 	return exp

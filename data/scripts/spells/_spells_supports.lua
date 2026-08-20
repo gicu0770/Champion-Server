@@ -534,12 +534,13 @@ function Item:applySupportSpells(CONFIG)
       [COMBAT_HEALING] = 0.0,
     },
   }
-
+--[[
 -- Calculate mana cost based on spell level (5 at level 1, scaling to 20 at level 50)
 local baseManaCost = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].startMana or 0
 local maxManaCost = data.manaCost
 local maxLevel = 50
 local currentLevel = math.max(1, data.level + (self:getCustomAttribute("level") or 0))
+
 
 if currentLevel >= maxLevel then
   data.manaCost = maxManaCost
@@ -548,6 +549,7 @@ else
   local scaleFactor = (currentLevel - 1) / (maxLevel - 1)
   data.manaCost = math.ceil(baseManaCost + (maxManaCost - baseManaCost) * scaleFactor)
 end
+--]]
 
   local costReduction = 1.0
   local cdRed = 0
