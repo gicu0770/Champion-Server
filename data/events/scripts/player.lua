@@ -755,19 +755,12 @@ function Player:onLook(thing, position, distance)
 			damageReductionPercent = 85
 		end
 		local armorPlayer = thing:getTotalArmor()
-		local attackPower = thing:getAttackPower()
-		local fusionBonusID = thing:getStorageValue(PlayerStorage.fusionClassBonus)
-		local playerTier = thing:getDungeonTier()
-		description = string.format("%s\nDungeon Tier: %s", description, playerTier)
-		description = string.format("%s\nBlackfang Archer: %s", description, thing:getStorageValue(PlayerStorage.sideBoss15))
-		description = string.format("%s\nThunderlord: %s", description, thing:getStorageValue(PlayerStorage.sideBoss16))
-		description = string.format("%s\nHoly Protector: %s", description, thing:getStorageValue(PlayerStorage.sideBoss17))
-		description = string.format("%s\nFrost Beast: %s", description, thing:getStorageValue(PlayerStorage.sideBoss18))
-		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
-		description = string.format("%s\nAttack Power: %d", description, attackPower)
-		description = string.format("%s\nAttack: %d", description, thing:getTotalAttack())
-		description = string.format("%s\nArmor: %d", description, armorPlayer)
+		local attackPower = thing:getCharacterType()
+		description = string.format("%s\nAttack: %d", description, attackPower)
+		description = string.format("%s\nPhysical Defense: %d | %s%%", description, thing:getPhysicalDefense(), thing:getPhysicalDefensePercent())
+		description = string.format("%s\nMagic Defense: %d | %s%%", description, thing:getMagicDefense(), thing:getMagicDefensePercent())
 		description = string.format("%s\nHealth: %d\nMana: %d", description, thing:getMaxHealth(), thing:getMaxMana())
+		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
 	end
 	if thing:isMonster() and thing:getSkull() < 100 then
 		--	description = string.format("%s\nCreatureID: %d", description, thing:getId())
@@ -786,120 +779,17 @@ function Player:onLook(thing, position, distance)
 
 			local monsterLevel = thing:getMonsterLevel()
 			local mType = thing:getType()
-			local skull = thing:getSkull()
-			local monsterDmage = damageFormula(monsterLevel)
-			local monsterGold = goldFormula(monsterLevel)
-			local monsterExp = calculateExp(self:getLevel(), monsterLevel, expFormula(monsterLevel)) -- expFormula(monsterLevel)
-			local orginalDamage = damageFormula(monsterLevel)
-			local titan = mType:items() == "titan"
-			local champion = mType:items() == "champion"
-			local dungeonboss = mType:items() == "dungeonboss"
-			local damageMultipler = 0
-			local meleeBoss = 0
-			local meleeSpecial = 0
-			local mapBonus = thing:getStorageValue(PlayerStorage.monsterModifier_bonus)
-			if not BOSSESS_DAMAGE[thing:getName()] then
-				-- Elite
-				if thing:getSkull() > 6 then -- 50%
-					damageMultipler = damageMultipler + GLOBAL_MULTIPLERS["elite_damage_multipler"]
-				end
-				-- Elite Strong
-				if thing:getSkull() == 15 then -- 50% elite + 25% strong = 100%
-					damageMultipler = damageMultipler + GLOBAL_MULTIPLERS["eliteStrong_damage_multipler"]
-				end
-				-- Champion
-			--	if thing:getSkull() == 27 then -- 50% elite + 50% champion = 100%
-			--		damageMultipler = damageMultipler + GLOBAL_MULTIPLERS["champion_damage_multipler"]
-			--	end
-				monsterDmage = monsterDmage + (monsterDmage * damageMultipler / 100)
-				-- Strogbox Boss
-				if thing:getStorageValue(PlayerStorage.strongBoxMonsterBoss) == 1 then
-					monsterDmage = monsterDmage + (monsterDmage * GLOBAL_MULTIPLERS["strongbox_damage_multipler"] / 100)
-				end
-				if mType:items() == "titan" then
-					monsterDmage = monsterDmage + (monsterDmage * GLOBAL_MULTIPLERS["titan_damage_multipler"] / 100)
-				end
-			end
-			if thing:getStorageValue(PlayerStorage.monsterModifier_damage) > 0 then
-				monsterDmage = monsterDmage + (monsterDmage * thing:getStorageValue(PlayerStorage.monsterModifier_damage) / 100)
-				monsterDmage = math.ceil(monsterDmage)
-			end
-			if dungeonboss then
-				meleeBoss = monsterDmage * 2
-				meleeSpecial = monsterDmage * 3
-			elseif titan or champion then
-				meleeBoss = monsterDmage * 1.5
-				meleeSpecial = monsterDmage * 2
-			end
-			--[[
-			if BOSSESS_DAMAGE[thing:getName()] then
-				 monsterDmage = BOSSESS_DAMAGE[thing:getName()]
-			elseif dungeonboss then
-				monsterDmage = monsterDmage * 3
-			end -- monsterDmage = BOSSESS_DAMAGE[thing:getName()] end
-			--]]
-			-- Dungeon Modifier
-			if titan or dungeonboss or champion then
-				description = string.format("%s\nDamage: %s", description, shortNumbers(meleeBoss, 2))
-			else
-				description = string.format("%s\nDamage: %s", description, shortNumbers(monsterDmage, 2))
-			end
-			description = string.format("%s\nSpecial Damage: %s", description, shortNumbers(meleeSpecial, 2))
-			local reduction = 0
-			local physicalProtection = 0
-			local elementalProtection = 0
-			local dualityProtection = 0
-			if monsterLevel then
-				reduction = reduction + math.ceil(monsterLevel / 2) -- podstawowa
-				if reduction >= 80 then
-					reduction = 80
-				end
-				if skull >= 7 then -- Increase DAMAGE REDUCED ALL elite
-					reduction = reduction + 20
-				end
-				if thing:getStorageValue(PlayerStorage.monsterModifier_armored) > 0 then
-					reduction = reduction + 30
-				end
-				if skull == 7 then -- REDUCED DAMAGE
-					physicalProtection = physicalProtection + 25
-				elseif skull == 27 or thing:getType():items() == "dungeonboss" or thing:getType():items() == "uberboss" then -- veterna
-					reduction = reduction + 30
-				elseif skull == 21 then -- anti magic
-					elementalProtection = elementalProtection + 25
-				elseif skull == 19 then -- duality protec
-					dualityProtection = dualityProtection + 25
-				end
-			end
-			physicalProtection = physicalProtection + reduction
-			elementalProtection = elementalProtection + reduction
-			dualityProtection = dualityProtection + reduction
-			if thing:getStorageValue(PlayerStorage.monsterModifier_physicalProtection) > 0 then
-				physicalProtection = physicalProtection + thing:getStorageValue(PlayerStorage.monsterModifier_physicalProtection)
-			end
-			if thing:getStorageValue(PlayerStorage.monsterModifier_elementalProtection) > 0 then
-				elementalProtection = elementalProtection + thing:getStorageValue(PlayerStorage.monsterModifier_elementalProtection)
-			end
-			if thing:getStorageValue(PlayerStorage.monsterModifier_dualityProtection) > 0 then
-				dualityProtection = dualityProtection + thing:getStorageValue(PlayerStorage.monsterModifier_dualityProtection)
-			end
+			local monsterGold = MONSTER_CONFIG[thing:getType():tier()].gold --goldFormula(monsterLevel)
+			local monsterExp = MONSTER_CONFIG[thing:getType():tier()].exp --calculateExp(self:getLevel(), monsterLevel, expFormula(monsterLevel))
+			local physical_defense = MONSTER_CONFIG[thing:getType():tier()].physical_defense
+			local magic_defense = MONSTER_CONFIG[thing:getType():tier()].magic_defense
 
-		--	if dualityProtection > 0 then
-				description = string.format("%s\nDuality Reduction: %s%%", description, dualityProtection)
-		--	end
-		--	if physicalProtection > 0 then
-				description = string.format("%s\nPhysical Protection: %s%%", description, physicalProtection)
-		--	end
-		--	if elementalProtection > 0 then
-				description = string.format("%s\nElemental Protection: %s%%", description, elementalProtection)
-		--	end
+			description = string.format("%s\nPhysical Defense: %d | %s%%", description, physical_defense, math.ceil((physical_defense / (100 + physical_defense)) * 100))
+			description = string.format("%s\nMagic Defense: %d | %s%%", description, magic_defense, math.ceil((magic_defense / (100 + magic_defense)) * 100))
 
 		local monsterLevel = thing:getMonsterLevel()
 		local EXPO = 0
-			-- Items exp
-		if colleftInfo[self:getId()].attributesItems[10] then
-			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[10].value
-		end
-		--]]
+
 		--------EXP BOOST SHOP--------------------
 		if self:getBuff(BUFF_EXP_BOOST) then
 			EXPO = EXPO + 20
@@ -918,77 +808,14 @@ function Player:onLook(thing, position, distance)
 		if getGlobalBuff(BUFF_GLOBAL_EXP) then
 			EXPO = EXPO + 20
 		end
-		-- Dungeon Modifier
-		if mapBonus > 0 then
-			EXPO = EXPO + (mapBonus * 0.50)
-		end
+
 		monsterExp = monsterExp + ((monsterExp * EXPO) / 100)
-		-- Titan
-		if mType:items() == "titan" then
-			monsterExp = monsterExp * 20
-		-- Champion
-		elseif mType:items() == "champion" or thing:getSkull() == 27 then
-			monsterExp = monsterExp * 30
-		-- Boss Dungoen
-		elseif mType:items() == "dungeonboss" then
-			monsterExp = monsterExp * 75
-		-- Strongbox EXP boost
-		elseif thing:getStorageValue(PlayerStorage.strongBoxMonsterBoss) == 1 then
-			monsterExp = monsterExp * 30
-		-- Elite
-		elseif thing:getSkull() >= 7 then
-			monsterExp = monsterExp * 5
-		elseif thing:getName() == "Treasure Goblin" then
-			monsterExp = monsterExp * 25
-		end	
-		if self:getStorageValue(PlayerStorage.monsterModifier_extraexp) > 0 then
-			monsterExp = monsterExp * (1 + (self:getStorageValue(PlayerStorage.monsterModifier_extraexp) / 100))
-		end
-		if thing:getName() == "Treasure Goblin" and colleftInfo[self:getId()].attributesItems[272] then -- Goblin Fortune
-			monsterExp = monsterExp * (1 + colleftInfo[self:getId()].attributesItems[272].value / 100)
-		end
-		if self:hasBuff(SHRINE_EXP) then
-			monsterExp = monsterExp * (1 + 50 / 100)
-		end
+
 		description = string.format("%s\nExp: %s", description, math.ceil(monsterExp))
 
 		local gold = 0
-		local strongBox = thing:getStorageValue(PlayerStorage.strongBoxMonster)
-		if strongBox == 2 then -- golden stongbox
-		  gold = gold + 750 -- x7.5
-		end
-		if colleftInfo[self:getId()].attributesItems[17] then
-		  gold = gold + colleftInfo[self:getId()].attributesItems[17].value
-		end
-		-- Dungeon Modifier Gold
-		if mapBonus > 0 then
-			local dungmapBonus = math.ceil(mapBonus * 0.25)
-			gold = gold + dungmapBonus
-		end
 		monsterGold = monsterGold + (monsterGold * gold / 100)
 
-		-- Titan
-		if mType:items() == "titan" then
-			monsterGold = monsterGold * 40
-		-- Champion
-		elseif mType:items() == "champion" or thing:getSkull() == 27 then
-			monsterGold = monsterGold * 60
-		-- Boss Dungoen
-		elseif mType:items() == "dungeonboss" then
-			monsterGold = monsterGold * 100
-		-- Strongbox EXP boost
-		elseif thing:getStorageValue(PlayerStorage.strongBoxMonster) == 1 then
-			monsterGold = monsterGold *  30
-		-- Golden Elite
-		elseif thing:getSkull() == 24 then
-			monsterGold = monsterGold * 100
-		-- Elite
-		elseif thing:getSkull() >= 7 then
-			monsterGold = monsterGold * 5
-		end
-		if thing:getName() == "Treasure Goblin" then
-			monsterGold = monsterGold * 200
-		end
 		local globalGold = 1
 		if getGlobalBuff(BUFF_GLOBAL_GOLD) then
 			globalGold = globalGold + 0.2 -- 1.2
@@ -1000,51 +827,12 @@ function Player:onLook(thing, position, distance)
 			globalGold = globalGold + 0.2 -- 0.2
 		end
 		monsterGold = math.ceil(monsterGold * globalGold)
-		if self:getStorageValue(PlayerStorage.monsterModifier_extragold) > 0 then
-			monsterGold = monsterGold * (1 + (self:getStorageValue(PlayerStorage.monsterModifier_extragold) / 100))
-		end
-		if thing:getName() == "Treasure Goblin" and colleftInfo[self:getId()].attributesItems[272] then -- Goblin Fortune
-			monsterGold = monsterGold * (1 + colleftInfo[self:getId()].attributesItems[272].value / 100)
-		end
-		if self:hasBuff(SHRINE_GOLD) then
-		  monsterGold = monsterGold * (1 + 100 / 100)
-	  	end
 		description = string.format("%s\nGold: %s", description, math.ceil(monsterGold))
 
 		if thing:getStorageValue(PlayerStorage.keyTier) >= 1 then
 			description = string.format("%s\nKey Tier: %s", description, thing:getStorageValue(PlayerStorage.keyTier))
 		end
 		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
-
-		if mapBonus > 0 then
-			local magicfind = math.ceil(mapBonus * 0.15)
-			local lootChance = math.ceil(mapBonus * 0.15)
-			local goldBonus = math.ceil(mapBonus * 0.25)
-			local expBonus = math.ceil(mapBonus * 0.50)
-			description = string.format("%s\nMap EXP +%s%%, Gold +%s%%, Loot chance +%s%%, Magic Find +%s%%", description, expBonus, goldBonus, lootChance, magicfind)
-		end
-		if thing:hasBuff(BLEED_ITEM) then
-			local buff = thing:getBuff(BLEED_ITEM).stacks
-			description = string.format("%s\nBleed: %s", description, buff)
-		end
---[[
-		if SERVER_BASE_ITEMS[monsterLevel] then
-			description = string.format("%s\nDrop Basic:", description)
-			for i = 1, #SERVER_BASE_ITEMS[monsterLevel] do
-				description = string.format("%s, %s", description, SERVER_BASE_ITEMS[monsterLevel][i][1])
-			end
-		end
-		if SERVER_UNIQUE_ITEMS[monsterLevel] then
-			description = string.format("%s\nUnique:", description)
-			for i = 1, #SERVER_UNIQUE_ITEMS[monsterLevel] do
-				local unique_item = US_UNIQUES[SERVER_UNIQUE_ITEMS[monsterLevel][i]]
-				--[[
-				if unique_item then
-					description = string.format("%s, %s", description, "" .. unique_item.name .. "")
-				end
-			end
-		end
---]]
 
 		eliteAffix_name = {
 			[1] = "Armored",
@@ -1757,6 +1545,7 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 	end 
 
 	local EXPO = 0
+	--[[
 	if source:getMonsterLevel() then
 		local playerLevel = self:getLevel()
 		local monsterLevel = source:getMonsterLevel()
@@ -1764,6 +1553,8 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 	else
 		exp = 1
 	end
+	--]]
+	exp = MONSTER_CONFIG[source:getType():tier()].exp
 	exp = math.ceil(exp * (gainPrecent/100))
 	--------EXP BOOST SHOP--------------------
 	if self:getBuff(BUFF_EXP_BOOST) then
@@ -1783,62 +1574,29 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 	if getGlobalBuff(BUFF_GLOBAL_EXP) then
 		EXPO = EXPO + 20
 	end
-	local mapBonus = source:getStorageValue(PlayerStorage.monsterModifier_bonus)
-	if mapBonus > 0 then
-		EXPO = EXPO + (mapBonus * 0.5)
-	end
+
 
 	local party = self:getParty()
   if not party or (party and not party:isSharedExperienceEnabled()) then
-		if colleftInfo[self:getId()].attributesItems[10] then
-			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[10].value
-		end
+--		if colleftInfo[self:getId()].attributesItems[10] then
+--			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[10].value
+--		end
 	elseif (party and party:isSharedExperienceEnabled()) then
 		local leader = party:getLeader()
 		EXPO = EXPO - ((#party:getMembers() + 1) * 7.5)
 		if leader then
-			if colleftInfo[leader:getId()].attributesItems[10] then
-				EXPO = EXPO + colleftInfo[leader:getId()].attributesItems[10].value
-			end
+--			if colleftInfo[leader:getId()].attributesItems[10] then
+--				EXPO = EXPO + colleftInfo[leader:getId()].attributesItems[10].value
+--			end
 			for _, member in ipairs(party:getMembers()) do
-				if colleftInfo[member:getId()].attributesItems[10] then
-					EXPO = EXPO + colleftInfo[member:getId()].attributesItems[10].value
-				end
+--				if colleftInfo[member:getId()].attributesItems[10] then
+--					EXPO = EXPO + colleftInfo[member:getId()].attributesItems[10].value
+--				end
 			end
 		end
 	end
 
 	exp = exp + ((exp * EXPO) / 100)
-
-	local mType = source:getType()
-	if mType:items() == "titan" then
-		exp = exp * 20
-	elseif mType:items() == "champion" or source:getSkull() == 27 then
-		exp = exp * 30
-	elseif mType:items() == "dungeonboss" then
-		exp = exp * 75
-	elseif mType:items() == "stone" then
-		exp = exp * EVENT_CHANCE["Stone"].exp
-	elseif source:getStorageValue(PlayerStorage.strongBoxMonsterBoss) == 1 then
-		exp = exp * 30
-	elseif source:getSkull() >= 7 then -- Elite
-		exp = exp * 5
-	elseif source:getName() == "Treasure Goblin" then
-		exp = exp * 25
-	end
-
-	if source:getStorageValue(PlayerStorage.monsterModifier_extraexp) > 0 then
-		exp = exp * (1+ (source:getStorageValue(PlayerStorage.monsterModifier_extraexp) / 100))
-	end
-	if source:getStorageValue(PlayerStorage.monsterModifier_rift) > 0 then -- Tar Realm
-		exp = math.ceil(exp * 1.5)
-	end
-	if source:getName() == "Treasure Goblin" and colleftInfo[self:getId()].attributesItems[272] then -- Goblin Fortune
-		exp = exp * (1 + colleftInfo[self:getId()].attributesItems[272].value / 100)
-	end
-	if self:hasBuff(SHRINE_EXP) then
-		exp = exp * (1 + 50 / 100)
-	end
 	exp = math.ceil(exp)
 	local party = self:getParty()
 	if not party or (party and not party:isSharedExperienceEnabled()) then

@@ -18,6 +18,76 @@ BASE_ITEMS_BY_ID = {}
 SERVER_BASE_ITEMS_BY_TYPES = {}
 SERVER_UNIQUE_ITEMS_BY_TYPES = {}
 
+--[[
+  CUSTOM_TIER_DROPS Config:
+  Umożliwia ustawienie dropu przedmiotów z dowolną ilością implicits (i ich wartościami)
+  na podstawie Tieru potwora (monster:getType():tier()).
+
+  Struktura:
+  [TIER] = {
+    {
+      name = "magic sword",      -- Nazwa przedmiotu (string) LUB ID przedmiotu (number)
+      rarity = 4,                -- Rarity: 0: Normal, 1: Magic, 2: Magic/Rare, 3: Rare, 4: Legendary, 5: Unique
+      chance = 100000,           -- Szansa na drop: 100000 = 100%, 50000 = 50% (lub wpisz 50 dla 50%)
+      count = 1,                 -- Ilość sztuk (opcjonalne, domyślnie 1)
+      implicits = {              -- Dowolna liczba implicits z ID i wartością:
+        { id = 11, value = 50 },  -- 1. implict: Physical Attack +50
+        { id = 18, value = 25 },  -- 2. implict: Spell Damage +25%
+        { id = 280, value = 10 }, -- 3. implict: Critical Chance +10%
+      }
+    }
+  }
+]]
+CUSTOM_TIER_DROPS = {
+  [1] = { -- Tier 1
+    {
+      name = "magic sword",
+      rarity = 4, -- Legendary
+      chance = 100000, -- 100%
+      count = 1,
+      implicits = {
+        { id = 11, value = 50 },  -- Physical Attack +50
+        { id = 18, value = 25 },  -- Spell Damage +25%
+        { id = 280, value = 10 }, -- Critical Chance +10%
+      }
+    },
+    {
+      name = "demon helmet",
+      rarity = 3, -- Rare
+      chance = 100000,
+      implicits = {
+        { id = 108, value = 30 }, -- Physical Armor +30
+        { id = 1, value = 150 },   -- Max HP +150
+      }
+    },
+    {
+      name = "golden legs",
+      rarity = 4, -- Legendary
+      chance = 100000,
+      implicits = {
+        { id = 108, value = 40 },
+        { id = 17, value = 15 },
+        { id = 2, value = 10 },
+      }
+    },
+  },
+  [2] = { -- Tier 2
+    {
+      name = "dragon scale mail",
+      rarity = 4,
+      chance = 50000, -- 50%
+      implicits = {
+        { id = 108, value = 80 },
+        { id = 1, value = 300 },
+        { id = 12, value = 20 },
+      }
+    },
+  },
+  [3] = { -- Tier 3
+    -- Dodaj kolejne przedmioty dla Tier 3...
+  },
+}
+
 
 
 local DUNGEON_KEYS = {
@@ -770,64 +840,18 @@ function Monster:onDropLoot(corpse)
   local mType = self:getType()
   local monsterTier = mType:tier()
   local boss = self:getType():getRace() == 6
-  local dungeonBoss = mType:items() == "dungeonboss"
-  local uberboss = mType:items() == "uberboss"
   local name = self:getName()
   local lootItems = {}
   local monsterLevel = self:getMonsterLevel()
-  local spellRuneChance = 400 + (400 * math.min(monsterLevel, 100) / 100)
-  local supportRuneChance = 400 + (400 * math.min(monsterLevel, 100) / 100)
   local uniqueChance = 15 + (15 * math.min(monsterLevel, 100) / 100)
-  local basicChance = 500 + (500 * math.min(monsterLevel, 100) / 100)
-  local potionChance = 500 + (500 * math.min(monsterLevel, 100) / 100)
-  local keyChance = 0 -- + (500 * monsterLevel / 100)
-  local currencyChance = 0 -- bonus szansy an currency
-  local crystalChance = 0 --
   local strongBox = self:getStorageValue(PlayerStorage.strongBoxMonster)
   local strongBoxBoss = self:getStorageValue(PlayerStorage.strongBoxMonsterBoss)
   local typeItems = mType:items()
-  local basicCount = 0
   local uniqueCount = 0
-  local supportCount = 0
-  local spellCount = 0
   local mapBonus = self:getStorageValue(PlayerStorage.monsterModifier_bonus) or 0
   mapBonus = mapBonus * (self:getStorageValue(PlayerStorage.monsterModifier_partyBonus) * 0.2 + 1.0)
   local magicFind = 0
-  local currencyCountChance = 0
-  local fragmentCount = 0
-  local abyssMonster = true
 
---  if typeItems == "stoneminion" then
---    corpse:remove()
---    return true
---  end
-
-  if typeItems == "stone" then
-    spellRuneChance = spellRuneChance + (spellRuneChance * 10 / 100)
-    supportRuneChance = supportRuneChance + (supportRuneChance * 10 / 100)
-    uniqueChance = uniqueChance + (uniqueChance * 10 / 100)
-    currencyChance = currencyChance + 150
-    crystalChance = crystalChance + 150
-    fragmentCount = fragmentCount + 20
-    currencyCountChance = currencyCountChance + 3500
-  end
-
-  if mapBonus > 0 then
-  --  print("mapBonus "..mapBonus.."")
-    magicFind = math.ceil(mapBonus * 0.15) -- bylo 0.20
-    local dropChance = math.ceil(mapBonus * 0.15) -- bylo 0.25
-    spellRuneChance = spellRuneChance + (spellRuneChance * dropChance / 100)
-    supportRuneChance = supportRuneChance + (supportRuneChance * dropChance / 100)
-    uniqueChance = uniqueChance + (uniqueChance * dropChance / 100)
-    basicChance = basicChance + (basicChance * dropChance / 100)
-    potionChance = potionChance + (potionChance * dropChance / 100)
-    currencyChance = currencyChance + dropChance
-    crystalChance = crystalChance + dropChance
-  --  keyChance = keyChance + (keyChance * dropChance / 100)
-    if self:getStorageValue(PlayerStorage.monsterModifier_armored) > 0 then -- Ice Realm
-      magicFind = magicFind * 1.5
-    end
-  end
   local global = 0
   if player:hasBuff(BUFF_GLOBAL_LOOT) then
     global = global + 20
@@ -841,131 +865,7 @@ function Monster:onDropLoot(corpse)
   if player:hasBuff(SHRINE_LOOT) then
 		global = global + 30
 	end
-  if global > 0 then
-    spellRuneChance = spellRuneChance + (spellRuneChance * global / 100)
-    supportRuneChance = supportRuneChance + (supportRuneChance * global / 100)
-    uniqueChance = uniqueChance + (uniqueChance * global / 100)
-    basicChance = basicChance + (basicChance * global / 100)
-    potionChance = potionChance + (potionChance * global / 100)
-  --  keyChance = keyChance + (keyChance * global / 100)
-    currencyChance = currencyChance + 20 + global
-    crystalChance = crystalChance + 20 + global
-  end
-  if typeItems == "titan" then -- Tytan
-    basicCount = basicCount + 3
-    spellRuneChance = spellRuneChance * 3
-    supportRuneChance = supportRuneChance * 3
-    uniqueChance = uniqueChance * 3
-  --  keyChance = 1000
-    potionChance = potionChance * 3
-    currencyChance = currencyChance + 250
-    crystalChance = crystalChance + 250
-    currencyCountChance = currencyCountChance + 300
-  end
-  -- Specialny Box dropia tylko bossy
-  if strongBoxBoss > 0 then -- Boss Strongbox
-    if strongBox == 1 then -- Currency strongbox
-        currencyChance = currencyChance + 500 -- 5x wieksza szansa
-        currencyCountChance = currencyCountChance + 500
-    elseif strongBox == 2 then -- Equipment strongbox
-        basicCount = basicCount + 5 -- basic itemy dropia 5
-    end
-    basicCount = basicCount + 5
-    uniqueChance = uniqueChance * 5
-    spellRuneChance = spellRuneChance * 5
-    supportRuneChance = supportRuneChance * 5
-    currencyChance = currencyChance + 250
-    crystalChance = crystalChance + 250
-  --  keyChance = 1000
-    potionChance = potionChance * 5
-    currencyCountChance = currencyCountChance + 200
-  end
-  -- ELite
-  if eliteMonster == 25 then -- spellrune elite
-    spellRuneChance = spellRuneChance * 30
-  elseif eliteMonster == 27 then -- Elite Veteran
-    basicCount = basicCount + 5
-    spellRuneChance = spellRuneChance * 5
-    supportRuneChance = supportRuneChance * 5
-    uniqueChance = uniqueChance * 5
-    currencyChance = currencyChance + 1000
-    crystalChance = crystalChance + 1000
-  --  keyChance = 5000
-    potionChance = potionChance * 5
-    currencyCountChance = currencyCountChance + 300
-  elseif eliteMonster >= 7 and typeItems ~= "titan" and not boss then -- Kazda Elita
-    basicChance = basicChance + 20000
-    basicCount = basicCount + 3
-    uniqueChance = uniqueChance * 5
-    spellRuneChance = spellRuneChance * 5
-    supportRuneChance = supportRuneChance * 5
-    currencyChance = currencyChance + 250
-    crystalChance = crystalChance + 250
-  --  keyChance = 1000
-    potionChance = potionChance * 5
-    currencyCountChance = currencyCountChance + 100
-  end
-  if self:getName() == "Treasure Goblin" then
-    basicCount = basicCount + 5
-    spellRuneChance = spellRuneChance * 20
-    supportRuneChance = supportRuneChance * 20
-    uniqueChance = uniqueChance * 20
-    currencyChance = currencyChance + 1000
-    crystalChance = crystalChance + 1000
-    potionChance = potionChance * 20
-    currencyCountChance = currencyCountChance + 500
-  end
-  if player:getStorageValue(PlayerStorage.worldBossDamagePercent) > 0 and typeItems == "worldboss" then
-    local worldBossMultiplaier = 1 + (player:getStorageValue(PlayerStorage.worldBossDamagePercent) / 100)
-    basicCount = basicCount * worldBossMultiplaier -- 100 dropi 14 IT
-    basicChance = basicChance + 100000
-    spellRuneChance = spellRuneChance * worldBossMultiplaier
-    supportRuneChance = supportRuneChance * worldBossMultiplaier
-    uniqueChance = uniqueChance * worldBossMultiplaier
-    currencyChance = currencyChance + 2000
-    crystalChance = crystalChance + 2000
-    potionChance = potionChance * worldBossMultiplaier
-  end
-  if boss or dungeonBoss then -- Boss race == 6 zwiekszenie ilosc lub szansy
-    basicCount = basicCount + 10 -- 100 dropi 14 IT bazowo jest 10
-    basicChance = basicChance + 100000
-    spellRuneChance = spellRuneChance * 20
-    supportRuneChance = supportRuneChance * 20
-    keyChance = 100000 -- 20000
-    uniqueChance = uniqueChance * 20
-    currencyChance = currencyChance + 2000
-    crystalChance = crystalChance + 2000
-    potionChance = potionChance * 20
-    fragmentCount = fragmentCount + 10
-    currencyCountChance = currencyCountChance + 1000
-  end
-  if (self:getStorageValue(PlayerStorage.keyTier) or 0) >= 1 and uberboss then -- Uberboss
-      keyChance = 100000
-      basicCount = basicCount + 20 -- 100 dropi 14 IT
-      basicChance = basicChance + 100000
-      spellRuneChance = spellRuneChance * 20
-      supportRuneChance = supportRuneChance * 20
-      uniqueChance = uniqueChance * 20
-      currencyChance = currencyChance + 2800
-      crystalChance = crystalChance + 2800
-      potionChance = potionChance * 20
-      fragmentCount = fragmentCount + 20
-      currencyCountChance = currencyCountChance + 1500
-  end
-  if self:getStorageValue(PlayerStorage.monsterModifier_extracurrency) > 0 then
-    currencyChance = currencyChance + self:getStorageValue(PlayerStorage.monsterModifier_extracurrency)
-  end
-    if mapBonus > 0 then
-      if self:getStorageValue(PlayerStorage.monsterModifier_bloody) > 0 then -- Thunder Realm
-        spellRuneChance = spellRuneChance * 1.5
-        supportRuneChance = supportRuneChance * 1.5
-        uniqueChance = uniqueChance * 1.5
-        basicChance = basicChance * 1.5
-        potionChance = potionChance * 1.5
-        currencyChance = currencyChance * 1.5
-        crystalChance = crystalChance * 1.5
-    end
-  end
+
   math.randomseed(os.time())
   local bagRarirty = 0
   local highestRarity = 0
@@ -979,49 +879,36 @@ function Monster:onDropLoot(corpse)
     if bagRarirty > highestRarity then highestRarity = bagRarirty end
   end
 
-  bagRarirty = generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, basicCount, basicChance, magicFind)
+  bagRarirty = generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
   if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  bagRarirty = generateRandomUniqueItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, uniqueChance, uniqueCount, magicFind)
-  if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  bagRarirty = generateRandomSupportItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, supportRuneChance, supportCount, self)
-  if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  bagRarirty = generateRandomSpellItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, spellRuneChance, spellCount, magicFind, self)
+
+--  bagRarirty = generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, basicCount, basicChance, magicFind)
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  bagRarirty = generateRandomUniqueItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, uniqueChance, uniqueCount, magicFind)
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  bagRarirty = generateRandomSupportItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, supportRuneChance, supportCount, self)
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  bagRarirty = generateRandomSpellItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, spellRuneChance, spellCount, magicFind, self)
 --  if player:getStorageValue(PlayerStorage.endGame) > 0 then
 --    if bagRarirty > highestRarity then highestRarity = bagRarirty end
 --    bagRarirty = generateDungeonKey(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, keyChance, self, dungeonBoss)
 --  end
-  if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  bagRarirty = generateCurrency(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, mapBonus, currencyChance, currencyCountChance, typeItems)
-  if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  bagRarirty = generateCrystals(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, mapBonus, crystalChance, abyssMonster)
-  if self:getStorageValue(MonsterStorages.voidRelict) > 0 then
-    bagRarity = 5
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  bagRarirty = generateCurrency(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, mapBonus, currencyChance, currencyCountChance, typeItems)
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  bagRarirty = generateCrystals(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, mapBonus, crystalChance, abyssMonster)
 
-    local specialStorage = player:getSlotItem(CONST_SLOT_STORE_INBOX):getItemById(38391)
-    local voidFragments = nil
-    local looted = nil
-    if specialStorage then
-      voidFragments = specialStorage:addItem(5881, math.random(1, 5), INDEX_WHEREEVER, FLAG_NOLIMIT)
-      looted = player:getName()
-    else
-      voidFragments = corpse:addItem(5881, math.random(1, 5), INDEX_WHEREEVER, FLAG_NOLIMIT)
-    end
-
-    sendOrb(player, 5881, "Void Fragment", 5, voidFragments:getCount())
-    addToLootInfo(voidFragments, lootItems, looted)
-  end
-
-  if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  if math.random(100000) <= potionChance then -- potionChance then
-    bagRarirty = generatePotions(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, magicFind)
-    if bagRarirty > highestRarity then highestRarity = bagRarirty end
-  end
-  if eliteMonster >= 7 then -- only elites
-    if math.random(100000) <= 2000 then
-      bagRarirty = generateSelfFragment(player, corpse, difficulty, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, magicFind)
-    end
-  end
-  bagRarirty = generateBossFragments(player, corpse, lootItems, self, fragmentCount)
+--  if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  if math.random(100000) <= potionChance then -- potionChance then
+--    bagRarirty = generatePotions(player, corpse, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, magicFind)
+--    if bagRarirty > highestRarity then highestRarity = bagRarirty end
+--  end
+--  if eliteMonster >= 7 then -- only elites
+--    if math.random(100000) <= 2000 then
+--      bagRarirty = generateSelfFragment(player, corpse, difficulty, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, lootItems, magicFind)
+--    end
+--  end
+--  bagRarirty = generateBossFragments(player, corpse, lootItems, self, fragmentCount)
   if bagRarirty > highestRarity then highestRarity = bagRarirty end
   generateGold(player, monsterTier, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, typeItems, mapBonus, name, self)
 
@@ -1133,6 +1020,100 @@ function generateBossItemDrop(player, corpse, monsterName, lootItems, magicFind)
       end
 
       highestRarity = addToLootInfo(item, lootItems, looted)
+    end
+  end
+
+  return highestRarity
+end
+
+function generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
+  local tierDrops = CUSTOM_TIER_DROPS[monsterTier]
+  if not tierDrops then
+    return 0
+  end
+
+  local highestRarity = 0
+  local extraChance = (magicFind or 0) / 100
+
+  for _, dropConfig in ipairs(tierDrops) do
+    local chance = dropConfig.chance or 100000
+    -- If chance is given as percentage <= 100 (e.g. 50 = 50%), convert to 1..100000 scale
+    if chance <= 100 then
+      chance = chance * 1000
+    end
+    chance = chance + (chance * extraChance)
+
+    if math.random(1, 100000) <= chance then
+      local itemId = nil
+      if type(dropConfig.name) == "number" or type(dropConfig.id) == "number" then
+        itemId = dropConfig.name or dropConfig.id
+      elseif type(dropConfig.name) == "string" then
+        local it = ItemType(dropConfig.name)
+        if it and it:getId() > 0 then
+          itemId = it:getId()
+        end
+      end
+
+      if not itemId then
+        print("[CUSTOM TIER DROP] Item not found: " .. tostring(dropConfig.name or dropConfig.id))
+        goto continueCustomDrop
+      end
+
+      local count = dropConfig.count or 1
+      local item = corpse:addItem(itemId, count, INDEX_WHEREEVER, FLAG_NOLIMIT)
+      if not item then
+        print("[CUSTOM TIER DROP] Failed to add item: " .. tostring(itemId))
+        goto continueCustomDrop
+      end
+
+      -- Rarity handling (number 0..6 or string like "Rare", "Epic", "Legendary", "Unique")
+      local rarity = dropConfig.rarity or 0
+      if type(rarity) == "string" then
+        local rName = rarity:lower()
+        if rName == "magic" or rName == "common" then
+          rarity = 1
+        elseif rName == "rare" or rName == "epic" then
+          rarity = 3
+        elseif rName == "legendary" then
+          rarity = 4
+        elseif rName == "unique" then
+          rarity = 5
+        elseif rName == "exalted" then
+          rarity = 6
+        else
+          rarity = 0
+        end
+      end
+
+      item:setRarity(rarity)
+      item:setItemLevel(dropConfig.level or monsterLevel or 100)
+      item:setModifiersSlots(rarity)
+      if dropConfig.rollAttributes ~= false then
+        item:rollAttribute(magicFind or 0, rarity)
+      end
+
+      -- Set Implicits (any number of implicits with custom values!)
+      local implicits = dropConfig.implicits or dropConfig.imps
+      if implicits and #implicits > 0 then
+        item:setImplictSlots(#implicits)
+        for idx, imp in ipairs(implicits) do
+          local impId = imp.id or imp[1]
+          local impVal = imp.value or imp[2]
+          local impTier = imp.tier or imp[3] or 0
+          if impId and impVal then
+            item:setImplictValue(idx, impId .. "|" .. impVal .. "|" .. impTier)
+          end
+        end
+      end
+
+      if addToLootInfo then
+        local r = addToLootInfo(item, lootItems, nil)
+        if r and r > highestRarity then
+          highestRarity = r
+        end
+      end
+
+      ::continueCustomDrop::
     end
   end
 
@@ -1520,46 +1501,11 @@ function generateCurrency(player, corpse, difficulty, eliteMonster, boss, monste
   return highestRarity
 end
 
-local difficultyGold = { 0, 75, 100, 200, 300, 400 }
 function generateGold(player, monsterTier, difficulty, elite, boss, monsterLevel, strongBox, strongBoxBoss, typeItems, mapBonus, name, monster)
   local playerId = player:getId()
-  local goldBasic = goldFormula(monsterLevel)
+  local goldBasic = MONSTER_CONFIG[monster:getType():tier()].gold --goldFormula(monsterLevel)
   local gold = 0
-  if strongBox == 2 and typeItems ~= "titan" then -- golden stongbox
-    gold = gold + 750 -- x7.5
-  end
-  if elite == 24 then
-    gold = gold + 3000
-  end
-  if elite >= 7 and typeItems ~= "titan" then
-    gold = gold + 500
-  end
-  if mapBonus > 0 then
-    mapBonus = math.ceil(mapBonus * 0.25)
-    gold = gold + mapBonus
-  end
-  if colleftInfo[playerId].attributesItems[17] then
-    gold = gold + colleftInfo[playerId].attributesItems[17].value
-  end
   goldBasic = goldBasic + (goldBasic * gold / 100)
-  if strongBoxBoss > 0 then -- boss stongbox
-    goldBasic = goldBasic * 20
-  end
-  if typeItems == "titan" then
-    goldBasic = goldBasic * 40
-  end
-  if typeItems == "dungeonboss" then
-    goldBasic = goldBasic * 100
-  end
-  if typeItems == "champion" then
-    goldBasic = goldBasic * 60
-  end
-  if name == "Treasure Goblin" then
-    goldBasic = goldBasic * EVENT_CHANCE["Treasure Goblin"].gold
-  end
-  if typeItems == "stone" then
-    goldBasic = goldBasic * EVENT_CHANCE["Stone"].gold
-  end
   goldBasic = math.ceil(goldBasic)
   local globalGold = 1
   if getGlobalBuff(BUFF_GLOBAL_GOLD) then
@@ -1572,15 +1518,6 @@ function generateGold(player, monsterTier, difficulty, elite, boss, monsterLevel
     globalGold = globalGold + 0.2
   end
   goldBasic = math.ceil(goldBasic * globalGold)
-    if monster:getStorageValue(PlayerStorage.monsterModifier_armored) > 0 then -- Golden Realm
-      goldBasic = math.ceil(goldBasic * 1.5)
-    end
-    if monster:getName() == "Treasure Goblin" and colleftInfo[player:getId()].attributesItems[272] then -- Goblin Fortune
-      goldBasic = goldBasic * (1 + colleftInfo[player:getId()].attributesItems[272].value / 100)
-    end
-    if player:hasBuff(SHRINE_GOLD) then
-		  goldBasic = goldBasic * (1 + 100 / 100)
-	  end
 --  goldBasic = math.ceil(math.random(goldBasic * 0.25, goldBasic * 1.5))
   local party = player:getParty()
   if party and party:isSharedExperienceEnabled() then

@@ -1100,35 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Eldritch Heart",
       38601,
       "Eldritch Reaver",
@@ -1266,31 +1237,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
       {
         chance = 100000,
-        forceType = 67108864,
+        forceType = 536870912,
         imps = {
           {
-            26
+            266
           },
           {
             {
+              50,
+              100,
               150,
-              200,
-              400,
-              750
+              200
             }
           }
         },
-        monster = "Toxic Hydra",
+        monster = "Viliaan",
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1585,6 +1556,35 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Void Stone Relict",
       38693,
       "Void Stone",
@@ -1614,6 +1614,64 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            26
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Toxic Hydra",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
+      {
+        chance = 100000,
+        forceType = 134217728,
+        imps = {
+          {
+            264
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Boss Relict",
       38459,
       "Ascended Voort",
@@ -1634,64 +1692,6 @@ OTHER_ITEMS = {
           }
         },
         monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
         weight = {
           0,
           0,

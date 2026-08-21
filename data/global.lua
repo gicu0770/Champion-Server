@@ -246,6 +246,17 @@ function Player.getMagicDefensePercent(self)
 	return getMagicDefensePercent
 end
 
+function Player.getMonsterPhysicalDefensePercent(self)
+	if not self then return 0 end
+	local getPhysicalDefensePercent = math.ceil((MONSTER_CONFIG[self:getType():tier()].physical_defense / (100 + MONSTER_CONFIG[self:getType():tier()].physical_defense)) * 100)
+	return getPhysicalDefensePercent
+end
+function Player.getMonsterMagicDefensePercent(self)
+	if not self then return 0 end
+	local getMagicDefensePercent = math.ceil((MONSTER_CONFIG[self:getType():tier()].magic_defense / (100 + MONSTER_CONFIG[self:getType():tier()].magic_defense)) * 100)
+	return getMagicDefensePercent
+end
+
 function Player.getPhysicalSteal(self)
 	if not self then return 0 end
 	local getPhysicalSteal = 0

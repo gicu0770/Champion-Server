@@ -170,8 +170,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne
 		end
 		if creature:isMonster() then -- celem jest monster
-			local physical_defense = MONSTER_CONFIG[creature:getType():tier()].physical_defense - physical_penetration
-			local magic_defense = MONSTER_CONFIG[creature:getType():tier()].magic_defense - magic_penetration
+			local physical_defense = (creature:getMonsterLevel() * 1) - physical_penetration -- MONSTER_CONFIG[creature:getType():tier()].physical_defense - physical_penetration
+			local magic_defense = (creature:getMonsterLevel() * 1) - magic_penetration -- MONSTER_CONFIG[creature:getType():tier()].magic_defense - magic_penetration
 			if primaryType == COMBAT_PHYSICALDAMAGE and physical_defense > 0 then
 				primaryDamage = primaryDamage - (primaryDamage * physical_defense / 100)
 			--	print("DMG redukcja physical "..primaryDamage.." ")
