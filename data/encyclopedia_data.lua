@@ -59,7 +59,7 @@ ENCYCLOPEDIA = {
       {
         "Black Bow",
         22866,
-        4,
+        9,
         {
           {
             11,
@@ -81,7 +81,7 @@ ENCYCLOPEDIA = {
       {
         "Dagger",
         34020,
-        5,
+        9,
         {
           {
             12,

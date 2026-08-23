@@ -41,7 +41,7 @@ BASE_ITEMS = {
     }, 0},
 
     {"Boots", 26438, { 
-      {10, 15}, -- Movement Speed
+      {21, 15}, -- Movement Speed
     }, 0},
 
     {"Recovery Ring", 38860, { 

@@ -5928,8 +5928,12 @@ function Player.setStatistics(self)
 --	if colleftInfo[self:getId()].attributesItems[247] then -- health regeneration percent per second
 --		healthRegen = healthRegen + (self:getMaxHealth() * (colleftInfo[self:getId()].attributesItems[247].value / 100))
 --	end
-	if colleftInfo[self:getId()].attributesItems[27] then
-		movementSpeed = movementSpeed + colleftInfo[self:getId()].attributesItems[27].value
+	local movementSpeedFlat = 0
+	if colleftInfo[self:getId()].attributesItems[10] then
+		movementSpeed = movementSpeed + colleftInfo[self:getId()].attributesItems[10].value
+	end
+	if colleftInfo[self:getId()].attributesItems[21] then
+		movementSpeedFlat = movementSpeedFlat + colleftInfo[self:getId()].attributesItems[21].value
 	end
 
 	self:addHealthGain(2, healthRegen, true)
@@ -5952,9 +5956,9 @@ function Player.setStatistics(self)
 		self:addEnergyShieldGainForce(1, energyshieldregen, true)
 	end
 
-	if movementSpeed then
+	if movementSpeed ~= 0 or movementSpeedFlat ~= 0 then
 		local movementSpeedCondition = Condition(CONDITION_HASTE)
-		local hasteAdded = self:getBaseSpeed() * movementSpeed / 100
+		local hasteAdded = (self:getBaseSpeed() * movementSpeed / 100) + movementSpeedFlat
 		movementSpeedCondition:setParameter(CONDITION_PARAM_TICKS, -1)
 		movementSpeedCondition:setParameter(CONDITION_PARAM_SUBID, 731567)
 		movementSpeedCondition:setFormula(0.0, hasteAdded, 0.0, hasteAdded)
