@@ -153,7 +153,6 @@ MONSTER_CONFIG = {
 }
 function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
 	-- GRACZ ATAKUJE
-	print("lol")
 	if attacker:isPlayer() then -- atakujacym jest gracz
 		local physical_penetration = attacker:getPhysicalPenetration()
 		local magic_penetration = attacker:getMagicPenetration()
@@ -161,10 +160,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local player_damage = attacker:getCharacterType()
 		local physical_damage = 0
 		local magic_damage = 0
-		print("lol")
 		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee
 			primaryDamage = player_damage
-			print(primaryDamage)
 			if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne wrecz
 			elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne wrecz
 			end
@@ -172,32 +169,37 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne
 		elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne
 		end
-		if creature:isMonster() then -- celem jest monster
-			local physical_defense = (creature:getMonsterLevel() * 1) - physical_penetration -- MONSTER_CONFIG[creature:getType():tier()].physical_defense - physical_penetration
-			local magic_defense = (creature:getMonsterLevel() * 1) - magic_penetration -- MONSTER_CONFIG[creature:getType():tier()].magic_defense - magic_penetration
-			if primaryType == COMBAT_PHYSICALDAMAGE and physical_defense > 0 then
-				primaryDamage = primaryDamage - (primaryDamage * physical_defense / 100)
-			--	print("DMG redukcja physical "..primaryDamage.." ")
-			elseif primaryType ~= COMBAT_PHYSICALDAMAGE and magic_defense > 0 then
-				primaryDamage = primaryDamage - (primaryDamage * magic_defense / 100)
-			--	print("DMG redukcja magic "..primaryDamage.." ")
+		local function getDefenseMultiplier(defFlat)
+			if defFlat >= 0 then
+				return 100 / (100 + defFlat)
+			else
+				local cappedDef = math.max(-60, defFlat)
+				return 2 - (100 / (100 - cappedDef))
 			end
 		end
-		if creature:isPlayer() then -- celem jest PLAYER
-			local physical_defense = creature:getPhysicalDefensePercent() - physical_penetration
-			local magic_defense = creature:getMagicDefensePercent() - magic_penetration
-			print("GRACZ DMG start "..primaryDamage.." ")
-			if primaryType == COMBAT_PHYSICALDAMAGE and physical_defense > 0 then
-				primaryDamage = primaryDamage - (primaryDamage * physical_defense / 100)
-				print("GRACZ DMG redukcja physical "..primaryDamage.." ")
-			elseif primaryType ~= COMBAT_PHYSICALDAMAGE and magic_defense > 0 then
-				primaryDamage = primaryDamage - (primaryDamage * magic_defense / 100)
-				print("GRACZ DMG redukcja magic "..primaryDamage.." ")
+
+		if creature:isMonster() then -- celem jest monster
+			local physical_defenseFlat = (15 + creature:getMonsterLevel() * 1) - physical_penetration
+			local magic_defenseFlat = (15 + creature:getMonsterLevel() * 1) - magic_penetration
+
+			if primaryType == COMBAT_PHYSICALDAMAGE then
+				local mult = getDefenseMultiplier(physical_defenseFlat)
+				primaryDamage = math.ceil(primaryDamage * mult)
+			else
+				local mult = getDefenseMultiplier(magic_defenseFlat)
+				primaryDamage = math.ceil(primaryDamage * mult)
 			end
---			if creature:getBuff(COURAGE) then -- Gorn
---				primaryDamage = primaryDamage * 0.70
---			end
-			print("GRACZ DMG redukcja KONCOWA "..primaryDamage.." ")
+		elseif creature:isPlayer() then -- celem jest PLAYER
+			local physical_defenseFlat = creature:getPhysicalDefense() - physical_penetration
+			local magic_defenseFlat = creature:getMagicDefense() - magic_penetration
+
+			if primaryType == COMBAT_PHYSICALDAMAGE then
+				local mult = getDefenseMultiplier(physical_defenseFlat)
+				primaryDamage = math.ceil(primaryDamage * mult)
+			else
+				local mult = getDefenseMultiplier(magic_defenseFlat)
+				primaryDamage = math.ceil(primaryDamage * mult)
+			end
 		end
 		--[[
 		if origin == ORIGIN_SPELL and attacker:getVocation():getId() == 3 then -- Juki

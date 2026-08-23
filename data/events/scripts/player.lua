@@ -781,8 +781,8 @@ function Player:onLook(thing, position, distance)
 			local mType = thing:getType()
 			local monsterGold = MONSTER_CONFIG[thing:getType():tier()].gold --goldFormula(monsterLevel)
 			local monsterExp = MONSTER_CONFIG[thing:getType():tier()].exp --calculateExp(self:getLevel(), monsterLevel, expFormula(monsterLevel))
-			local physical_defense = MONSTER_CONFIG[thing:getType():tier()].physical_defense
-			local magic_defense = MONSTER_CONFIG[thing:getType():tier()].magic_defense
+			local physical_defense = 15 + (thing:getMonsterLevel() * 1) --MONSTER_CONFIG[thing:getType():tier()].physical_defense
+			local magic_defense = 15 + (thing:getMonsterLevel() * 1) --MONSTER_CONFIG[thing:getType():tier()].magic_defense
 
 			description = string.format("%s\nPhysical Defense: %d | %s%%", description, physical_defense, math.ceil((physical_defense / (100 + physical_defense)) * 100))
 			description = string.format("%s\nMagic Defense: %d | %s%%", description, magic_defense, math.ceil((magic_defense / (100 + magic_defense)) * 100))

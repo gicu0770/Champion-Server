@@ -2027,7 +2027,9 @@ function generateServerBaseItemsByTypes()
           print("Something went wrong with item: "..item:getName() .. " ID: "..item:getId())
         end
 
-        table.insert(SERVER_BASE_ITEMS_BY_TYPES[i][itemType], SERVER_BASE_ITEMS[i][x])
+        if SERVER_BASE_ITEMS_BY_TYPES[i][itemType] then
+          table.insert(SERVER_BASE_ITEMS_BY_TYPES[i][itemType], SERVER_BASE_ITEMS[i][x])
+        end
       end
     end
   end

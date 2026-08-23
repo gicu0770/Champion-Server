@@ -1,3 +1,4 @@
+SIDE_BOSSES = SIDE_BOSSES or {}
 for _, data in pairs(SIDE_BOSSES) do
 	UNIQUE_BOSS_STORAGES[data.id] = data.storage
 end

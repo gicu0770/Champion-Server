@@ -4641,6 +4641,10 @@
 		
 		<attribute key="slotType" value="body" />
 	</item>
+	<item id="38786" article="a" name="energy ring">
+		<attribute key="weight" value="3200" />
+		<attribute key="slotType" value="ring" />
+	</item>
 	<item id="2655" article="a" name="red robe">
 		<attribute key="weight" value="2600" />
 		

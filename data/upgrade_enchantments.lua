@@ -118,7 +118,7 @@ US_ENCHANTMENTS = {
         name = "Physical Penetration",
         desc = "Penetration is a property of hits that reduces the target's effective resistance. (Physical) ",
         category = 1,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_PHYSICALDAMAGE,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -126,7 +126,7 @@ US_ENCHANTMENTS = {
         name = "Magic Penetration",
         desc = "Penetration is a property of hits that reduces the target's effective resistance. (Magic) ",
         category = 1,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_PHYSICALDAMAGE,
         itemType = US_ITEM_TYPES.ALL
     },
