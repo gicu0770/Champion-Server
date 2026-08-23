@@ -1,20 +1,28 @@
 POTION_CONFIG = {
   [7618] = {health = {100, 100}, level = 1, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
 
-  [7588] = {health = {180, 180}, level = 15, description = "Only for players of level 15 or above may drink this fluid.", effect = 304}, -- strong health potion
+  [7588] = {health = {180, 180}, level = 15, description = "Only for players of level 15 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- strong health potion
 
-  [7591] = {health = {220, 220}, level = 23, description = "Only for players of level 23 or above may drink this fluid.", effect = 304}, -- great health potion
+  [7591] = {health = {220, 220}, level = 23, description = "Only for players of level 23 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- great health potion
 
-  [8473] = {health = {280, 280}, level = 33, description = "Only for players of level 33 or above may drink this fluid.", effect = 304}, -- ultimate health potion
+  [8473] = {health = {280, 280}, level = 33, description = "Only for players of level 33 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- ultimate health potion
 
-  [26031] = {health = {340, 340}, level = 43, description = "Only for players of level 43 or above may drink this fluid.", effect = 306}, -- ultimate spirit potion
+  [26031] = {health = {340, 340}, level = 43, description = "Only for players of level 43 or above may drink this fluid.", effect = 306, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- ultimate spirit potion
 
-  [36912] = {health = {400, 400}, level = 52, description = "Only for players of level 52 or above may drink this fluid.", effect = 304}, -- health potion
+  [36912] = {health = {400, 400}, level = 52, description = "Only for players of level 52 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
 
-  [34256] = {health = {460, 460}, level = 62, description = "Only for players of level 62 or above may drink this fluid.", effect = 304}, -- health potion
+  [34256] = {health = {460, 460}, level = 62, description = "Only for players of level 62 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
 
-  [26917] = {health = {520, 520}, level = 72, description = "Only for players of level 72 or above may drink this fluid.", effect = 304}, -- energy shield
+  [26917] = {health = {520, 520}, level = 72, description = "Only for players of level 72 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- energy shield
 }
+
+function Player:sendPotionCharges(slot, currentCharges, maxCharges)
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_CASTSPELL, json.encode({
+    potionCharges = currentCharges,
+    maxCharges = maxCharges,
+    potionSlot = slot or 1
+  }))
+end
 
 local POTION_CHARGES_REGEN = {}
 
@@ -39,6 +47,7 @@ local function startPotionChargesRegen(playerId, itemUid, regenTime, maxCharges)
       local player = Player(playerId)
       if player then
         player:sendTextMessage(MESSAGE_STATUS_SMALL, "Potion charge restored (" .. currentCharges .. "/" .. maxCharges .. ").")
+        player:sendPotionCharges(1, currentCharges, maxCharges)
       end
 
       if currentCharges < maxCharges then
@@ -86,6 +95,7 @@ local function onUse(player, item, button)
 
     if charges <= 0 then
       player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have any potion charges left.")
+      player:sendPotionCharges(button, 0, maxCharges)
       return true
     end
 
@@ -93,6 +103,7 @@ local function onUse(player, item, button)
     charges = charges - 1
     item:setCustomAttribute("charges", charges)
     player:sendTextMessage(MESSAGE_STATUS_SMALL, "Potion used (" .. charges .. "/" .. maxCharges .. " charges remaining).")
+    player:sendPotionCharges(button, charges, maxCharges)
 
     -- Start regenerating charges every regenTime (default 3 seconds)
     local regenTime = potion.regenTime or 3000

@@ -6341,32 +6341,34 @@ function generateBaseItem(player, strongBox, base, monsterLevel, magicFind)
 	if not magicFind then magicFind = 0 end
 	local implictsSlots = #base[3]
 	item:setImplictSlots(implictsSlots)
-	if base[4] ~= 1 then
-		item:setCustomAttribute("no_stat", true)
+	local rarity = base[4] or 0
+	if type(rarity) == "string" then
+		local rName = rarity:lower()
+		if rName == "magic" or rName == "common" then
+			rarity = 1
+		elseif rName == "rare" or rName == "epic" then
+			rarity = 3
+		elseif rName == "legendary" then
+			rarity = 4
+		elseif rName == "unique" then
+			rarity = 5
+		elseif rName == "exalted" then
+			rarity = 6
+		else
+			rarity = 0
+		end
 	end
 
-	setLootItem(player, item, 0, monsterLevel, strongBox, magicFind)
+	--setLootItem(player, item, 0, monsterLevel, strongBox, magicFind)
+	item:setRarity(rarity)
 	item:setAttribute(ITEM_ATTRIBUTE_NAME, base[1])
 	item:setCustomAttribute("checksum", ITEM_CHECKSUM)
 
-	-- if self then
-	--   local raritySpecial = #US_CONFIG.RARITY
-	--   for i = raritySpecial, 1, -1 do
-	-- 	local raritySpecialChance = US_CONFIG.RARITY[i].chance
-	-- 	  raritySpecialChance = raritySpecialChance + ((raritySpecialChance * magicFind) / 100)
-
 	item:addRandomCrystalSlots(monsterLevel, magicFind)
 	for x = 1, implictsSlots do
-		local value = generateRandomImplictBaseValue(item, base[3][x][2], monsterLevel+1)  -- Second
-		local bonus_range = IMPLICT_BONUS[base[3][x][1]] or {0, 0}
-		local min = bonus_range[1]
-		local max = bonus_range[2]
-		value = value + math.random(min, max)
-		local slot = ItemType(item:getId()):getSlotPosition()
-		if (slot == 1072) then
-			value = math.ceil(value * TWO_HANDED_MULTIPLIER)
-		end
-		item:setImplictValue(x, base[3][x][1].."|".. value .."|".. monsterLevel+1)
+		local impId = base[3][x][1]
+		local value = base[3][x][2]
+		item:setImplictValue(x, impId .. "|" .. value .. "|" .. (monsterLevel + 1))
 	end
 
 	return item

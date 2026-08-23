@@ -17,6 +17,7 @@
 		<flag runonhealth="0" />
 
 	</flags>
+	<level min="1" max="1" />
 	<attacks>
 		<attack name="death" interval="2000" chance="100" range="3" min="-15" max="-15">
 			<attribute key="shootEffect" value="suddendeath" />

@@ -50,7 +50,7 @@ US_ENCHANTMENTS = {
         name = "Physical Attack",
         desc = "Increases physical damage dealt.",
         category = 1,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_PHYSICALDAMAGE,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -58,7 +58,7 @@ US_ENCHANTMENTS = {
         name = "Magic Attack",
         desc = "Increases magic damage dealt.",
         category = 1,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_ENERGYDAMAGE + COMBAT_EARTHDAMAGE + COMBAT_FIREDAMAGE + COMBAT_ICEDAMAGE + COMBAT_HOLYDAMAGE + COMBAT_DEATHDAMAGE,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -66,7 +66,7 @@ US_ENCHANTMENTS = {
         name = "Physical Defense",
         desc = "Reduces damage taken from physical damage.",
         category = 2,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_PHYSICALDAMAGE,    
         itemType = US_ITEM_TYPES.ALL
     },
@@ -74,7 +74,7 @@ US_ENCHANTMENTS = {
         name = "Magic Defense",
         desc = "Reduces damage taken from magic damage.",
         category = 2,
-        percent = true,
+        percent = false,
         combatDamage = COMBAT_ENERGYDAMAGE + COMBAT_EARTHDAMAGE + COMBAT_FIREDAMAGE + COMBAT_ICEDAMAGE + COMBAT_HOLYDAMAGE + COMBAT_DEATHDAMAGE,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -82,7 +82,7 @@ US_ENCHANTMENTS = {
         name = "Movement Speed",
         desc = "Increased your Movement Speed.",
         category = 2,
-        percent = true,
+        percent = false,
         combatType = US_TYPES.CONDITION,
         condition = CONDITION_HASTE,
         itemType = US_ITEM_TYPES.ALL

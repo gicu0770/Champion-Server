@@ -592,7 +592,7 @@ function Item.setItemLevel(self, level, first)
   else
     value = (oldLevel - level)
   end
-  if itemType:getAttack() > 0 then
+  if itemType:getAttack() > 0 and US_CONFIG.ATTACK_PER_ITEM_LEVEL and US_CONFIG.ATTACK_FROM_ITEM_LEVEL then
     if value >= US_CONFIG.ATTACK_PER_ITEM_LEVEL then
       finalValue = math.floor((value / US_CONFIG.ATTACK_PER_ITEM_LEVEL) * US_CONFIG.ATTACK_FROM_ITEM_LEVEL)
     else
@@ -612,7 +612,7 @@ function Item.setItemLevel(self, level, first)
       )
     end
   end
-  if itemType:getDefense() > 0 then
+  if itemType:getDefense() > 0 and US_CONFIG.DEFENSE_PER_ITEM_LEVEL and US_CONFIG.DEFENSE_FROM_ITEM_LEVEL then
     if value >= US_CONFIG.DEFENSE_PER_ITEM_LEVEL then
       finalValue = math.floor((value / US_CONFIG.DEFENSE_PER_ITEM_LEVEL) * US_CONFIG.DEFENSE_FROM_ITEM_LEVEL)
     else
@@ -632,7 +632,7 @@ function Item.setItemLevel(self, level, first)
       )
     end
   end
-  if itemType:getArmor() > 0 then
+  if itemType:getArmor() > 0 and US_CONFIG.ARMOR_PER_ITEM_LEVEL and US_CONFIG.ARMOR_FROM_ITEM_LEVEL then
     if value >= US_CONFIG.ARMOR_PER_ITEM_LEVEL then
       finalValue = math.floor((value / US_CONFIG.ARMOR_PER_ITEM_LEVEL) * US_CONFIG.ARMOR_FROM_ITEM_LEVEL)
     else
@@ -652,7 +652,7 @@ function Item.setItemLevel(self, level, first)
       )
     end
   end
-  if itemType:getHitChance() > 0 then
+  if itemType:getHitChance() > 0 and US_CONFIG.HITCHANCE_PER_ITEM_LEVEL and US_CONFIG.HITCHANCE_FROM_ITEM_LEVEL then
     if value >= US_CONFIG.HITCHANCE_PER_ITEM_LEVEL then
       finalValue = math.floor((value / US_CONFIG.HITCHANCE_PER_ITEM_LEVEL) * US_CONFIG.HITCHANCE_FROM_ITEM_LEVEL)
     else
@@ -673,16 +673,16 @@ function Item.setItemLevel(self, level, first)
     end
   end
   if first then
-    if itemType:getAttack() > 0 then
+    if itemType:getAttack() > 0 and US_CONFIG.ITEM_LEVEL_PER_ATTACK then
       level = level + math.floor(itemType:getAttack() / US_CONFIG.ITEM_LEVEL_PER_ATTACK)
     end
-    if itemType:getDefense() > 0 then
+    if itemType:getDefense() > 0 and US_CONFIG.ITEM_LEVEL_PER_DEFENSE then
       level = level + math.floor(itemType:getDefense() / US_CONFIG.ITEM_LEVEL_PER_DEFENSE)
     end
-    if itemType:getArmor() > 0 then
+    if itemType:getArmor() > 0 and US_CONFIG.ITEM_LEVEL_PER_ARMOR then
       level = level + math.floor(itemType:getArmor() / US_CONFIG.ITEM_LEVEL_PER_ARMOR)
     end
-    if itemType:getHitChance() > 0 then
+    if itemType:getHitChance() > 0 and US_CONFIG.ITEM_LEVEL_PER_HITCHANCE then
       level = level + math.floor(itemType:getHitChance() / US_CONFIG.ITEM_LEVEL_PER_HITCHANCE)
     end
   end

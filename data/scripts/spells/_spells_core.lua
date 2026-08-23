@@ -35,6 +35,22 @@ function LoginEvent.onLogin(player)
     end
   end
 
+  local playerId = player:getId()
+  addEvent(function()
+    local pla = Player(playerId)
+    if not pla then return end
+    for i = 1, 2 do
+      local item = pla:getSlotItem(15+i)
+      if item then
+        local potion = POTION_CONFIG[item:getId()]
+        if potion and potion.maxCharges then
+          local charges = item:getCustomAttribute("charges") or potion.maxCharges
+          pla:sendPotionCharges(i, charges, potion.maxCharges)
+        end
+      end
+    end
+  end, 300)
+
   return true
 end
 
@@ -114,7 +130,20 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
   end
 
   if opcode == ExtendedOPCodes.CODE_CASTSPELL then
-    if data[1] > 4 then 
+    if data and data.action == "getPotionCharges" then
+      local slot = data.slot or 1
+      local item = player:getSlotItem(15+slot)
+      if item then
+        local potion = POTION_CONFIG[item:getId()]
+        if potion and potion.maxCharges then
+          local charges = item:getCustomAttribute("charges") or potion.maxCharges
+          player:sendPotionCharges(slot, charges, potion.maxCharges)
+        end
+      end
+      return
+    end
+
+    if data[1] and data[1] > 4 then 
       player:usePotion(data[1]-4)
       return
     end

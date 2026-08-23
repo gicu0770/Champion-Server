@@ -12711,10 +12711,8 @@
 		<attribute key="weight" value="500" />
 	</item>
 	<item id="7402" article="a" name="dragon slayer">
-		<attribute key="weight" value="8200" />
-		<attribute key="attack" value="1" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="weight" value="100" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7403" article="a" name="berserker">
 		<attribute key="weight" value="1" />
@@ -35578,14 +35576,8 @@
 		<attribute key="weight" value="850" />
 	</item>
 	<item id="25522" article="a" name="iron Bow">
-		<attribute key="weight" value="4100" />
-		<attribute key="weaponType" value="distance" />
-		<attribute key="shootType" value="arrow"/>
-		<attribute key="ammoType" value="arrow" />
-		<attribute key="range" value="6" />
-		<attribute key="attack" value="12" />
-		<attribute key="hitChance" value="1" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="weight" value="100" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="25524" article="a" name="golden goblet">
 		<attribute key="description" value="It is given for reaching level 999. Awarded to |PLAYERNAME|." />
@@ -36878,9 +36870,7 @@
 	</item>	
 	<item id="26618" article="a" name="bronze axe">
 		<attribute key="weight" value="4200" />
-		<attribute key="attack" value="12"/>
-		<attribute key="weaponType" value="axe"/>
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head"/>
 	</item>	
 		<!-- MAGE SETY             333333333333333      -->	
 	<item id="26441" article="a" name="druid helmet"> 
@@ -36909,11 +36899,8 @@
 		<attribute key="weaponType" value="shield" />
 	</item>	
 	<item id="26445" article="a" name="druid rod">
-		<attribute key="weight" value="1900" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="149" />
-		<attribute key="attack" value="1"/>
-		<attribute key="range" value="5" />
+		<attribute key="weight" value="100" />
+		<attribute key="slotType" value="head" />
 	</item>	
 		<!-- MAGE SET T1 -->	
 	<item id="26458" article="a" name="T1 Magic Helmet">
@@ -39862,13 +39849,11 @@
 	</item>
 	<item id="36676" article="an" name="T2 Light knife">
 		<attribute key="weight" value="1200" />
-		<attribute key="weaponType" value="distance" />
-		<attribute key="shootType" value="knifeb" />
-		<attribute key="range" value="6" />
-		<attribute key="attack" value="1" />
-		<attribute key="hitChance" value="1" />
-		<attribute key="colored" value="true" />
-		<attribute key="maxHitChance" value="95" />
+		<attribute key="slotType" value="head" />
+	</item>
+	<item id="38860" article="an" name="T2 Light knife">
+		<attribute key="weight" value="1200" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="36677" article="an" name="T3 Light knife">
 		<attribute key="weight" value="1200" />
@@ -39881,14 +39866,8 @@
 		<attribute key="maxHitChance" value="95" />
 	</item>
 	<item id="36678" article="an" name="T4 Light knife">
-		<attribute key="weight" value="1200" />
-		<attribute key="weaponType" value="distance" />
-		<attribute key="shootType" value="knifed" />
-		<attribute key="range" value="6" />
-		<attribute key="attack" value="1" />
-		<attribute key="hitChance" value="1" />
-		<attribute key="colored" value="true" />
-		<attribute key="maxHitChance" value="95" />
+		<attribute key="weight" value="100" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="36679" article="an" name="T5 Light knife">
 		<attribute key="weight" value="1200" />

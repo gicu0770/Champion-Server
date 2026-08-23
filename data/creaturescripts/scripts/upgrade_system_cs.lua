@@ -153,6 +153,7 @@ MONSTER_CONFIG = {
 }
 function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
 	-- GRACZ ATAKUJE
+	print("lol")
 	if attacker:isPlayer() then -- atakujacym jest gracz
 		local physical_penetration = attacker:getPhysicalPenetration()
 		local magic_penetration = attacker:getMagicPenetration()
@@ -160,8 +161,10 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local player_damage = attacker:getCharacterType()
 		local physical_damage = 0
 		local magic_damage = 0
+		print("lol")
 		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee
 			primaryDamage = player_damage
+			print(primaryDamage)
 			if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne wrecz
 			elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne wrecz
 			end

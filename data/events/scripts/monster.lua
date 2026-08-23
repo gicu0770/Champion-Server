@@ -869,6 +869,7 @@ function Monster:onDropLoot(corpse)
   math.randomseed(os.time())
   local bagRarirty = 0
   local highestRarity = 0
+  --[[
   if SERVER_BOSS_UNIQUE_ITEMS[name] then
     bagRarirty = generateRandomBossUniqueItems(player, corpse, monsterLevel, name, lootItems, eliteMonster, strongBox, strongBoxBoss, uniqueChance, uniqueCount, magicFind)
     if bagRarirty > highestRarity then highestRarity = bagRarirty end
@@ -878,11 +879,13 @@ function Monster:onDropLoot(corpse)
     bagRarirty = generateBossItemDrop(player, corpse, name, lootItems, magicFind)
     if bagRarirty > highestRarity then highestRarity = bagRarirty end
   end
+  --]]
 
-  bagRarirty = generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
+--  bagRarirty = generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
   if bagRarirty > highestRarity then highestRarity = bagRarirty end
-
---  bagRarirty = generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, basicCount, basicChance, magicFind)
+  local basicCount = 1
+  local basicChance = 100000
+  bagRarirty = generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, basicCount, basicChance, magicFind)
 --  if bagRarirty > highestRarity then highestRarity = bagRarirty end
 --  bagRarirty = generateRandomUniqueItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, uniqueChance, uniqueCount, magicFind)
 --  if bagRarirty > highestRarity then highestRarity = bagRarirty end
@@ -1025,7 +1028,7 @@ function generateBossItemDrop(player, corpse, monsterName, lootItems, magicFind)
 
   return highestRarity
 end
-
+--[[
 function generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
   local tierDrops = CUSTOM_TIER_DROPS[monsterTier]
   if not tierDrops then
@@ -1119,6 +1122,7 @@ function generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, loot
 
   return highestRarity
 end
+--]]
 
 local FRAGMENTS_BOSS_SPECIAL = {
   {storage = PlayerStorage.monsterModifier_rift, itemID = 37132, orbID = 37131},
@@ -1792,7 +1796,7 @@ function generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, loot
   if basicCount > 0 then
     itemCount = itemCount + basicCount
   end
-  local countMob = math.min(10, (math.ceil(monsterLevel * 0.07)))
+  local countMob = math.min(10, (monsterLevel /10))
 --  print("ilosc na mlvl moba "..countMob.." basicChance "..basicChance.."")
   for i = 1, math.random(0, countMob) do
     if math.random(1, 100000) <= basicChance then
@@ -1802,17 +1806,14 @@ function generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, loot
   if itemCount == 0 then
     return 0
   end
-
   local dropLevel = monsterLevel
   if dropLevel > 100 then
     dropLevel = 100
   end
-
   local endList = #SERVER_BASE_ITEMS[dropLevel]
   if endList == 0 then
     return 0
   end
-
   for _ = 1, itemCount do
     local id = math.random(1, endList)
     local randBase = SERVER_BASE_ITEMS[dropLevel][id]
@@ -1826,7 +1827,6 @@ function generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, loot
       return 0
     end
     corpse:addItemEx(item, INDEX_WHEREEVER, FLAG_NOLIMIT)
-
     local rarity = addToLootInfo(item, lootItems, looted)
     if rarity > highestRarity then
       highestRarity = rarity

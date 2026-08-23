@@ -42,23 +42,151 @@ local RECOMB_CONFIG = {
   },
 }
 
+--[[
+  RECOMB_ITEM_RECIPES configuration:
+  Each entry defines a recipe that combines 1, 2, or 3 items into a new item.
+  Fields:
+    items        (table)   : Array of 1, 2, or 3 item IDs required for the combination.
+    gold         (number)  : [Optional] Gold cost required to combine.
+    result       (number)  : Item ID of the resulting item.
+    name         (string)  : [Optional] Custom name to set on the resulting item.
+    rarity       (number)  : [Optional] Rarity ID (0=Normal, 1=Common, 2=Magic, 3=Rare, 4=Legendary, 5=Unique).
+    itemlevel    (number)  : [Optional] Item level.
+    implicits    (table)   : [Optional] Array of implicit stats {attributeId, value, tier (default 0)}.
+    attributes   (table)   : [Optional] Array of modifiers/attributes {attributeId, value, tier (default 0)}.
+    keyTier      (number)  : [Optional] Key tier for dungeon keys.
+    isDungeonKey (boolean) : [Optional] Flag indicating dungeon key.
+    questStart   (number)  : [Optional] Quest ID to start upon creation.
+--]]
 local RECOMB_ITEM_RECIPES = {
-  { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29 }, -- Soulbound
-  { items = {34300, 5914, 34447}, result = 38725, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 28 }, -- Gravebound
-  { items = {5895, 29802, 11223}, result = 38726, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 27 }, -- Liberator
-  { items = {22532, 5809, 34292}, result = 38728, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 26 }, -- Eldritch
-  { items = {15546, 31543, 31540}, result = 38727, itemlevel = 2950, rarity = 5, keyTier = 132 }, -- Goblin King
+  -- Example: 1 item + Gold recipe (Bronze Axe + 1000 Gold = Ravenwing 7433 with 20 Physical Attack)
+  {
+    items = {26618},
+    gold = 1000,
+    result = 7433,
+    name = "Ravenwing",
+    rarity = 2,
+    implicits = {
+      {6, 20},   -- ID 6 (Physical Attack): +20
+    },
+  },
+
+  -- Example: 2 items recipe (Bronze Axe + Black Bow = Dragon Sword)
+  -- Bronze Axe (26618) + Black Bow (25522) -> Dragon Sword (7402) with 15 Physical Attack, 12% Attack Speed, Rarity 2
+  {
+    items = {26618, 25522},
+    result = 7402,
+    gold = 1000,
+    name = "Dragon Sword",
+    rarity = 2,
+    implicits = {
+      {6, 15},   -- ID 6 (Physical Attack): +15
+      {11, 12},  -- ID 11 (Attack Speed): +12%
+    },
+  },
+
+  {
+    items = {36676, 36676},
+    result = 36678,
+    gold = 1000,
+    name = "Culling Dagger",
+    rarity = 2,
+    implicits = {
+      {12, 15},   -- Critical Chance
+    },
+  },
+  {
+    items = {36676, 36676, 36676},
+    result = 7402,
+    gold = 1000,
+    name = "X X",
+    rarity = 2,
+    implicits = {
+      {12, 15},   -- Critical Chance
+    },
+  },
+
+  -- Dungeon Key Recipes (3 items)
+  { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29, isDungeonKey = true }, -- Soulbound
+  { items = {34300, 5914, 34447}, result = 38725, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 28, isDungeonKey = true }, -- Gravebound
+  { items = {5895, 29802, 11223}, result = 38726, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 27, isDungeonKey = true }, -- Liberator
+  { items = {22532, 5809, 34292}, result = 38728, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 26, isDungeonKey = true }, -- Eldritch
+  { items = {15546, 31543, 31540}, result = 38727, itemlevel = 2950, rarity = 5, keyTier = 132, isDungeonKey = true }, -- Goblin King
 }
 
-local RECOMB_ITEMS_BY_ID = {}
-for _, data in ipairs(RECOMB_ITEM_RECIPES) do
-  for i = 1, #data.items do
-    RECOMB_ITEMS_BY_ID[data.items[i]] = data
+local RECOMB_RECIPE_ITEM_IDS = {}
+local function buildRecipeIndex()
+  RECOMB_RECIPE_ITEM_IDS = {}
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    for _, itemId in ipairs(recipe.items) do
+      RECOMB_RECIPE_ITEM_IDS[itemId] = true
+    end
   end
 end
+buildRecipeIndex()
 
 function isRecipeItem(itemId)
-  return RECOMB_ITEMS_BY_ID[itemId] ~= nil
+  return RECOMB_RECIPE_ITEM_IDS[itemId] == true
+end
+
+local function areItemListsEqual(listA, listB)
+  if #listA ~= #listB then
+    return false
+  end
+  local a = {}
+  for i = 1, #listA do a[i] = listA[i] end
+  local b = {}
+  for i = 1, #listB do b[i] = listB[i] end
+  table.sort(a)
+  table.sort(b)
+  for i = 1, #a do
+    if a[i] ~= b[i] then
+      return false
+    end
+  end
+  return true
+end
+
+local function isItemListSubsetOfRecipe(placedIds, recipeItems)
+  if #placedIds > #recipeItems then
+    return false
+  end
+  local available = {}
+  for _, id in ipairs(recipeItems) do
+    available[id] = (available[id] or 0) + 1
+  end
+  for _, id in ipairs(placedIds) do
+    if not available[id] or available[id] <= 0 then
+      return false
+    end
+    available[id] = available[id] - 1
+  end
+  return true
+end
+
+local function findMatchingRecipe(placedIds)
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    if areItemListsEqual(placedIds, recipe.items) then
+      return recipe
+    end
+  end
+  return nil
+end
+
+local function findCandidateRecipe(placedIds)
+  -- 1. Check exact match
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    if areItemListsEqual(placedIds, recipe.items) then
+      return recipe, true
+    end
+  end
+  -- 2. Check subset match
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    if isItemListSubsetOfRecipe(placedIds, recipe.items) then
+      return recipe, false
+    end
+  end
+  return nil, false
 end
 
 local LoginEvent = CreatureEvent("RecombLoginEvent")
@@ -174,21 +302,17 @@ function Player:addItemToRecomb(id, item)
     end
   end
 
-  local uid = item:getRealUID()
   local mods = {}
-
   local count = 1
-  
-  -- For recipe items, track which item IDs have been added
-  local recipeItemIds = {itemId}
-  
+  local placedItemIds = {itemId}
+
   for i = 1, 3 do
     if i == id then
       goto continue
     end
-  
+
     local otherItemUID = self:getStorageValue(PlayerStorage.recomb + i)
-    if otherItemUID == -1 then
+    if otherItemUID == -1 or otherItemUID == 0 then
       goto continue
     end
 
@@ -215,16 +339,8 @@ function Player:addItemToRecomb(id, item)
       return
     end
 
-    -- For recipe items, check if we're adding a duplicate item ID
     if categoryType == TYPE_RECIPE then
-      local otherItemId = otherItem:getId()
-      for _, existingId in ipairs(recipeItemIds) do
-        if existingId == otherItemId then
-          self:sendTooltipMessage("You can't add duplicate items to this recipe.")
-          return
-        end
-      end
-      table.insert(recipeItemIds, otherItemId)
+      table.insert(placedItemIds, otherItem:getId())
     end
 
     if config.checkRarity then
@@ -256,6 +372,16 @@ function Player:addItemToRecomb(id, item)
     ::continue::
   end
 
+  local candidateRecipe = nil
+  local isCompleteRecipe = false
+  if categoryType == TYPE_RECIPE then
+    candidateRecipe, isCompleteRecipe = findCandidateRecipe(placedItemIds)
+    if not candidateRecipe then
+      self:sendTooltipMessage("No recipe found for this combination.")
+      return
+    end
+  end
+
   local bonuses = item:getBonusAttributes()
   if bonuses then
     for _, bonus in ipairs(bonuses) do
@@ -268,6 +394,7 @@ function Player:addItemToRecomb(id, item)
   if colorItem > 0 then
     rarity = colorItem
   end
+
   local dataToSend = {
     i = itemType:getClientId(),
     u = uid,
@@ -275,17 +402,37 @@ function Player:addItemToRecomb(id, item)
     c = count,
   }
 
-  if isRecipe then
-    dataToSend.res = { RECOMB_ITEMS_BY_ID[itemId].result, RECOMB_ITEMS_BY_ID[itemId].itemlevel, RECOMB_ITEMS_BY_ID[itemId].rarity, RECOMB_ITEMS_BY_ID[itemId].keyTier}
+  if isRecipe and candidateRecipe then
+    dataToSend.res = {
+      candidateRecipe.result,
+      candidateRecipe.itemlevel or 0,
+      candidateRecipe.rarity or 0,
+      candidateRecipe.keyTier or 0
+    }
+    if candidateRecipe.implicits then
+      dataToSend.resImps = candidateRecipe.implicits
+    end
+    if candidateRecipe.attributes then
+      dataToSend.resMods = candidateRecipe.attributes
+    end
+    if candidateRecipe.gold then
+      dataToSend.gold = candidateRecipe.gold
+    end
+    dataToSend.ready = isCompleteRecipe
+    dataToSend.reqCount = #candidateRecipe.items
+  else
+    dataToSend.ready = (count == 3)
   end
 
   if categoryType == TYPE_CRYSTAL then
     dataToSend.cd = crystalData
   elseif categoryType == TYPE_RELICT then
     local relictData = BOSS_DROPS_BY_ID[item:getId()]
-    dataToSend.rd = relictData.imps
-    dataToSend.wi = relictData.weight
-    dataToSend.mods = mods
+    if relictData then
+      dataToSend.rd = relictData.imps
+      dataToSend.wi = relictData.weight
+      dataToSend.mods = mods
+    end
   end
 
   self:setStorageValue(PlayerStorage.recomb + id, uid)
@@ -304,73 +451,81 @@ function Player:combaineItems()
   end
 
   local items = {}
-  local finalId, finalRarity, categoryType, config
+  local finalId, finalRarity, categoryType
   local itemLevel = 0
+  local relictBox = self:getSlotItem(CONST_SLOT_RELICT_BOX)
+
   for i = 1, 3 do
-    local tempItem = Game.getRealUniqueItem(self:getStorageValue(PlayerStorage.recomb + i))
-    if not tempItem then
-      self:sendTooltipMessage("Something went wrong, try again! ERROR #2")
-      self:setStorageValue(PlayerStorage.recomb + i, -1)
-      self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.REMOVE_ITEM, i}))
-      return
-    end
-
-    local relictBox = self:getSlotItem(CONST_SLOT_RELICT_BOX)
-    local container = tempItem:getParent()
-    if container and container == relictBox then
-      self:sendTooltipMessage("You cannot recombine items from Relict Box.")
-      self:setStorageValue(PlayerStorage.recomb + i, -1)
-      self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.REMOVE_ITEM, i}))
-      return
-    end
-
-    local parent = tempItem:getTopParent()
-    if parent ~= self then
-      local pid = 0
-      if parent:isItem() then
-        pid = parent:getCustomAttribute("pid") or 0
-      end
-
-      if pid ~= self:getId() then
-        self:sendTooltipMessage("Something went wrong, try again! ERROR #3")
+    local uid = self:getStorageValue(PlayerStorage.recomb + i)
+    if uid and uid ~= -1 and uid ~= 0 then
+      local tempItem = Game.getRealUniqueItem(uid)
+      if not tempItem then
+        self:sendTooltipMessage("Something went wrong, try again! ERROR #2")
         self:setStorageValue(PlayerStorage.recomb + i, -1)
         self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.REMOVE_ITEM, i}))
         return
       end
-    end
 
-    local id = tempItem:getId()
-    local rarity = tempItem:getRarityId()
-    if not categoryType then
-      categoryType = getItemType(tempItem)
-      local isRecipe = isRecipeItem(tempItem:getId())
-      if isRecipe then
-        categoryType = TYPE_RECIPE
+      local container = tempItem:getParent()
+      if container and container == relictBox then
+        self:sendTooltipMessage("You cannot recombine items from Relict Box.")
+        self:setStorageValue(PlayerStorage.recomb + i, -1)
+        self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.REMOVE_ITEM, i}))
+        return
       end
-    end
 
-    itemLevel = itemLevel + (tempItem:getItemLevel() or 0)
+      local parent = tempItem:getTopParent()
+      if parent ~= self then
+        local pid = 0
+        if parent:isItem() then
+          pid = parent:getCustomAttribute("pid") or 0
+        end
 
-    if categoryType ~= TYPE_RECIPE then
-      for _, data in ipairs(items) do
-        if data.id ~= id or data.rarity ~= rarity then
-          self:sendTooltipMessage("Something went wrong, try again! ERROR #11")
+        if pid ~= self:getId() then
+          self:sendTooltipMessage("Something went wrong, try again! ERROR #3")
+          self:setStorageValue(PlayerStorage.recomb + i, -1)
+          self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.REMOVE_ITEM, i}))
           return
         end
       end
+
+      local id = tempItem:getId()
+      local rarity = tempItem:getRarityId()
+      if not categoryType then
+        categoryType = getItemType(tempItem)
+        local isRecipe = isRecipeItem(id)
+        if isRecipe then
+          categoryType = TYPE_RECIPE
+        end
+      end
+
+      itemLevel = itemLevel + (tempItem:getItemLevel() or 0)
+
+      if categoryType ~= TYPE_RECIPE then
+        for _, data in ipairs(items) do
+          if data.id ~= id or data.rarity ~= rarity then
+            self:sendTooltipMessage("Something went wrong, try again! ERROR #11")
+            return
+          end
+        end
+      end
+
+      table.insert(items, {
+        slot = i,
+        item = tempItem,
+        id = id,
+        rarity = rarity
+      })
+
+      finalId = id
+      finalRarity = rarity
     end
-
-    items[i] = {
-      item = tempItem,
-      id = id,
-      rarity = rarity
-    }
-
-    finalId = id
-    finalRarity = rarity
   end
 
-  itemLevel = math.ceil(itemLevel / 3)
+  if #items == 0 then
+    self:sendTooltipMessage("No items in fusion altar.")
+    return
+  end
 
   if not categoryType then
     self:sendTooltipMessage("This Item is not upgradable.")
@@ -382,10 +537,114 @@ function Player:combaineItems()
     self:sendTooltipMessage("You can't recombine this item.")
     return
   end
+
+  if categoryType == TYPE_RECIPE then
+    local placedIds = {}
+    for _, data in ipairs(items) do
+      table.insert(placedIds, data.id)
+    end
+
+    local recipeData = findMatchingRecipe(placedIds)
+    if not recipeData then
+      self:sendTooltipMessage("Recipe not found or incomplete! ERROR #9")
+      return
+    end
+
+    if recipeData.gold and recipeData.gold > 0 then
+      if self:getTotalMoney() < recipeData.gold then
+        self:sendTooltipMessage("You need " .. recipeData.gold .. " gold to combine this recipe.")
+        return
+      end
+    end
+
+    local resultItem = Game.createItem(recipeData.result, 1)
+    if not resultItem then
+      self:sendTooltipMessage("Failed to create recipe result! ERROR #10")
+      return
+    end
+
+    if recipeData.gold and recipeData.gold > 0 then
+      if not self:removeTotalMoney(recipeData.gold, true) then
+        self:sendTooltipMessage("You don't have enough gold!")
+        return
+      end
+    end
+
+    for _, data in ipairs(items) do
+      data.item:remove()
+    end
+
+    if recipeData.name then
+      resultItem:setAttribute(ITEM_ATTRIBUTE_NAME, recipeData.name)
+    end
+
+    if recipeData.rarity then
+      resultItem:setRarity(recipeData.rarity)
+    end
+
+    if recipeData.itemlevel then
+      resultItem:setItemLevel(recipeData.itemlevel)
+      resultItem:setCustomAttribute("item_level", recipeData.itemlevel)
+    end
+
+    if recipeData.keyTier then
+      resultItem:setCustomAttribute("keytier", recipeData.keyTier)
+      resultItem:setCustomAttribute("DungeonKey", true)
+    elseif recipeData.isDungeonKey then
+      resultItem:setCustomAttribute("DungeonKey", true)
+    end
+
+    if recipeData.implicits and #recipeData.implicits > 0 then
+      resultItem:setImplictSlots(#recipeData.implicits)
+      for x = 1, #recipeData.implicits do
+        local imp = recipeData.implicits[x]
+        local impId = imp[1]
+        local impVal = imp[2]
+        local impTier = imp[3] or 0
+        resultItem:setImplictValue(x, impId .. "|" .. impVal .. "|" .. impTier)
+      end
+    end
+
+    if recipeData.attributes and #recipeData.attributes > 0 then
+      resultItem:setModifiersSlots(#recipeData.attributes)
+      for x = 1, #recipeData.attributes do
+        local attr = recipeData.attributes[x]
+        local attrId = attr[1]
+        local attrVal = attr[2]
+        local attrTier = attr[3] or 0
+        resultItem:setAttributeValue(x, attrId .. "|" .. attrVal .. "|" .. attrTier)
+      end
+    end
+
+    resultItem:setCustomAttribute("checksum", ITEM_CHECKSUM)
+
+    self:addItemEx(resultItem)
+
+    if recipeData.questStart then
+      if not self:completedQuest(recipeData.questStart) then
+        self:startQuest(recipeData.questStart)
+      end
+    end
+
+    for i = 1, 3 do
+      self:setStorageValue(PlayerStorage.recomb + i, -1)
+    end
+    self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.CLEAR_DATA}))
+    self:sendTooltipMessage("Recipe completed successfully!")
+    return
+  end
+
+  -- Crystals and Relicts require exactly 3 items
+  if #items ~= 3 then
+    self:sendTooltipMessage("You need 3 items to combine.")
+    return
+  end
+
+  itemLevel = math.ceil(itemLevel / 3)
+
   local newItem = Game.createItem(finalId, 1)
   if not newItem then
     self:sendTooltipMessage("Something went wrong, try again! ERROR #4")
-    newItem:remove()
     return
   end
 
@@ -401,75 +660,6 @@ function Player:combaineItems()
     newItem:setCustomAttribute("crystal", true)
     newItem:setCustomAttribute("slots", 1)
     newItem:setAttributeValue(1, ""..crystalData[1].."|"..crystalData[2][finalRarity+1].."|0|0")
-  elseif categoryType == TYPE_RECIPE then
-    -- Handle recipe items
-    -- Collect all item IDs from the slots
-    local itemIds = {}
-    for _, data in ipairs(items) do
-      table.insert(itemIds, data.id)
-    end
-    table.sort(itemIds)
-    
-    -- Find matching recipe
-    local recipeData = nil
-    for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
-      local recipeItems = {}
-      for _, itemId in ipairs(recipe.items) do
-        table.insert(recipeItems, itemId)
-      end
-      table.sort(recipeItems)
-      
-      -- Check if all items match
-      local matches = true
-      if #recipeItems == #itemIds then
-        for i = 1, #recipeItems do
-          if recipeItems[i] ~= itemIds[i] then
-            matches = false
-            break
-          end
-        end
-        if matches then
-          recipeData = recipe
-          break
-        end
-      end
-    end
-    
-    if not recipeData then
-      self:sendTooltipMessage("Recipe not found! ERROR #9")
-      newItem:remove()
-      return
-    end
-
-    newItem:remove()
-
-    local resultItem = Game.createItem(recipeData.result, 1)
-    if not resultItem then
-      self:sendTooltipMessage("Failed to create recipe result! ERROR #10")
-      return
-    end
-
-    for _, data in ipairs(items) do
-      data.item:remove()
-    end
-    resultItem:setCustomAttribute("keytier", recipeData.keyTier)
-    resultItem:setItemLevel(recipeData.itemlevel)
-    resultItem:setCustomAttribute("DungeonKey", true)
-    resultItem:setRarity(recipeData.rarity or 0)
-    self:addItemEx(resultItem)
-    if recipeData.questStart then
-      if not self:completedQuest(recipeData.questStart) then
-        self:startQuest(recipeData.questStart)
-      end
-    end
-
-
-    for i = 1, 3 do
-      self:setStorageValue(PlayerStorage.recomb + i, -1)
-    end
-    self:sendExtendedOpcode(ExtendedOPCodes.CODE_ROCOMBOBULATOR, json.encode({ACTIONS.CLEAR_DATA}))
-    self:sendTooltipMessage("Recipe completed successfully!")
-    return
   elseif categoryType == TYPE_RELICT then
     local dataItem = BOSS_DROPS_BY_ID[finalId]
     if not dataItem then
