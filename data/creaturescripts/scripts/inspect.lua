@@ -557,12 +557,12 @@ function getTalents(target)
     {}
   }
 
-  for i = 1, 10 do
+  for i = 1, 6 do
     current_talents[1][i] = target:getStorageValue(TALENTS_STORAGE + i)
   end
 
   if second_talent ~= -1 then
-    for i = 1, 10 do
+    for i = 1, 6 do
       current_talents[2][i] = target:getStorageValue(TALENTS_STORAGE + 10 + i)
     end
 

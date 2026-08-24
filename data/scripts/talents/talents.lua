@@ -1,10 +1,10 @@
 TALENTS = {
   [1] = dofile('data/scripts/talents/data/sorcerer.lua'),
-  [2] = dofile('data/scripts/talents/data/druid.lua'),
-  [3] = dofile('data/scripts/talents/data/archer.lua'),
-  [4] = dofile('data/scripts/talents/data/knight.lua'),
-  [17] = dofile('data/scripts/talents/data/paladin.lua'),
-  [21] = dofile('data/scripts/talents/data/shadow.lua'),
+  [2] = dofile('data/scripts/talents/data/sorcerer.lua'),
+  [3] = dofile('data/scripts/talents/data/sorcerer.lua'),
+  [4] = dofile('data/scripts/talents/data/sorcerer.lua'),
+  [17] = dofile('data/scripts/talents/data/sorcerer.lua'),
+  [21] = dofile('data/scripts/talents/data/sorcerer.lua'),
 }
 
 local specializations = {
@@ -31,29 +31,20 @@ end
 
 local talentsLinesLevel = {
   [1] = {
-    3,
-    8,
-    15,
-    23,
-    30,
+    6,
+    14,
+    22,
+    31,
     40,
-    50,
-    60,
-    70,
-    80,
-    90
+    49
   },
   [2] = {
-    35,
-    38,
+    6,
+    14,
+    22,
+    31,
     40,
-    42,
-    45,
-    55,
-    65,
-    75,
-    85,
-    95
+    49
   }
 }
 
@@ -183,7 +174,7 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
     end
 
     player:setStorageValue(SECOND_TALENT, secondTalent)
-    for i = 1, 10 do 
+    for i = 1, #talentsLinesLevel[1] do 
       player:removeTalent(i, true)
     end
     player:sendExtendedOpcode(ExtendedOPCodes.CODE_TALENTS, json.encode({4}))
@@ -310,7 +301,7 @@ function Player:sendCurrentTalents(login)
     show_button = true
   end
 
-  for i = 1, 10 do
+  for i = 1, #talentsLinesLevel[1] do
     current_talents[1][i] = self:getStorageValue(TALENTS_STORAGE + i)
     if current_talents[1][i] ~= -1 then
       self:changeTalent(i, current_talents[1][i], false, true)
@@ -321,7 +312,7 @@ function Player:sendCurrentTalents(login)
   end
 
   if second_talent ~= -1 then
-    for i = 1, 10 do
+    for i = 1, #talentsLinesLevel[2] do
       current_talents[2][i] = self:getStorageValue(TALENTS_STORAGE + 10 + i)
       if current_talents[2][i] ~= -1 then
         self:changeTalent(i, current_talents[2][i], true, true)
@@ -417,7 +408,7 @@ function Player:removeTalent(lineId, secondTalent)
     talents_data = TALENTS[self:getStorageValue(SECOND_TALENT)]
     storage_id = storage_id + 10
   else
-    talents_data = TALENTS[convertVocation[self:getVocation():getId()]]
+    talents_data = TALENTS[convertVocation[self:getVocation():getId()]] or TALENTS[1]
   end
 
   local current_talent = self:getStorageValue(storage_id)
@@ -425,7 +416,7 @@ function Player:removeTalent(lineId, secondTalent)
     return
   end
 
-  local talent = talents_data[lineId][current_talent]
+  local talent = talents_data and talents_data[lineId] and talents_data[lineId][current_talent]
   if not talent then
     print("Talent not found.: " .. current_talent .. " - " .. lineId)
     return
@@ -461,7 +452,7 @@ function Player:changeTalent(lineId, talentId, secondTalent, login)
     level_needed = talentsLinesLevel[2][lineId]
     storage_id = storage_id + 10
   else
-    talents_data = TALENTS[convertVocation[self:getVocation():getId()]]
+    talents_data = TALENTS[convertVocation[self:getVocation():getId()]] or TALENTS[1]
     level_needed = talentsLinesLevel[1][lineId]
   end
 
@@ -550,14 +541,14 @@ function Player:changeTalent(lineId, talentId, secondTalent, login)
     self:setCollectionInfo()
 
     local show_button = false
-    for i = 1, 10 do
+    for i = 1, #talentsLinesLevel[1] do
       if self:getStorageValue(TALENTS_STORAGE + i) == -1 and playerLevel >= talentsLinesLevel[1][i] then
         show_button = true
       end
     end
 
     if secondTalent then
-      for i = 1, 10 do
+      for i = 1, #talentsLinesLevel[2] do
         if self:getStorageValue(TALENTS_STORAGE + 10 + i) == -1 and playerLevel >= talentsLinesLevel[2][i] then
           show_button = true
         end

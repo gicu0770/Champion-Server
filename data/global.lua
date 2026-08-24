@@ -1882,36 +1882,11 @@ function Player.setCollectionInfo(self)
 	end
 	attack = total + attack
 
-	local talents_data = TALENTS[convertVocation[self:getVocation():getId()]]
-	for i = 1, 10 do
-		local talentId = self:getStorageValue(435002 + i)
-		local talent = talents_data[i][talentId]
-		if talent then
-			for x = 1, #talent.enchants do
-				local enchant = talent.enchants[x]
-				local attr = US_ENCHANTMENTS[enchant[1]]
-				local value = enchant[2]
-				if attributesTables[enchant[1]] ~= nil then
-					attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
-					attributesTables[enchant[1]].text = attr.name
-				else
-					attributesTables[enchant[1]] = {
-						text = attr.name,
-						value = value,
-						category = attr.category,
-						percent = attr.percent
-					}
-				end
-			end
-		end
-	end
-
-	local second_talent = self:getStorageValue(435001)
-	if second_talent ~= -1 then
-		local talents_data = TALENTS[second_talent]
-		for i = 1, 10 do 
-			local talentId = self:getStorageValue(435002 + 10 + i)
-			local talent = talents_data[i][talentId]
+	local talents_data = TALENTS[convertVocation[self:getVocation():getId()]] or TALENTS[1]
+	if talents_data then
+		for i = 1, #talents_data do
+			local talentId = self:getStorageValue(435002 + i)
+			local talent = talents_data[i] and talents_data[i][talentId]
 			if talent then
 				for x = 1, #talent.enchants do
 					local enchant = talent.enchants[x]
@@ -1925,8 +1900,37 @@ function Player.setCollectionInfo(self)
 							text = attr.name,
 							value = value,
 							category = attr.category,
-							percent = attr.percent,
+							percent = attr.percent
 						}
+					end
+				end
+			end
+		end
+	end
+
+	local second_talent = self:getStorageValue(435001)
+	if second_talent ~= -1 then
+		local talents_data = TALENTS[second_talent] or TALENTS[1]
+		if talents_data then
+			for i = 1, #talents_data do 
+				local talentId = self:getStorageValue(435002 + 10 + i)
+				local talent = talents_data[i] and talents_data[i][talentId]
+				if talent then
+					for x = 1, #talent.enchants do
+						local enchant = talent.enchants[x]
+						local attr = US_ENCHANTMENTS[enchant[1]]
+						local value = enchant[2]
+						if attributesTables[enchant[1]] ~= nil then
+							attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
+							attributesTables[enchant[1]].text = attr.name
+						else
+							attributesTables[enchant[1]] = {
+								text = attr.name,
+								value = value,
+								category = attr.category,
+								percent = attr.percent,
+							}
+						end
 					end
 				end
 			end
