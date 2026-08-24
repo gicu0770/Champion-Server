@@ -49,6 +49,8 @@ function LoginEvent.onLogin(player)
         end
       end
     end
+    pla:updateMaxSpellLevelEver()
+    pla:sendSpellUpgradeInfo()
   end, 300)
 
   return true
@@ -143,6 +145,20 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
       return
     end
 
+    if data and data.action == "requestSpellPoints" then
+      player:updateMaxSpellLevelEver()
+      player:sendSpellUpgradeInfo()
+      return
+    end
+
+    if data and data.action == "upgradeSpell" then
+      local slot = tonumber(data.slot)
+      if slot then
+        player:upgradeSpellSlot(slot)
+      end
+      return
+    end
+
     if data[1] and data[1] > 4 then 
       player:usePotion(data[1]-4)
       return
@@ -233,9 +249,208 @@ function Player:sendSpellTooltip(item, floor)
   return true
 end
 
+SPELL_UPGRADE_MILESTONES = {
+  1,   -- Level 1: Point #1 (Unlock Skill 1 or Skill 2)
+  4,   -- Level 4: Point #2 (Unlock Skill 2 or Skill 1)
+  8,   -- Level 8: Point #3 (Skill 1 or Skill 2 -> Lvl 2)
+  12,  -- Level 12: Point #4 (Skill 1 or Skill 2 -> Lvl 2)
+  15,  -- Level 15: Point #5 (Unlock Ultimate Lvl 1)
+  18,  -- Level 18: Point #6 (Skill 1 or Skill 2 -> Lvl 3)
+  22,  -- Level 22: Point #7 (Skill 1 or Skill 2 -> Lvl 3)
+  26,  -- Level 26: Point #8 (Skill 1 or Skill 2 -> Lvl 4)
+  30,  -- Level 30: Point #9 (Upgrade Ultimate Lvl 2)
+  34,  -- Level 34: Point #10 (Skill 1 or Skill 2 -> Lvl 4)
+  38,  -- Level 38: Point #11 (Skill 1 or Skill 2 -> Lvl 5 - MAX)
+  42,  -- Level 42: Point #12 (Skill 1 or Skill 2 -> Lvl 5 - MAX)
+  50,  -- Level 50: Point #13 (Upgrade Ultimate Lvl 3 - MAX)
+}
+
+function getEarnedSpellPoints(maxLevel)
+  local points = 0
+  for _, reqLevel in ipairs(SPELL_UPGRADE_MILESTONES) do
+    if maxLevel >= reqLevel then
+      points = points + 1
+    end
+  end
+  return points
+end
+
+function getMaxAllowedSpellLevel(slot, maxLevel)
+  if slot == 1 or slot == 2 then
+    if maxLevel < 1 then return 0
+    elseif maxLevel < 8 then return 1
+    elseif maxLevel < 18 then return 2
+    elseif maxLevel < 26 then return 3
+    elseif maxLevel < 38 then return 4
+    else return 5
+    end
+  elseif slot == 3 then
+    if maxLevel < 15 then return 0
+    elseif maxLevel < 30 then return 1
+    elseif maxLevel < 50 then return 2
+    else return 3
+    end
+  end
+  return 0
+end
+
+function Player:getMaxSpellLevelEver()
+  local currentStored = self:getStorageValue(PlayerStorage.maxSpellLevelReached)
+  local playerLevel = self:getLevel()
+  if currentStored < 1 then
+    currentStored = math.max(1, playerLevel)
+    self:setStorageValue(PlayerStorage.maxSpellLevelReached, currentStored)
+  end
+  if playerLevel > currentStored then
+    currentStored = playerLevel
+    self:setStorageValue(PlayerStorage.maxSpellLevelReached, currentStored)
+  end
+  return currentStored
+end
+
+function Player:updateMaxSpellLevelEver()
+  local currentStored = self:getStorageValue(PlayerStorage.maxSpellLevelReached)
+  local playerLevel = self:getLevel()
+  if currentStored < 1 then
+    self:setStorageValue(PlayerStorage.maxSpellLevelReached, math.max(1, playerLevel))
+  elseif playerLevel > currentStored then
+    self:setStorageValue(PlayerStorage.maxSpellLevelReached, playerLevel)
+  end
+end
+
+function Player:getSpellUpgradeState()
+  local maxLevel = self:getMaxSpellLevelEver()
+  local totalEarned = getEarnedSpellPoints(maxLevel)
+  local totalSpent = 0
+  local spellsInfo = {}
+
+  for slot = 1, 3 do
+    local item = self:getSlotItem(11 + slot)
+    local curLevel = item and item:getCustomAttribute("level") or 0
+    totalSpent = totalSpent + curLevel
+    local maxAllowed = getMaxAllowedSpellLevel(slot, maxLevel)
+    local maxRank = (slot == 3) and 3 or 5
+    spellsInfo[slot] = {
+      level = curLevel,
+      maxAllowed = maxAllowed,
+      maxRank = maxRank,
+      hasItem = (item ~= nil),
+      canUpgrade = false
+    }
+  end
+
+  local availablePoints = math.max(0, totalEarned - totalSpent)
+
+  for slot = 1, 3 do
+    local info = spellsInfo[slot]
+    if availablePoints > 0 and info.hasItem and info.level < info.maxAllowed and info.level < info.maxRank then
+      info.canUpgrade = true
+    end
+  end
+
+  return {
+    action = "spellPoints",
+    points = availablePoints,
+    maxLevel = maxLevel,
+    spells = spellsInfo
+  }
+end
+
+function Player:sendSpellUpgradeInfo()
+  local state = self:getSpellUpgradeState()
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_CASTSPELL, json.encode(state))
+end
+
+function Player:upgradeSpellSlot(slot)
+  if slot < 1 or slot > 3 then
+    return false
+  end
+
+  local item = self:getSlotItem(11 + slot)
+  if not item then
+    self:sendTextMessage(MESSAGE_STATUS_SMALL, "No spell rune equipped in this slot.")
+    return false
+  end
+
+  local maxLevel = self:getMaxSpellLevelEver()
+  local totalEarned = getEarnedSpellPoints(maxLevel)
+  local totalSpent = 0
+  local curLevels = {}
+  for s = 1, 3 do
+    local spItem = self:getSlotItem(11 + s)
+    curLevels[s] = spItem and spItem:getCustomAttribute("level") or 0
+    totalSpent = totalSpent + curLevels[s]
+  end
+
+  local availablePoints = math.max(0, totalEarned - totalSpent)
+  if availablePoints <= 0 then
+    self:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have any spell upgrade points.")
+    return false
+  end
+
+  local currentLevel = curLevels[slot]
+  local maxAllowed = getMaxAllowedSpellLevel(slot, maxLevel)
+  local maxRank = (slot == 3) and 3 or 5
+
+  if currentLevel >= maxAllowed or currentLevel >= maxRank then
+    if slot == 3 and maxLevel < 15 then
+      self:sendTextMessage(MESSAGE_STATUS_SMALL, "Ultimate spell unlocks at Level 15.")
+    else
+      self:sendTextMessage(MESSAGE_STATUS_SMALL, "You cannot upgrade this spell further at your level.")
+    end
+    return false
+  end
+
+  local newLevel = currentLevel + 1
+  item:setCustomAttribute("level", newLevel)
+
+  -- Invalidate cache so applySupportSpells recalculates with new level
+  local realUID = item:getRealUID()
+  if realUID and realUID ~= 0 then
+    SPELL_CACHE[realUID] = nil
+  end
+
+  -- Update rarity if applicable
+  local rarity = 0
+  if newLevel >= 5 then
+    rarity = 1
+  end
+  item:setRarity(rarity)
+  item:updateSelf()
+
+  -- Re-apply supports if SPELL exists
+  local spellName = item:getSpellName()
+  local SPELL = SPELLS[spellName]
+  if SPELL then
+    item:applySupportSpells(SPELL:getConfig(), self:getId())
+  end
+
+  -- In-game magic effect & text
+  local pos = self:getPosition()
+  pos:sendMagicEffect(237)
+  self:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("%s upgraded to Level %d!", spellName, newLevel))
+
+  -- Notify client with spellUpgraded action + fresh state
+  local state = self:getSpellUpgradeState()
+  state.action = "spellUpgraded"
+  state.upgradedSlot = slot
+  state.newLevel = newLevel
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_CASTSPELL, json.encode(state))
+
+  -- Send updated tooltip info
+  self:sendSpellTooltip(item, 0)
+  return true
+end
+
 function Player:castSpell(id, pos, force)
   local item = self:getSlotItem(11+id)
   if not item then
+    return
+  end
+
+  local spellLevel = item:getCustomAttribute("level") or 0
+  if spellLevel <= 0 then
+    self:sendTextMessage(MESSAGE_STATUS_SMALL, "You must unlock this spell first.")
     return
   end
 

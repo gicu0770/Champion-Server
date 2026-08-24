@@ -1100,6 +1100,149 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            107
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Soulbound Lich",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Vampire Heart",
+      38239,
+      "Vampire Queen",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            23
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Vampire Queen",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            26
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Toxic Hydra",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Flask Relict",
+      38400,
+      "Pheonix",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            249
+          },
+          {
+            {
+              500,
+              700,
+              900,
+              1200
+            }
+          }
+        },
+        monster = "Pheonix",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Health Soulstone",
+      38641,
+      "Undead King",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            109
+          },
+          {
+            {
+              5,
+              10,
+              23,
+              42
+            }
+          }
+        },
+        monster = "Undead King",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
       "Energy Soulstone",
       38639,
       "Ethereal Seraph",
@@ -1332,35 +1475,6 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
-      {
-        chance = 5000,
-        forceType = -2147483648,
-        imps = {
-          {
-            288
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Void Stone",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Treasure Goblin Trophy",
       38732,
       "Bilbo",
@@ -1381,116 +1495,6 @@ OTHER_ITEMS = {
           }
         },
         monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            107
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Soulbound Lich",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            69
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Eldritch Reaver",
-        unique = true,
         weight = {
           0,
           0,
@@ -1529,24 +1533,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Minotaur Helmet",
-      38562,
-      "Minotaur Liberator",
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
       {
-        chance = 15000,
-        forceType = 33554432,
+        chance = 100000,
+        forceType = 1073741824,
         imps = {
           {
-            70
+            267
           },
           {
             {
-              50
+              2,
+              4,
+              7,
+              10
             }
           }
         },
-        monster = "Minotaur Liberator",
-        unique = true,
+        monster = "Ascended Voort",
         weight = {
           0,
           0,
@@ -1585,118 +1591,112 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Vampire Heart",
-      38239,
-      "Vampire Queen",
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
       {
-        chance = 100000,
-        forceType = 67108864,
+        chance = 5000,
+        forceType = -2147483648,
         imps = {
           {
-            23
+            288
           },
           {
             {
+              50,
+              100,
               150,
-              200,
-              400,
-              750
+              200
             }
           }
         },
-        monster = "Vampire Queen",
+        monster = "Void Stone",
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
       {
-        chance = 100000,
-        forceType = 67108864,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            26
+            69
           },
           {
             {
-              150,
-              200,
-              400,
-              750
+              50
             }
           }
         },
-        monster = "Toxic Hydra",
+        monster = "Eldritch Reaver",
+        unique = true,
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Flask Relict",
-      38400,
-      "Pheonix",
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
       {
-        chance = 100000,
-        forceType = 67108864,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            249
+            68
           },
           {
             {
-              500,
-              700,
-              900,
-              1200
+              50
             }
           }
         },
-        monster = "Pheonix",
+        monster = "Grave Spearlord",
+        unique = true,
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Health Soulstone",
-      38641,
-      "Undead King",
+      "Minotaur Helmet",
+      38562,
+      "Minotaur Liberator",
       {
-        chance = 100000,
-        forceType = 16777216,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            109
+            70
           },
           {
             {
-              5,
-              10,
-              23,
-              42
+              50
             }
           }
         },
-        monster = "Undead King",
+        monster = "Minotaur Liberator",
+        unique = true,
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     }
@@ -1953,7 +1953,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Stomp",
+      "Searing Torrent",
       37306,
       1
     },
@@ -1988,7 +1988,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Chain Lightning",
+      "Vengeance Flame",
       37307,
       1
     },

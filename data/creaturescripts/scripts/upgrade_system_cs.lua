@@ -169,6 +169,13 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne
 		elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne
 		end
+		if attacker:hasBuff(VENGEANCE_FLAME) then
+			local bonus = attacker:getStorageValue(PlayerStorage.vengeanceFlameDmg)
+			if not bonus or bonus <= 0 then
+				bonus = 30
+			end
+			primaryDamage = math.ceil(primaryDamage * (1 + bonus / 100))
+		end
 		local function getDefenseMultiplier(defFlat)
 			if defFlat >= 0 then
 				return 100 / (100 + defFlat)

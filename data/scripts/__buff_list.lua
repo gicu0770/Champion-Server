@@ -184,6 +184,7 @@ PERFORATE = 182
 BASIC_DAMAGE_SUPPORT = 183
 CRITICAL_DAMAGE_SUPPORT = 184
 AURA_EVASION = 185
+VENGEANCE_FLAME = 186
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2226,6 +2227,16 @@ BUFFS = {
         maxStacks = 100,
         ticks = -1
     },
+	[VENGEANCE_FLAME] = {
+		id = VENGEANCE_FLAME,
+		name = "Vengeance Flame",
+		description = "Increases Damage by 30-40% and Movement Speed by 30%.",
+		icon = "firebarrier",
+		border = "frame-9-red",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 10000
+	},
 }
 
 

@@ -1259,6 +1259,23 @@ function Player:checkRelictBeforeEquip(item, equip)
 end
 
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
+	if self:getGroup():getId() < 3 then
+		local isStartingSpell = (item:getCustomAttribute("startingSpell") == 1)
+		local isFromSpellSlot = (fromPosition.x == CONTAINER_POSITION and fromPosition.y >= CONST_SLOT_SPELL1 and fromPosition.y <= CONST_SLOT_SPELL4)
+		if isStartingSpell or (isFromSpellSlot and item:getSpellName() ~= "") then
+			self:sendTooltipMessage("You cannot move champion spells.")
+			return false
+		end
+
+		if toPosition.x == CONTAINER_POSITION and toPosition.y >= CONST_SLOT_SPELL1 and toPosition.y <= CONST_SLOT_SPELL4 then
+			local targetSlotItem = self:getSlotItem(toPosition.y)
+			if targetSlotItem and (targetSlotItem:getCustomAttribute("startingSpell") == 1 or targetSlotItem:getSpellName() ~= "") then
+				self:sendTooltipMessage("You cannot replace champion spells.")
+				return false
+			end
+		end
+	end
+
 	if toCylinder and self == toCylinder then
 		local antiSpamCount = self:getStorageValue(52391)
 		local timeBetween = os.time() - self:getStorageValue(52390)
@@ -1522,6 +1539,12 @@ function Player:onTurn(direction)
 end
 
 function Player:onTradeRequest(target, item)
+	if self:getGroup():getId() < 3 then
+		if item:getCustomAttribute("startingSpell") == 1 or item:getSpellName() ~= "" then
+			self:sendTooltipMessage("You cannot trade champion spells.")
+			return false
+		end
+	end
 	return true
 end
 

@@ -23,6 +23,9 @@ function onSay(player, words, param)
 		local vocName = target:getVocation():getName()
 		target:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You vocation changed to "..vocName.."!")
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You changed "..target:getName().." vocation to "..vocName.."!")
+		if target:getGroup():getId() ~= 3 and vocName and vocName ~= "None" then
+			target:setTitle(vocName, "Reggae One-10px-bordered", "#0dff00")
+		end
 		player:sendCurrentTalents()
 	return true
 end

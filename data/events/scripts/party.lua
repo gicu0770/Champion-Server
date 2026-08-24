@@ -113,11 +113,11 @@ function Party:onShareExperience(exp)
 	if self:isSharedExperienceEnabled() then
 		local leader = self:getLeader()
 		sendExp(leader, partyExp)
-		leader:addExpToSpells(partyExp)
+		-- leader:addExpToSpells(partyExp)
 		leader:addExperience(partyExp, true)
 		for _, member in ipairs(self:getMembers()) do
 			sendExp(member, partyExp)
-			member:addExpToSpells(partyExp)
+			-- member:addExpToSpells(partyExp)
 			member:addExperience(partyExp, true)
 		end
   end

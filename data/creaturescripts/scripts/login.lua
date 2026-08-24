@@ -134,6 +134,7 @@ function onLogin(player)
 	player:registerEvent("ExpLoss")
 	player:registerEvent("LevelUp")
 	player:registerEvent("DungeonDeath")
+	player:registerEvent("SpellsExtendedEvent")
 
 	player:updateCharacterStats()
 
@@ -145,8 +146,11 @@ function onLogin(player)
 		end
 	end, 50)
 
+	local championName = player:getVocation():getName()
 	if player:getGroup():getId() == 3 then
 		player:setTitle("Game Master", "Reggae One-10px-bordered", "#0dff00")
+	elseif championName and championName ~= "None" then
+		player:setTitle(championName, "Reggae One-10px-bordered", "#0dff00")
 	end
 
   local currentLevel = player:getLevel() - 1

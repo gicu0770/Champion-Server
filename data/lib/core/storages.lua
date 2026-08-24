@@ -148,6 +148,8 @@ PlayerStorage = {
 	dailyBoosty = 801113,
 
 	filter = 801114,
+	vengeanceFlameDmg = 801120,
+	maxSpellLevelReached = 801121,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

@@ -17,11 +17,30 @@ function autoattackFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra
   return attackpower
 end
 function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra)
-  local attackpower = player:getCharacterType()
-  local max = attackpower
-  max = math.ceil(max)
+  local spellCfg = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId]
+  local attackpower = player:getMagicAttack()
+  if not attackpower or attackpower <= 0 then
+    attackpower = player:getCharacterType()
+  end
+  if not attackpower or attackpower <= 0 then
+    attackpower = 50
+  end
+
+  local multiplier = spellCfg and spellCfg.multipler or 0.80
+  local baseDmg = spellCfg and spellCfg.baseDamage or 0
+  local basePerLvl = spellCfg and spellCfg.baseDamagePerLevel or 0
+
+  local spellLevel = 1
+  if CONFIG_SUP and CONFIG_SUP.level and CONFIG_SUP.level > 0 then
+    spellLevel = CONFIG_SUP.level
+  elseif item and item:getId() > 0 then
+    spellLevel = item:getCustomAttribute("level") or 1
+  end
+
+  local totalBase = baseDmg + (math.max(1, spellLevel) - 1) * basePerLvl
+  local max = math.ceil(totalBase + (attackpower * multiplier))
   local max2 = 0
-  return {-max,-max2}
+  return {-max, -max2}
 end
 
 function spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, area, dot)
@@ -276,6 +295,10 @@ function spellCheckForCast(player, item, spellId, getInfoOnly, force)
     return false
   end
   if not getInfoOnly then
+    local spellLevel = item:getCustomAttribute("level") or 0
+    if spellLevel <= 0 then
+      return false
+    end
     if not force then
       if player:hasCondition(CONDITION_SPELLGROUPCOOLDOWN, 1) then
         return false
@@ -426,6 +449,100 @@ function spellSetupTragetTile(player, combat, CONFIG, CONFIG_SUP, item, extraFun
     end
     combat:setCallback(CALLBACK_PARAM_TARGETTILE, "onTargetTile")
   end
+end
+
+local DIR_OFFSETS = {
+  [DIRECTION_NORTH] = {x = 0, y = -1},
+  [DIRECTION_EAST] = {x = 1, y = 0},
+  [DIRECTION_SOUTH] = {x = 0, y = 1},
+  [DIRECTION_WEST] = {x = -1, y = 0},
+  [DIRECTION_SOUTHWEST] = {x = -1, y = 1},
+  [DIRECTION_SOUTHEAST] = {x = 1, y = 1},
+  [DIRECTION_NORTHWEST] = {x = -1, y = -1},
+  [DIRECTION_NORTHEAST] = {x = 1, y = -1},
+}
+
+function spellGetDirectionTo(fromPos, toPos)
+  local dx = toPos.x - fromPos.x
+  local dy = toPos.y - fromPos.y
+
+  if dx == 0 and dy == 0 then
+    return nil
+  end
+
+  local absX = math.abs(dx)
+  local absY = math.abs(dy)
+
+  if absX > absY * 2.2 then
+    return dx > 0 and DIRECTION_EAST or DIRECTION_WEST
+  elseif absY > absX * 2.2 then
+    return dy > 0 and DIRECTION_SOUTH or DIRECTION_NORTH
+  else
+    if dx > 0 and dy < 0 then
+      return DIRECTION_NORTHEAST
+    elseif dx > 0 and dy > 0 then
+      return DIRECTION_SOUTHEAST
+    elseif dx < 0 and dy < 0 then
+      return DIRECTION_NORTHWEST
+    elseif dx < 0 and dy > 0 then
+      return DIRECTION_SOUTHWEST
+    end
+  end
+
+  return DIRECTION_NORTH
+end
+
+function spellGetSkillshotTarget(player, mousePos, maxRange)
+  local fromPos = player:getPosition()
+  local pz = fromPos.z
+  local px = fromPos.x
+  local py = fromPos.y
+
+  local dx, dy = 0, 0
+  if mousePos and (mousePos.x ~= px or mousePos.y ~= py) then
+    dx = mousePos.x - px
+    dy = mousePos.y - py
+  else
+    local dirOffset = DIR_OFFSETS[player:getDirection()] or {x = 0, y = 1}
+    dx = dirOffset.x
+    dy = dirOffset.y
+  end
+
+  local dist = math.max(math.abs(dx), math.abs(dy))
+  if dist == 0 then dist = 1; dy = 1 end
+
+  local stepX = dx / dist
+  local stepY = dy / dist
+
+  local lastX = px
+  local lastY = py
+  local currX = px + 0.5
+  local currY = py + 0.5
+  local playerId = player:getId()
+
+  for i = 1, maxRange do
+    currX = currX + stepX
+    currY = currY + stepY
+    local checkX = math.floor(currX)
+    local checkY = math.floor(currY)
+
+    if checkX ~= lastX or checkY ~= lastY then
+      local tile = Tile(checkX, checkY, pz)
+      if not tile or tile:hasProperty(CONST_PROP_BLOCKPROJECTILE) or tile:hasProperty(CONST_PROP_BLOCKSOLID) then
+        break
+      end
+
+      lastX = checkX
+      lastY = checkY
+
+      local topCreature = tile:getTopCreature()
+      if topCreature and topCreature:getId() ~= playerId and not topCreature:isInGhostMode() then
+        break
+      end
+    end
+  end
+
+  return Position(lastX, lastY, pz)
 end
 
 function spellSetupVariant(player, CONFIG, CONFIG_SUP, mousePos)

@@ -40635,17 +40635,17 @@
 		<attribute key="spellGem" value="1" />
 		<attribute key="spell" value="Fireball" />
 	</item>
-	<item id="37306" article="a" name="Stomp">
+	<item id="37306" article="a" name="Searing Torrent">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="2" />
-		<attribute key="spell" value="Stomp" />
+		<attribute key="spell" value="Searing Torrent" />
 	</item>
-	<item id="37307" article="a" name="Chain Lightning">
+	<item id="37307" article="a" name="Vengeance Flame">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="3" />
-		<attribute key="spell" value="Chain Lightning" />
+		<attribute key="spell" value="Vengeance Flame" />
 	</item>
 	<item id="37308" article="a" name="Seismic Wave">
 		<attribute key="containerSize" value="3" />

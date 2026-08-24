@@ -11,6 +11,8 @@ function onAdvance(player, skill, oldLevel, newLevel)
     end
 
     player:sendCurrentTalents()
+    player:updateMaxSpellLevelEver()
+    player:sendSpellUpgradeInfo()
   end, 100)
   player:setHealth(player:getMaxHealth())
   player:addMana(player:getMaxMana())

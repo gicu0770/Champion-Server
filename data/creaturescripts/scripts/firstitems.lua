@@ -1,13 +1,12 @@
 local config = {
-	[1] = { -- Mia
+	[1] = { -- Juki
 		items = {
-			{2456, 1}, -- bow
+			{26637, 1}, -- wooden rod
 		},
 		spells = {
 			{1987, 1, CONST_SLOT_SPELL1}, -- spell1
-		--	{37310, 1, CONST_SLOT_SPELL2}, -- spell2
-		--	{37311, 1, CONST_SLOT_SPELL3}, -- spell3
-		--	{37312, 1, CONST_SLOT_SPELL4}, -- spell4
+			{37306, 1, CONST_SLOT_SPELL2}, -- spell2
+			{37307, 1, CONST_SLOT_SPELL3}, -- spell3
 		}
 	},
 	[2] = { -- Gorn
@@ -20,7 +19,7 @@ local config = {
 	},
 	[3] = { -- Juki
 		items = {
-			{26637, 1}, -- wooden rod
+			{2456, 1}, -- bow
 		},
 		spells = {
 		{1987, 1, CONST_SLOT_SPELL1}, -- spell1
@@ -54,14 +53,14 @@ function onLogin(player)
 	end
 	for i = 1, #targetVocation.spells do
 		local item = player:addItem(targetVocation.spells[i][1], targetVocation.spells[i][2], true, 1, targetVocation.spells[i][3] )
-		if targetVocation.spells[i][3] then
-			item:setRarity(COMMON)
-				item:setRarity(0)
-				item:setCustomAttribute("level", 1)
-				item:setCustomAttribute("exp", expForLevelSpell(1))
+		if item then
+			item:setRarity(0)
+			item:setCustomAttribute("level", 0)
+			item:setCustomAttribute("startingSpell", 1)
 		end
 	end
 
+	player:setStorageValue(PlayerStorage.maxSpellLevelReached, math.max(1, player:getLevel()))
 	player:addItem(7618, 1, true, 1, CONST_SLOT_POTION1)
 	player:addItem(1988, 1, true, 1, CONST_SLOT_BACKPACK)
 	player:startTask(1)

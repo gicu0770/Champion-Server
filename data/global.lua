@@ -1208,7 +1208,9 @@ TAGS = {
 	[29] = {"shield", "#da932d"},
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
-	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 1, scaling = 1, addDamage = 1, tag = {4,20}, element = 100, aoe = true},-- "Fireball",
+	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.8, baseDamage = 30, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
+	[2] = {name = "Searing Torrent", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.6, baseDamage = 25, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Searing Torrent",
+	[3] = {name = "Vengeance Flame", cooldown = 3000, manaCost = 20, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = false},-- "Vengeance Flame",
 
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
@@ -1246,8 +1248,8 @@ TAGS = {
 
 GLOBAL_SPELL_NUMBER = {
 	[1] = "Fireball",
-	[2] = "Stomp",
-	[3] = "Chain Lightning",
+	[2] = "Searing Torrent",
+	[3] = "Vengeance Flame",
 	[4] = "Seismic Wave",
 	[5] = "Salvo",
 	[6] = "Smite",
