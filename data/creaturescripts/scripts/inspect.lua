@@ -38,6 +38,7 @@ function inspectPlayer(player, targetName, category)
     data.stats = getStats(target)
     data.relics = getRelics(target)
     data.details = getDetails(target)
+    data.talents = getTalents(target)
   elseif category == 2 then
     data = getAttributes(target)
   elseif category == 3 then

@@ -85,6 +85,11 @@ end
 
 local LogoutEvent = CreatureEvent("LogoutEventBuff")
 function LogoutEvent.onLogout(player)
+  if DOT_SYSTEM then
+    DOT_SYSTEM.cleanup(player:getId())
+    DOT_SYSTEM.cleanupCaster(player:getId())
+  end
+
   if not CREATURE_ACTIVE_BUFFS[player:getId()] then
     return true
   end
@@ -481,6 +486,10 @@ function DeathMonster.onDeath(creature, corpse, killer, mostDamage, unjustified,
 	if not creature or creature:isPlayer() then
 		return true
 	end
+
+  if DOT_SYSTEM then
+    DOT_SYSTEM.cleanup(creature:getId())
+  end
 
   if CREATURE_ACTIVE_BUFFS[creature:getId()] then
     CREATURE_ACTIVE_BUFFS[creature:getId()] = nil

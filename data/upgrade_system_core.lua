@@ -287,7 +287,12 @@ function us_onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitun
       if not isPlayer then
         local cid = creature:getId()
         CREATURE_ACTIVE_BUFFS[cid] = nil
-        ACTIVATED_DOT[cid] = nil
+        if ACTIVATED_DOT then
+          ACTIVATED_DOT[cid] = nil
+        end
+        if DOT_SYSTEM then
+          DOT_SYSTEM.cleanup(cid)
+        end
       end
     end
   end

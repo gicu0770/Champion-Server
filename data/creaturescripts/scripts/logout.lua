@@ -22,8 +22,12 @@ function onLogout(player)
 
 	colleftInfo[player:getId()] = nil
 
-	if ACTIVATED_DOT[playerId] then
+	if ACTIVATED_DOT and ACTIVATED_DOT[playerId] then
 		ACTIVATED_DOT[playerId] = nil
+	end
+	if DOT_SYSTEM then
+		DOT_SYSTEM.cleanup(playerId)
+		DOT_SYSTEM.cleanupCaster(playerId)
 	end
 	if PLAYERS_ACTIVE_BUFFS and PLAYERS_ACTIVE_BUFFS[playerId] then
 		PLAYERS_ACTIVE_BUFFS[playerId] = nil

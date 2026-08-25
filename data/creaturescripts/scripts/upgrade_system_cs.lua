@@ -196,6 +196,29 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				local mult = getDefenseMultiplier(magic_defenseFlat)
 				primaryDamage = math.ceil(primaryDamage * mult)
 			end
+			-- Nakładanie podpalenia (Fire/Energy DoT, tryb REFRESH):
+		if attacker:isPlayer() then
+			local totalDotDamage = creature:getMaxHealth() * 0.02 -- 2% maksymalnego zdrowia celu w 4 sekundy
+			local totalTicks = 4000 / 1000 -- 4 ticki (co 1000ms w ciągu 4000ms)
+			local damagePerTick = totalDotDamage / 4
+
+		--	print(string.format("[DoT Apply] Cel: %s (MaxHP: %d) | 2%% HP = %.2f | Dmg/Tick: %.2f", creature:getName(), creature:getMaxHealth(), totalDotDamage, damagePerTick))
+
+			creature:applyDot(attacker, {
+				buffId = IGNITE_ITEM,
+				damage = damagePerTick,
+				duration = 4000,
+				combatType = COMBAT_ENERGYDAMAGE,
+				mode = "refresh",
+				maxStacks = 5,
+				initialTick = true,
+				interval = 1000,
+				effect = 16,
+				onTick = function(target, attacker, damage, stacks)
+			--		print(string.format("[DoT Tick] Cel: %s | Zadane obrażenia: %d | Stacki: %d", target:getName(), damage, stacks))
+				end
+			})
+		end
 		elseif creature:isPlayer() then -- celem jest PLAYER
 			local physical_defenseFlat = creature:getPhysicalDefense() - physical_penetration
 			local magic_defenseFlat = creature:getMagicDefense() - magic_penetration
