@@ -228,6 +228,62 @@ US_ENCHANTMENTS = {
         noValue = true,
         itemType = US_ITEM_TYPES.ALL
     },
+    [29] = {
+        name = "Unmake",
+        desc = "Nearby enemies within 4 tiles have their Magic Defense reduced by 30%.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [30] = {
+        name = "Magical Opus",
+        desc = "Increase your magic attack by 30%.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [31] = {
+        name = "Carve & Fervor",
+        desc = "Physical hits reduce enemy Physical Defense by 6% (up to 30%) and grant +20 Movement Speed.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [32] = {
+        name = "Ichor Shield",
+        desc = "Excess healing from Physical Lifesteal at full HP is converted into a shield (up to 10% Max HP).",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [33] = {
+        name = "Warmog's Heart",
+        desc = "Regenerates 5% of your Maximum Health every second.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [34] = {
+        name = "Spellblade",
+        desc = "After using an ability, your next basic attack deals 200% base AD bonus physical damage on-hit (1.5s CD).",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [35] = {
+        name = "Quicken",
+        desc = "Basic attacks on-hit grant +20 bonus Movement Speed for 2 seconds.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
 }
 
 REDUCTION_ATTR_VALUES = {

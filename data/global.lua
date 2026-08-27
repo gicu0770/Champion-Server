@@ -189,8 +189,14 @@ end
 function Player.getMagicAttack(self)
 	if not self then return 0 end
 	local getMagicAttack = CHAMPION_STATS[self:getVocation():getName()].magic_attack + (((CHAMPION_STATS[self:getVocation():getName()].magic_attackPL - CHAMPION_STATS[self:getVocation():getName()].magic_attack) / 50) * self:getLevel()) 
-	if colleftInfo[self:getId()].attributesItems[7] then
-		getMagicAttack = getMagicAttack + colleftInfo[self:getId()].attributesItems[7].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[7] then
+			getMagicAttack = getMagicAttack + colleftInfo[self:getId()].attributesItems[7].value
+		end
+		if colleftInfo[self:getId()].attributesItems[30] then
+			local pct = colleftInfo[self:getId()].attributesItems[30].value or 30
+			getMagicAttack = math.ceil(getMagicAttack * (1 + pct / 100))
+		end
 	end
 	return getMagicAttack
 end
@@ -280,8 +286,9 @@ end
 function Player.getPhysicalPenetration(self)
 	if not self then return 0 end
 	local getPhysicalPenetration = 0
-	if colleftInfo[self:getId()].attributesItems[16] then
-		getPhysicalPenetration = getPhysicalPenetration + colleftInfo[self:getId()].attributesItems[16].value
+	local pInfo = colleftInfo[self:getId()]
+	if pInfo and pInfo.attributesItems and pInfo.attributesItems[14] then
+		getPhysicalPenetration = getPhysicalPenetration + pInfo.attributesItems[14].value
 	end
 	return getPhysicalPenetration
 end
@@ -289,8 +296,9 @@ end
 function Player.getMagicPenetration(self)
 	if not self then return 0 end
 	local getMagicPenetration = 0
-	if colleftInfo[self:getId()].attributesItems[15] then
-		getMagicPenetration = getMagicPenetration + colleftInfo[self:getId()].attributesItems[15].value
+	local pInfo = colleftInfo[self:getId()]
+	if pInfo and pInfo.attributesItems and pInfo.attributesItems[15] then
+		getMagicPenetration = getMagicPenetration + pInfo.attributesItems[15].value
 	end
 	return getMagicPenetration
 end
@@ -5761,10 +5769,10 @@ function Player.setStatistics(self)
 	if colleftInfo[self:getId()].attributesItems[20] then -- Energy Shield Regeneration
 		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[20].value
 	end
-
---	if colleftInfo[self:getId()].attributesItems[247] then -- health regeneration percent per second
---		healthRegen = healthRegen + (self:getMaxHealth() * (colleftInfo[self:getId()].attributesItems[247].value / 100))
---	end
+	if colleftInfo[self:getId()].attributesItems[33] then -- Warmog's Heart: Regenerate 5% Max Health every second
+		local regenPct = colleftInfo[self:getId()].attributesItems[33].value or 5
+		healthRegen = healthRegen + math.ceil(self:getMaxHealth() * (regenPct / 100))
+	end
 	local movementSpeedFlat = 0
 	if colleftInfo[self:getId()].attributesItems[10] then
 		movementSpeed = movementSpeed + colleftInfo[self:getId()].attributesItems[10].value

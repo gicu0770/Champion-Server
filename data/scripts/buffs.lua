@@ -310,11 +310,22 @@ end
 function Creature:getBuff(id)
   local buff = BUFFS[id]
   if self:hasBuff(id) and buff then
-    buff.endTime = CREATURE_ACTIVE_BUFFS[self:getId()][id].endTime
-    buff.stacks = CREATURE_ACTIVE_BUFFS[self:getId()][id].stacks
+    local activeBuff = CREATURE_ACTIVE_BUFFS[self:getId()] and CREATURE_ACTIVE_BUFFS[self:getId()][id]
+    if activeBuff then
+      buff.endTime = activeBuff.endTime
+      buff.stacks = activeBuff.stacks
+    end
     return buff
   end
   return false
+end
+
+function Creature:getBuffStacks(id)
+  local creatureBuffs = CREATURE_ACTIVE_BUFFS[self:getId()]
+  if creatureBuffs and creatureBuffs[id] and self:hasBuff(id) then
+    return creatureBuffs[id].stacks or 1
+  end
+  return 0
 end
 
 function Creature:updateBuff(id, time, playerList, maxStacks)

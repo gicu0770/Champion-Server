@@ -466,6 +466,9 @@ function Player:addGornShield()
         if cur > 0 then
           p:setEnergyShield(math.max(0, cur - amount))
         end
+        if p:getEnergyShield() <= 0 then
+          p:setMaxEnergyShield(0)
+        end
         p:removeBuff(GORN_SHIELD)
       end
     end, 4000, cid, castTime, shieldValue)
@@ -510,6 +513,16 @@ function Player:castSpell(id, pos, force)
 
   SPELL.cast(self, item, force, pos)
   self:addGornShield()
+
+  local pInfo = colleftInfo and colleftInfo[self:getId()]
+  if pInfo and pInfo.attributesItems and pInfo.attributesItems[34] then
+    local now = os.time()
+    local lastCd = self:getStorageValue(PlayerStorage.spellbladeCooldown)
+    if lastCd < 0 or now >= lastCd then
+      self:setStorageValue(PlayerStorage.spellbladeProc, now + 10)
+      self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+    end
+  end
 end
 
 function Player:usePotion(id)

@@ -1,3 +1,21 @@
+local function checkIchorShieldDecay(playerId)
+	local player = Player(playerId)
+	if not player then return end
+
+	local expireTime = player:getStorageValue(PlayerStorage.ichorShieldTime)
+	local now = os.time()
+
+	if now >= expireTime then
+		player:setEnergyShield(0)
+		player:setMaxEnergyShield(0)
+		player:removeBuff(ICHOR_SHIELD)
+		player:setStorageValue(PlayerStorage.ichorShieldAmount, -1)
+	else
+		local remainingMs = math.max(1000, (expireTime - now) * 1000)
+		addEvent(checkIchorShieldDecay, remainingMs, playerId)
+	end
+end
+
 function onLogin(player)
 	us_onLogin(player)
 	return true
@@ -273,6 +291,19 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 		end
 
+		-- [29] Unmake (Abyssal Mask): Nearby enemies within 4 tiles have their Magic Defense reduced by 30%
+		if attackerAttrs and attackerAttrs[29] and primaryType ~= COMBAT_PHYSICALDAMAGE then
+			if attacker:getPosition():getDistance(creature:getPosition()) <= 4 then
+				primaryDamage = math.ceil(primaryDamage * 1.30)
+			end
+		end
+
+		-- [31] Carve (Black Cleaver): Reduce target Physical Defense by 6% per stack (up to 30%)
+		if creature:hasBuff(CARVE_DEBUFF) and primaryType == COMBAT_PHYSICALDAMAGE then
+			local stacks = (type(creature.getBuffStacks) == "function" and creature:getBuffStacks(CARVE_DEBUFF)) or (CREATURE_ACTIVE_BUFFS[creature:getId()] and CREATURE_ACTIVE_BUFFS[creature:getId()][CARVE_DEBUFF] and CREATURE_ACTIVE_BUFFS[creature:getId()][CARVE_DEBUFF].stacks) or 1
+			primaryDamage = math.ceil(primaryDamage * (1 + (stacks * 0.06)))
+		end
+
 		-- =====================================================================
 		-- MODYFIKACJE PRZEDMIOTÓW [22-28] - ON-HIT PROCS & COOLDOWNS
 		-- =====================================================================
@@ -344,6 +375,44 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 					attacker:setStorageValue(PlayerStorage.weaknessFinderCooldown, newReady)
 				end
 			end
+		end
+
+		-- [31] Carve & Fervor (Black Cleaver): On physical hit apply Carve stack to enemy and gain Fervor speed buff
+		if attackerAttrs and attackerAttrs[31] and primaryType == COMBAT_PHYSICALDAMAGE then
+			creature:addBuff(CARVE_DEBUFF, 6000)
+			attacker:addBuff(FERVOR_BUFF, 2000)
+			local speedCond = Condition(CONDITION_HASTE)
+			speedCond:setParameter(CONDITION_PARAM_TICKS, 2000)
+			speedCond:setParameter(CONDITION_PARAM_SPEED, 20)
+			speedCond:setParameter(CONDITION_PARAM_SUBID, 3262)
+			attacker:addCondition(speedCond)
+		end
+
+		-- [34] Spellblade (Sheen / Trinity Force): Next basic attack deals bonus physical damage after casting an ability
+		if attackerAttrs and attackerAttrs[34] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local now = os.time()
+			local procUntil = attacker:getStorageValue(PlayerStorage.spellbladeProc)
+			if procUntil > 0 and now <= procUntil then
+				local cdReady = attacker:getStorageValue(PlayerStorage.spellbladeCooldown)
+				if cdReady < 0 or now >= cdReady then
+					attacker:setStorageValue(PlayerStorage.spellbladeProc, 0)
+					attacker:setStorageValue(PlayerStorage.spellbladeCooldown, now + 2)
+					local bonusRatio = (attackerAttrs[34].value or 200) / 100
+					local baseAd = attacker:getPhysicalAttack()
+					local spellbladeDmg = math.ceil(baseAd * bonusRatio)
+					primaryDamage = primaryDamage + spellbladeDmg
+					creature:getPosition():sendMagicEffect(CONST_ME_HITAREA)
+				end
+			end
+		end
+
+		-- [35] Quicken (Hearthbound Axe / Trinity Force): Basic attacks on-hit grant +20 Movement Speed for 2 seconds
+		if attackerAttrs and attackerAttrs[35] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local speedCond = Condition(CONDITION_HASTE)
+			speedCond:setParameter(CONDITION_PARAM_TICKS, 2000)
+			speedCond:setParameter(CONDITION_PARAM_SPEED, attackerAttrs[35].value or 20)
+			speedCond:setParameter(CONDITION_PARAM_SUBID, 3264)
+			attacker:addCondition(speedCond)
 		end
 
 		-- =====================================================================
@@ -427,12 +496,40 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		local lifestealHeal = 0
+		local ichorShieldGain = 0
 		if lifestealPercent > 0 and primaryDamage > 0 then
 			local aoeMultiplier = isAoE and (1.0 / 3.0) or 1.0
 			local rawHeal = (primaryDamage * (lifestealPercent / 100)) * aoeMultiplier
 			lifestealHeal = math.max(1, math.floor(rawHeal + 0.5))
 
 			if lifestealHeal > 0 then
+				local curHp = attacker:getHealth()
+				local maxHp = attacker:getMaxHealth()
+				if (curHp + lifestealHeal) > maxHp and attackerAttrs and attackerAttrs[32] and primaryType == COMBAT_PHYSICALDAMAGE then
+					local overheal = (curHp + lifestealHeal) - maxHp
+					local maxShieldCap = math.floor(maxHp * 0.10)
+					local curShield = attacker:getEnergyShield()
+					local newShield = math.min(maxShieldCap, curShield + overheal)
+
+					if newShield > curShield then
+						ichorShieldGain = newShield - curShield
+						if attacker:getMaxEnergyShield() < newShield then
+							attacker:setMaxEnergyShield(newShield)
+						end
+						attacker:setEnergyShield(newShield)
+						attacker:addBuff(ICHOR_SHIELD, 10000)
+						attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+
+						-- Update expiration timestamp
+						attacker:setStorageValue(PlayerStorage.ichorShieldTime, os.time() + 10)
+
+						-- Spawn only 1 timer per player if not already active
+						if attacker:getStorageValue(PlayerStorage.ichorShieldAmount) ~= 1 then
+							attacker:setStorageValue(PlayerStorage.ichorShieldAmount, 1)
+							addEvent(checkIchorShieldDecay, 10000, attacker:getId())
+						end
+					end
+				end
 				attacker:addHealth(lifestealHeal)
 				attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			end
@@ -458,6 +555,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				lsSuffix = string.format(" | LS: +%d HP (1/3 AoE)", lifestealHeal)
 			else
 				lsSuffix = string.format(" | LS: +%d HP", lifestealHeal)
+			end
+			if ichorShieldGain > 0 then
+				lsSuffix = lsSuffix .. string.format(" [Shield: +%d]", ichorShieldGain)
 			end
 		end
 

@@ -1446,7 +1446,7 @@
 		<attribute key="weight" value="50" />
 	</item>
 	<item id="1955" article="a" name="book">
-		<attribute key="weight" value="1300" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="1956" article="a" name="map">
 		<attribute key="weight" value="830" />
@@ -2114,7 +2114,7 @@
 		<attribute key="weight" value="10" />
 	</item>
 	<item id="2150" article="a" name="small amethyst">
-		<attribute key="weight" value="10" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2151" article="a" name="talon">
 		<attribute key="weight" value="20" />
@@ -2245,8 +2245,8 @@
 	<item id="2177" article="a" name="life crystal">
 		<attribute key="weight" value="263" />
 	</item>
-	<item id="2178" article="a" name="mind stone">
-		<attribute key="weight" value="250" />
+	<item id="2178" article="a" name="blighting jewel">
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2127" article="a" name="relict gold ring">
 		<attribute key="weight" value="100" />
@@ -2301,7 +2301,7 @@
 		<attribute key="slotType" value="two-handed" />
 	</item>
 	<item id="2184" article="a" name="crystal wand">
-		<attribute key="weight" value="2800" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2185" article="a" name="Necrotic Rod">
 		<attribute key="weight" value="2300" />
@@ -2340,11 +2340,7 @@
 		<attribute key="attack" value="1"/>
 	</item>
 	<item id="2189" article="a" name="Wand of Cosmic Energy">
-		<attribute key="weight" value="2500" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="98" />
-		<attribute key="range" value="5" />
-		<attribute key="attack" value="1"/>
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2190" article="a" name="Wand of Vortex">
 		<attribute key="weight" value="1900" />
@@ -2355,11 +2351,7 @@
 		<attribute key="slotType" value="two-handed" />
 	</item>	
 	<item id="2191" article="a" name="Wand of Dragonbreath">
-		<attribute key="weight" value="2100" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="127" />
-		<attribute key="range" value="5" />
-		<attribute key="attack" value="1"/>
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="38656" article="a" name="Inferno Staff">
 		<attribute key="weight" value="2100" />
@@ -3301,11 +3293,7 @@
 		<attribute key="weaponType" value="sword" />
 	</item>
 	<item id="2393" article="a" name="giant sword">
-		<attribute key="weight" value="18000" />
-		<attribute key="defense" value="22" />
-		<attribute key="attack" value="46" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2394" article="a" name="bronze morning star"> 
 		<attribute key="weight" value="5400" />
@@ -3546,10 +3534,7 @@
 		<attribute key="weaponType" value="club" />
 	</item>
 	<item id="2424" article="a" name="silver mace">
-		<attribute key="weight" value="6700" />
-		<attribute key="defense" value="30" />
-		<attribute key="attack" value="41" />
-		<attribute key="weaponType" value="club" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2425" article="an" name="obsidian lance">
 		<attribute key="weight" value="8000" />
@@ -3930,10 +3915,8 @@
 		<attribute key="slotType" value="legs" />
 	</item>
 	
-	<item id="2469" name="dragon scale legs">
-		<attribute key="weight" value="4800" />
-		
-		<attribute key="slotType" value="legs" />
+	<item id="2469" article="a" name="dragon scale legs">
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2470" name="golden legs">
 		<attribute key="weight" value="5600" />
@@ -4017,15 +4000,10 @@
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="2486" article="a" name="noble armor">
-		<attribute key="weight" value="12000" />
-		
-		<attribute key="slotType" value="body" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2487" article="a" name="relic crown armor">
-		<attribute key="weight" value="9900" />
-		
-		<attribute key="slotType" value="body" />
-		
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2488" article="a" name="relic crown legs">
 		<attribute key="weight" value="6500" />
@@ -4668,9 +4646,7 @@
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="2660" article="a" name="ranger's cloak">
-		<attribute key="weight" value="4800" />
-		
-		<attribute key="slotType" value="body" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2662" article="a" name="magician hat">
 		<attribute key="weight" value="750" />
@@ -8291,8 +8267,7 @@
 		<attribute key="weight" value="90" />
 	</item>
 	<item id="4874" article="a" name="dwarven pickaxe">
-		<attribute key="description" value="It is a masterpiece of dwarvish smithery and made of especially hard steel." />
-		<attribute key="weight" value="6000" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="4875" article="a" name="hydra's nest" />
 	<item fromid="4876" toid="4882" name="swamp" />
@@ -12764,11 +12739,8 @@
 		<attribute key="range" value="4" />
 		<attribute key="attack" value="7"/>
 	</item>
-	<item id="7411" article="an" name="ornamented axe">
-		<attribute key="weight" value="6150" />
-		<attribute key="defense" value="22" />
-		<attribute key="attack" value="42" />
-		<attribute key="weaponType" value="axe" />
+	<item id="7411" article="a" name="hearthbound axe">
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7412" article="a" name="butcher's axe">
 		<attribute key="weight" value="6300" />
@@ -12793,36 +12765,19 @@
 		<attribute key="slotType" value="two-handed" />
 	</item>
 	<item id="7415" article="a" name="cranial basher">
-		<attribute key="weight" value="7800" />
-		<attribute key="attack" value="1" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7416" article="a" name="bloody edge">
-		<attribute key="weight" value="5200" />
-		<attribute key="defense" value="21" />
-		<attribute key="attack" value="43" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="extradef" value="-3" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7417" article="a" name="runed sword">
-		<attribute key="weight" value="4600" />
-		<attribute key="defense" value="32" />
-		<attribute key="attack" value="45" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="slotType" value="head" />
 	</item>
-	<item id="7418" article="a" name="nightmare blade">
-		<attribute key="weight" value="4600" />
-		<attribute key="attack" value="8" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="slotType" value="two-handed" />
+	<item id="7418" article="a" name="sheen">
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7419" article="a" name="dreaded cleaver">
-		<attribute key="weight" value="3800" />
-		<attribute key="defense" value="19" />
-		<attribute key="attack" value="20" />
-		<attribute key="weaponType" value="axe" />
-		<attribute key="extradef" value="-3" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7420" article="a" name="reaper's axe">
 		<attribute key="weight" value="5900" />
@@ -12849,11 +12804,7 @@
 		<attribute key="weaponType" value="club" />
 	</item>
 	<item id="7424" article="a" name="lunar staff">
-		<attribute key="weight" value="3800" />
-		<attribute key="defense" value="25" />
-		<attribute key="attack" value="20" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7425" article="a" name="taurus mace">
 		<attribute key="weight" value="5100" />
@@ -13866,6 +13817,7 @@
 	</item>
 	<item id="7760" article="a" name="small enchanted ruby">
 		<attribute key="weight" value="10" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7761" article="a" name="small enchanted emerald">
 		<attribute key="weight" value="10" />
@@ -15792,8 +15744,6 @@
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="8820" article="a" name="mage hat">
-		<attribute key="weight" value="900" />
-		
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8821" article="a" name="witchhunter's coat">
@@ -15957,9 +15907,7 @@
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="8870" article="a" name="spirit cloak">
-		
-		<attribute key="slotType" value="body" />
-		<attribute key="weight" value="2650" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8871" article="a" name="focus cape">
 		<attribute key="weight" value="2100" />
@@ -16000,11 +15948,7 @@
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="8878" article="a" name="crystalline armor">
-		<attribute key="weight" value="8450" />
-		
-		
-		
-		<attribute key="slotType" value="body" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8879" article="a" name="voltage armor">
 		<attribute key="weight" value="8450" />
@@ -16192,11 +16136,7 @@
 		<attribute key="description" value="It is Yandur's healing rune. You can't remove it from his house, but you may use it." />
 	</item>
 	<item id="8920" article="a" name="wand of starstorm">
-		<attribute key="weight" value="2550" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="98" />
-		<attribute key="range" value="3" />
-		<attribute key="attack" value="21"/>
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8921" article="a" name="wand of draconia">
 		<attribute key="weight" value="2700" />
@@ -16236,11 +16176,8 @@
 		<attribute key="weaponType" value="axe" />
 		<attribute key="slotType" value="two-handed" />
 	</item>
-	<item id="8927" article="a" name="dark trinity mace">
-		<attribute key="weight" value="9900" />
-		<attribute key="defense" value="32" />
-		<attribute key="attack" value="51" />
-		<attribute key="weaponType" value="club" />
+	<item id="8927" article="a" name="trinity force">
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8928" article="an" name="obsidian truncheon">
 		<attribute key="weight" value="6500" />
@@ -17204,10 +17141,7 @@
 		
 	</item>
 	<item id="9778" article="a" name="yalahari mask">
-		<attribute key="weight" value="3500" />
-		
 		<attribute key="slotType" value="head" />
-		
 	</item>
 	<item id="9779" article="a" name="crystal column" />
 	<item id="9780" article="a" name="slain monster">
@@ -42308,7 +42242,7 @@
 
 	<item id="38641" article="a" name="Health Soulstone">
 		<attribute key="weight" value="1700" />
-		<attribute key="lootindex" value="4" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="38639" article="a" name="Energy Soulstone">
 		<attribute key="weight" value="1700" />

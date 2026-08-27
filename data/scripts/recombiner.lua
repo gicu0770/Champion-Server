@@ -58,7 +58,7 @@ local RECOMB_CONFIG = {
     isDungeonKey (boolean) : [Optional] Flag indicating dungeon key.
     questStart   (number)  : [Optional] Quest ID to start upon creation.
 --]]
-local RECOMB_ITEM_RECIPES = {
+RECOMB_ITEM_RECIPES = {
   -- Example: 1 item + Gold recipe (Bronze Axe + 1000 Gold = Ravenwing 7433 with 20 Physical Attack)
   {
     items = {26618},
@@ -106,6 +106,320 @@ local RECOMB_ITEM_RECIPES = {
     },
   },
 
+  -- [MAGE CRAFTING TREE - RABADON'S DEATHCAP]
+  -- Step 1: 2x Druid Rod (26445) + 500 Gold -> Dragon Wand (2191) with +20 Magic Attack
+  {
+    items = {26445, 26445},
+    result = 2191,
+    gold = 500,
+    name = "Dragon Wand",
+    rarity = 1,
+    implicits = {
+      {7, 20},   -- ID 7 (Magic Attack): +20
+    },
+  },
+
+  -- Step 2: Dragon Wand (2191) + Icy Wand (2184) + 1500 Gold -> Eclipse Wand (8920) with +45 Magic Attack
+  {
+    items = {2191, 2184},
+    result = 8920,
+    gold = 1500,
+    name = "Eclipse Wand",
+    rarity = 3,
+    implicits = {
+      {7, 45},   -- ID 7 (Magic Attack): +45
+    },
+  },
+
+  -- Step 3: 2x Eclipse Wand (8920) + 5000 Gold -> Rabadon's Deathcap (8820) with +100 Magic Attack, +300 Mana, +30% Magic Attack (Magical Opus)
+  {
+    items = {8920, 8920},
+    result = 8820,
+    gold = 5000,
+    name = "Rabadon's Deathcap",
+    rarity = 4,
+    implicits = {
+      {7, 100},  -- ID 7 (Magic Attack): +100
+      {2, 300},  -- ID 2 (Mana): +300
+      {30, 30},  -- ID 30 (Magical Opus): Increase your magic attack by 30%
+    },
+  },
+
+  -- [TANK / MAGIC RESIST TREE - ABYSSAL MASK]
+  -- Step 1: 2x Druid Cape (26442) + 500 Gold -> Negatron Cloak (8870) with +25 Magic Defense
+  {
+    items = {26442, 26442},
+    result = 8870,
+    gold = 500,
+    name = "Negatron Cloak",
+    rarity = 1,
+    implicits = {
+      {9, 25},   -- ID 9 (Magic Defense): +25
+    },
+  },
+
+  -- Step 2: Elven Plate (26491) + Monocle (7900) + 500 Gold -> Kindlegem (38641) with +200 HP, +10% CDR
+  {
+    items = {26491, 7900},
+    result = 38641,
+    gold = 500,
+    name = "Kindlegem",
+    rarity = 1,
+    implicits = {
+      {1, 200},  -- ID 1 (Health): +200
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+    },
+  },
+
+  -- Step 3: Kindlegem (38641) + Negatron Cloak (8870) + 2500 Gold -> Abyssal Mask (9778)
+  {
+    items = {38641, 8870},
+    result = 9778,
+    gold = 2500,
+    name = "Abyssal Mask",
+    rarity = 4,
+    implicits = {
+      {1, 300},  -- ID 1 (Health): +300
+      {9, 45},   -- ID 9 (Magic Defense): +45
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {29, 30},  -- ID 29 (Unmake): -30% Enemy Magic Defense
+    },
+  },
+
+  -- [MAGE MAGIC PENETRATION TREE - VOID STAFF]
+  -- Step 1: Amplifying Tome (1955) + 700 Gold -> Blighting Jewel (2178)
+  {
+    items = {1955},
+    result = 2178,
+    gold = 700,
+    name = "Blighting Jewel",
+    rarity = 1,
+    implicits = {
+      {7, 20},   -- ID 7 (Magic Attack): +20
+      {15, 15},  -- ID 15 (Magic Penetration): +15
+    },
+  },
+
+  -- Step 2: 2x Druid Rod (26445) + 500 Gold -> Blasting Wand (2189)
+  {
+    items = {26445, 26445},
+    result = 2189,
+    gold = 500,
+    name = "Blasting Wand",
+    rarity = 1,
+    implicits = {
+      {7, 30},   -- ID 7 (Magic Attack): +30
+    },
+  },
+
+  -- Step 3: Blighting Jewel (2178) + Blasting Wand (2189) + 2000 Gold -> Void Staff (7424)
+  {
+    items = {2178, 2189},
+    result = 7424,
+    gold = 2000,
+    name = "Void Staff",
+    rarity = 4,
+    implicits = {
+      {7, 95},   -- ID 7 (Magic Attack): +95
+      {15, 40},  -- ID 15 (Magic Penetration): +40
+    },
+  },
+
+  -- [PHYSICAL BRUISER TREE - BLACK CLEAVER]
+  -- Step 1: Bronze Axe (26618) + Elven Plate (26491) + 350 Gold -> Phage (7415)
+  {
+    items = {26618, 26491},
+    result = 7415,
+    gold = 350,
+    name = "Phage",
+    rarity = 1,
+    implicits = {
+      {6, 15},   -- ID 6 (Physical Attack): +15
+      {1, 200},  -- ID 1 (Health): +200
+    },
+  },
+
+  -- Step 2: Phage (7415) + Kindlegem (38641) + Pickaxe (4874) + 1000 Gold -> Black Cleaver (7419)
+  {
+    items = {7415, 38641, 4874},
+    result = 7419,
+    gold = 1000,
+    name = "Black Cleaver",
+    rarity = 4,
+    implicits = {
+      {6, 40},   -- ID 6 (Physical Attack): +40
+      {16, 20},  -- ID 16 (Cooldown Reduction): +20%
+      {1, 400},  -- ID 1 (Health): +400
+      {31, 30},  -- ID 31 (Carve & Fervor): Armor shred up to 30% + Movement Speed on hit
+    },
+  },
+
+  -- [PHYSICAL LIFESTEAL TREE - BLOODTHIRSTER]
+  -- Step 1: 2x Bronze Axe (26618) + 500 Gold -> B. F. Sword (2393)
+  {
+    items = {26618, 26618},
+    result = 2393,
+    gold = 500,
+    name = "B. F. Sword",
+    rarity = 3,
+    implicits = {
+      {6, 40},   -- ID 6 (Physical Attack): +40
+    },
+  },
+
+  -- Step 2: Bronze Axe (26618) + Lifestealer Ring (26832) + 500 Gold -> Vampiric Scepter (2424)
+  {
+    items = {26618, 26832},
+    result = 2424,
+    gold = 500,
+    name = "Vampiric Scepter",
+    rarity = 1,
+    implicits = {
+      {6, 15},   -- ID 6 (Physical Attack): +15
+      {17, 8},   -- ID 17 (Physical Lifesteal): +8%
+    },
+  },
+
+  -- Step 3: B. F. Sword (2393) + Vampiric Scepter (2424) + Pickaxe (4874) + 1000 Gold -> Bloodthirster (7416)
+  {
+    items = {2393, 2424, 4874},
+    result = 7416,
+    gold = 1000,
+    name = "Bloodthirster",
+    rarity = 4,
+    implicits = {
+      {6, 80},   -- ID 6 (Physical Attack): +80
+      {17, 15},  -- ID 17 (Physical Lifesteal): +15%
+      {32, 100}, -- ID 32 (Ichor Shield): Overheal converts into Energy Shield (up to 10% Max HP)
+    },
+  },
+
+  -- [PHYSICAL CRITICAL STRIKE TREE - INFINITY EDGE]
+  -- Step 1: 2x Dagger (36676) + 300 Gold -> Cloak of Agility (2660)
+  {
+    items = {36676, 36676},
+    result = 2660,
+    gold = 300,
+    name = "Cloak of Agility",
+    rarity = 1,
+    implicits = {
+      {12, 15},  -- ID 12 (Critical Chance): +15%
+    },
+  },
+
+  -- Step 2: B. F. Sword (2393) + Pickaxe (4874) + Cloak of Agility (2660) + 1000 Gold -> Infinity Edge (7417)
+  {
+    items = {2393, 4874, 2660},
+    result = 7417,
+    gold = 1000,
+    name = "Infinity Edge",
+    rarity = 4,
+    implicits = {
+      {6, 70},   -- ID 6 (Physical Attack): +70
+      {12, 25},  -- ID 12 (Critical Chance): +25%
+      {13, 40},  -- ID 13 (Critical Damage): +40%
+    },
+  },
+
+  -- [TANK VITALITY TREE - WARMOG'S ARMOR]
+  -- Step 1: 2x Elven Plate (26491) + 500 Gold -> Giant's Belt (2487)
+  {
+    items = {26491, 26491},
+    result = 2487,
+    gold = 500,
+    name = "Giant's Belt",
+    rarity = 1,
+    implicits = {
+      {1, 350},  -- ID 1 (Health): +350
+    },
+  },
+
+  -- Step 2: Elven Plate (26491) + Boots (26438) + 400 Gold -> Winged Moonplate (2486)
+  {
+    items = {26491, 26438},
+    result = 2486,
+    gold = 400,
+    name = "Winged Moonplate",
+    rarity = 1,
+    implicits = {
+      {1, 150},  -- ID 1 (Health): +150
+      {10, 4},   -- ID 10 (Movement Speed): +4%
+    },
+  },
+
+  -- Step 3: Elven Plate (26491) + Recovery Ring (38860) + 100 Gold -> Crystalline Bracer (2469)
+  {
+    items = {26491, 38860},
+    result = 2469,
+    gold = 100,
+    name = "Crystalline Bracer",
+    rarity = 1,
+    implicits = {
+      {1, 200},  -- ID 1 (Health): +200
+      {4, 10},   -- ID 4 (Health Regeneration): +10
+    },
+  },
+
+  -- Step 4: Giant's Belt (2487) + Winged Moonplate (2486) + Crystalline Bracer (2469) + 800 Gold -> Warmog's Armor (8878)
+  {
+    items = {2487, 2486, 2469},
+    result = 8878,
+    gold = 800,
+    name = "Warmog's Armor",
+    rarity = 4,
+    implicits = {
+      {1, 1000}, -- ID 1 (Health): +1000
+      {4, 25},   -- ID 4 (Health Regeneration): +25
+      {10, 4},   -- ID 10 (Movement Speed): +4%
+      {33, 5},   -- ID 33 (Warmog's Heart): Regenerates 5% Max Health every second
+    },
+  },
+
+  -- [LEGENDARY TRINITY TREE - TRINITY FORCE]
+  -- Step 1: Monocle (7900) + 650 Gold -> Sheen (7418)
+  {
+    items = {7900},
+    result = 7418,
+    gold = 650,
+    name = "Sheen",
+    rarity = 2,
+    implicits = {
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+      {34, 100}, -- ID 34 (Spellblade): Next basic attack deals bonus physical damage after casting ability
+    },
+  },
+
+  -- Step 2: 2x Bronze Axe (26618) + Dagger (36676) + 250 Gold -> Hearthbound Axe (7411)
+  {
+    items = {26618, 26618, 36676},
+    result = 7411,
+    gold = 250,
+    name = "Hearthbound Axe",
+    rarity = 2,
+    implicits = {
+      {6, 20},   -- ID 6 (Physical Attack): +20
+      {11, 12},  -- ID 11 (Attack Speed): +12%
+      {35, 20},  -- ID 35 (Quicken): Basic attacks grant +20 Movement Speed
+    },
+  },
+
+  -- Step 3: Sheen (7418) + Phage (7415) + Hearthbound Axe (7411) + 133 Gold -> Trinity Force (8927)
+  {
+    items = {7418, 7415, 7411},
+    result = 8927,
+    gold = 133,
+    name = "Trinity Force",
+    rarity = 4,
+    implicits = {
+      {6, 36},   -- ID 6 (Physical Attack): +36
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {11, 30},  -- ID 11 (Attack Speed): +30%
+      {1, 333},  -- ID 1 (Health): +333
+      {34, 200}, -- ID 34 (Spellblade): 200% base AD bonus on-hit after ability
+      {35, 20},  -- ID 35 (Quicken): +20 Movement Speed on-hit
+    },
+  },
+
   -- Dungeon Key Recipes (3 items)
   { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29, isDungeonKey = true }, -- Soulbound
   { items = {34300, 5914, 34447}, result = 38725, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 28, isDungeonKey = true }, -- Gravebound
@@ -127,6 +441,58 @@ buildRecipeIndex()
 
 function isRecipeItem(itemId)
   return RECOMB_RECIPE_ITEM_IDS[itemId] == true
+end
+
+function generateRecipeResultItem(recipeData)
+  local resultItem = Game.createItem(recipeData.result, 1)
+  if not resultItem then
+    return nil
+  end
+
+  if recipeData.name then
+    resultItem:setAttribute(ITEM_ATTRIBUTE_NAME, recipeData.name)
+  end
+
+  if recipeData.rarity then
+    resultItem:setRarity(recipeData.rarity)
+  end
+
+  if recipeData.itemlevel then
+    resultItem:setItemLevel(recipeData.itemlevel)
+    resultItem:setCustomAttribute("item_level", recipeData.itemlevel)
+  end
+
+  if recipeData.keyTier then
+    resultItem:setCustomAttribute("keytier", recipeData.keyTier)
+    resultItem:setCustomAttribute("DungeonKey", true)
+  elseif recipeData.isDungeonKey then
+    resultItem:setCustomAttribute("DungeonKey", true)
+  end
+
+  if recipeData.implicits and #recipeData.implicits > 0 then
+    resultItem:setImplictSlots(#recipeData.implicits)
+    for x = 1, #recipeData.implicits do
+      local imp = recipeData.implicits[x]
+      local impId = imp[1]
+      local impVal = imp[2]
+      local impTier = imp[3] or 0
+      resultItem:setImplictValue(x, impId .. "|" .. impVal .. "|" .. impTier)
+    end
+  end
+
+  if recipeData.attributes and #recipeData.attributes > 0 then
+    resultItem:setModifiersSlots(#recipeData.attributes)
+    for x = 1, #recipeData.attributes do
+      local attr = recipeData.attributes[x]
+      local attrId = attr[1]
+      local attrVal = attr[2]
+      local attrTier = attr[3] or 0
+      resultItem:setAttributeValue(x, attrId .. "|" .. attrVal .. "|" .. attrTier)
+    end
+  end
+
+  resultItem:setCustomAttribute("checksum", ITEM_CHECKSUM)
+  return resultItem
 end
 
 local function areItemListsEqual(listA, listB)
@@ -557,7 +923,7 @@ function Player:combaineItems()
       end
     end
 
-    local resultItem = Game.createItem(recipeData.result, 1)
+    local resultItem = generateRecipeResultItem(recipeData)
     if not resultItem then
       self:sendTooltipMessage("Failed to create recipe result! ERROR #10")
       return
@@ -565,6 +931,7 @@ function Player:combaineItems()
 
     if recipeData.gold and recipeData.gold > 0 then
       if not self:removeTotalMoney(recipeData.gold, true) then
+        resultItem:remove()
         self:sendTooltipMessage("You don't have enough gold!")
         return
       end
@@ -573,50 +940,6 @@ function Player:combaineItems()
     for _, data in ipairs(items) do
       data.item:remove()
     end
-
-    if recipeData.name then
-      resultItem:setAttribute(ITEM_ATTRIBUTE_NAME, recipeData.name)
-    end
-
-    if recipeData.rarity then
-      resultItem:setRarity(recipeData.rarity)
-    end
-
-    if recipeData.itemlevel then
-      resultItem:setItemLevel(recipeData.itemlevel)
-      resultItem:setCustomAttribute("item_level", recipeData.itemlevel)
-    end
-
-    if recipeData.keyTier then
-      resultItem:setCustomAttribute("keytier", recipeData.keyTier)
-      resultItem:setCustomAttribute("DungeonKey", true)
-    elseif recipeData.isDungeonKey then
-      resultItem:setCustomAttribute("DungeonKey", true)
-    end
-
-    if recipeData.implicits and #recipeData.implicits > 0 then
-      resultItem:setImplictSlots(#recipeData.implicits)
-      for x = 1, #recipeData.implicits do
-        local imp = recipeData.implicits[x]
-        local impId = imp[1]
-        local impVal = imp[2]
-        local impTier = imp[3] or 0
-        resultItem:setImplictValue(x, impId .. "|" .. impVal .. "|" .. impTier)
-      end
-    end
-
-    if recipeData.attributes and #recipeData.attributes > 0 then
-      resultItem:setModifiersSlots(#recipeData.attributes)
-      for x = 1, #recipeData.attributes do
-        local attr = recipeData.attributes[x]
-        local attrId = attr[1]
-        local attrVal = attr[2]
-        local attrTier = attr[3] or 0
-        resultItem:setAttributeValue(x, attrId .. "|" .. attrVal .. "|" .. attrTier)
-      end
-    end
-
-    resultItem:setCustomAttribute("checksum", ITEM_CHECKSUM)
 
     self:addItemEx(resultItem)
 

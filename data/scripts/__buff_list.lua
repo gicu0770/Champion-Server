@@ -191,6 +191,9 @@ FOCUSING_MARK_DEBUFF = 188
 WEAKNESS_FINDER_DEBUFF = 189
 GORN_SHIELD = 190
 HEAVY_SPIN_BUFF = 191
+CARVE_DEBUFF = 192
+FERVOR_BUFF = 193
+ICHOR_SHIELD = 194
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2294,6 +2297,37 @@ BUFFS = {
 		stacked = false,
 		maxStacks = 1,
 		ticks = 4000
+	},
+	[CARVE_DEBUFF] = {
+		id = CARVE_DEBUFF,
+		name = "Carve",
+		description = "Physical defense reduced by 6% per stack (up to 30%).",
+		icon = "carve",
+		border = "frame-9-grey",
+		stacked = true,
+		maxStacks = 5,
+		debuff = true,
+		ticks = 6000
+	},
+	[FERVOR_BUFF] = {
+		id = FERVOR_BUFF,
+		name = "Fervor",
+		description = "Movement speed increased by 20.",
+		icon = "fervor",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 2000
+	},
+	[ICHOR_SHIELD] = {
+		id = ICHOR_SHIELD,
+		name = "Ichor Shield",
+		description = "Overheal from Physical Lifesteal converted into a shield (up to 10% Max HP).",
+		icon = "bloodthirster",
+		border = "frame-9-red",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 10000
 	},
 }
 

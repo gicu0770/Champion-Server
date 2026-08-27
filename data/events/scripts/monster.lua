@@ -1817,19 +1817,18 @@ function generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, loot
   for _ = 1, itemCount do
     local id = math.random(1, endList)
     local randBase = SERVER_BASE_ITEMS[dropLevel][id]
-    if not randBase then
-      print("Item: "..monsterLevel.." not found")
-      return 0
-    end
-    local item = generateBaseItem(player, strongBox, randBase, dropLevel, magicFind)
-    if not item then
-      print("Item: "..uniqueItem.name.." not found")
-      return 0
-    end
-    corpse:addItemEx(item, INDEX_WHEREEVER, FLAG_NOLIMIT)
-    local rarity = addToLootInfo(item, lootItems, looted)
-    if rarity > highestRarity then
-      highestRarity = rarity
+    if randBase then
+      local chance = randBase[5] or 10000
+      if math.random(1, 100000) <= chance then
+        local item = generateBaseItem(player, strongBox, randBase, dropLevel, magicFind)
+        if item then
+          corpse:addItemEx(item, INDEX_WHEREEVER, FLAG_NOLIMIT)
+          local rarity = addToLootInfo(item, lootItems, looted)
+          if rarity > highestRarity then
+            highestRarity = rarity
+          end
+        end
+      end
     end
   end
 
@@ -2001,10 +2000,8 @@ function generateServerBaseItems()
     SERVER_BASE_ITEMS[i] = {}
     for x = 1, i do
       if BASE_ITEMS[x] then
-        if i < 23 or x >= 23 and i >= 23 then
-          for y = 1, #BASE_ITEMS[x] do
-            table.insert(SERVER_BASE_ITEMS[i], BASE_ITEMS[x][y])
-          end
+        for y = 1, #BASE_ITEMS[x] do
+          table.insert(SERVER_BASE_ITEMS[i], BASE_ITEMS[x][y])
         end
       end
     end

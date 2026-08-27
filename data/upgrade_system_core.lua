@@ -203,6 +203,25 @@ function us_onMoveItem(player, item, fromPosition, toPosition)
       end
     end
   end
+
+  -- Block equipping duplicate Legendary items (Rarity 4)
+  local itemRarity = item:getRarityId()
+  if itemRarity == 4 and toPosition.y <= CONST_SLOT_RING2 and toPosition.y ~= CONST_SLOT_BACKPACK then
+    local itemId = item:getId()
+    local itemName = item:getName()
+    local itemUid = item:getRealUID()
+    for slot = CONST_SLOT_HEAD, CONST_SLOT_RING2 do
+      if slot ~= toPosition.y and slot ~= CONST_SLOT_BACKPACK then
+        local equippedItem = player:getSlotItem(slot)
+        if equippedItem and (itemUid == 0 or equippedItem:getRealUID() ~= itemUid) then
+          if equippedItem:getRarityId() == 4 and (equippedItem:getId() == itemId or equippedItem:getName() == itemName) then
+            player:sendTextMessage(MESSAGE_STATUS_SMALL, "You can only equip one " .. itemName .. " (Legendary).")
+            return false
+          end
+        end
+      end
+    end
+  end
   return true
 end
 

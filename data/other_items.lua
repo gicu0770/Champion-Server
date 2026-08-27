@@ -1100,6 +1100,35 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Strongbox Relict",
       38733,
       "Viliaan",
@@ -1158,35 +1187,6 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Health Soulstone",
-      38641,
-      "Undead King",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            109
-          },
-          {
-            {
-              5,
-              10,
-              23,
-              42
-            }
-          }
-        },
-        monster = "Undead King",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
       "Void Stone Relict",
       38693,
       "Void Stone",
@@ -1216,31 +1216,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
       {
         chance = 100000,
-        forceType = 134217728,
+        forceType = 16777216,
         imps = {
           {
-            264
+            239
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              15,
+              22,
+              35,
+              50
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Arbaziloth",
         weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1440,31 +1440,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "Health Soulstone",
+      38641,
+      "Undead King",
       {
         chance = 100000,
-        forceType = 268435456,
+        forceType = 16777216,
         imps = {
           {
-            265
+            109
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              5,
+              10,
+              23,
+              42
             }
           }
         },
-        monster = "Gorok",
+        monster = "Undead King",
         weight = {
-          0,
-          0,
-          0,
-          0
+          7,
+          10,
+          12,
+          15
         }
       }
     },
@@ -1585,31 +1585,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 134217728,
         imps = {
           {
-            239
+            264
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Arbaziloth",
+        monster = "Bilbo",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },

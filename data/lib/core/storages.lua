@@ -155,6 +155,10 @@ PlayerStorage = {
 	braveSmiteCooldown = 801131,
 	focusingMarkCooldown = 801132,
 	weaknessFinderCooldown = 801133,
+	spellbladeCooldown = 801134,
+	spellbladeProc = 801135,
+	ichorShieldTime = 801136,
+	ichorShieldAmount = 801137,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

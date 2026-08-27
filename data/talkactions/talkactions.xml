@@ -48,6 +48,8 @@
 	<talkaction words="/rarity" separator=" " script="rarity.lua" />
 	<talkaction words="/unique" separator=" " script="unique.lua" />
 	<talkaction words="/base" separator=" " script="base.lua" />
+	<talkaction words="/baseall;!baseall;/basebag;!basebag" separator=" " script="baseall.lua" />
+	<talkaction words="/fusionall;!fusionall;/fusionbag;!fusionbag;/altarall;!altarall;/recipeall;!recipeall" separator=" " script="fusionall.lua" />
 	<talkaction words="/pa" separator=" " script="pa.lua" />
 	<talkaction words="/soul" separator=" " script="soul.lua" />
 	<talkaction words="/selfboost" separator=" " script="selfboost.lua" /> 
