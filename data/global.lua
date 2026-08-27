@@ -260,8 +260,9 @@ end
 function Player.getPhysicalSteal(self)
 	if not self then return 0 end
 	local getPhysicalSteal = 0
-	if colleftInfo[self:getId()].attributesItems[17] then
-		getPhysicalSteal = getPhysicalSteal + colleftInfo[self:getId()].attributesItems[17].value
+	local pInfo = colleftInfo[self:getId()]
+	if pInfo and pInfo.attributesItems and pInfo.attributesItems[17] then
+		getPhysicalSteal = getPhysicalSteal + (tonumber(pInfo.attributesItems[17].value) or 0)
 	end
 	return getPhysicalSteal
 end
@@ -269,8 +270,9 @@ end
 function Player.getMagicSteal(self)
 	if not self then return 0 end
 	local getMagicSteal = 0
-	if colleftInfo[self:getId()].attributesItems[18] then
-		getMagicSteal = getMagicSteal + colleftInfo[self:getId()].attributesItems[18].value
+	local pInfo = colleftInfo[self:getId()]
+	if pInfo and pInfo.attributesItems and pInfo.attributesItems[18] then
+		getMagicSteal = getMagicSteal + (tonumber(pInfo.attributesItems[18].value) or 0)
 	end
 	return getMagicSteal
 end
@@ -1211,7 +1213,9 @@ GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexte
 	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.8, baseDamage = 30, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
 	[2] = {name = "Searing Torrent", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.6, baseDamage = 25, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Searing Torrent",
 	[3] = {name = "Vengeance Flame", cooldown = 3000, manaCost = 20, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = false},-- "Vengeance Flame",
-
+	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 0.5, baseDamage = 300, baseDamagePerLevel = 60, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
+	[5] = {name = "Body Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 270, baseDamagePerLevel = 50, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Body Slam",
+	[6] = {name = "Heavy Spin", cooldown = 6000, manaCost = 0, range = 0, hits = 4, multipler = 0.3, baseDamage = 150, baseDamagePerLevel = 75, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Heavy Spin",
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -1250,9 +1254,9 @@ GLOBAL_SPELL_NUMBER = {
 	[1] = "Fireball",
 	[2] = "Searing Torrent",
 	[3] = "Vengeance Flame",
-	[4] = "Seismic Wave",
-	[5] = "Salvo",
-	[6] = "Smite",
+	[4] = "Thousand Pounder",
+	[5] = "Body Slam",
+	[6] = "Heavy Spin",
 	[7] = "Curse",
 	[8] = "Vortex",
 	[9] = "Fire Aura",

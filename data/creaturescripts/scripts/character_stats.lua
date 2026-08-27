@@ -151,6 +151,7 @@ function onAdvance(player, skill, oldLevel, newLevel)
     return true
   end
 
+  --[[
   local currentLevel = newLevel - 1
   local lastStatLevel = player:getStorageValue(PlayerStorageKeys.characterStatsLevel)
 
@@ -160,6 +161,7 @@ function onAdvance(player, skill, oldLevel, newLevel)
     player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have gained " .. statPointsToAdd .. " stat point(s).")
     player:setStorageValue(PlayerStorageKeys.characterStatsLevel, currentLevel)
   end
+  --]]
 
   return true
 end

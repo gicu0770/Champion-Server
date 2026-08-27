@@ -172,6 +172,62 @@ US_ENCHANTMENTS = {
         percent = false,
         itemType = US_ITEM_TYPES.ALL
     },
+    [22] = {
+        name = "Concussive Blast",
+        desc = "After the next Basic Attack, deal 100(+7% Total HP) Magic Damage to nearby enemies. Cooldown: 15s.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [23] = {
+        name = "Brave Smite",
+        desc = "Dealing skill damage to an enemy recovers 3% Max HP. Cooldown: 9 seconds.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [24] = {
+        name = "Focusing Mark",
+        desc = "After damaging an enemy deal 10% more damage to them and gain 10% Movement Speed. Duration: 3 seconds. Cooldown: 4 seconds.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [25] = {
+        name = "Weakness Finder",
+        desc = "Basic Attacks slow enemies by 50% and reduce their Attack Speed by 30%. Duration: 1 second. Cooldown: 10 seconds (each Basic Attack reduces it bv 1 seconds, down to 3 seconds).",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [26] = {
+        name = "Merciless",
+        desc = "Grants 20% increased damage against targets below 40% health.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [27] = {
+        name = "Gigantism",
+        desc = "Each 500 Hp increase you damage by 2%.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [28] = {
+        name = "Glass Cannon",
+        desc = "Each 1% of missing HP increase you damage by 1%.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
 }
 
 REDUCTION_ATTR_VALUES = {

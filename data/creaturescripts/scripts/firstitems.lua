@@ -14,8 +14,10 @@ local config = {
 			{36666, 1}, -- sword
 		},
 		spells = {
-		{1987, 1, CONST_SLOT_SPELL1}, -- spell1
-		},
+			{37308, 1, CONST_SLOT_SPELL1}, -- Thousand Pounder
+			{37309, 1, CONST_SLOT_SPELL2}, -- Body Slam
+			{37310, 1, CONST_SLOT_SPELL3}, -- Heavy Spin
+		}
 	},
 	[3] = { -- Juki
 		items = {

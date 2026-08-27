@@ -19,6 +19,9 @@ end
 function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtra)
   local spellCfg = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId]
   local attackpower = player:getMagicAttack()
+  if (CONFIG and CONFIG.type == COMBAT_PHYSICALDAMAGE) or (spellCfg and (spellCfg.scaling == 2 or spellCfg.addDamage == 2)) then
+    attackpower = player:getPhysicalAttack()
+  end
   if not attackpower or attackpower <= 0 then
     attackpower = player:getCharacterType()
   end
@@ -38,6 +41,14 @@ function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtr
   end
 
   local totalBase = baseDmg + (math.max(1, spellLevel) - 1) * basePerLvl
+
+  if CONFIG.spellId == 5 then -- Body Slam (+6% Total HP)
+    totalBase = totalBase + math.ceil(player:getMaxHealth() * 0.06)
+  elseif CONFIG.spellId == 6 then -- Heavy Spin
+    totalBase = 150 + (math.max(1, spellLevel) - 1) * 100
+    multiplier = 0.30 + (math.max(1, spellLevel) - 1) * 0.10
+  end
+
   local max = math.ceil(totalBase + (attackpower * multiplier))
   local max2 = 0
   return {-max, -max2}

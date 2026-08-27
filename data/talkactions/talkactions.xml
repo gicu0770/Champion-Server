@@ -155,6 +155,7 @@
 		50392 -->
 
 	<talkaction words="!info" separator=" " script="damageinfo.lua"/>
+	<talkaction words="!dmg;!damagelog;/dmg;/damagelog" script="damagelog_toggle.lua" />
 	<talkaction words="!leave" separator=" " script="leave.lua" />
 	<talkaction words="!uptime" script="uptime.lua" />
 	<talkaction words="!deathlist" separator=" " script="deathlist.lua" />

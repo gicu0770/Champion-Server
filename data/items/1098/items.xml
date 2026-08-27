@@ -40647,23 +40647,23 @@
 		<attribute key="spellGem" value="3" />
 		<attribute key="spell" value="Vengeance Flame" />
 	</item>
-	<item id="37308" article="a" name="Seismic Wave">
+	<item id="37308" article="a" name="Thousand Pounder">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="4" />
-		<attribute key="spell" value="Seismic Wave" />
+		<attribute key="spell" value="Thousand Pounder" />
 	</item>
-	<item id="37309" article="a" name="Salvo">
+	<item id="37309" article="a" name="Body Slam">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="5" />
-		<attribute key="spell" value="Salvo" />
+		<attribute key="spell" value="Body Slam" />
 	</item>
-	<item id="37310" article="a" name="Smite">
+	<item id="37310" article="a" name="Heavy Spin">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="6" />
-		<attribute key="spell" value="Smite" />
+		<attribute key="spell" value="Heavy Spin" />
 	</item>
 	<item id="37311" article="a" name="Curse">
 		<attribute key="containerSize" value="3" />

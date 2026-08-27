@@ -442,6 +442,54 @@ function Player:upgradeSpellSlot(slot)
   return true
 end
 
+function Player:addGornShield()
+  if self:getVocation():getId() == 2 then
+    local maxHp = self:getMaxHealth()
+    local shieldValue = math.ceil(25 + (maxHp * 0.05))
+
+    if self:getMaxEnergyShield() < shieldValue then
+      self:setMaxEnergyShield(shieldValue)
+    end
+
+    self:setEnergyShield(shieldValue)
+    self:addBuff(GORN_SHIELD, 4000)
+    self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+
+    local castTime = os.time()
+    self:setStorageValue(PlayerStorage.gornShieldAmount, castTime)
+
+    local cid = self:getId()
+    addEvent(function(playerId, timestamp, amount)
+      local p = Player(playerId)
+      if p and p:getStorageValue(PlayerStorage.gornShieldAmount) == timestamp then
+        local cur = p:getEnergyShield()
+        if cur > 0 then
+          p:setEnergyShield(math.max(0, cur - amount))
+        end
+        p:removeBuff(GORN_SHIELD)
+      end
+    end, 4000, cid, castTime, shieldValue)
+  end
+end
+
+function Player:sendKnockup(target, duration, height)
+  if not target or not target:isCreature() then return end
+  local targetId = target:getId()
+  local dur = duration or 500
+  local h = height or 24
+  local data = {
+    action = "knockup",
+    targetId = targetId,
+    duration = dur,
+    height = h
+  }
+  self:sendExtendedOpcode(ExtendedOPCodes.CODE_CASTSPELL, json.encode(data))
+
+  if target:isPlayer() and target:getId() ~= self:getId() then
+    target:sendExtendedOpcode(ExtendedOPCodes.CODE_CASTSPELL, json.encode(data))
+  end
+end
+
 function Player:castSpell(id, pos, force)
   local item = self:getSlotItem(11+id)
   if not item then
@@ -461,6 +509,7 @@ function Player:castSpell(id, pos, force)
   end
 
   SPELL.cast(self, item, force, pos)
+  self:addGornShield()
 end
 
 function Player:usePotion(id)

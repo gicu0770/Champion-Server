@@ -1,5 +1,6 @@
 PLAYERSTATE_POISON = 1
 PLAYERSTATE_BURN = 2
+JUKI_BURN = 107 -- Alias do IGNITE_ITEM
 BUFF_GLOBAL_LOOT = 3
 PLAYERSTATE_ENERGY = 4
 BUFF_CRITICAL_DAMAGE = 5
@@ -185,6 +186,11 @@ BASIC_DAMAGE_SUPPORT = 183
 CRITICAL_DAMAGE_SUPPORT = 184
 AURA_EVASION = 185
 VENGEANCE_FLAME = 186
+FOCUSING_MARK = 187
+FOCUSING_MARK_DEBUFF = 188
+WEAKNESS_FINDER_DEBUFF = 189
+GORN_SHIELD = 190
+HEAVY_SPIN_BUFF = 191
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2236,6 +2242,58 @@ BUFFS = {
 		stacked = false,
 		maxStacks = 1,
 		ticks = 10000
+	},
+	[FOCUSING_MARK] = {
+		id = FOCUSING_MARK,
+		name = "Focusing Mark",
+		description = "Deal 10% more damage to marked enemy and gain 10% Movement Speed.",
+		icon = "focusingmark",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 3000
+	},
+	[FOCUSING_MARK_DEBUFF] = {
+		id = FOCUSING_MARK_DEBUFF,
+		name = "Marked",
+		description = "Taking 10% more damage from attacker.",
+		icon = "focusingmark",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 3000
+	},
+	[WEAKNESS_FINDER_DEBUFF] = {
+		id = WEAKNESS_FINDER_DEBUFF,
+		name = "Weakness Finder",
+		description = "Slowed by 50% and Attack Speed reduced by 30%.",
+		icon = "weaknessfinder",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 1000
+	},
+	[GORN_SHIELD] = {
+		id = GORN_SHIELD,
+		name = "Tai Chi Shield",
+		description = "Absorbs incoming damage with an Energy Shield.",
+		icon = "stoneform",
+		border = "frame-9-gold",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 4000
+	},
+	[HEAVY_SPIN_BUFF] = {
+		id = HEAVY_SPIN_BUFF,
+		name = "Heavy Spin",
+		description = "Spinning continuously, dealing Physical Damage to nearby enemies every 1s.",
+		icon = "whirlwind",
+		border = "frame-9-red",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 4000
 	},
 }
 

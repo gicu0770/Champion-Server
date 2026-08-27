@@ -153,6 +153,7 @@ function onLogin(player)
 		player:setTitle(championName, "Reggae One-10px-bordered", "#0dff00")
 	end
 
+  --[[
   local currentLevel = player:getLevel() - 1
   local lastStatLevel = player:getStorageValue(PlayerStorageKeys.characterStatsLevel)
 
@@ -162,6 +163,7 @@ function onLogin(player)
     player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have gained " .. statPointsToAdd .. " stat point(s).")
     player:setStorageValue(PlayerStorageKeys.characterStatsLevel, currentLevel)
   end
+  --]]
 
 
 	PLAYER_DPS[cid] = nil

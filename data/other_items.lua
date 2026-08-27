@@ -1100,122 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "The Epic Wisdom",
-      13946,
-      "Toxic Witch",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            241
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Toxic Witch",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            242
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Molten Abyss",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
-      {
-        chance = 5000,
-        forceType = -2147483648,
-        imps = {
-          {
-            288
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Void Stone",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Strongbox Relict",
       38733,
       "Viliaan",
@@ -1274,31 +1158,89 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
+      "Health Soulstone",
+      38641,
+      "Undead King",
       {
         chance = 100000,
-        forceType = 33554432,
+        forceType = 16777216,
         imps = {
           {
-            240
+            109
           },
           {
             {
-              3,
-              7,
-              15,
-              30
+              5,
+              10,
+              23,
+              42
             }
           }
         },
-        monster = "Sand Colossus",
+        monster = "Undead King",
         weight = {
-          5,
+          7,
           10,
-          15,
-          20
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
+      {
+        chance = 5000,
+        forceType = -2147483648,
+        imps = {
+          {
+            288
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Void Stone",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
+      {
+        chance = 100000,
+        forceType = 134217728,
+        imps = {
+          {
+            264
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1498,31 +1440,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Health Soulstone",
-      38641,
-      "Undead King",
+      "Champion Trophy",
+      38736,
+      "Gorok",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 268435456,
         imps = {
           {
-            109
+            265
           },
           {
             {
-              5,
-              10,
-              23,
-              42
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Undead King",
+        monster = "Gorok",
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1672,31 +1614,89 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
       {
         chance = 100000,
-        forceType = 134217728,
+        forceType = 33554432,
         imps = {
           {
-            264
+            240
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              3,
+              7,
+              15,
+              30
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Sand Colossus",
         weight = {
-          0,
-          0,
-          0,
-          0
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "The Epic Wisdom",
+      13946,
+      "Toxic Witch",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            241
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Toxic Witch",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
         }
       }
     }
@@ -2173,7 +2173,7 @@ OTHER_ITEMS = {
       12
     },
     {
-      "Smite",
+      "Heavy Spin",
       37310,
       12
     },
@@ -2263,7 +2263,7 @@ OTHER_ITEMS = {
       12
     },
     {
-      "Seismic Wave",
+      "Thousand Pounder",
       37308,
       12
     },
@@ -2288,7 +2288,7 @@ OTHER_ITEMS = {
       12
     },
     {
-      "Salvo",
+      "Body Slam",
       37309,
       12
     },

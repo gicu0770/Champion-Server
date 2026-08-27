@@ -2208,7 +2208,7 @@ function Player:getItemLevelTotal()
         for i = 1, slotsMax do
           local enchant = item:getBonusAttribute(i)
           if enchant and #enchant > 0 then
-            if enchant[1] == 1 or enchant[1] == 2 or enchant[1] == 23 or enchant[1] == 24 then
+            if enchant[1] == 1 or enchant[1] == 2 then
               enchant[2] = math.ceil(enchant[2] / 100)
             end
             totalAtrBonus = totalAtrBonus + enchant[2]
