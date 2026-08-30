@@ -369,9 +369,9 @@ RECOMB_ITEM_RECIPES = {
     rarity = 4,
     implicits = {
       {1, 1000}, -- ID 1 (Health): +1000
-      {4, 25},   -- ID 4 (Health Regeneration): +25
-      {10, 4},   -- ID 10 (Movement Speed): +4%
-      {33, 5},   -- ID 33 (Warmog's Heart): Regenerates 5% Max Health every second
+      {4, 100},  -- ID 4 (Health Regeneration): +100%
+      {10, 5},   -- ID 10 (Movement Speed): +5%
+      {33, 3},   -- ID 33 (Warmog's Heart): Regenerates 3% Max Health every second
     },
   },
 
@@ -421,11 +421,11 @@ RECOMB_ITEM_RECIPES = {
   },
 
   -- Dungeon Key Recipes (3 items)
-  { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29, isDungeonKey = true }, -- Soulbound
-  { items = {34300, 5914, 34447}, result = 38725, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 28, isDungeonKey = true }, -- Gravebound
-  { items = {5895, 29802, 11223}, result = 38726, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 27, isDungeonKey = true }, -- Liberator
-  { items = {22532, 5809, 34292}, result = 38728, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 26, isDungeonKey = true }, -- Eldritch
-  { items = {15546, 31543, 31540}, result = 38727, itemlevel = 2950, rarity = 5, keyTier = 132, isDungeonKey = true }, -- Goblin King
+--  { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29, isDungeonKey = true }, -- Soulbound
+--  { items = {34300, 5914, 34447}, result = 38725, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 28, isDungeonKey = true }, -- Gravebound
+--  { items = {5895, 29802, 11223}, result = 38726, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 27, isDungeonKey = true }, -- Liberator
+--  { items = {22532, 5809, 34292}, result = 38728, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 26, isDungeonKey = true }, -- Eldritch
+--  { items = {15546, 31543, 31540}, result = 38727, itemlevel = 2950, rarity = 5, keyTier = 132, isDungeonKey = true }, -- Goblin King
 }
 
 local RECOMB_RECIPE_ITEM_IDS = {}

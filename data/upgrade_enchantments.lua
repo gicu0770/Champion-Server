@@ -178,6 +178,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [23] = {
@@ -186,6 +187,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [24] = {
@@ -194,6 +196,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [25] = {
@@ -202,6 +205,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [26] = {
@@ -210,6 +214,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [27] = {
@@ -218,6 +223,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [28] = {
@@ -226,6 +232,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = false,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [29] = {
@@ -234,6 +241,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [30] = {
@@ -242,6 +250,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [31] = {
@@ -250,6 +259,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [32] = {
@@ -258,14 +268,16 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [33] = {
         name = "Warmog's Heart",
-        desc = "Regenerates 5% of your Maximum Health every second.",
+        desc = "Regenerates 3% of your Maximum Health every second.",
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [34] = {
@@ -274,6 +286,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
     [35] = {
@@ -282,6 +295,7 @@ US_ENCHANTMENTS = {
         category = 1,
         percent = true,
         noValue = true,
+        unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
 }

@@ -1224,6 +1224,9 @@ GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexte
 	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 0.5, baseDamage = 300, baseDamagePerLevel = 60, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
 	[5] = {name = "Body Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 270, baseDamagePerLevel = 50, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Body Slam",
 	[6] = {name = "Heavy Spin", cooldown = 6000, manaCost = 0, range = 0, hits = 4, multipler = 0.3, baseDamage = 150, baseDamagePerLevel = 75, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Heavy Spin",
+	[7] = {name = "Rapid Fire", cooldown = 8000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 3, tag = {11, 25}, element = 100, aoe = false},-- "Rapid Fire",
+	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 0.6, baseDamage = 200, baseDamagePerLevel = 45, scaling = 2, addDamage = 3, tag = {11, 16, 20}, element = 100, aoe = true},-- "Arrow Volley",
+	[9] = {name = "Arrow Rain", cooldown = 10000, manaCost = 0, range = 6, hits = 3, multipler = 0.4, baseDamage = 180, baseDamagePerLevel = 50, scaling = 2, addDamage = 3, tag = {11, 20, 27}, element = 100, aoe = true},-- "Arrow Rain",
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -1265,9 +1268,9 @@ GLOBAL_SPELL_NUMBER = {
 	[4] = "Thousand Pounder",
 	[5] = "Body Slam",
 	[6] = "Heavy Spin",
-	[7] = "Curse",
-	[8] = "Vortex",
-	[9] = "Fire Aura",
+	[7] = "Rapid Fire",
+	[8] = "Arrow Volley",
+	[9] = "Arrow Rain",
 	[10] = "Anger Aura",
 	[11] = "Physical Aura",
 	[12] = "Elemental Aura",
@@ -1800,14 +1803,16 @@ function Player.setCollectionInfo(self)
 					haveValue = not attr.noQuality
 				end
 				if attributesTables[attrId] ~= nil then
-					if quality and haveValue then
+					if attr and attr.unique then
+						attributesTables[attrId].value = math.max(attributesTables[attrId].value, value)
+					elseif quality and haveValue then
 						attributesTables[attrId].value = attributesTables[attrId].value + math.floor((value * (1 + quality / 100)))
 					else
 						attributesTables[attrId].value = attributesTables[attrId].value + value
 					end
 					attributesTables[attrId].text = attr.name
 				else
-					if quality and haveValue then
+					if quality and haveValue and (not attr or not attr.unique) then
 						value = math.floor((value * (1 + quality / 100)))
 					end
 					attributesTables[attrId] = {
@@ -1842,14 +1847,16 @@ function Player.setCollectionInfo(self)
 				end
 
 				if attributesTables[attrId] ~= nil then
-					if quality and haveValue then
+					if attr and attr.unique then
+						attributesTables[attrId].value = math.max(attributesTables[attrId].value, value)
+					elseif quality and haveValue then
 						attributesTables[attrId].value = attributesTables[attrId].value + math.floor((value * (1 + quality / 100)))
 					else
 						attributesTables[attrId].value = attributesTables[attrId].value + value
 					end
 					attributesTables[attrId].text = attr.name
 				else
-					if quality and haveValue then
+					if quality and haveValue and (not attr or not attr.unique) then
 						value = math.floor((value * (1 + quality / 100)))
 					end
 					attributesTables[attrId] = {
@@ -1873,7 +1880,9 @@ function Player.setCollectionInfo(self)
 					local quality = enchant[5]
 					local attr = US_ENCHANTMENTS[attrId]
 					if attributesTables[attrId] ~= nil then
-						if quality then
+						if attr and attr.unique then
+							attributesTables[attrId].value = math.max(attributesTables[attrId].value, value)
+						elseif quality then
 							attributesTables[attrId].value = attributesTables[attrId].value + math.floor((value * (1 + quality / 100)))
 						else
 							attributesTables[attrId].value = attributesTables[attrId].value + value
@@ -1905,7 +1914,11 @@ function Player.setCollectionInfo(self)
 					local attr = US_ENCHANTMENTS[enchant[1]]
 					local value = enchant[2]
 					if attributesTables[enchant[1]] ~= nil then
-						attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
+						if attr and attr.unique then
+							attributesTables[enchant[1]].value = math.max(attributesTables[enchant[1]].value, value)
+						else
+							attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
+						end
 						attributesTables[enchant[1]].text = attr.name
 					else
 						attributesTables[enchant[1]] = {
@@ -1933,7 +1946,11 @@ function Player.setCollectionInfo(self)
 						local attr = US_ENCHANTMENTS[enchant[1]]
 						local value = enchant[2]
 						if attributesTables[enchant[1]] ~= nil then
-							attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
+							if attr and attr.unique then
+								attributesTables[enchant[1]].value = math.max(attributesTables[enchant[1]].value, value)
+							else
+								attributesTables[enchant[1]].value = attributesTables[enchant[1]].value + value
+							end
 							attributesTables[enchant[1]].text = attr.name
 						else
 							attributesTables[enchant[1]] = {
@@ -1956,7 +1973,11 @@ function Player.setCollectionInfo(self)
 			local attr = US_ENCHANTMENTS[enchant]
 			local value = GOLDEN_ENCHANTMENTS_CONFIG[i].value * level
 			if attributesTables[enchant] ~= nil then
-				attributesTables[enchant].value = attributesTables[enchant].value + value
+				if attr and attr.unique then
+					attributesTables[enchant].value = math.max(attributesTables[enchant].value, value)
+				else
+					attributesTables[enchant].value = attributesTables[enchant].value + value
+				end
 				attributesTables[enchant].text = attr.name
 			else
 				attributesTables[enchant] = {
@@ -5769,8 +5790,8 @@ function Player.setStatistics(self)
 	if colleftInfo[self:getId()].attributesItems[20] then -- Energy Shield Regeneration
 		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[20].value
 	end
-	if colleftInfo[self:getId()].attributesItems[33] then -- Warmog's Heart: Regenerate 5% Max Health every second
-		local regenPct = colleftInfo[self:getId()].attributesItems[33].value or 5
+	if colleftInfo[self:getId()].attributesItems[33] then -- Warmog's Heart: Regenerate 3% Max Health every second
+		local regenPct = colleftInfo[self:getId()].attributesItems[33].value or 3
 		healthRegen = healthRegen + math.ceil(self:getMaxHealth() * (regenPct / 100))
 	end
 	local movementSpeedFlat = 0

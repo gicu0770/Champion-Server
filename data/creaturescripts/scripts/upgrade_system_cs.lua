@@ -170,8 +170,12 @@ MONSTER_CONFIG = {
 	[3] = { damage = 30, physical_defense = 27, magic_defense = 27, exp = 8, gold = 5, upgrade_materials_chance = 7500 }, -- orcs
 }
 function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
+	local isNegative = (primaryDamage < 0)
+	primaryDamage = math.abs(primaryDamage)
+
 	-- GRACZ ATAKUJE
 	if attacker:isPlayer() then -- atakujacym jest gracz
+		local attackerAttrs = colleftInfo[attacker:getId()] and colleftInfo[attacker:getId()].attributesItems
 		local physical_penetration = attacker:getPhysicalPenetration()
 		local magic_penetration = attacker:getMagicPenetration()
 		attacker:getTotalAttackSpeed()
@@ -195,10 +199,45 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			primaryDamage = math.ceil(primaryDamage * (1 + bonus / 100))
 		end
 
-		-- Gorn Passive: Basic attacks deal extra 25 (+5% Total HP) Physical Damage
+		-- Gorn Passive: Basic attacks deal extra 25 (+5% Total HP) Physical Damage (10s cooldown)
 		if attacker:getVocation():getId() == 2 and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
-			local gornBonus = math.ceil(25 + (attacker:getMaxHealth() * 0.05))
-			primaryDamage = primaryDamage + gornBonus
+			local now = os.time()
+			local nextAvailable = attacker:getStorageValue(PlayerStorage.gornAttackCooldown)
+			if nextAvailable < 0 or now >= nextAvailable then
+				attacker:setStorageValue(PlayerStorage.gornAttackCooldown, now + 10)
+				local gornBonus = math.ceil(25 + (attacker:getMaxHealth() * 0.05))
+				primaryDamage = primaryDamage + gornBonus
+				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			end
+		end
+
+		-- Mia Passive (Vocation 3): Basic attacks slow by 20% for 1.5s. Every 5s, deals 50% Physical Attack extra Physical Damage.
+		if attacker:getVocation():getId() == 3 and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
+			local baseSpeed = creature:getBaseSpeed() or 100
+			local slow = math.floor(baseSpeed * 0.20)
+			if slow > 0 then
+				local slowCond = Condition(CONDITION_PARALYZE)
+				slowCond:setParameter(CONDITION_PARAM_TICKS, 1500)
+				slowCond:setParameter(CONDITION_PARAM_SPEED, -slow)
+				creature:addCondition(slowCond)
+				creature:addBuff(MIA_SLOW_DEBUFF, 1500)
+			end
+
+			local now = os.time()
+			local nextAvailable = attacker:getStorageValue(PlayerStorage.miaPassiveCooldown)
+			if nextAvailable < 0 or now >= nextAvailable then
+				attacker:setStorageValue(PlayerStorage.miaPassiveCooldown, now + 5)
+				local physAtk = attacker:getPhysicalAttack() or 50
+				local bonusDmg = math.ceil(physAtk * 0.50)
+				primaryDamage = primaryDamage + bonusDmg
+				creature:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONHIT)
+			end
+		end
+
+		-- Mia Spell 1: Rapid Fire Active (+20% basic attack damage & special distance projectile)
+		if attacker:hasBuff(MIA_RAPID_FIRE) and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
+			primaryDamage = math.ceil(primaryDamage * 1.20)
+			attacker:getPosition():sendDistanceEffect(creature:getPosition(), 33)
 		end
 		local function getDefenseMultiplier(defFlat)
 			if defFlat >= 0 then
@@ -218,49 +257,71 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local penGain = 0
 		local penGainPct = 0
 
-		local targetDefMult = 1.0
+		-- =====================================================================
+		-- DEFENSE CALCULATION (LoL & MLBB Multiplicative Order of Operations)
+		-- 1. Base Target Defense (Monster Level or Player Armor/MR)
+		-- 2. Flat Defense Reduction
+		-- 3. Multiplicative % Defense Shred (Def * (1 - r1) * (1 - r2) ...)
+		-- 4. Flat Penetration (Raw Def - Pen, allows negative defense down to -60)
+		-- =====================================================================
+		local isPhysical = (primaryType == COMBAT_PHYSICALDAMAGE)
+		local baseTargetDef = 0
+
 		if creature:isMonster() then -- celem jest monster
-			rawDef = (15 + creature:getMonsterLevel() * 1)
-			penetration = (primaryType == COMBAT_PHYSICALDAMAGE) and physical_penetration or magic_penetration
-			effectiveDef = rawDef - penetration
-
-			local rawMult = getDefenseMultiplier(rawDef)
-			rawReductionPct = (1 - rawMult) * 100
-
-			targetDefMult = getDefenseMultiplier(effectiveDef)
-			effectiveReductionPct = (1 - targetDefMult) * 100
-
-			local dmgWithoutPen = math.ceil(baseDmgBeforeDef * rawMult)
-			local dmgWithPen = math.ceil(baseDmgBeforeDef * targetDefMult)
-			penGain = dmgWithPen - dmgWithoutPen
-			penGainPct = (dmgWithoutPen > 0) and (((dmgWithPen - dmgWithoutPen) / dmgWithoutPen) * 100) or 0
-
-			primaryDamage = dmgWithPen
-
+			baseTargetDef = (15 + creature:getMonsterLevel() * 1)
 		elseif creature:isPlayer() then -- celem jest PLAYER
-			rawDef = (primaryType == COMBAT_PHYSICALDAMAGE) and creature:getPhysicalDefense() or creature:getMagicDefense()
-			penetration = (primaryType == COMBAT_PHYSICALDAMAGE) and physical_penetration or magic_penetration
-			effectiveDef = rawDef - penetration
-
-			local rawMult = getDefenseMultiplier(rawDef)
-			rawReductionPct = (1 - rawMult) * 100
-
-			targetDefMult = getDefenseMultiplier(effectiveDef)
-			effectiveReductionPct = (1 - targetDefMult) * 100
-
-			local dmgWithoutPen = math.ceil(baseDmgBeforeDef * rawMult)
-			local dmgWithPen = math.ceil(baseDmgBeforeDef * targetDefMult)
-			penGain = dmgWithPen - dmgWithoutPen
-			penGainPct = (dmgWithoutPen > 0) and (((dmgWithPen - dmgWithoutPen) / dmgWithoutPen) * 100) or 0
-
-			primaryDamage = dmgWithPen
+			baseTargetDef = isPhysical and creature:getPhysicalDefense() or creature:getMagicDefense()
 		end
+
+		-- Step 1: Flat Defense Reduction
+		local flatDefReduction = 0
+		rawDef = math.max(0, baseTargetDef - flatDefReduction)
+
+		-- Step 2: Multiplicative % Defense Shred
+		local defShredMultiplier = 1.0
+
+		if not isPhysical then
+			-- [29] Unmake (Abyssal Mask): -30% Magic Defense within 4 tiles
+			if attackerAttrs and attackerAttrs[29] then
+				if attacker:getPosition():getDistance(creature:getPosition()) <= 4 then
+					defShredMultiplier = defShredMultiplier * 0.70
+				end
+			end
+			-- Any future Champion spells / debuffs reducing Magic Defense can be added here:
+			-- if creature:hasBuff(MAGIC_SHRED_BUFF) then defShredMultiplier = defShredMultiplier * (1.0 - shredPercent) end
+		else
+			-- [31] Carve (Black Cleaver): -6% Physical Defense per stack (up to -30% at 5 stacks)
+			if creature:hasBuff(CARVE_DEBUFF) then
+				local stacks = creature:getBuffStacks(CARVE_DEBUFF)
+				defShredMultiplier = defShredMultiplier * (1.0 - (stacks * 0.06))
+			end
+			-- Any future Champion spells / debuffs reducing Physical Defense can be added here:
+			-- if creature:hasBuff(PHYSICAL_SHRED_BUFF) then defShredMultiplier = defShredMultiplier * (1.0 - shredPercent) end
+		end
+
+		-- Apply total multiplicative % shred
+		rawDef = math.floor(rawDef * defShredMultiplier)
+
+		-- Step 3: Flat Penetration
+		penetration = isPhysical and physical_penetration or magic_penetration
+		effectiveDef = rawDef - penetration
+
+		local rawMult = getDefenseMultiplier(rawDef)
+		rawReductionPct = (1 - rawMult) * 100
+
+		targetDefMult = getDefenseMultiplier(effectiveDef)
+		effectiveReductionPct = (1 - targetDefMult) * 100
+
+		local dmgWithoutPen = math.ceil(baseDmgBeforeDef * rawMult)
+		local dmgWithPen = math.ceil(baseDmgBeforeDef * targetDefMult)
+		penGain = dmgWithPen - dmgWithoutPen
+		penGainPct = (dmgWithoutPen > 0) and (((dmgWithPen - dmgWithoutPen) / dmgWithoutPen) * 100) or 0
+
+		primaryDamage = dmgWithPen
 
 		-- =====================================================================
 		-- MODYFIKACJE PRZEDMIOTÓW [22-28] - DAMAGE MODIFIERS
 		-- =====================================================================
-		local attackerAttrs = colleftInfo[attacker:getId()] and colleftInfo[attacker:getId()].attributesItems
-
 		-- [24] Focusing Mark: 10% more damage to marked enemy
 		if creature:hasBuff(FOCUSING_MARK_DEBUFF) then
 			primaryDamage = math.ceil(primaryDamage * 1.10)
@@ -289,19 +350,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if missingPercent > 0 then
 				primaryDamage = math.ceil(primaryDamage * (1 + missingPercent / 100))
 			end
-		end
-
-		-- [29] Unmake (Abyssal Mask): Nearby enemies within 4 tiles have their Magic Defense reduced by 30%
-		if attackerAttrs and attackerAttrs[29] and primaryType ~= COMBAT_PHYSICALDAMAGE then
-			if attacker:getPosition():getDistance(creature:getPosition()) <= 4 then
-				primaryDamage = math.ceil(primaryDamage * 1.30)
-			end
-		end
-
-		-- [31] Carve (Black Cleaver): Reduce target Physical Defense by 6% per stack (up to 30%)
-		if creature:hasBuff(CARVE_DEBUFF) and primaryType == COMBAT_PHYSICALDAMAGE then
-			local stacks = (type(creature.getBuffStacks) == "function" and creature:getBuffStacks(CARVE_DEBUFF)) or (CREATURE_ACTIVE_BUFFS[creature:getId()] and CREATURE_ACTIVE_BUFFS[creature:getId()][CARVE_DEBUFF] and CREATURE_ACTIVE_BUFFS[creature:getId()][CARVE_DEBUFF].stacks) or 1
-			primaryDamage = math.ceil(primaryDamage * (1 + (stacks * 0.06)))
 		end
 
 		-- =====================================================================
@@ -397,6 +445,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				if cdReady < 0 or now >= cdReady then
 					attacker:setStorageValue(PlayerStorage.spellbladeProc, 0)
 					attacker:setStorageValue(PlayerStorage.spellbladeCooldown, now + 2)
+					attacker:removeBuff(SPELLBLADE_BUFF)
 					local bonusRatio = (attackerAttrs[34].value or 200) / 100
 					local baseAd = attacker:getPhysicalAttack()
 					local spellbladeDmg = math.ceil(baseAd * bonusRatio)
@@ -413,6 +462,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			speedCond:setParameter(CONDITION_PARAM_SPEED, attackerAttrs[35].value or 20)
 			speedCond:setParameter(CONDITION_PARAM_SUBID, 3264)
 			attacker:addCondition(speedCond)
+			attacker:addBuff(QUICKEN_BUFF, 2000)
 		end
 
 		-- =====================================================================
@@ -441,7 +491,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		-- Champion: Juki (Vocation 3) - nakłada Burn
 		if attacker:getVocation():getId() == 1 then
-			local totalDotDamage = creature:getMaxHealth() * 0.02
+			local targetMaxHp = creature:getMaxHealth()
+			if creature:isMonster() and (creature:getName():lower():find("dummy") or targetMaxHp > 10000000) then
+				targetMaxHp = math.max(1000, attacker:getMagicAttack() * 20)
+			end
+			local totalDotDamage = math.max(10, math.floor(targetMaxHp * 0.02))
 			local totalTicks = 4
 			local dmgPerTick = math.max(1, math.ceil((totalDotDamage * targetDefMult) / totalTicks))
 			local sumDotDamage = dmgPerTick * totalTicks
@@ -563,9 +617,14 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		-- Log Outgoing Damage (Attacker Player)
 		if attacker:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+			local shredPct = math.floor((1.0 - defShredMultiplier) * 100 + 0.5)
+			local defStr = (shredPct > 0)
+				and string.format("Def: %d (-%.1f%% Redu) [Shred: -%d%% (Base: %d)]", rawDef, rawReductionPct, shredPct, baseTargetDef)
+				or string.format("Def: %d (-%.1f%% Redu)", rawDef, rawReductionPct)
+
 			local logMsg = string.format(
-				"[DMG] [%s] Target: %s | Base: %d (%s) | Def: %d (-%.1f%%) | Pen: %d -> Eff.Def: %d (-%.1f%%) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s",
-				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawReductionPct, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix
+				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (-%.1f%% Redu) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s",
+				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix
 			)
 			print(logMsg)
 			attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, logMsg)
@@ -625,6 +684,10 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			print(takenMsg)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
 		end
+	end
+
+	if isNegative then
+		primaryDamage = -math.abs(primaryDamage)
 	end
 
 	return primaryDamage, primaryType, secondaryDamage, secondaryType

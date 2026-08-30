@@ -19,12 +19,14 @@ local config = {
 			{37310, 1, CONST_SLOT_SPELL3}, -- Heavy Spin
 		}
 	},
-	[3] = { -- Juki
+	[3] = { -- Mia
 		items = {
 			{2456, 1}, -- bow
 		},
 		spells = {
-		{1987, 1, CONST_SLOT_SPELL1}, -- spell1
+			{37311, 1, CONST_SLOT_SPELL1}, -- Rapid Fire
+			{37312, 1, CONST_SLOT_SPELL2}, -- Arrow Volley
+			{37313, 1, CONST_SLOT_SPELL3}, -- Arrow Rain
 		},
 	},
 	[4] = { -- Limone

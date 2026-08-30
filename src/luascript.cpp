@@ -5912,13 +5912,8 @@ int LuaScriptInterface::luaVariantCreate(lua_State* L)
 			variant.type = VARIANT_POSITION;
 			variant.directionalArea = 1;
 			Position fromPosition = caster->getPosition();
-			if (Creature* target = caster->getAttackedCreature()) {
-				Position toPosition = target->getPosition();
-				variant.pos = getNextPosition(getDirectionTo(fromPosition, toPosition), fromPosition);
-			} else {
-				Direction dir = caster->getDirection();
-				variant.pos = getNextPosition(dir, fromPosition);
-			}
+			Direction dir = caster->getDirection();
+			variant.pos = getNextPosition(dir, fromPosition);
 		}
 	} else if (isUserdata(L, 2)) {
 		if (Thing* thing = getThing(L, 2)) {

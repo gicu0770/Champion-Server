@@ -40599,23 +40599,23 @@
 		<attribute key="spellGem" value="6" />
 		<attribute key="spell" value="Heavy Spin" />
 	</item>
-	<item id="37311" article="a" name="Curse">
+	<item id="37311" article="a" name="Rapid Fire">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="7" />
-		<attribute key="spell" value="Curse" />
+		<attribute key="spell" value="Rapid Fire" />
 	</item>
-	<item id="37312" article="a" name="Vortex">
+	<item id="37312" article="a" name="Arrow Volley">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="8" />
-		<attribute key="spell" value="Vortex" />
+		<attribute key="spell" value="Arrow Volley" />
 	</item>
-	<item id="37313" article="a" name="Fire Aura">
+	<item id="37313" article="a" name="Arrow Rain">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="9" />
-		<attribute key="spell" value="Fire Aura" />
+		<attribute key="spell" value="Arrow Rain" />
 	</item>
 	<item id="37314" article="a" name="Anger Aura">
 		<attribute key="containerSize" value="3" />

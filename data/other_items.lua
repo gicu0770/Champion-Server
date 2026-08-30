@@ -1129,6 +1129,35 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            239
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Arbaziloth",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
       "Strongbox Relict",
       38733,
       "Viliaan",
@@ -1154,6 +1183,35 @@ OTHER_ITEMS = {
           0,
           0,
           0
+        }
+      }
+    },
+    {
+      "The Epic Wisdom",
+      13946,
+      "Toxic Witch",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            241
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Toxic Witch",
+        weight = {
+          5,
+          10,
+          15,
+          20
         }
       }
     },
@@ -1187,6 +1245,35 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
       "Void Stone Relict",
       38693,
       "Void Stone",
@@ -1216,15 +1303,44 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            240
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Sand Colossus",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
       {
         chance = 100000,
         forceType = 16777216,
         imps = {
           {
-            239
+            238
           },
           {
             {
@@ -1235,12 +1351,41 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Arbaziloth",
+        monster = "Fleshrend",
         weight = {
           10,
           12,
           15,
           20
+        }
+      }
+    },
+    {
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
+      {
+        chance = 100000,
+        forceType = 134217728,
+        imps = {
+          {
+            264
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1554,151 +1699,6 @@ OTHER_ITEMS = {
           20
         }
       }
-    },
-    {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            238
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Fleshrend",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            240
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "The Epic Wisdom",
-      13946,
-      "Toxic Witch",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            241
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Toxic Witch",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            242
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Molten Abyss",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
     }
   },
   RUNE_ITEMS = {
@@ -1748,7 +1748,7 @@ OTHER_ITEMS = {
       21
     },
     {
-      "Fire Aura",
+      "Arrow Rain",
       37313,
       21
     },
@@ -1918,7 +1918,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Curse",
+      "Rapid Fire",
       37311,
       1
     },
@@ -1978,7 +1978,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Vortex",
+      "Arrow Volley",
       37312,
       1
     },

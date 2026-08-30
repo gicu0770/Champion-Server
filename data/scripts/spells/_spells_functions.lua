@@ -48,7 +48,6 @@ function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtr
     totalBase = 150 + (math.max(1, spellLevel) - 1) * 100
     multiplier = 0.30 + (math.max(1, spellLevel) - 1) * 0.10
   end
-
   local max = math.ceil(totalBase + (attackpower * multiplier))
   local max2 = 0
   return {-max, -max2}
@@ -481,23 +480,24 @@ function spellGetDirectionTo(fromPos, toPos)
     return nil
   end
 
-  local absX = math.abs(dx)
-  local absY = math.abs(dy)
+  local angle = math.deg(math.atan2(dy, dx))
 
-  if absX > absY * 2.2 then
-    return dx > 0 and DIRECTION_EAST or DIRECTION_WEST
-  elseif absY > absX * 2.2 then
-    return dy > 0 and DIRECTION_SOUTH or DIRECTION_NORTH
-  else
-    if dx > 0 and dy < 0 then
-      return DIRECTION_NORTHEAST
-    elseif dx > 0 and dy > 0 then
-      return DIRECTION_SOUTHEAST
-    elseif dx < 0 and dy < 0 then
-      return DIRECTION_NORTHWEST
-    elseif dx < 0 and dy > 0 then
-      return DIRECTION_SOUTHWEST
-    end
+  if angle >= -22.5 and angle < 22.5 then
+    return DIRECTION_EAST
+  elseif angle >= 22.5 and angle < 67.5 then
+    return DIRECTION_SOUTHEAST
+  elseif angle >= 67.5 and angle < 112.5 then
+    return DIRECTION_SOUTH
+  elseif angle >= 112.5 and angle < 157.5 then
+    return DIRECTION_SOUTHWEST
+  elseif angle >= 157.5 or angle < -157.5 then
+    return DIRECTION_WEST
+  elseif angle >= -157.5 and angle < -112.5 then
+    return DIRECTION_NORTHWEST
+  elseif angle >= -112.5 and angle < -67.5 then
+    return DIRECTION_NORTH
+  elseif angle >= -67.5 and angle < -22.5 then
+    return DIRECTION_NORTHEAST
   end
 
   return DIRECTION_NORTH
@@ -706,6 +706,9 @@ end
         local hpCost = player:getMaxHealth() * US_ENCHANTMENTS[132].subvalue
         player:addHealth(-hpCost)
       end
+    end
+    if not CONFIG_SUP.manaCost or CONFIG_SUP.manaCost <= 0 then
+      return true
     end
     return player:addMana(-CONFIG_SUP.manaCost)
   end

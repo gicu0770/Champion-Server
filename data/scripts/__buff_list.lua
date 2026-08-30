@@ -194,6 +194,10 @@ HEAVY_SPIN_BUFF = 191
 CARVE_DEBUFF = 192
 FERVOR_BUFF = 193
 ICHOR_SHIELD = 194
+SPELLBLADE_BUFF = 195
+QUICKEN_BUFF = 196
+MIA_RAPID_FIRE = 197
+MIA_SLOW_DEBUFF = 198
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2328,6 +2332,47 @@ BUFFS = {
 		stacked = false,
 		maxStacks = 1,
 		ticks = 10000
+	},
+	[SPELLBLADE_BUFF] = {
+		id = SPELLBLADE_BUFF,
+		name = "Spellblade",
+		description = "Next basic attack deals bonus physical damage.",
+		icon = "weapon_strike",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 10000
+	},
+	[QUICKEN_BUFF] = {
+		id = QUICKEN_BUFF,
+		name = "Quicken",
+		description = "Movement speed increased by 20.",
+		icon = "speedbuff",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 2000
+	},
+	[MIA_RAPID_FIRE] = {
+		id = MIA_RAPID_FIRE,
+		name = "Rapid Fire",
+		description = "Attack Speed increased by 40% and Basic Attack damage increased by 20%.",
+		icon = "multishot",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 5000
+	},
+	[MIA_SLOW_DEBUFF] = {
+		id = MIA_SLOW_DEBUFF,
+		name = "Slowed",
+		description = "Movement Speed reduced by 20%.",
+		icon = "slowed",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 1500
 	},
 }
 

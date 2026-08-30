@@ -444,6 +444,14 @@ end
 
 function Player:addGornShield()
   if self:getVocation():getId() == 2 then
+    local now = os.time()
+    local nextAvailable = self:getStorageValue(PlayerStorage.gornShieldCooldown)
+    if nextAvailable > 0 and now < nextAvailable then
+      return
+    end
+
+    self:setStorageValue(PlayerStorage.gornShieldCooldown, now + 10)
+
     local maxHp = self:getMaxHealth()
     local shieldValue = math.ceil(25 + (maxHp * 0.05))
 
@@ -455,7 +463,7 @@ function Player:addGornShield()
     self:addBuff(GORN_SHIELD, 4000)
     self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 
-    local castTime = os.time()
+    local castTime = now
     self:setStorageValue(PlayerStorage.gornShieldAmount, castTime)
 
     local cid = self:getId()
@@ -520,6 +528,7 @@ function Player:castSpell(id, pos, force)
     local lastCd = self:getStorageValue(PlayerStorage.spellbladeCooldown)
     if lastCd < 0 or now >= lastCd then
       self:setStorageValue(PlayerStorage.spellbladeProc, now + 10)
+      self:addBuff(SPELLBLADE_BUFF, 10000)
       self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
     end
   end
