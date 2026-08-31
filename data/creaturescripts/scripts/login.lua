@@ -34,9 +34,8 @@ function onLogin(player)
 	end
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, loginStr)
 
-
 	if getWorldUpTime() <= 120 then
-		player:addBuff(RESTART_IMMORTAL)
+		player:addBuff(RESTART_IMMORTAL, 5000)
 	end
 
 	-- Stamina

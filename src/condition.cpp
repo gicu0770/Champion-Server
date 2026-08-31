@@ -1409,22 +1409,50 @@ void ConditionSpeed::addCondition(Creature* creature, const Condition* condition
 		return;
 	}
 
-	setTicks(condition->getTicks());
-
 	const ConditionSpeed& conditionSpeed = static_cast<const ConditionSpeed&>(*condition);
-	int32_t oldSpeedDelta = speedDelta;
-	speedDelta = conditionSpeed.speedDelta;
-	mina = conditionSpeed.mina;
-	maxa = conditionSpeed.maxa;
-	minb = conditionSpeed.minb;
-	maxb = conditionSpeed.maxb;
+	int32_t incomingSpeedDelta = conditionSpeed.speedDelta;
+	float incomingMina = conditionSpeed.mina;
+	float incomingMaxa = conditionSpeed.maxa;
+	float incomingMinb = conditionSpeed.minb;
+	float incomingMaxb = conditionSpeed.maxb;
 
-	if (speedDelta == 0) {
+	if (incomingSpeedDelta == 0) {
 		int32_t min;
 		int32_t max;
-		getFormulaValues(creature->getBaseSpeed(), min, max);
-		speedDelta = uniform_random(min, max);
+		conditionSpeed.getFormulaValues(creature->getBaseSpeed(), min, max);
+		incomingSpeedDelta = uniform_random(min, max);
 	}
+
+	if (conditionType == CONDITION_PARALYZE) {
+		// Both speedDelta and incomingSpeedDelta are negative values for paralyze/slow.
+		// Greater absolute value means stronger slow (e.g. -45 is stronger slow than -20).
+		if (std::abs(incomingSpeedDelta) < std::abs(speedDelta)) {
+			// Weaker slow applied while stronger slow is active: preserve the stronger slow!
+			// Only extend duration if the incoming condition lasts longer than current remaining ticks.
+			if (condition->getTicks() > getTicks()) {
+				setTicks(condition->getTicks());
+			}
+			return;
+		}
+	} else if (conditionType == CONDITION_HASTE) {
+		// Greater positive value means faster haste.
+		if (incomingSpeedDelta < speedDelta) {
+			// Weaker haste applied while stronger haste is active: preserve stronger haste!
+			if (condition->getTicks() > getTicks()) {
+				setTicks(condition->getTicks());
+			}
+			return;
+		}
+	}
+
+	setTicks(condition->getTicks());
+
+	int32_t oldSpeedDelta = speedDelta;
+	speedDelta = incomingSpeedDelta;
+	mina = incomingMina;
+	maxa = incomingMaxa;
+	minb = incomingMinb;
+	maxb = incomingMaxb;
 
 	int32_t newSpeedChange = (speedDelta - oldSpeedDelta);
 	if (newSpeedChange != 0) {

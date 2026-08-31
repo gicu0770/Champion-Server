@@ -42,11 +42,20 @@ CombatDamage Combat::getCombatDamage(Creature* creature, Creature* target) const
         return damage;
     }
 
-	if (params.damage > 0) {
-		damage.primary.value = params.damage;
-		if (params.damage2 > 0) {
-			damage.secondary.type = params.combatType2;
-			damage.secondary.value = params.damage2;
+	if (params.damage != 0) {
+		if (params.combatType == COMBAT_HEALING) {
+			damage.primary.value = std::abs(params.damage);
+		} else {
+			damage.primary.value = -std::abs(params.damage);
+		}
+		if (params.damage2 != 0) {
+			if (params.combatType2 == COMBAT_HEALING) {
+				damage.secondary.type = params.combatType2;
+				damage.secondary.value = std::abs(params.damage2);
+			} else {
+				damage.secondary.type = params.combatType2;
+				damage.secondary.value = -std::abs(params.damage2);
+			}
 		}
 		return damage;
 	}
@@ -195,45 +204,30 @@ ReturnValue Combat::canTargetCreature(Player* attacker, Creature* target)
 	if (!attacker->hasFlag(PlayerFlag_IgnoreProtectionZone)) {
 		//pz-zone
 		if (attacker->getZone() == ZONE_PROTECTION) {
-			return RETURNVALUE_EMPTY; //you may not atttack this person while in pz;
+			return RETURNVALUE_ACTIONNOTPERMITTEDINPROTECTIONZONE; //you may not atttack this person while in pz;
 		}
 
 		if (target->getZone() == ZONE_PROTECTION) {
-			return RETURNVALUE_EMPTY; //you may not atttack this person in pz;
-		}
-
-		//nopvp-zone
-		if (isPlayerCombat(target)) {
-			if (attacker->getZone() == ZONE_NOPVP) {
-				return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
-			}
-
-			if (target->getZone() == ZONE_NOPVP) {
-				return RETURNVALUE_EMPTY; //you may not atttack this person in pz;
-			}
+			return RETURNVALUE_ACTIONNOTPERMITTEDINPROTECTIONZONE; //you may not atttack this person in pz;
 		}
 	}
 
-	if (attacker->hasFlag(PlayerFlag_CannotUseCombat) || !target->isAttackable() || target->isSpawnBlocking(attacker)) {
-		if (target->getPlayer()) {
-			return RETURNVALUE_EMPTY; //you may not atttack this player
-		} else {
-			if (target->isSpawnBlocking(attacker)) {
-				attacker->sendCreatureAttackable(target, false);
-				return RETURNVALUE_SPAWNBLOCKINGTHISCREATURE;
-			}
-			return RETURNVALUE_EMPTY; //you may not atttack this creature;
-		}
+	const Player* targetPlayer = target->getPlayer();
+	if (!targetPlayer && target->isSummon()) {
+		targetPlayer = target->getMaster()->getPlayer();
 	}
 
-	if (target->getPlayer()) {
-		if (isProtected(attacker, target->getPlayer())) {
-			return RETURNVALUE_EMPTY; //you may not atttack this player
-		}
+	if (targetPlayer && attacker->isPartner(targetPlayer)) {
+		return RETURNVALUE_EMPTY;
+	}
 
-		if (attacker->hasSecureMode() && !Combat::isInPvpZone(attacker, target) && attacker->getSkullClient(target->getPlayer()) == SKULL_NONE) {
-			return RETURNVALUE_TURNSECUREMODETOATTACKUNMARKEDPLAYERS;
-		}
+	if (!target->isAttackable()) {
+		return RETURNVALUE_EMPTY;
+	}
+
+	if (target->getMonster() && target->isSpawnBlocking(attacker)) {
+		attacker->sendCreatureAttackable(target, false);
+		return RETURNVALUE_SPAWNBLOCKINGTHISCREATURE;
 	}
 
 	return Combat::canDoCombat(attacker, target);
@@ -274,39 +268,8 @@ bool Combat::isInPvpZone(const Creature* attacker, const Creature* target)
 	return attacker->getZone() == ZONE_PVP && target->getZone() == ZONE_PVP;
 }
 
-bool Combat::isProtected(const Player* attacker, const Player* target)
+bool Combat::isProtected(const Player*, const Player*)
 {
-	uint32_t protectionLevel = g_config.getNumber(ConfigManager::PROTECTION_LEVEL);
-	if (target->getLevel() < protectionLevel || attacker->getLevel() < protectionLevel) {
-		return true;
-	}
-
-	if (attacker->getVocationId() == VOCATION_NONE || target->getVocationId() == VOCATION_NONE) {
-		return true;
-	}
-
-	if (attacker->getSkull() == SKULL_BLACK && attacker->getSkullClient(target) == SKULL_NONE) {
-		return true;
-	}
-	
-	int32_t attackerReborn;
-	int32_t targetReborn;
-	if (!attacker->getStorageValue(707070, attackerReborn)) {
-		attackerReborn = -1;
-	}
-	if (!target->getStorageValue(707070, targetReborn)) {
-		targetReborn = -1;
-	}
-	
-	if ((attackerReborn <= 0 && targetReborn <= 0) || attackerReborn == targetReborn) {
-		return false;
-	}
-
-	
-	if (attackerReborn != targetReborn) {
-		return true;
-	}
-
 	return false;
 }
 
@@ -316,56 +279,28 @@ ReturnValue Combat::canDoCombat(Creature* attacker, Creature* target)
 		return g_events->eventCreatureOnTargetCombat(attacker, target);
 	}
 
-	if (const Player* targetPlayer = target->getPlayer()) {
-		if (targetPlayer->hasFlag(PlayerFlag_CannotBeAttacked)) {
+	const Player* attackerPlayer = attacker->getPlayer();
+	if (!attackerPlayer && attacker->isSummon()) {
+		attackerPlayer = attacker->getMaster()->getPlayer();
+	}
+
+	const Player* targetPlayer = target->getPlayer();
+	if (!targetPlayer && target->isSummon()) {
+		targetPlayer = target->getMaster()->getPlayer();
+	}
+
+	if (targetPlayer) {
+		if (targetPlayer->isInGhostMode()) {
 			return RETURNVALUE_EMPTY; //you may not atttack this player
 		}
 
-		if (const Player* attackerPlayer = attacker->getPlayer()) {
-			if (attackerPlayer->hasFlag(PlayerFlag_CannotAttackPlayer)) {
-				return RETURNVALUE_EMPTY; //you may not atttack this player
-			}
-			
-			if (attackerPlayer->hasSecureMode()) {
-				return RETURNVALUE_EMPTY; //you may not atttack this player
-			}
-
-			if (isProtected(attackerPlayer, targetPlayer)) {
-				return RETURNVALUE_EMPTY; //you may not atttack this player
-			}
-
-			//nopvp-zone
-			const Tile* targetPlayerTile = targetPlayer->getTile();
-			if (targetPlayerTile->hasFlag(TILESTATE_NOPVPZONE)) {
-				return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
-			} else if (attackerPlayer->getTile()->hasFlag(TILESTATE_NOPVPZONE) && !targetPlayerTile->hasFlag(TILESTATE_NOPVPZONE | TILESTATE_PROTECTIONZONE)) {
-				return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
-			}
-		}
-
-		if (attacker->isSummon()) {
-			if (const Player* masterAttackerPlayer = attacker->getMaster()->getPlayer()) {
-				if (masterAttackerPlayer->hasFlag(PlayerFlag_CannotAttackPlayer)) {
-					return RETURNVALUE_EMPTY; //you may not atttack this player
-				}
-
-				if (targetPlayer->getTile()->hasFlag(TILESTATE_NOPVPZONE)) {
-					return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
-				}
-
-				if (isProtected(masterAttackerPlayer, targetPlayer)) {
-					return RETURNVALUE_EMPTY; //you may not atttack this player
-				}
-			}
+		if (attackerPlayer && attackerPlayer->isPartner(targetPlayer)) {
+			return RETURNVALUE_EMPTY; // Block combat between party members
 		}
 	} else if (target->getMonster()) {
-		if (const Player* attackerPlayer = attacker->getPlayer()) {
+		if (attackerPlayer) {
 			if (attackerPlayer->hasFlag(PlayerFlag_CannotAttackMonster)) {
 				return RETURNVALUE_EMPTY; //you may not atttack this creature;
-			}
-
-			if (target->isSummon() && target->getMaster()->getPlayer() && target->getZone() == ZONE_NOPVP) {
-				return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
 			}
 		} else if (attacker->getMonster()) {
 			const Creature* targetMaster = target->getMaster();
@@ -380,21 +315,6 @@ ReturnValue Combat::canDoCombat(Creature* attacker, Creature* target)
 		}
 	}
 
-	if (g_game.getWorldType() == WORLD_TYPE_NO_PVP) {
-		if (attacker->getPlayer() || (attacker->isSummon() && attacker->getMaster()->getPlayer())) {
-			if (target->getPlayer()) {
-				if (!isInPvpZone(attacker, target)) {
-					return RETURNVALUE_EMPTY; //you may not atttack this player
-				}
-			}
-
-			if (target->isSummon() && target->getMaster()->getPlayer()) {
-				if (!isInPvpZone(attacker, target)) {
-					return RETURNVALUE_EMPTY; //you may not atttack this creature;
-				}
-			}
-		}
-	}
 	return g_events->eventCreatureOnTargetCombat(attacker, target);
 }
 
@@ -903,25 +823,7 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 		}
 
 		if (casterPlayer) {
-			Player* targetPlayer = target ? target->getPlayer() : nullptr;
 			if (damage.primary.value < 0 || damage.secondary.value < 0) {
-				if (targetPlayer && targetPlayer->getSkull() != SKULL_BLACK) {
-					damage.primary.value /= 2;
-					damage.secondary.value /= 2;
-					
-					int32_t attackerReborn;
-					int32_t targetReborn;
-					if (casterPlayer->getStorageValue(707070, attackerReborn) && targetPlayer->getStorageValue(707070, targetReborn)) {
-						if (attackerReborn == 1 && targetReborn == 1) {
-							damage.primary.value *= 0.40;
-							damage.secondary.value *= 0.40;
-						}
-						else if (attackerReborn == 2 && targetReborn == 2) {
-							damage.primary.value *= 0.30;
-							damage.secondary.value *= 0.30;
-						}
-					}
-				}
 				Monster* targetMonster = target ? target->getMonster() : nullptr;
 				if (!(casterPlayer->hasCondition(CONDITION_DISABLECRIT, 0, true))) {
 					if (!damage.critical && damage.origin != ORIGIN_CONDITION && damage.origin != ORIGIN_DOT && damage.primary.type != COMBAT_HEALING && targetMonster) {
@@ -1130,28 +1032,6 @@ void Combat::doAreaCombat(Creature* caster, const Position& position, const Area
 		}
 
 		CombatDamage damageCopy = damage; // we cannot avoid copying here, because we don't know if it's player combat or not, so we can't modify the initial damage.
-		if ((damageCopy.primary.value < 0 || damageCopy.secondary.value < 0) && caster) {
-			Player* targetPlayer = creature->getPlayer();
-			if (casterPlayer) {
-				if (targetPlayer && targetPlayer->getSkull() != SKULL_BLACK) {
-					damageCopy.primary.value /= 2;
-					damageCopy.secondary.value /= 2;
-					
-					int32_t attackerReborn;
-					int32_t targetReborn;
-					if (casterPlayer->getStorageValue(707070, attackerReborn) && targetPlayer->getStorageValue(707070, targetReborn)) {
-						if (attackerReborn == 1 && targetReborn == 1) {
-							damageCopy.primary.value *= 0.40;
-							damageCopy.secondary.value *= 0.40;
-						}
-						else if (attackerReborn == 2 && targetReborn == 2) {
-							damageCopy.primary.value *= 0.30;
-							damageCopy.secondary.value *= 0.30;
-						}
-					}
-				}
-			}
-		}
 		
 		if (casterPlayer && !damage.critical && damage.origin != ORIGIN_CONDITION && damage.primary.type != COMBAT_HEALING && creature->getMonster()) {
 			if (!(casterPlayer->hasCondition(CONDITION_DISABLECRIT, 0, true))) {

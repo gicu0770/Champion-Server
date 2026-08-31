@@ -1394,21 +1394,6 @@ void Player::onAttackedCreatureChangeZone(ZoneType_t zone)
 			setAttackedCreature(nullptr);
 			onAttackedCreatureDisappear(false);
 		}
-	} else if (zone == ZONE_NOPVP) {
-		if (attackedCreature->getPlayer()) {
-			if (!hasFlag(PlayerFlag_IgnoreProtectionZone)) {
-				setAttackedCreature(nullptr);
-				onAttackedCreatureDisappear(false);
-			}
-		}
-	} else if (zone == ZONE_NORMAL) {
-		//attackedCreature can leave a pvp zone if not pzlocked
-		if (g_game.getWorldType() == WORLD_TYPE_NO_PVP) {
-			if (attackedCreature->getPlayer()) {
-				setAttackedCreature(nullptr);
-				onAttackedCreatureDisappear(false);
-			}
-		}
 	}
 }
 
@@ -3816,32 +3801,11 @@ void Player::onAttackedCreature(Creature* target)
 
 	Player* targetPlayer = target->getPlayer();
 	if (targetPlayer && !isPartner(targetPlayer) && !isGuildMate(targetPlayer)) {
-		if (!pzLocked && g_game.getWorldType() == WORLD_TYPE_PVP_ENFORCED) {
+		if (!pzLocked) {
 			pzLocked = true;
 			sendIcons();
 		}
-
-		if (getSkull() == SKULL_NONE && getSkullClient(targetPlayer) == SKULL_YELLOW) {
-			addAttacked(targetPlayer);
-			targetPlayer->sendCreatureSkull(this);
-		} else if (!targetPlayer->hasAttacked(this)) {
-			if (!pzLocked) {
-				pzLocked = true;
-				sendIcons();
-			}
-
-			if (!Combat::isInPvpZone(this, targetPlayer) && !isInWar(targetPlayer)) {
-				addAttacked(targetPlayer);
-
-				if (targetPlayer->getSkull() == SKULL_NONE && getSkull() == SKULL_NONE) {
-					setSkull(SKULL_WHITE);
-				}
-
-				if (getSkull() == SKULL_NONE) {
-					targetPlayer->sendCreatureSkull(this);
-				}
-			}
-		}
+		addAttacked(targetPlayer);
 	}
 
 	addInFightTicks();
@@ -3937,22 +3901,9 @@ bool Player::onKilledCreature(Creature* target, bool lastHit/* = true*/)
 	if (targetPlayer->getZone() == ZONE_PVP) {
 		targetPlayer->setDropLoot(false);
 		targetPlayer->setSkillLoss(false);
-	} else if (!hasFlag(PlayerFlag_NotGainInFight) && !isPartner(targetPlayer)) {
-		if (!Combat::isInPvpZone(this, targetPlayer) && hasAttacked(targetPlayer) && !targetPlayer->hasAttacked(this) && !isGuildMate(targetPlayer) && targetPlayer != this) {
-			if (targetPlayer->getSkull() == SKULL_NONE && !isInWar(targetPlayer)) {
-				unjustified = true;
-				addUnjustifiedDead(targetPlayer);
-			}
-
-			if (lastHit && hasCondition(CONDITION_INFIGHT)) {
-				pzLocked = true;
-				Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_INFIGHT, g_config.getNumber(ConfigManager::WHITE_SKULL_TIME), 0);
-				addCondition(condition);
-			}
-		}
 	}
 
-	return unjustified;
+	return false;
 }
 
 void Player::gainExperience(uint64_t gainExp, Creature* source)
@@ -4003,7 +3954,7 @@ bool Player::isImmune(ConditionType_t type) const
 
 bool Player::isAttackable() const
 {
-	return !hasFlag(PlayerFlag_CannotBeAttacked);
+	return !isInGhostMode();
 }
 
 bool Player::lastHitIsPlayer(Creature* lastHitCreature)
@@ -4173,27 +4124,20 @@ void Player::setSex(PlayerSex_t newSex)
 
 Skulls_t Player::getSkull() const
 {
-	if (hasFlag(PlayerFlag_NotGainInFight)) {
-		return SKULL_NONE;
-	}
-	return skull;
+	return SKULL_NONE;
 }
 
 Skulls_t Player::getSkullClient(const Creature* creature) const
 {
 	const Player* player = creature->getPlayer();
-	if (!player || player->getSkull() != SKULL_NONE) {
+	if (!player) {
 		return Creature::getSkullClient(creature);
-	}
-
-	if (player->hasAttacked(this)) {
-		return SKULL_YELLOW;
 	}
 
 	if (isPartner(player)) {
 		return SKULL_GREEN;
 	}
-	return Creature::getSkullClient(creature);
+	return SKULL_NONE;
 }
 
 bool Player::hasAttacked(const Player* attacked) const
@@ -4231,23 +4175,9 @@ void Player::clearAttacked()
 	attackedSet.clear();
 }
 
-void Player::addUnjustifiedDead(const Player* attacked)
+void Player::addUnjustifiedDead(const Player*)
 {
-	if (hasFlag(PlayerFlag_NotGainInFight) || attacked == this || g_game.getWorldType() == WORLD_TYPE_PVP_ENFORCED) {
-		return;
-	}
-
-	sendTextMessage(MESSAGE_EVENT_ADVANCE, "Warning! The murder of " + attacked->getName() + " was not justified.");
-
-	skullTicks += g_config.getNumber(ConfigManager::FRAG_TIME);
-
-	if (getSkull() != SKULL_BLACK) {
-		if (g_config.getNumber(ConfigManager::KILLS_TO_BLACK) != 0 && skullTicks > (g_config.getNumber(ConfigManager::KILLS_TO_BLACK) - 1) * static_cast<int64_t>(g_config.getNumber(ConfigManager::FRAG_TIME))) {
-			setSkull(SKULL_BLACK);
-		} else if (getSkull() != SKULL_RED && g_config.getNumber(ConfigManager::KILLS_TO_RED) != 0 && skullTicks > (g_config.getNumber(ConfigManager::KILLS_TO_RED) - 1) * static_cast<int64_t>(g_config.getNumber(ConfigManager::FRAG_TIME))) {
-			setSkull(SKULL_RED);
-		}
-	}
+	return;
 }
 
 void Player::checkSkullTicks(int64_t ticks)

@@ -3,10 +3,10 @@
 	<group id="1" name="player" access="0" maxdepotitems="0" maxvipentries="0" />
 	<group id="2" name="gamemaster" access="1" maxdepotitems="0" maxvipentries="200" >
 		<flags>
-			<flag cannotusecombat="1" />
-			<flag cannotattackplayer="1" />
-			<flag cannotattackmonster="1" />
-			<flag cannotbeattacked="1" />
+			<flag cannotusecombat="0" />
+			<flag cannotattackplayer="0" />
+			<flag cannotattackmonster="0" />
+			<flag cannotbeattacked="0" />
 			<flag canconvinceall="1" />
 			<flag cansummonall="1" />
 			<flag canillusionall="1" />
@@ -16,8 +16,8 @@
 			<flag hasinfinitemana="1" />
 			<flag hasinfinitesoul="1" />
 			<flag hasnoexhaustion="1" />
-			<flag cannotusespells="1" />
-			<flag cannotpickupitem="1" />
+			<flag cannotusespells="0" />
+			<flag cannotpickupitem="0" />
 			<flag canalwayslogin="1" />
 			<flag canbroadcast="1" />
 			<flag canedithouses="1" />
@@ -45,9 +45,9 @@
 	<group id="3" name="god" access="1" maxdepotitems="0" maxvipentries="200" >
 		<flags>
 			<flag cannotusecombat="0" />
-			<flag cannotattackplayer="1" />
+			<flag cannotattackplayer="0" />
 			<flag cannotattackmonster="0" />
-			<flag cannotbeattacked="1" />
+			<flag cannotbeattacked="0" />
 			<flag canconvinceall="1" />
 			<flag cansummonall="1" />
 			<flag canillusionall="1" />

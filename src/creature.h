@@ -863,7 +863,7 @@ class Creature : virtual public Thing
 		void removeFear();
 		void moveFeared();
 		virtual bool isSpawnBlocking(Creature*) const {
-			return true;
+			return false;
 		}
 
 		void clearTargetingPlayersList();

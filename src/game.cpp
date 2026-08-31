@@ -4370,16 +4370,27 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 		Player* attackerPlayer;
 		if (attacker) {
 			attackerPlayer = attacker->getPlayer();
+			if (!attackerPlayer && attacker->isSummon()) {
+				attackerPlayer = attacker->getMaster()->getPlayer();
+			}
 		} else {
 			attackerPlayer = nullptr;
 		}
 
 		Player* targetPlayer = target->getPlayer();
+		if (!targetPlayer && target->isSummon()) {
+			targetPlayer = target->getMaster()->getPlayer();
+		}
+
+		if (attackerPlayer && targetPlayer && attackerPlayer->isPartner(targetPlayer)) {
+			return false;
+		}
+
 		if (attackerPlayer && targetPlayer && attackerPlayer->getSkull() == SKULL_BLACK && attackerPlayer->getSkullClient(targetPlayer) == SKULL_NONE) {
 			return false;
 		}
 	
-		if (attackerPlayer) {
+		if (attackerPlayer && target->getMonster()) {
 			if (target->isSpawnBlocking(attackerPlayer)) {
 				return true;
 			}

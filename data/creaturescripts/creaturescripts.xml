@@ -37,7 +37,7 @@
 	<!-- Elite Monsters System 	  -->	
 	<!-- <event type="healthchange" name="EliteAffixHP" script="elite.lua" />
 	<event type="manachange" name="EliteAffixMANA" script="elite.lua" /> -->	
-	<event type="death" name="BossDeath" script="boss_death.lua" /> 
+	<!-- <event type="death" name="BossDeath" script="boss_death.lua" />  -->
 	<!-- DPS Dummy -->
 	<!-- <event type="healthchange" name="EventDPS" script="dps.lua" /> -->
 <!--	<event type="healthchange" name="Goblin" script="goblin.lua" /> -->

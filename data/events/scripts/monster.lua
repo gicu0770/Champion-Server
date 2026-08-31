@@ -716,6 +716,7 @@ BOSS_DROP_ITEMS = {
     },
   },
   -- HP/ES/MANA
+  --[[
   ["Undead King"] = {
     [38641] = { -- Health Percent
       imps = {{109}, {{5,10,23,42}}},
@@ -724,6 +725,7 @@ BOSS_DROP_ITEMS = {
       weight = {7, 10, 12, 15},
     },
   },
+  --]]
   ["Ethereal Seraph"] = {
     [38639] = { -- Energy Shield Percent
       imps = {{72}, {{5,10,23,42}}},

@@ -119,4 +119,75 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 			end
 		end
 	end
+
+	if not player:hasFlag(PlayerFlag_NotGenerateLoot) then
+		-- 1. Utrata zawartości plecaka (całość trafia do corpse)
+		local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)
+		if backpack and backpack:isContainer() then
+			local backpackItems = backpack:getItems(false)
+			for _, item in ipairs(backpackItems) do
+				if corpse and corpse:isContainer() then
+					if not item:moveTo(corpse) then
+						item:moveTo(corpse:getPosition())
+					end
+				elseif corpse then
+					item:moveTo(corpse:getPosition())
+				end
+			end
+		end
+
+		-- 2. Utrata przedmiotów ze slotów (Hełm, Zbroja, Spodnie, Buty, Amulet, Pierścienie, Rękawice)
+		local DROPPABLE_SLOTS = {
+			CONST_SLOT_HEAD,      -- Hełm
+			CONST_SLOT_ARMOR,     -- Zbroja
+			CONST_SLOT_LEGS,      -- Spodnie
+			CONST_SLOT_FEET,      -- Buty
+			CONST_SLOT_NECKLACE,  -- Amulet
+			CONST_SLOT_RING,      -- Pierścień 1
+			CONST_SLOT_RING2,     -- Pierścień 2
+			CONST_SLOT_GLOVES,    -- Rękawice
+		}
+
+		local equipped = {}
+		for _, slot in ipairs(DROPPABLE_SLOTS) do
+			local item = player:getSlotItem(slot)
+			if item then
+				table.insert(equipped, { item = item, slot = slot })
+			end
+		end
+
+		-- Losowe tasowanie ubranych przedmiotów
+		for i = #equipped, 2, -1 do
+			local j = math.random(i)
+			equipped[i], equipped[j] = equipped[j], equipped[i]
+		end
+
+		local dropChances = { 100, 70, 40, 20 }
+		local droppedItems = {}
+		for i = 1, math.min(#equipped, #dropChances) do
+			if math.random(1, 100) <= dropChances[i] then
+				table.insert(droppedItems, equipped[i])
+			end
+		end
+
+		-- 3. Przenoszenie lub niszczenie wylosowanych przedmiotów
+		local totalDropped = #droppedItems
+		for i, dropData in ipairs(droppedItems) do
+			local item = dropData.item
+			-- Jeśli wypadnie więcej niż 1 przedmiot: dodatkowe przedmioty (od 2. wzwyż) mają 50% szans na zniszczenie
+			if totalDropped > 1 and i > 1 and math.random(1, 100) <= 50 then
+				item:remove()
+			else
+				if corpse and corpse:isContainer() then
+					if not item:moveTo(corpse) then
+						item:moveTo(corpse:getPosition())
+					end
+				elseif corpse then
+					item:moveTo(corpse:getPosition())
+				end
+			end
+		end
+
+		player:setCollectionInfo()
+	end
 end

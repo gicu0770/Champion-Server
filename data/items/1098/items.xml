@@ -12851,9 +12851,8 @@
 		<attribute key="weaponType" value="club" />
 	</item>
 	<item id="7433" article="a" name="ravenwing">
-		<attribute key="weight" value="5500" />
-		<attribute key="attack" value="1" />
-		<attribute key="weaponType" value="axe" />
+		<attribute key="weight" value="100" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7434" article="a" name="royal axe">
 		<attribute key="weight" value="9200" />

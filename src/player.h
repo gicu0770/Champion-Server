@@ -1255,6 +1255,10 @@ class Player final : public Creature, public Cylinder
 		}
 		#endif
 
+		bool isSpawnBlocking(Creature*) const override {
+			return false;
+		}
+
 		void sendCreatureAttackable(const Creature* creature, bool attackable) {
 			if (client) {
 				client->sendCreatureAttackable(creature, attackable);
