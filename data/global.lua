@@ -4709,311 +4709,112 @@ function Item.getImplictLastSlot(self)
 end
 
 function expFormula(monsterLevel)
-	local expF = math.ceil((monsterLevel + (monsterLevel ^ 1.2 * 1) * 1)) --  math.ceil(monsterLevel + ((0.0015 * (monsterLevel * 3) ^ 1 + 5 * (monsterLevel * 3) - 4))) -- math.ceil((0.0015 * (monsterLevel * GLOBAL_MULTIPLERS["exp"]) ^ 1 + 5 * (monsterLevel * GLOBAL_MULTIPLERS["exp"]) - 4) * 0.80)
-	if monsterLevel >= 1 and monsterLevel <= 7 then
+	local expF = monsterLevel --  math.ceil(monsterLevel + ((0.0015 * (monsterLevel * 3) ^ 1 + 5 * (monsterLevel * 3) - 4))) -- math.ceil((0.0015 * (monsterLevel * GLOBAL_MULTIPLERS["exp"]) ^ 1 + 5 * (monsterLevel * GLOBAL_MULTIPLERS["exp"]) - 4) * 0.80)
+	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
 		expF = expF + 1
-	end
-	if monsterLevel >= 8 and monsterLevel <= 11 then
+	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
 		expF = expF + 3
-	end
-	if monsterLevel >= 12 then
+	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
 		expF = expF + 5
+	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
+		expF = expF + 7
+	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
+		expF = expF + 15
+	elseif monsterLevel >= 26 and monsterLevel <= 60 then
+		expF = expF + 20
+	elseif monsterLevel >= 40 and monsterLevel <= 70 then
+		expF = expF + 40
+	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
+		expF = expF + 60
+	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
+		expF = expF + 80
+	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
+		expF = expF + 90
+	elseif monsterLevel >= 96 then
+		expF = expF + 150
 	end
-	if monsterLevel >= 68 and monsterLevel <= 84 then -- tier yeti
-		expF = expF * 3.5
-	elseif monsterLevel >= 85 and monsterLevel <= 89 then -- vort
-		expF = expF * 4.5
-	elseif monsterLevel >= 90 and monsterLevel <= 94 then -- vort
-		expF = expF * 6.5
-	elseif monsterLevel >= 95 and monsterLevel <= 99 then -- vort
-		expF = expF * 7.5
-	elseif monsterLevel >= 100 then -- vort
-		expF = expF * 8.5
-	end
-	expF = expF * 1.25
-	if expF <= 0 then expF = 1 end
 	return expF
 end
 function goldFormula(monsterLevel)
-	local gold = math.ceil((monsterLevel + (monsterLevel ^ 1.1 * 1)) / 5) -- math.ceil(0.0015 * monsterLevel ^ GLOBAL_MULTIPLERS["gold"] + GLOBAL_MULTIPLERS["gold"] * monsterLevel - 6)
-	if monsterLevel >= 8 and monsterLevel <= 11 then -- cyclops
+	local gold = monsterLevel * 0.5 -- math.ceil(0.0015 * monsterLevel ^ GLOBAL_MULTIPLERS["gold"] + GLOBAL_MULTIPLERS["gold"] * monsterLevel - 6)
+	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
+		gold = gold + 1
+	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
+		gold = gold + 3
+	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
 		gold = gold + 5
-	elseif monsterLevel >= 12 and monsterLevel <= 14 then -- dragon
-		gold = gold + 8
-	elseif monsterLevel >= 15 and monsterLevel <= 18 then -- herous
+	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
+		gold = gold + 7
+	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
 		gold = gold + 10
-	elseif monsterLevel >= 19 and monsterLevel <= 25 then	-- demons
+	elseif monsterLevel >= 26 and monsterLevel <= 60 then
 		gold = gold + 15
-	elseif monsterLevel >= 26 and monsterLevel <= 40 then -- fungus + 
+	elseif monsterLevel >= 40 and monsterLevel <= 70 then
 		gold = gold + 20
-	elseif monsterLevel >= 41 and monsterLevel <= 67 then -- biblia+
+	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
 		gold = gold + 25
-	elseif monsterLevel >= 68 and monsterLevel <= 84 then -- tier yeti
+	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
 		gold = gold + 30
-	elseif monsterLevel >= 85 and monsterLevel <= 99 then -- vort
-		gold = gold + 45
-	elseif monsterLevel >= 100 then -- vort
-		gold = gold + 70
+	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
+		gold = gold + 40
+	elseif monsterLevel >= 96 then
+		gold = gold + 50
 	end
-	gold = gold * 0.90
-	if gold <= 0 then gold = 1 end
 	return gold
 end
 function damageFormula(monsterLevel)
-	local damage = math.ceil(monsterLevel + (monsterLevel ^ 1.21 * 1.1) + 7) -- math.ceil((0.0015 * monsterLevel ^ 3 + 0.2 * monsterLevel + 6) * GLOBAL_MULTIPLERS["damage"] - 15)
-	damage = damage * 1.25
-	if monsterLevel >= 1 and monsterLevel <= 7 then -- cyclops
+	local damage = 20 + (monsterLevel * 2)
+	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
+		damage = damage + 5
+	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
+		damage = damage + 10
+	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
+		damage = damage + 15
+	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
+		damage = damage + 20
+	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
 		damage = damage + 25
-	elseif monsterLevel >= 8 and monsterLevel <= 11 then -- cyclops
+	elseif monsterLevel >= 26 and monsterLevel <= 60 then
 		damage = damage + 30
-	elseif monsterLevel >= 12 and monsterLevel <= 14 then -- dragon
+	elseif monsterLevel >= 40 and monsterLevel <= 70 then
+		damage = damage + 35
+	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
 		damage = damage + 40
-	elseif monsterLevel >= 15 and monsterLevel <= 18 then -- herous
+	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
+		damage = damage + 45
+	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
 		damage = damage + 50
-	elseif monsterLevel >= 19 and monsterLevel <= 25 then	-- demons
-		damage = damage + 80
-	elseif monsterLevel >= 26 and monsterLevel <= 39 then
-		damage = damage + 190
-	elseif monsterLevel >= 40 and monsterLevel <= 52 then
-		damage = damage + 270
-	elseif monsterLevel >= 52 and monsterLevel <= 60 then -- burning i undeady
-		damage = damage + 580
-	elseif monsterLevel >= 61 and monsterLevel <= 69 then -- do prison
-		damage = damage + 950
-	elseif monsterLevel >= 70 and monsterLevel <= 74 then -- Undearworlds
-		damage = damage + 1510
-	elseif monsterLevel >= 75 and monsterLevel <= 80 then -- root island
-		damage = damage + 2010
-	elseif monsterLevel >= 81 and monsterLevel <= 84 then
-		damage = damage + 2280
-	elseif monsterLevel >= 85 and monsterLevel <= 89 then
-		damage = damage + 2640
-	elseif monsterLevel >= 85 and monsterLevel <= 90 then
-		damage = damage + 3240
-	elseif monsterLevel >= 91 and monsterLevel <= 95 then
-		damage = damage + 3800
 	elseif monsterLevel >= 96 then
-		damage = damage + 4500
+		damage = damage + 60
 	end
-	if monsterLevel >= 100 then -- 5% wiecej obrazen za kazdy 1 mlvl
-		damage = damage * (1 + (monsterLevel - 100) * 0.004)
-		if monsterLevel >= 210 and monsterLevel <= 500 then
-			damage = damage + 500
-		elseif monsterLevel >= 510 and monsterLevel <= 590 then -- 550 mlvl  19.3 dmg
-			damage = damage + 1000
-		elseif monsterLevel >= 591 and monsterLevel <= 700 then -- 600 mlvl 33k
-			damage = damage + 2000
-		elseif monsterLevel >= 701 and monsterLevel <= 800 then -- 701 mlvl  46.9 800 mlvl 51.3
-			damage = damage + 3000
-		elseif monsterLevel >= 801 and monsterLevel <= 900 then -- t71 to 820 do t90 1200mlvl
-			damage = damage + 4000
-		elseif monsterLevel >= 901 and monsterLevel <= 1000 then -- 1230 czyli 91 tier od 1000mlvl(T80) zaczyna duzo roznac dmg wymagany mitigation
-			damage = damage + 5000
-		--elseif monsterLevel >= 1001 then -- 1230 czyli 91 tier zaczyna rosnac dmg i Hp
-			--damage = damage + 30000
-		--end
-		elseif monsterLevel >= 1001 then
-			local startLevel = 1001
-			local endLevel = 5000
-			local startDamage = 37000
-			local endDamage = 550000
 
-			local t = math.min(monsterLevel, endLevel) - startLevel
-			local slope = (endDamage - startDamage) / (endLevel - startLevel)
-
-			damage = startDamage + t * slope
-		end
-		-- 820 to t71 a 1230 to t91 Boss Blood futy 900mlvl
-		-- 820 zbeira sie mitigation 1230 to juz 91T
-	end
 	return damage
 end
---[[
-function healthFormula(monsterLevel)
-	local health = math.ceil(monsterLevel + (monsterLevel ^ 2.3 * 1.1) + 100) -- math.ceil(((0.0015 * monsterLevel ^ GLOBAL_MULTIPLERS["health"] + 10.1 * monsterLevel + 30) * 5) - 150)
-	if monsterLevel >= 8 and monsterLevel <= 11 then -- cyclops
-		health = health + 300
-	elseif monsterLevel >= 12 and monsterLevel <= 14 then -- dragon
-		health = health + 600
-	elseif monsterLevel >= 15 and monsterLevel <= 18 then -- herous
-		health = health + 800
-	elseif monsterLevel >= 19 and monsterLevel <= 25 then	-- demons
-		health = health + 1500
-	elseif monsterLevel >= 26 and monsterLevel <= 40 then -- fungus + 
-		health = health + (monsterLevel * 150)
-	elseif monsterLevel >= 41 and monsterLevel <= 67 then -- biblia+
-		health = health + (monsterLevel * 400)
-	elseif monsterLevel >= 68 and monsterLevel <= 84 then -- tier yeti
-		health = health + (monsterLevel * 1700)
-	elseif monsterLevel >= 85 and monsterLevel <= 89 then -- vort
-		health = health + (monsterLevel * 3200)
-	elseif monsterLevel >= 90 and monsterLevel <= 94 then -- vort
-		health = health + (monsterLevel * 3900)
-	elseif monsterLevel >= 95 and monsterLevel <= 99 then -- vort
-		health = health + (monsterLevel * 4500)
-	elseif monsterLevel >= 100 and monsterLevel <= 999 then -- vort
-		health = health + (monsterLevel * 5500)
-	end
-	if monsterLevel >= 100 then -- 5% wiecej health za kazdy 1 mlvl
-		health = health * (1 + (monsterLevel - 100) * 0.008)
-	end
-	if monsterLevel >= 4500 then -- 5% wiecej health za kazdy 1 mlvl
-		health = health + 400000000000
-		health = health + ((monsterLevel - 4500) * 2000000000)
-	end
-	health = health * 2
-	health = health * 0.7
-	return health
-end
---]]
 
 function healthFormula(monsterLevel)
-    local health = 0
-	local tier = getKeyTierByMonsterLevel(monsterLevel)
-    -- ORYGINALNA LOGIKA DLA 1–100 (ZOSTAJE JAK BYŁA)
-    if monsterLevel <= 100 then
-        health = math.ceil(monsterLevel + (monsterLevel ^ 2.3 * 1.1) + 100)
-
-        if monsterLevel >= 1 and monsterLevel <= 4 then health = health + 170
-        elseif monsterLevel <= 7 then health = health + 300
-        elseif monsterLevel <= 11 then health = health + 500
-        elseif monsterLevel <= 14 then health = health + 900
-        elseif monsterLevel <= 18 then health = health + 1300
-        elseif monsterLevel <= 25 then health = health + 2400
-        elseif monsterLevel <= 32 then health = health + 4800 + (monsterLevel * 150)
-        elseif monsterLevel <= 40 then health = health + 19800 + (monsterLevel * 150)
-		elseif monsterLevel <= 51 then health = health + 49800 + (monsterLevel * 150)
-        elseif monsterLevel <= 55 then health = health + 139000 + (monsterLevel * 200) -- undeady 55lvl
-		elseif monsterLevel <= 60 then health = health + 175000 + (monsterLevel * 200) -- undeady 55lvl
-        elseif monsterLevel <= 65 then health = health + 222000 + (monsterLevel * 500) -- prisoner
-        elseif monsterLevel <= 67 then health = health + 382000 + (monsterLevel * 700)
-		elseif monsterLevel <= 70 then health = health + 752000 + (monsterLevel * 800)
-		elseif monsterLevel <= 75 then health = health + 1382000 + (monsterLevel * 900) -- Root island demons
-		elseif monsterLevel <= 80 then health = health + 2382000 + (monsterLevel * 900) -- Root island demons
-        elseif monsterLevel <= 85 then health = health + 4950000 + (monsterLevel * 1000) -- after new Trait
-        elseif monsterLevel <= 90 then health = health + 6500000 + (monsterLevel * 2000)
-        elseif monsterLevel <= 95 then health = health + 8500000 + (monsterLevel * 3000)
-        elseif monsterLevel <= 97 then health = health + 10500000 + (monsterLevel * 4000)
-        else health = health + 10700000 + (monsterLevel * 4500)
-        end
-
-        return math.ceil(health * 2.1)
-    end
-
-    -- =========================
-    -- NOWA LOGIKA OD 101+
-    -- =========================
-	-- T20 200mlvl, T50 500mlvl, T70 800mlvl i T90 1500 mlvl
-
-    -- =====================
-    -- 101–200 : 6 → 300M
-    -- =====================
-    if monsterLevel <= 200 then
-        local startHP = 25 * 1000000
-        local endHP   = 40 * 1000000
-        local levels  = 99
-
-        health = startHP + (monsterLevel - 101) * ((endHP - startHP) / levels)
-
-    -- =====================
-    -- 201–500 : 25m → 60m
-    -- =====================
-    elseif monsterLevel <= 500 then
-        local startHP = 80 * 1000000
-        local endHP   = 120 * 1000000
-        local levels  = 300
-
-        health = startHP + (monsterLevel - 200) * ((endHP - startHP) / levels)
-    elseif monsterLevel <= 550 then
-        local startHP = 150 * 1000000
-        local endHP   = 220 * 1000000
-        local levels  = 100
-
-        health = startHP + (monsterLevel - 500) * ((endHP - startHP) / levels)
-    elseif monsterLevel <= 650 then
-        local startHP = 290 * 1000000
-        local endHP   = 350 * 1000000
-        local levels  = 100
-
-        health = startHP + (monsterLevel - 550) * ((endHP - startHP) / levels)
-    elseif monsterLevel <= 750 then
-        local startHP = 500 * 1000000
-        local endHP   = 700 * 1000000
-        local levels  = 100
-
-        health = startHP + (monsterLevel - 650) * ((endHP - startHP) / levels)
-    -- =====================
-    -- 501–800 : 60 → 200M
-    -- =====================
-    elseif monsterLevel <= 800 then
-        local startHP = 1.0 * 1000000000
-        local endHP   = 1.35 * 1000000000
-        local levels  = 300
-
-        health = startHP + (monsterLevel - 750) * ((endHP - startHP) / levels)
-
-    -- =====================
-    -- 801–1230 : 200M → 2B
-    -- =====================
-    elseif monsterLevel <= 1229 then
-        local startHP = 1.55 * 1000000000
-        local endHP   = 2.2 * 1000000000
-        local levels  = 430
-
-        health = startHP + (monsterLevel - 800) * ((endHP - startHP) / levels)
-
-    -- =====================
-    -- 1230–2100 : 2B → 5B
-    -- =====================
-    elseif monsterLevel <= 2100 then
-        local startHP = 2.5 * 1000000000
-        local endHP   = 5 * 1000000000
-        local levels  = 880
-
-        health = startHP + (monsterLevel - 1230) * ((endHP - startHP) / levels)
-
-    -- =====================
-    -- 2101–4500 : 5B → 20B
-    -- =====================
-   elseif monsterLevel <= 2300 then
-        local startHP = 7 * 1000000000
-        local endHP   = 20 * 1000000000
-        local levels  = 880
-
-        health = startHP + (monsterLevel - 2100) * ((endHP - startHP) / levels)
-
-    -- =====================
-    -- 2101–4500 : 5B → 20B
-    -- =====================
-	
-    else
-        local startHP = 25 * 1000000000
-        local endHP   = 100 * 1000000000
-        local levels  = 3000
-        health = startHP + (monsterLevel - 2300) * ((endHP - startHP) / levels)
-    end
-	if monsterLevel >= 210 and monsterLevel <= 549 then
-		health = health * 2
-	end
-	if monsterLevel >= 550 and monsterLevel <= 819 then
-		health = health * 2.5
-	end
-	if monsterLevel >= 820 and monsterLevel <= 1229 then
-		health = health * 3
-	end
-	if monsterLevel >= 1230 and monsterLevel <= 2129 then
-		health = health * 3.5
-	end
-	if monsterLevel >= 2130 and monsterLevel <= 2279 then
-		health = health * 4
-	end
-	if monsterLevel >= 2280 then
-		health = health * 4
-		health = health * (1 + ((monsterLevel - 2280) / 100))
-	end
-	health = health * 1.33
-	if tier >= 125 then
-		health = health * (1 + ((monsterLevel - 2280) / 300))
+    local health = 100 + (monsterLevel * 5)
+	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
+		health = health * 1.10
+	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
+		health = health * 1.25
+	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
+		health = health * 1.40
+	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
+		health = health * 1.70
+	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
+		health = health * 2.10
+	elseif monsterLevel >= 26 and monsterLevel <= 60 then
+		health = health * 2.60
+	elseif monsterLevel >= 40 and monsterLevel <= 70 then
+		health = health * 3.20
+	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
+		health = health * 4.00
+	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
+		health = health * 5.00
+	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
+		health = health * 6.00
+	elseif monsterLevel >= 96 then
+		health = health * 7.00
 	end
     return math.ceil(health)
 end

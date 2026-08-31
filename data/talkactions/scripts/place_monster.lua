@@ -23,32 +23,23 @@ function onSay(player, words, param)
 			monster:setHealth(monsterHP)
 		end
 		if split[3] then
-			monsterHP = monsterHP * 2.5
-            monster:setMaxHealth(monsterHP)
-            monster:setHealth(monsterHP)
-			if split[3] == 9 then
-			monsterHP = monsterHP * 1.5
-            monster:setMaxHealth(monsterHP)
-            monster:setHealth(monsterHP)
+			local skullVal = tonumber(split[3])
+			if skullVal == 7 then
+				monsterHP = math.ceil(monsterHP * 1.5)
+			elseif skullVal == 8 then
+				monsterHP = math.ceil(monsterHP * 2.5)
+			else
+				monsterHP = math.ceil(monsterHP * 2.5)
 			end
-			if split[3] == 11 or split[3] == 12 then
-			monster:registerEvent("EliteKill")
-			end
-			monster:setSkull(split[3])
-			monster:setStorageValue(PlayerStorage.eliteAffixes, split[3] - 6)
+			monster:setMaxHealth(monsterHP)
+			monster:setHealth(monsterHP)
+			monster:setSkull(skullVal)
+			monster:setStorageValue(PlayerStorage.eliteAffixes, skullVal - 6)
 			monster:registerEvent("EliteAffixHP")
-			monster:registerEvent("EliteAffixMANA")
-			if split[3] == 23 then
-			local Chilling = Condition(CONDITION_HASTE)
-			Chilling:setParameter(CONDITION_PARAM_TICKS, -1)
-			Chilling:setParameter(CONDITION_PARAM_SPEED, 1000)
-			monster:addCondition(Chilling)
-			end
-			if split[3] == 27 then
-			monsterHP = monsterHP * 7
-            monster:setMaxHealth(monsterHP)
-            monster:setHealth(monsterHP)
-			end
+			monster:registerEvent("BuffDeath")
+			local outfit = monster:getOutfit()
+			outfit.lookHealthBar = 2
+			monster:setOutfit(outfit)
 		end
 	else
 		player:sendCancelMessage("There is not enough room.")

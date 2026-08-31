@@ -829,6 +829,27 @@ itemTypes = {
 }
 --]]
 
+local affixes = {
+  [1] = {
+    name = "Elite",
+    skull = 7,
+    hpMultiplier = 1.5,
+    dmgMultiplier = 1.15,
+    clones = 2,
+    weight = 50, -- Większa szansa na Elite
+    lootChance = 1.20 -- 20% wiecej gold i exp
+  },
+  [2] = {
+    name = "Champion",
+    skull = 8,
+    hpMultiplier = 2.5,
+    dmgMultiplier = 2.0,
+    clones = 0,
+    weight = 50, -- Mniejsza szansa na Champion
+    lootChance = 4.00 -- 3 x wiecej gold i exp
+  }
+}
+
 function Monster:onDropLoot(corpse)
   local pid = corpse:getCorpseOwner()
   local player = Player(pid)
@@ -851,6 +872,12 @@ function Monster:onDropLoot(corpse)
   local mapBonus = self:getStorageValue(PlayerStorage.monsterModifier_bonus) or 0
   mapBonus = mapBonus * (self:getStorageValue(PlayerStorage.monsterModifier_partyBonus) * 0.2 + 1.0)
   local magicFind = 0
+  local basicChance = 100000
+  if eliteMonster == 7 then
+    basicChance = basicChance * affixes[1].lootChance
+  elseif eliteMonster == 8 then
+    basicChance = basicChance * affixes[2].lootChance
+  end
 
   local global = 0
   if player:hasBuff(BUFF_GLOBAL_LOOT) then
@@ -884,7 +911,6 @@ function Monster:onDropLoot(corpse)
 --  bagRarirty = generateCustomTierDrops(player, corpse, monsterTier, monsterLevel, lootItems, magicFind)
   if bagRarirty > highestRarity then highestRarity = bagRarirty end
   local basicCount = 1
-  local basicChance = 100000
   bagRarirty = generateRandomBaseItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, basicCount, basicChance, magicFind)
 --  if bagRarirty > highestRarity then highestRarity = bagRarirty end
 --  bagRarirty = generateRandomUniqueItems(player, corpse, monsterLevel, monsterTier, lootItems, eliteMonster, strongBox, strongBoxBoss, uniqueChance, uniqueCount, magicFind)
@@ -1507,7 +1533,7 @@ end
 
 function generateGold(player, monsterTier, difficulty, elite, boss, monsterLevel, strongBox, strongBoxBoss, typeItems, mapBonus, name, monster)
   local playerId = player:getId()
-  local goldBasic = MONSTER_CONFIG[monster:getType():tier()].gold --goldFormula(monsterLevel)
+  local goldBasic = goldFormula(monsterLevel) --MONSTER_CONFIG[monster:getType():tier()].gold --goldFormula(monsterLevel)
   local gold = 0
   goldBasic = goldBasic + (goldBasic * gold / 100)
   goldBasic = math.ceil(goldBasic)
@@ -1522,6 +1548,11 @@ function generateGold(player, monsterTier, difficulty, elite, boss, monsterLevel
     globalGold = globalGold + 0.2
   end
   goldBasic = math.ceil(goldBasic * globalGold)
+  if elite == 7 then
+		globalGold = globalGold * affixes[1].lootChance
+	elseif elite == 8 then
+		globalGold = globalGold * affixes[2].lootChance
+	end
 --  goldBasic = math.ceil(math.random(goldBasic * 0.25, goldBasic * 1.5))
   local party = player:getParty()
   if party and party:isSharedExperienceEnabled() then
@@ -2232,24 +2263,6 @@ function sendOrb(player, orb, text, color, count)
   player:sendExtendedOpcode(ExtendedOPCodes.CODE_LOOTINFO, json.encode({6, {orb,text,color,count}}))
 end
 
-local affixes = {
-  {name = "damage reduced", skull = 7},
-  {name = "reflect damage", skull = 8},
-  {name = "More Health", skull = 9, multiplier = 1.5},
-  {name = "Clone", skull = 10, clone = true},
-  {name = "Plagued", skull = 13}, {name = "Waller", skull = 14},
-  {name = "Stronger", skull = 15}, {name = "Vampiric", skull = 16},
-  {name = "Electrified", skull = 17}, {name = "Pusher", skull = 18},
-  {name = "Puller", skull = 19}, {name = "Dodger", skull = 20},
-  {name = "Anti Magic", skull = 21}, {name = "Critical", skull = 22},
-  {name = "Fast", skull = 23, condition = CONDITION_HASTE, speed = 1000},
-  {name = "Golden", skull = 24}, {name = "Crystal", skull = 25},
-  {name = "Lucker", skull = 26}, {name = "Iced", skull = 28},
-  {name = "Fire", skull = 29}, {name = "Death", skull = 30},
-  {name = "Holy", skull = 31}, {name = "Energy", skull = 32},
-  {name = "Poison", skull = 33}, {name = "Physical", skull = 34}
-}
-
 function applyEliteAffix(monster, chance, pos, dungeon)
   local mType = monster:getType()
   local start = true
@@ -2267,17 +2280,32 @@ function applyEliteAffix(monster, chance, pos, dungeon)
       monster:registerEvent("TaskDeath")
       monster:registerEvent("EliteLoot")
       monster:registerEvent("EliteAffixHP")
-      local rand = math.random(1, 25)
-      if rand == 2 then
-          rand = 3
-      elseif rand == 5 then
-          rand = 6
-      elseif rand == 9 then
-          rand = 10
+      monster:registerEvent("BuffDeath")
+
+      local totalWeight = 0
+      for _, aff in ipairs(affixes) do
+        totalWeight = totalWeight + (aff.weight or 50)
       end
-      local monsterHPset = monster:getMaxHealth() * 2.5
+      local randWeight = math.random(1, totalWeight)
+      local currentWeight = 0
+      local affix = affixes[1]
+      local rand = 1
+      for idx, aff in ipairs(affixes) do
+        currentWeight = currentWeight + (aff.weight or 50)
+        if randWeight <= currentWeight then
+          affix = aff
+          rand = idx
+          break
+        end
+      end
+
+      local monsterHPset = math.ceil(monster:getMaxHealth() * affix.hpMultiplier)
       monster:setMaxHealth(monsterHPset)
       monster:setHealth(monsterHPset)
+
+      monster:setStorageValue(PlayerStorage.eliteAffixes, rand)
+      monster:setSkull(affix.skull)
+
       if dungeon then
         local instance = monster:getInstance()
         if instance then
@@ -2288,42 +2316,42 @@ function applyEliteAffix(monster, chance, pos, dungeon)
           end
         end
       end
-      local affix = affixes[rand]
-      if affix then
-          monster:setStorageValue(PlayerStorage.eliteAffixes, rand)
-          monster:setSkull(affix.skull)
-          if affix.name == "More Health" then
-              monster:setMaxHealth(monster:getMaxHealth() * affix.multiplier)
-              monster:setHealth(monster:getMaxHealth())
-          elseif affix.clone then
-              local name = monster:getName()
-              for i = 1, 2 do
-                local clone = Game.createMonster(name, pos, false, true)
-                if clone then
-                  clone:setMonsterLevel(monsterLevel)
-                  clone:setStorageValue(PlayerStorage.eliteAffixes, rand)
-                  clone:setMaxHealth(monster:getMaxHealth())
-                  clone:setHealth(monster:getMaxHealth())
-                  clone:setSkull(affix.skull)
-                  clone:registerEvent("EliteAffixHP")
-                  if dungeon then
-                    local instance = monster:getInstance()
-                    if instance then
-                      instance:addMonster(clone)
-                      local config = INSTANCE_MONSTER_MODIFIERS[instance:getKeyUID()]
-                      if config then
-                        applyMonsterModifiers(clone, config, instance)
-                      end
-                    end
-                  end
+
+      if affix.clones and affix.clones > 0 then
+        local name = monster:getName()
+        for i = 1, affix.clones do
+          local clone = Game.createMonster(name, pos, false, true)
+          if clone then
+            clone:setMonsterLevel(monsterLevel)
+            clone:setStorageValue(PlayerStorage.eliteAffixes, rand)
+            clone:setMaxHealth(monsterHPset)
+            clone:setHealth(monsterHPset)
+            clone:setSkull(affix.skull)
+            clone:registerEvent("SpellHealthChangeEvent")
+            clone:registerEvent("UpgradeSystemHealth")
+            clone:registerEvent("UpgradeSystemDeath")
+            clone:registerEvent("BossDeath")
+            clone:registerEvent("StrongBoxDeath")
+            clone:registerEvent("StoneRespawnDeath")
+            clone:registerEvent("TaskDeath")
+            clone:registerEvent("EliteLoot")
+            clone:registerEvent("EliteAffixHP")
+            clone:registerEvent("BuffDeath")
+            local cloneOutfit = clone:getOutfit()
+            cloneOutfit.lookHealthBar = 2
+            clone:setOutfit(cloneOutfit)
+            if dungeon then
+              local instance = monster:getInstance()
+              if instance then
+                instance:addMonster(clone)
+                local config = INSTANCE_MONSTER_MODIFIERS[instance:getKeyUID()]
+                if config then
+                  applyMonsterModifiers(clone, config, instance)
                 end
               end
-          elseif affix.condition then
-              local condition = Condition(affix.condition)
-              condition:setParameter(CONDITION_PARAM_TICKS, -1)
-              condition:setParameter(CONDITION_PARAM_SPEED, affix.speed)
-              monster:addCondition(condition)
+            end
           end
+        end
       end
 
       if monster:getSkull() >= 7 then

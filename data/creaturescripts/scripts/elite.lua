@@ -224,27 +224,8 @@ function affix_onDamaged(creature, attacker, primaryDamage, primaryType, seconda
 			if skull >= 7 then -- Increase DAMAGE REDUCED ALL elite
 				damageReduction = damageReduction + 20
 			end
-			if skull == 7 then -- REDUCED DAMAGE
-				if primaryType == COMBAT_PHYSICALDAMAGE then
-					damageReduction = damageReduction + 25
-				end
-			elseif skull == 27 or creature:getType():items() == "dungeonboss" or creature:getType():items() == "uberboss" then -- veterna
+			if skull == 8 or skull == 27 or creature:getType():items() == "dungeonboss" or creature:getType():items() == "uberboss" then -- champion / boss
 				damageReduction = damageReduction + 30
-			elseif skull == 8 then -- REFLECT DAMAGE shaper -- OFF
-			elseif skull == 19 then -- duality prot
-				if primaryType == COMBAT_DEATHDAMAGE or primaryType == COMBAT_HOLYDAMAGE then
-					damageReduction = damageReduction + 25
-				end
-			elseif skull == 20 then -- dodger 50% na dodge
-				if math.random(100) <= 50 then
-					primaryDamage = 0
-					Game.sendAnimatedText('DODGE', creature:getPosition(), 129)
-					creature:getPosition():sendMagicEffect(3)
-				end
-			elseif skull == 21 then -- anti magic
-				if primaryType == COMBAT_FIREDAMAGE or primaryType == COMBAT_EARTHDAMAGE or primaryType == COMBAT_ENERGYDAMAGE or primaryType == COMBAT_ICEDAMAGE  then
-					damageReduction = damageReduction + 25
-				end
 			end
 			-- Odpornosc Moba
 			local monsterLevel = creature:getMonsterLevel()

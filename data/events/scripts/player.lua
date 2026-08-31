@@ -5,6 +5,27 @@ local rarity_change_on_level = {
 	[60] = 4,
 }
 
+local affixes = {
+  [1] = {
+    name = "Elite",
+    skull = 7,
+    hpMultiplier = 1.5,
+    dmgMultiplier = 1.15,
+    clones = 2,
+    weight = 50, -- Większa szansa na Elite
+    lootChance = 1.20 -- 20% wiecej gold i exp
+  },
+  [2] = {
+    name = "Champion",
+    skull = 8,
+    hpMultiplier = 2.5,
+    dmgMultiplier = 2.0,
+    clones = 0,
+    weight = 50, -- Mniejsza szansa na Champion
+    lootChance = 4.00 -- 3 x wiecej gold i exp
+  }
+}
+
 local PLAYERS_COLLECTION_EVENTS = {}
 function Player:onBrowseField(position)
 	return true
@@ -779,11 +800,12 @@ function Player:onLook(thing, position, distance)
 
 			local monsterLevel = thing:getMonsterLevel()
 			local mType = thing:getType()
-			local monsterGold = MONSTER_CONFIG[thing:getType():tier()].gold --goldFormula(monsterLevel)
-			local monsterExp = MONSTER_CONFIG[thing:getType():tier()].exp --calculateExp(self:getLevel(), monsterLevel, expFormula(monsterLevel))
+			local monsterGold = goldFormula(monsterLevel)
+			local monsterExp = expFormula(monsterLevel)
 			local physical_defense = 15 + (thing:getMonsterLevel() * 1) --MONSTER_CONFIG[thing:getType():tier()].physical_defense
 			local magic_defense = 15 + (thing:getMonsterLevel() * 1) --MONSTER_CONFIG[thing:getType():tier()].magic_defense
-
+			description = string.format("%s\nDamage: %d", description, damageFormula(monsterLevel))
+			description = string.format("%s\nHealth: %d", description, healthFormula(monsterLevel))
 			description = string.format("%s\nPhysical Defense: %d | %s%%", description, physical_defense, math.ceil((physical_defense / (100 + physical_defense)) * 100))
 			description = string.format("%s\nMagic Defense: %d | %s%%", description, magic_defense, math.ceil((magic_defense / (100 + magic_defense)) * 100))
 
@@ -810,11 +832,13 @@ function Player:onLook(thing, position, distance)
 		end
 
 		monsterExp = monsterExp + ((monsterExp * EXPO) / 100)
-
+  		if self:getSkull() == 7 then
+			monsterExp = monsterExp * affixes[1].lootChance
+		elseif self:getSkull() == 8 then
+			monsterExp = monsterExp * affixes[2].lootChance
+		end
 		description = string.format("%s\nExp: %s", description, math.ceil(monsterExp))
 
-		local gold = 0
-		monsterGold = monsterGold + (monsterGold * gold / 100)
 
 		local globalGold = 1
 		if getGlobalBuff(BUFF_GLOBAL_GOLD) then
@@ -835,72 +859,20 @@ function Player:onLook(thing, position, distance)
 		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
 
 		eliteAffix_name = {
-			[1] = "Armored",
-			[2] = "Shapers",
-			[3] = "Fat",
-			[4] = "Clone",
-			[5] = "Frozen",
-			[6] = "Explosive",
-			[7] = "Plagued",
-			[8] = "Waller",
-			[9] = "Strong",
-			[10] = "Vampiric",
-			[11] = "Electric",
-			[12] = "Stunner",
-			[13] = "Puller",
-			[14] = "Doger",
-			[15] = "Anti Mage",
-			[16] = "Critical",
-			[17] = "Fast",
-			[18] = "Golden",
-			[19] = "Crystal",
-			[20] = "Lucker",
-			[21] = "CHAMPION",
-			[22] = "Iced",
-			[23] = "Fire",
-			[24] = "Death",
-			[25] = "Holy",
-			[26] = "Energy",
-			[27] = "Poison",
-			[28] = "Physical"
+			[1] = "Elite",
+			[2] = "Champion",
 		}
 
 		eliteAffix_desc = {
-			[1] = "25% damage reduction from physical attacks",
-			[2] = "reflects attacks that deal 20% of you spell/basic damage",
-			[3] = "50% more health",
-			[4] = "creates 3 clones identical to the original",
-			[5] = "when it dies it creates an explosion of ice after 2 seconds that freezes for 3 seconds and deal 33% HP",
-			[6] = "when it dies it creates an explosion of fire after 2 seconds that deal 75% of you HP",
-			[7] = "chance to summon green toxin pools on the ground that deal Poison damage to players standing in them",
-			[8] = "can erect impenetrable barriers for a short period of time. Summoned walls vanish after 3 seconds",
-			[9] = "has increased damage by 50%",
-			[10] = "heals for 50% of the damage dealt",
-			[11] = "by taking damage, it creates electric beams that injure any player who walks on it",
-			[12] = "has a chance to stunned target for 1s",
-			[13] = "has a chance to pull the target towards him by 5 SQM",
-			[14] = "has a 50% chance to dodge melee and distance attacks",
-			[15] = "50% damage reduction from elemental attacks",
-			[16] = "has a 30% chance to deal 2 time more damage",
-			[17] = "significantly increases the speed of movement",
-			[18] = "3000% more gold from loot",
-			[19] = "25% damage reduction from duality attacks",
-			[20] = "200% loot chance",
-			[21] = "damage +200%, HP +700%, damage reduction +50%, increased 1000% EXP and Gold",
-			[22] = "attacks impose a frostbite effect.",
-			[23] = "attacks impose a burning effect.",
-			[24] = "attacks impose a cursed effect.",
-			[25] = "attacks impose a dazzle effect.",
-			[26] = "attacks impose a electrify effect.",
-			[27] = "attacks impose a poison effect.",
-			[28] = "attacks impose a bleeding effect."
+			[1] = "Health +50%, Damage +15%, Gold, EXP and Loot Chance + 20%, spawns in a pack of 3",
+			[2] = "Health x2.5, Damage x2, Gold, EXP and Loot Chance x4",
 		}
 		local skull = thing:getSkull()
 		local skullPlus = thing:getSkull() - 6
 		local affixName = eliteAffix_name[skullPlus]
 		local affixDesc = eliteAffix_desc[skullPlus]
-		if skull >= 7 then
-			description = string.format("%s\nElite: %s\n%s", description, affixName, affixDesc)
+		if skull >= 7 and affixName and affixDesc then
+			description = string.format("%s\nBoost: %s\n%s", description, affixName, affixDesc)
 		end
 		local elementResist = MonsterType(thing:getName()):getElementList()
 		if elementResist == nil then
@@ -1613,7 +1585,7 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 		exp = 1
 	end
 	--]]
-	exp = MONSTER_CONFIG[source:getType():tier()].exp
+	exp = expFormula(source:getMonsterLevel())
 	exp = math.ceil(exp * (gainPrecent/100))
 	--------EXP BOOST SHOP--------------------
 	if self:getBuff(BUFF_EXP_BOOST) then
@@ -1632,6 +1604,11 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 	end
 	if getGlobalBuff(BUFF_GLOBAL_EXP) then
 		EXPO = EXPO + 20
+	end
+	if source:getSkull() == 7 then
+		exp = exp * affixes[1].lootChance
+	elseif source:getSkull() == 8 then
+		exp = exp * affixes[2].lootChance
 	end
 
 

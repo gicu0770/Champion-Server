@@ -35,8 +35,8 @@
 	<event type="manachange" name="UpgradeSystemMana" script="upgrade_system_cs.lua" />
 	<event type="preparedeath" name="UpgradeSystemPD" script="upgrade_system_cs.lua" /> 
 	<!-- Elite Monsters System 	  -->	
-	<event type="healthchange" name="EliteAffixHP" script="elite.lua" />
-	<event type="manachange" name="EliteAffixMANA" script="elite.lua" />
+	<!-- <event type="healthchange" name="EliteAffixHP" script="elite.lua" />
+	<event type="manachange" name="EliteAffixMANA" script="elite.lua" /> -->	
 	<event type="death" name="BossDeath" script="boss_death.lua" /> 
 	<!-- DPS Dummy -->
 	<!-- <event type="healthchange" name="EventDPS" script="dps.lua" /> -->
