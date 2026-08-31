@@ -1,6 +1,6 @@
 local deathListEnabled = true
 local maxDeathRecords = 5
-
+-- Edited wypadanie przedmiotów
 function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
 	local playerId = player:getId()
 	if nextUseStaminaTime[playerId] then
