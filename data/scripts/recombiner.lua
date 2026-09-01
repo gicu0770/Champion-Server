@@ -356,7 +356,7 @@ RECOMB_ITEM_RECIPES = {
     rarity = 1,
     implicits = {
       {1, 200},  -- ID 1 (Health): +200
-      {4, 10},   -- ID 4 (Health Regeneration): +10
+      {4, 5},    -- ID 4 (Health Regeneration): +5
     },
   },
 
@@ -369,7 +369,7 @@ RECOMB_ITEM_RECIPES = {
     rarity = 4,
     implicits = {
       {1, 1000}, -- ID 1 (Health): +1000
-      {4, 100},  -- ID 4 (Health Regeneration): +100%
+      {4, 15},   -- ID 4 (Health Regeneration): +15
       {10, 5},   -- ID 10 (Movement Speed): +5%
       {33, 3},   -- ID 33 (Warmog's Heart): Regenerates 3% Max Health every second
     },
@@ -419,6 +419,393 @@ RECOMB_ITEM_RECIPES = {
       {35, 20},  -- ID 35 (Quicken): +20 Movement Speed on-hit
     },
   },
+
+  -- [ON-HIT ATTACK SPEED / MAGIC RESIST TREE - WIT'S END]
+  -- Step 1: Dagger (36676) + 450 Gold -> Recurve Bow (8855)
+  {
+    items = {36676},
+    result = 8855,
+    gold = 450,
+    name = "Recurve Bow",
+    rarity = 1,
+    implicits = {
+      {11, 15},  -- ID 11 (Attack Speed): +15%
+      {36, 15},  -- ID 36 (Fray): Basic attacks deal +15 magic damage on-hit
+    },
+  },
+
+  -- Step 2: 2x Recurve Bow (8855) + Negatron Cloak (8870) + 550 Gold -> Wit's End (7407)
+  {
+    items = {8855, 8870, 8855},
+    result = 7407,
+    gold = 550,
+    name = "Wit's End",
+    rarity = 4,
+    implicits = {
+      {9, 45},   -- ID 9 (Magic Defense): +45
+      {11, 50},  -- ID 11 (Attack Speed): +50%
+      {1, 300},  -- ID 1 (Health): +300 (Defensive stat instead of Tenacity)
+      {36, 45},  -- ID 36 (Fray): Basic attacks deal +45 magic damage on-hit
+    },
+  },
+
+  -- [AP ON-HIT ATTACK SPEED TREE - NASHOR'S TOOTH]
+  -- Step 1: Amplifying Tome (1955) + Monocle (7900) + 200 Gold -> Fiendish Codex (8902)
+  {
+    items = {1955, 7900},
+    result = 8902,
+    gold = 200,
+    name = "Fiendish Codex",
+    rarity = 1,
+    implicits = {
+      {7, 25},   -- ID 7 (Magic Attack): +25
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+    },
+  },
+
+  -- Step 2: Recurve Bow (8855) + Blasting Wand (2189) + Fiendish Codex (8902) + 500 Gold -> Nashor's Tooth (7408)
+  {
+    items = {8855, 2189, 8902},
+    result = 7408,
+    gold = 500,
+    name = "Nashor's Tooth",
+    rarity = 4,
+    implicits = {
+      {7, 80},   -- ID 7 (Magic Attack): +80
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {11, 50},  -- ID 11 (Attack Speed): +50%
+      {37, 15},  -- ID 37 (Icathian Bite): Basic attacks deal 15 (+15% AP) bonus magic damage on-hit
+    },
+  },
+
+  -- [PHYSICAL ON-HIT LIFESTEAL TREE - BLADE OF THE RUINED KING]
+  -- Step 1: Vampiric Scepter (2424) + Recurve Bow (8855) + Pickaxe (4874) + 725 Gold -> Blade of the Ruined King (7405)
+  {
+    items = {2424, 8855, 4874},
+    result = 7405,
+    gold = 725,
+    name = "Blade of the Ruined King",
+    rarity = 4,
+    implicits = {
+      {6, 40},   -- ID 6 (Physical Attack): +40
+      {11, 25},  -- ID 11 (Attack Speed): +25%
+      {17, 10},  -- ID 17 (Physical Lifesteal): +10%
+      {38, 9},   -- ID 38 (Mist's Edge): Basic attacks deal (9% melee / 6% ranged) target's current HP on-hit
+    },
+  },
+
+  -- [TANK PHYSICAL DEFENSE / REFLECT TREE - THORNMAIL]
+  -- Step 1: Bronze Armor (26393) + 500 Gold -> Chain Vest (2464)
+  {
+    items = {26393},
+    result = 2464,
+    gold = 500,
+    name = "Chain Vest",
+    rarity = 1,
+    implicits = {
+      {8, 40},   -- ID 8 (Physical Defense): +40
+    },
+  },
+
+  -- Step 2: 2x Bronze Armor (26393) + 200 Gold -> Bramble Vest (2483)
+  {
+    items = {26393, 26393},
+    result = 2483,
+    gold = 200,
+    name = "Bramble Vest",
+    rarity = 1,
+    implicits = {
+      {8, 30},   -- ID 8 (Physical Defense): +30
+      {39, 6},   -- ID 39 (Thorns): When struck by basic attack, reflect 6 (+10% Physical Defense) magic damage
+    },
+  },
+
+  -- Step 3: Bramble Vest (2483) + Chain Vest (2464) + Elven Plate (26491) + 450 Gold -> Thornmail (8882)
+  {
+    items = {2483, 2464, 26491},
+    result = 8882,
+    gold = 450,
+    name = "Thornmail",
+    rarity = 4,
+    implicits = {
+      {8, 75},   -- ID 8 (Physical Defense): +75
+      {1, 150},  -- ID 1 (Health): +150
+      {39, 20},  -- ID 39 (Thorns): When struck by basic attack, reflect 20 (+10% Physical Defense) magic damage
+    },
+  },
+
+  -- [TANK HEALTH / AOE IMMOLATE TREE - SUNFIRE AEGIS]
+  -- Step 1: Elven Plate (26491) + Monocle (7900) + 250 Gold -> Bami's Cinder (2156)
+  {
+    items = {26491, 7900},
+    result = 2156,
+    gold = 250,
+    name = "Bami's Cinder",
+    rarity = 1,
+    implicits = {
+      {1, 200},  -- ID 1 (Health): +200
+      {16, 5},   -- ID 16 (Cooldown Reduction): +5%
+      {40, 10},  -- ID 40 (Immolate): Taking damage deals 10 (+0.5% Max HP) magic damage to nearby enemies
+    },
+  },
+
+  -- Step 2: Bami's Cinder (2156) + Chain Vest (2464) + Elven Plate (26491) + 700 Gold -> Sunfire Aegis (8881)
+  {
+    items = {2156, 2464, 26491},
+    result = 8881,
+    gold = 700,
+    name = "Sunfire Aegis",
+    rarity = 4,
+    implicits = {
+      {1, 350},  -- ID 1 (Health): +350
+      {8, 50},   -- ID 8 (Physical Defense): +50
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+      {40, 20},  -- ID 40 (Immolate): Taking damage deals 20 (+1% Max HP) magic damage to nearby enemies
+    },
+  },
+
+  -- [UPGRADED BOOTS RECIPES]
+  -- 1. Berserker's Greaves: Boots (26438) + 2x Dagger (36676) + 500 Gold
+  {
+    items = {26438, 36676, 36676},
+    result = 2646,
+    gold = 500,
+    name = "Berserker's Greaves",
+    rarity = 2,
+    implicits = {
+      {21, 45},  -- ID 21 (Movement Speed Flat): +45
+      {11, 30},  -- ID 11 (Attack Speed): +30%
+    },
+  },
+
+  -- 2. Plated Steelcaps: Boots (26438) + Bronze Armor (26393) + 500 Gold
+  {
+    items = {26438, 26393},
+    result = 2645,
+    gold = 500,
+    name = "Plated Steelcaps",
+    rarity = 2,
+    implicits = {
+      {21, 45},  -- ID 21 (Movement Speed Flat): +45
+      {8, 25},   -- ID 8 (Physical Defense): +25
+      {41, 10},  -- ID 41 (Plating): Reduces all incoming basic attack damage by 10%
+    },
+  },
+
+  -- 3. Boots of Swiftness: 2x Boots (26438) + 500 Gold
+  {
+    items = {26438, 26438},
+    result = 2195,
+    gold = 500,
+    name = "Boots of Swiftness",
+    rarity = 2,
+    implicits = {
+      {21, 55},  -- ID 21 (Movement Speed Flat): +55
+      {10, 5},   -- ID 10 (Movement Speed Percent): +5%
+      {42, 25},  -- ID 42 (Fleetfooted): Gain 25% Slow Resistance
+    },
+  },
+
+  -- 4. Ionian Boots of Lucidity: Boots (26438) + Monocle (7900) + 500 Gold
+  {
+    items = {26438, 7900},
+    result = 2640,
+    gold = 500,
+    name = "Ionian Boots of Lucidity",
+    rarity = 2,
+    implicits = {
+      {21, 45},  -- ID 21 (Movement Speed Flat): +45
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+    },
+  },
+
+  -- 5. Sorcerer's Shoes: Boots (26438) + Amplifying Tome (1955) + 500 Gold
+  {
+    items = {26438, 1955},
+    result = 7893,
+    gold = 500,
+    name = "Sorcerer's Shoes",
+    rarity = 2,
+    implicits = {
+      {21, 45},  -- ID 21 (Movement Speed Flat): +45
+      {15, 15},  -- ID 15 (Magic Penetration): +15
+    },
+  },
+
+  -- [TANK MAGIC RESIST & VITALITY TREE - SPIRIT VISAGE]
+  -- Step 1: Elven Plate (26491) + Druid Cape (26442) + Recovery Ring (38860) + 150 Gold -> Spectre's Cowl (8871)
+  {
+    items = {26491, 26442, 38860},
+    result = 8871,
+    gold = 150,
+    name = "Spectre's Cowl",
+    rarity = 1,
+    implicits = {
+      {1, 250},  -- ID 1 (Health): +250
+      {9, 25},   -- ID 9 (Magic Defense): +25
+      {4, 5},    -- ID 4 (Health Regeneration): +5
+    },
+  },
+
+  -- Step 2: Spectre's Cowl (8871) + Kindlegem (38641) + 650 Gold -> Spirit Visage (8880)
+  {
+    items = {8871, 38641},
+    result = 8880,
+    gold = 650,
+    name = "Spirit Visage",
+    rarity = 4,
+    implicits = {
+      {1, 400},  -- ID 1 (Health): +400
+      {9, 50},   -- ID 9 (Magic Defense): +50
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+      {4, 10},   -- ID 4 (Health Regeneration): +10
+      {43, 25},  -- ID 43 (Boundless Vitality): Increases all healing, shielding received, and health regen by +25%
+    },
+  },
+
+  -- [MAGE BRUISER BURN TREE - LIANDRY'S TORMENT]
+  -- Step 1: Blasting Wand (2189) + Giant's Belt (2487) + Magicvamp Amulet (26833) + 800 Gold -> Liandry's Torment (2501)
+  {
+    items = {2189, 2487, 26833},
+    result = 2501,
+    gold = 800,
+    name = "Liandry's Torment",
+    rarity = 4,
+    implicits = {
+      {7, 50},   -- ID 7 (Magic Attack): +50
+      {1, 400},  -- ID 1 (Health): +400
+      {18, 15},  -- ID 18 (Magic Lifesteal): +15%
+      {44, 1},   -- ID 44 (Torment): Abilities and attacks burn enemies for 1% Max HP per second for 4 seconds
+    },
+  },
+
+  -- [MAGE ARMOR / TIME STOP TREE - ZHONYA'S HOURGLASS]
+  -- Step 1: 2x Amplifying Tome (1955) + Bronze Armor (26393) + 500 Gold -> Seeker's Armguard (20133)
+  {
+    items = {1955, 1955, 26393},
+    result = 20133,
+    gold = 500,
+    name = "Seeker's Armguard",
+    rarity = 1,
+    implicits = {
+      {7, 30},   -- ID 7 (Magic Attack): +30
+      {8, 20},   -- ID 8 (Physical Defense): +20
+    },
+  },
+
+  -- Step 2: Seeker's Armguard (20133) + Eclipse Wand (8920) + 450 Gold -> Zhonya's Hourglass (20002)
+  {
+    items = {20133, 8920},
+    result = 20002,
+    gold = 450,
+    name = "Zhonya's Hourglass",
+    rarity = 4,
+    implicits = {
+      {7, 105},  -- ID 7 (Magic Attack): +105
+      {8, 50},   -- ID 8 (Physical Defense): +50
+      {45, 3},   -- ID 45 (Time Stop): When falling below 30% HP, gain Immortality for 3 seconds (120s cooldown)
+    },
+  },
+
+  -- [MAGE MAGIC RESIST / SPELL SHIELD TREE - BANSHEE'S VEIL]
+  -- Step 1: 2x Amplifying Tome (1955) + Druid Cape (26442) + 400 Gold -> Verdant Barrier (2180)
+  {
+    items = {1955, 1955, 26442},
+    result = 2180,
+    gold = 400,
+    name = "Verdant Barrier",
+    rarity = 1,
+    implicits = {
+      {7, 30},   -- ID 7 (Magic Attack): +30
+      {9, 20},   -- ID 9 (Magic Defense): +20
+    },
+  },
+
+  -- Step 2: Verdant Barrier (2180) + Eclipse Wand (8920) + 200 Gold -> Banshee's Veil (2174)
+  {
+    items = {2180, 8920},
+    result = 2174,
+    gold = 200,
+    name = "Banshee's Veil",
+    rarity = 4,
+    implicits = {
+      {7, 105},  -- ID 7 (Magic Attack): +105
+      {9, 40},   -- ID 9 (Magic Defense): +40
+      {46, 40},  -- ID 46 (Annul): Grants a Spell Shield that blocks the next hostile ability (40s cooldown)
+    },
+  },
+
+  -- [PHYSICAL PENETRATION & ANTI-HEAL TREE - MORTAL REMINDER]
+  -- Step 1: Bronze Axe (26618) + 450 Gold -> Executioner's Calling (7404)
+  {
+    items = {26618},
+    result = 7404,
+    gold = 450,
+    name = "Executioner's Calling",
+    rarity = 1,
+    implicits = {
+      {6, 15},   -- ID 6 (Physical Attack): +15
+      {47, 40},  -- ID 47 (Grievous Wounds): Physical damage inflicts Grievous Wounds for 3s (-40% healing)
+    },
+  },
+
+  -- Step 2: 2x Bronze Axe (26618) + 750 Gold -> Last Whisper (8856)
+  {
+    items = {26618, 26618},
+    result = 8856,
+    gold = 750,
+    name = "Last Whisper",
+    rarity = 2,
+    implicits = {
+      {6, 20},   -- ID 6 (Physical Attack): +20
+      {14, 18},  -- ID 14 (Physical Penetration): +18
+    },
+  },
+
+  -- Step 3: Executioner's Calling (7404) + Last Whisper (8856) + Cloak of Agility (2660) + 350 Gold -> Mortal Reminder (8857)
+  {
+    items = {7404, 8856, 2660},
+    result = 8857,
+    gold = 350,
+    name = "Mortal Reminder",
+    rarity = 4,
+    implicits = {
+      {6, 35},   -- ID 6 (Physical Attack): +35
+      {14, 30},  -- ID 14 (Physical Penetration): +30
+      {12, 25},  -- ID 12 (Critical Chance): +25%
+      {47, 40},  -- ID 47 (Grievous Wounds): Physical damage inflicts Grievous Wounds for 3s (-40% healing)
+    },
+  },
+
+  -- [MAGE GRIEVOUS WOUNDS & HEALTH TREE - MORELLONOMICON]
+  -- Step 1: Amplifying Tome (1955) + 400 Gold -> Oblivion Orb (2176)
+  {
+    items = {1955},
+    result = 2176,
+    gold = 400,
+    name = "Oblivion Orb",
+    rarity = 1,
+    implicits = {
+      {7, 25},   -- ID 7 (Magic Attack): +25
+      {48, 40},  -- ID 48 (Cursed Touch): Magic damage inflicts Grievous Wounds for 3s (-40% healing)
+    },
+  },
+
+  -- Step 2: Oblivion Orb (2176) + Blasting Wand (2189) + Kindlegem (38641) + 500 Gold -> Morellonomicon (8903)
+  {
+    items = {2176, 2189, 38641},
+    result = 8903,
+    gold = 500,
+    name = "Morellonomicon",
+    rarity = 4,
+    implicits = {
+      {7, 75},   -- ID 7 (Magic Attack): +75
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {1, 350},  -- ID 1 (Health): +350
+      {48, 40},  -- ID 48 (Cursed Touch): Magic damage inflicts Grievous Wounds for 3s (-40% healing)
+    },
+  },
+}
 
   -- Dungeon Key Recipes (3 items)
 --  { items = {11229, 11199, 29559}, result = 38724, itemlevel = 2950, rarity = 5, keyTier = 132, questStart = 29, isDungeonKey = true }, -- Soulbound

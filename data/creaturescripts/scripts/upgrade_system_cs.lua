@@ -113,6 +113,51 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 						secondaryDamage = 0
 						return primaryDamage, primaryType, secondaryDamage, secondaryType
 					end
+
+					-- [45] Time Stop (Zhonya's Hourglass): When falling below 30% HP or taking lethal damage, grants IMMORTAL for 3s (120s cooldown)
+					local defInfo = colleftInfo[creature:getId()]
+					local defAttrs = defInfo and defInfo.attributesItems
+					if defAttrs and defAttrs[45] then
+						local curHp = creature:getHealth()
+						local maxHp = creature:getMaxHealth()
+						local totalIncoming = math.abs(primaryDamage or 0) + math.abs(secondaryDamage or 0)
+						local predictedHp = curHp - totalIncoming
+						if predictedHp <= math.floor(maxHp * 0.30) then
+							local now = os.time()
+							local nextProc = creature:getStorageValue(PlayerStorage.zhonyaCooldown)
+							if nextProc < 0 or now >= nextProc then
+								creature:setStorageValue(PlayerStorage.zhonyaCooldown, now + 120)
+								creature:addBuff(RESTART_IMMORTAL, 3000)
+								creature:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
+								creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Zhonya's Hourglass] Time Stop activated! You are Immortal for 3 seconds (Cooldown: 120s).")
+								primaryDamage = 0
+								secondaryDamage = 0
+								return primaryDamage, primaryType, secondaryDamage, secondaryType
+							end
+						end
+					end
+
+					-- [46] Annul / Spell Shield (Banshee's Veil): Blocks the next hostile ability / spell
+					if creature:hasBuff(SPELL_SHIELD) and (origin == ORIGIN_SPELL or primaryType ~= COMBAT_PHYSICALDAMAGE) then
+						creature:removeBuff(SPELL_SHIELD)
+						creature:setStorageValue(PlayerStorage.bansheeCooldown, os.time() + 40)
+						creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+						creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Banshee's Veil] Spell Shield absorbed the incoming ability! (Cooldown: 40s).")
+						addEvent(function(pid)
+							local p = Player(pid)
+							if p and p:isPlayer() then
+								local info = colleftInfo[p:getId()]
+								if info and info.attributesItems and info.attributesItems[46] and not p:hasBuff(SPELL_SHIELD) then
+									p:addBuff(SPELL_SHIELD, 0)
+									p:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+									p:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Banshee's Veil] Spell Shield is ready!")
+								end
+							end
+						end, 40000, creature:getId())
+						primaryDamage = 0
+						secondaryDamage = 0
+						return primaryDamage, primaryType, secondaryDamage, secondaryType
+					end
 				end
 			end
 		end
@@ -122,8 +167,16 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 		local healingPrimary = 0
 		local primaryDamageStart = primaryDamage
 		if creature:isPlayer() then
-			if healingPrimary > 0 then
-				primaryDamage = math.floor(primaryDamage + (primaryDamage * healingPrimary / 100))
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[43] then
+				healingPrimary = healingPrimary + (defAttrs[43].value or 25)
+			end
+			if creature:hasBuff(GRIEVOUS_WOUNDS) then
+				healingPrimary = healingPrimary - 40
+			end
+			if healingPrimary ~= 0 then
+				primaryDamage = math.max(0, math.floor(primaryDamage + (primaryDamage * healingPrimary / 100)))
 			end
 		end
 		---end
@@ -322,6 +375,15 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		-- =====================================================================
 		-- MODYFIKACJE PRZEDMIOTÓW [22-28] - DAMAGE MODIFIERS
 		-- =====================================================================
+		-- [41] Plating (Plated Steelcaps): Reduces all incoming basic attack damage by 10%
+		if creature:isPlayer() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[41] then
+				primaryDamage = math.ceil(primaryDamage * 0.90)
+			end
+		end
+
 		-- [24] Focusing Mark: 10% more damage to marked enemy
 		if creature:hasBuff(FOCUSING_MARK_DEBUFF) then
 			primaryDamage = math.ceil(primaryDamage * 1.10)
@@ -465,6 +527,127 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			attacker:addBuff(QUICKEN_BUFF, 2000)
 		end
 
+		-- [36] Fray (Wit's End / Recurve Bow): Basic attacks deal bonus magic damage on-hit
+		if attackerAttrs and attackerAttrs[36] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local frayValue = attackerAttrs[36].value or 45
+			local frayDef = 0
+			if creature:isMonster() then
+				frayDef = (15 + creature:getMonsterLevel() * 1)
+			elseif creature:isPlayer() then
+				frayDef = creature:getMagicDefense()
+			end
+			local magPen = attacker:getMagicPenetration()
+			local effMagDef = frayDef - magPen
+			local magMult = getDefenseMultiplier(effMagDef)
+			local finalFray = math.max(1, math.ceil(frayValue * magMult))
+
+			if isNegative then
+				finalFray = -finalFray
+			end
+			secondaryDamage = secondaryDamage + finalFray
+			secondaryType = COMBAT_ENERGYDAMAGE
+			creature:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
+		end
+
+		-- [37] Icathian Bite (Nashor's Tooth): Basic attacks deal 15 (+15% AP) bonus magic damage on-hit
+		if attackerAttrs and attackerAttrs[37] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local ap = attacker:getMagicAttack()
+			local biteRatio = (attackerAttrs[37].value or 15) / 100
+			local biteBase = 15 + math.floor(ap * biteRatio)
+			local biteDef = 0
+			if creature:isMonster() then
+				biteDef = (15 + creature:getMonsterLevel() * 1)
+			elseif creature:isPlayer() then
+				biteDef = creature:getMagicDefense()
+			end
+			local magPen = attacker:getMagicPenetration()
+			local effMagDef = biteDef - magPen
+			local magMult = getDefenseMultiplier(effMagDef)
+			local finalBite = math.max(1, math.ceil(biteBase * magMult))
+
+			if isNegative then
+				finalBite = -finalBite
+			end
+			secondaryDamage = secondaryDamage + finalBite
+			secondaryType = COMBAT_ENERGYDAMAGE
+			creature:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
+		end
+
+		-- [38] Mist's Edge (Blade of the Ruined King): Basic attacks deal bonus physical damage on-hit equal to (9% melee / 6% ranged) target's current HP
+		if attackerAttrs and attackerAttrs[38] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local isMelee = (origin == ORIGIN_MELEE or (attacker:isPlayer() and attacker:hasMeleeWeapon()))
+			local hpRatio = isMelee and 0.09 or 0.06
+			local targetCurrentHp = creature:getHealth()
+			if creature:isMonster() and (creature:getName():lower():find("dummy") or creature:getMaxHealth() > 10000000) then
+				targetCurrentHp = math.min(targetCurrentHp, 10000)
+			end
+			local rawBotrk = targetCurrentHp * hpRatio
+			if creature:isMonster() then
+				rawBotrk = math.min(rawBotrk, 250 + (attacker:getPhysicalAttack() * 2))
+			end
+			local finalBotrk = math.max(1, math.ceil(rawBotrk * targetDefMult))
+			primaryDamage = primaryDamage + finalBotrk
+			creature:getPosition():sendMagicEffect(CONST_ME_ICETORNADO)
+		end
+
+		-- [39] Thorns (Bramble Vest / Thornmail): When struck by a basic attack, reflect magic damage to attacker
+		if creature:isPlayer() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[39] then
+				local thornsBase = defAttrs[39].value or 20
+				local defArmor = creature:getPhysicalDefense()
+				local rawThorns = thornsBase + math.floor(defArmor * 0.10)
+				local attMagDef = 0
+				if attacker:isMonster() then
+					attMagDef = 15 + attacker:getMonsterLevel() * 1
+				elseif attacker:isPlayer() then
+					attMagDef = attacker:getMagicDefense()
+				end
+				local magPen = creature:getMagicPenetration()
+				local effMagDef = attMagDef - magPen
+				local magMult = getDefenseMultiplier(effMagDef)
+				local finalThorns = math.max(1, math.ceil(rawThorns * magMult))
+
+				doTargetCombat(creature, attacker, COMBAT_ENERGYDAMAGE, -finalThorns, -finalThorns, CONST_ME_ENERGYHIT)
+			end
+		end
+
+		-- [40] Immolate (Bami's Cinder / Sunfire Aegis): When taking damage, deal 20 (+1% Max HP) magic damage to all nearby enemies
+		if creature:isPlayer() then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[40] then
+				local immolateBase = defAttrs[40].value or 20
+				local hpRatio = (immolateBase >= 20) and 0.01 or 0.005
+				local rawImmolate = immolateBase + math.floor(creature:getMaxHealth() * hpRatio)
+				local magPen = creature:getMagicPenetration()
+				local cPos = creature:getPosition()
+				local specs = Game.getSpectators(cPos, false, false, 2, 2, 2, 2)
+				local hitAny = false
+				if specs then
+					for _, target in ipairs(specs) do
+						if target and target ~= creature and (target:isMonster() or (target:isPlayer() and target:getSkull() ~= SKULL_NONE)) then
+							local tgtMagDef = 0
+							if target:isMonster() then
+								tgtMagDef = 15 + target:getMonsterLevel() * 1
+							elseif target:isPlayer() then
+								tgtMagDef = target:getMagicDefense()
+							end
+							local effMagDef = tgtMagDef - magPen
+							local magMult = getDefenseMultiplier(effMagDef)
+							local finalImmolate = math.max(1, math.ceil(rawImmolate * magMult))
+							doTargetCombat(creature, target, COMBAT_FIREDAMAGE, -finalImmolate, -finalImmolate, CONST_ME_HITBYFIRE)
+							hitAny = true
+						end
+					end
+				end
+				if hitAny then
+					cPos:sendMagicEffect(CONST_ME_FIREAREA)
+				end
+			end
+		end
+
 		-- =====================================================================
 		-- EFEKTY PASYWNE, CHAMPIONI I NAKŁADANIE DOT-ÓW (PO PRZELICZENIU OBRONY)
 		-- =====================================================================
@@ -518,6 +701,52 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			appliedDotSummary = string.format("DoT: +%d Burn (4s, %d/tick)", sumDotDamage, dmgPerTick)
 		end
 
+		-- [44] Torment (Liandry's Torment): Abilities and basic attacks burn the target for 1% Max HP per second for 4s
+		if attackerAttrs and attackerAttrs[44] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or origin == ORIGIN_SPELL or primaryType ~= COMBAT_HEALING) then
+			local targetMaxHp = creature:getMaxHealth()
+			if creature:isMonster() and (creature:getName():lower():find("dummy") or targetMaxHp > 10000000) then
+				targetMaxHp = math.max(1000, attacker:getMagicAttack() * 20)
+			end
+			local rawTickDmg = math.max(5, math.floor(targetMaxHp * 0.01))
+			if creature:isMonster() then
+				rawTickDmg = math.min(rawTickDmg, 150 + math.floor(attacker:getMagicAttack() * 0.5))
+			end
+			local effMagDef = 0
+			if creature:isMonster() then
+				effMagDef = 15 + creature:getMonsterLevel() * 1
+			elseif creature:isPlayer() then
+				effMagDef = creature:getMagicDefense()
+			end
+			effMagDef = effMagDef - attacker:getMagicPenetration()
+			local magMult = getDefenseMultiplier(effMagDef)
+			local dmgPerTick = math.max(1, math.ceil(rawTickDmg * magMult))
+
+			creature:applyDot(attacker, {
+				buffId = TORMENT_BURN,
+				damage = dmgPerTick,
+				duration = 4000,
+				combatType = COMBAT_FIREDAMAGE,
+				mode = "refresh",
+				maxStacks = 1,
+				initialTick = false,
+				interval = 1000,
+				effect = 16
+			})
+			if creature.setShader then
+				creature:setShader("Burn", 4)
+			end
+		end
+
+		-- [47] Grievous Wounds (Executioner's Calling / Mortal Reminder): Physical damage inflicts Grievous Wounds for 3s (-40% healing)
+		if attackerAttrs and attackerAttrs[47] and primaryType == COMBAT_PHYSICALDAMAGE then
+			creature:addBuff(GRIEVOUS_WOUNDS, 3000)
+		end
+
+		-- [48] Cursed Touch (Oblivion Orb / Morellonomicon): Magic damage inflicts Grievous Wounds for 3s (-40% healing)
+		if attackerAttrs and attackerAttrs[48] and (primaryType ~= COMBAT_PHYSICALDAMAGE and primaryType ~= COMBAT_HEALING and primaryType ~= COMBAT_MANADRAIN) then
+			creature:addBuff(GRIEVOUS_WOUNDS, 3000)
+		end
+
 		-- =====================================================================
 		-- LIFESTEAL (Physical & Magic Lifesteal with 1/3 AoE penalty)
 		-- =====================================================================
@@ -554,6 +783,12 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		if lifestealPercent > 0 and primaryDamage > 0 then
 			local aoeMultiplier = isAoE and (1.0 / 3.0) or 1.0
 			local rawHeal = (primaryDamage * (lifestealPercent / 100)) * aoeMultiplier
+			if attackerAttrs and attackerAttrs[43] then
+				rawHeal = rawHeal * (1 + (attackerAttrs[43].value or 25) / 100)
+			end
+			if attacker:hasBuff(GRIEVOUS_WOUNDS) then
+				rawHeal = rawHeal * 0.60
+			end
 			lifestealHeal = math.max(1, math.floor(rawHeal + 0.5))
 
 			if lifestealHeal > 0 then

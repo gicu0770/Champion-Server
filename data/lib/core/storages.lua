@@ -162,6 +162,8 @@ PlayerStorage = {
 	spellbladeProc = 801135,
 	ichorShieldTime = 801136,
 	ichorShieldAmount = 801137,
+	zhonyaCooldown = 801138,
+	bansheeCooldown = 801139,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

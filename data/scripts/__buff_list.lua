@@ -1,6 +1,9 @@
 PLAYERSTATE_POISON = 1
 PLAYERSTATE_BURN = 2
 JUKI_BURN = 107 -- Alias do IGNITE_ITEM
+TORMENT_BURN = 108 -- Liandry's Torment Burn DoT
+SPELL_SHIELD = 109 -- Banshee's Veil Spell Shield
+GRIEVOUS_WOUNDS = 110 -- Mortal Reminder / Executioner's Calling
 BUFF_GLOBAL_LOOT = 3
 PLAYERSTATE_ENERGY = 4
 BUFF_CRITICAL_DAMAGE = 5
@@ -1316,6 +1319,27 @@ BUFFS = {
         stacked = true,
         maxStacks = 1,
         ticks = 5000
+    },
+    [SPELL_SHIELD] = {
+        id = SPELL_SHIELD,
+        name = "Spell Shield",
+        description = "Blocks the next hostile spell or ability.",
+        icon = "magic_shield",
+        border = "frame-9-blue",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 40000
+    },
+    [GRIEVOUS_WOUNDS] = {
+        id = GRIEVOUS_WOUNDS,
+        name = "Grievous Wounds",
+        description = "Healing received and health regeneration reduced by 40%.",
+        icon = "bleeding",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 3000
     },
     [FEAR] = {
         id = FEAR,

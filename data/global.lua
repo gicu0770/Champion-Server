@@ -2023,6 +2023,19 @@ function Player.setCollectionInfo(self)
 	--	shockChance = shock,
 	--	chillChance = chill,
 	}
+
+	-- [46] Banshee's Veil: Annul (Spell Shield buff check)
+	if attributesTables[46] then
+		local now = os.time()
+		local cd = self:getStorageValue(PlayerStorage.bansheeCooldown)
+		if (cd < 0 or now >= cd) and not self:hasBuff(SPELL_SHIELD) then
+			self:addBuff(SPELL_SHIELD, 0)
+		end
+	else
+		if self:hasBuff(SPELL_SHIELD) then
+			self:removeBuff(SPELL_SHIELD)
+		end
+	end
 	--[[
 	if self:getStorageValue(435024) == 8 then -- Druid + Paladin Hierophant
 		self:setLimitMaxHealth(1)

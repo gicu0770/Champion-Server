@@ -298,6 +298,123 @@ US_ENCHANTMENTS = {
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
+    [36] = {
+        name = "Fray",
+        desc = "Basic attacks deal bonus magic damage on-hit.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [37] = {
+        name = "Icathian Bite",
+        desc = "Basic attacks deal 15 (+15% Magic Attack) bonus magic damage on-hit.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [38] = {
+        name = "Mist's Edge",
+        desc = "Basic attacks deal bonus physical damage equal to (9% melee / 6% ranged) of the target's current health on-hit.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [39] = {
+        name = "Thorns",
+        desc = "When struck by a basic attack, deal 20 (+10% Physical Defense) magic damage to the attacker.",
+        category = 2,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [40] = {
+        name = "Immolate",
+        desc = "When taking damage, deal 20 (+1% Max HP) magic damage to nearby enemies.",
+        category = 2,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [41] = {
+        name = "Plating",
+        desc = "Reduces all incoming basic attack damage by 10%.",
+        category = 2,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [42] = {
+        name = "Fleetfooted",
+        desc = "Increases Movement Speed and grants Slow Resistance.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [43] = {
+        name = "Boundless Vitality",
+        desc = "Increases all healing, shielding received, and health regeneration by 25%.",
+        category = 2,
+        percent = true,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [44] = {
+        name = "Torment",
+        desc = "Abilities and attacks burn enemies for 1% of their Max HP per second for 4 seconds.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [45] = {
+        name = "Time Stop",
+        desc = "Upon falling below 30% HP, gain Immortality for 3 seconds (120s cooldown).",
+        category = 2,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [46] = {
+        name = "Annul",
+        desc = "Grants a Spell Shield that blocks the next hostile ability (40s cooldown).",
+        category = 2,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [47] = {
+        name = "Grievous Wounds",
+        desc = "Physical damage inflicts Grievous Wounds for 3s, reducing healing received by 40%.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [48] = {
+        name = "Cursed Touch",
+        desc = "Magic damage inflicts Grievous Wounds for 3s, reducing healing received by 40%.",
+        category = 1,
+        percent = false,
+        noValue = false,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
 }
 
 REDUCTION_ATTR_VALUES = {
