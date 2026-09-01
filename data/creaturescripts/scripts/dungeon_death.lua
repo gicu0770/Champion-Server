@@ -29,35 +29,42 @@ function onPrepareDeath(player, corpse, killer, mostDamageKiller, lastHitUnjusti
                 player:addMana(player:getMaxMana())
                 player:setEnergyShield(player:getMaxEnergyShield())
                 player:stopAllDots()
-                local level = player:getLevel()
-                local lost = 0.20
-                local buffsToCheck = { BLESS_ULTRA, BLESS_PLUS, BLESS }
-                for i = 1, #buffsToCheck do
-                    local buffCheck = player:getBuff(buffsToCheck[i])
-                    if buffCheck then
-                        if buffsToCheck[i] == BLESS_ULTRA then
-                            lost = 0.02
-                        elseif buffsToCheck[i] == BLESS_PLUS then
-                            lost = 0.06
-                        elseif buffsToCheck[i] == BLESS then
-                            lost = 0.10
-                        end
+                local currentLevel = player:getLevel()
+                local baseLevelsToLose = 1
+                if currentLevel >= 41 then
+                    baseLevelsToLose = 3
+                elseif currentLevel >= 21 then
+                    baseLevelsToLose = 2
+                else
+                    baseLevelsToLose = 1
+                end
 
-                        if buffCheck.stacks and buffCheck.stacks > 1 then
-                            player:setBuffStacks(buffsToCheck[i], buffCheck.stacks - 1)
-                        else
-                            player:removeBuff(buffsToCheck[i])
-                        end
-                        break
+                -- Check BLESS_ULTRA protection
+                local hasBlessUltra = false
+                local buffCheck = player:getBuff(BLESS_ULTRA)
+                if buffCheck then
+                    hasBlessUltra = true
+                    if buffCheck.stacks and buffCheck.stacks > 1 then
+                        player:setBuffStacks(BLESS_ULTRA, buffCheck.stacks - 1)
+                    else
+                        player:removeBuff(BLESS_ULTRA)
                     end
-                end
-                local dif = (getExpForLevel(level) - getExpForLevel(level - 1)) * lost
-                local currentExp = player:getExperience() - getExpForLevel(level)
-                if currentExp < dif then
-                    dif = currentExp
+                    player:sendTextMessage(MESSAGE_INFO_DESCR, "Your Bless Ultra protected you from 1 level loss!")
                 end
 
-                player:removeExperience(dif, true, false)
+                local levelsToLose = baseLevelsToLose
+                if hasBlessUltra then
+                    levelsToLose = math.max(0, levelsToLose - 1)
+                end
+
+                local targetLevel = math.max(1, currentLevel - levelsToLose)
+                local targetExp = getExpForLevel(targetLevel)
+                local currentExp = player:getExperience()
+                local expToLose = currentExp - targetExp
+
+                if expToLose > 0 then
+                    player:removeExperience(expToLose, true, true)
+                end
                 player:teleportTo(TPstonePos)
 
                 lives = instance:getLives()

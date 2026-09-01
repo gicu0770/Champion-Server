@@ -19,25 +19,32 @@ local function getMonthString(m)
 end
 
 function onSay(player, words, param)
-	local resultId = db.storeQuery("SELECT `id`, `name` FROM `players` WHERE `name` = " .. db.escapeString(param))
+	local targetName = param
+	if not targetName or targetName == "" then
+		targetName = player:getName()
+	end
+
+	local resultId = db.storeQuery("SELECT `id`, `name` FROM `players` WHERE `name` = " .. db.escapeString(targetName))
 	if resultId ~= false then
 		local targetGUID = result.getNumber(resultId, "id")
-		local targetName = result.getString(resultId, "name")
+		targetName = result.getString(resultId, "name")
 		result.free(resultId)
 		local str = ""
 		local breakline = ""
 
-		local resultId = db.storeQuery("SELECT `time`, `level`, `killed_by`, `is_player` FROM `player_deaths` WHERE `player_id` = " .. targetGUID .. " ORDER BY `time` DESC")
-		if resultId ~= false then
+		local deathQuery = db.storeQuery("SELECT `time`, `level`, `killed_by`, `is_player`, `lost_items` FROM `player_deaths` WHERE `player_id` = " .. targetGUID .. " ORDER BY `time` DESC LIMIT 20")
+		if deathQuery ~= false then
 			repeat
 				if str ~= "" then
-					breakline = "\n"
+					breakline = "\n----------------------------------------\n"
 				end
-				local date = os.date("*t", result.getNumber(resultId, "time"))
+				local date = os.date("*t", result.getNumber(deathQuery, "time"))
 
 				local article = ""
-				local killed_by = result.getString(resultId, "killed_by")
-				if result.getNumber(resultId, "is_player") == 0 then
+				local killed_by = result.getString(deathQuery, "killed_by")
+				local is_player = result.getNumber(deathQuery, "is_player")
+				local typeTag = is_player == 1 and "[PvP]" or "[PvM]"
+				if is_player == 0 then
 					article = getArticle(killed_by) .. " "
 					killed_by = string.lower(killed_by)
 				end
@@ -46,15 +53,41 @@ function onSay(player, words, param)
 				if date.hour < 10 then date.hour = "0" .. date.hour end
 				if date.min < 10 then date.min = "0" .. date.min end
 				if date.sec < 10 then date.sec = "0" .. date.sec end
-				str = str .. breakline .. " " .. date.day .. getMonthDayEnding(date.day) .. " " .. getMonthString(date.month) .. " " .. date.year .. " " .. date.hour .. ":" .. date.min .. ":" .. date.sec .. "   Died at Level " .. result.getNumber(resultId, "level") .. " by " .. article .. killed_by .. "."
-			until not result.next(resultId)
-			result.free(resultId)
+
+				local deathInfo = string.format("%s %s%s %s %s:%s:%s - Level %d by %s%s %s",
+					typeTag,
+					date.day, getMonthDayEnding(date.day), getMonthString(date.month),
+					date.year, date.hour, date.min,
+					result.getNumber(deathQuery, "level"),
+					article, killed_by, date.sec and "" or "")
+
+				local lostItemsStr = result.getString(deathQuery, "lost_items")
+				local itemsListText = ""
+				if lostItemsStr and lostItemsStr ~= "" then
+					local ok, itemsTable = pcall(function() return json.decode(lostItemsStr) end)
+					if ok and type(itemsTable) == "table" and #itemsTable > 0 then
+						for _, it in ipairs(itemsTable) do
+							local countText = (it.count and it.count > 1) and (it.count .. "x ") or ""
+							local statusText = it.status == "destroyed" and "[DESTROYED]" or "[CORPSE]"
+							local srcText = it.source == "slot" and (" (" .. (it.slotName or "Slot") .. ")") or " (Backpack)"
+							itemsListText = itemsListText .. "\n  * " .. countText .. (it.name or "Item") .. srcText .. " -> " .. statusText
+						end
+					end
+				end
+
+				if itemsListText == "" then
+					itemsListText = "\n  * No items lost."
+				end
+
+				str = str .. breakline .. deathInfo .. itemsListText
+			until not result.next(deathQuery)
+			result.free(deathQuery)
 		end
 
 		if str == "" then
-			str = "No deaths."
+			str = "No deaths recorded."
 		end
-		player:popupFYI("Deathlist for player, " .. targetName .. ".\n\n" .. str)
+		player:popupFYI("Deathlist for player " .. targetName .. ":\n\n" .. str)
 	else
 		player:sendCancelMessage("A player with that name does not exist.")
 	end

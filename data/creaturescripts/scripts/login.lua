@@ -129,6 +129,7 @@ function onLogin(player)
 	player:registerEvent("DailyQuestKill")
 	player:registerEvent("bot")
 	player:registerEvent("QuestLog")
+	player:registerEvent("DeathLog")
 
 	player:registerEvent("ExpLoss")
 	player:registerEvent("LevelUp")

@@ -25,6 +25,7 @@
 	<!-- Inspect -->
 	<event type="extendedopcode" name="Inspect" script="inspect.lua" />
 	<!-- ATR 	-->
+	<event type="extendedopcode" name="DeathLog" script="death_log.lua" />
 	<event type="extendedopcode" name="AtrributeSkills" script="attribute_skills.lua" />
 	<event type="extendedopcode" name="Waypoints" script="waypoints.lua" />
 	<!-- UPGRADE SYSTEM -->

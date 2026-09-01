@@ -1064,7 +1064,16 @@ ExtendedOPCodes = {
 	CODE_TUTORIAL = 234,
 	CODE_HOUSE = 235,
 	CODE_MERGE_ITEMS = 236,
+	CODE_DEATHS = 237,
 }
+
+-- Ensure lost_items column exists in player_deaths table
+local testDeathCol = db.storeQuery("SHOW COLUMNS FROM `player_deaths` LIKE 'lost_items'")
+if testDeathCol == false then
+	db.query("ALTER TABLE `player_deaths` ADD COLUMN `lost_items` TEXT DEFAULT NULL")
+else
+	result.free(testDeathCol)
+end
 
 UNIQUE_BOSS_STORAGES = {}
 

@@ -1938,7 +1938,7 @@ void Player::removeExperience(uint64_t exp, bool sendText/* = false*/, bool canR
 		}
 	} else {
 		if (experience < currLevelExp) {
-			experience -= (currLevelExp - experience);
+			experience = currLevelExp;
 		}
 	}
 
