@@ -1,26 +1,38 @@
 # ⚔️ Kompendium Recept i Drzewek Recombinera (Przedmioty LoL w Championie)
 
-Ten dokument zawiera zestawienie wszystkich drzewek wytwarzania przedmiotów w **Recombinerze**, ich recepty, koszty złota, ID przedmiotów oraz szczegółowy opis statystyk (**implicits**) i unikalnych pasywek dla każdego przedmiotu końcowego.
+Ten dokument zawiera zestawienie wszystkich drzewek wytwarzania przedmiotów w **Recombinerze**, ich recepty, koszty złota, ID przedmiotów, wymagania poziomowe oraz szczegółowy opis statystyk (**implicits**) i unikalnych pasywek dla każdego przedmiotu końcowego.
 
 ---
 
-## 📦 Składniki Bazowe (Base Items)
+## 📊 Wymagania Poziomowe (Level Requirements)
 
-| Przedmiot Bazowy | Item ID | Podstawowa Rola |
-| :--- | :--- | :--- |
-| **Bronze Axe** | `26618` | Fizyczny atak bazowy |
-| **Dagger** | `36676` | Szybkość ataku / Szansa na krytyk |
-| **Druid Rod** | `26445` | Magiczny atak bazowy |
-| **Icy Wand** | `2184` | Różdżka lodu |
-| **Amplifying Tome** | `1955` | Tom magii |
-| **Druid Cape** | `26442` | Obrona magiczna bazowa |
-| **Bronze Armor** | `26393` | Pancerz fizyczny bazowy |
-| **Elven Plate** *(Ruby Crystal)* | `26491` | Zdrowie bazowe (+150 HP) |
-| **Monocle** *(Glowing Mote)* | `7900` | CDR / Mana bazowa |
-| **Recovery Ring** | `38860` | Regeneracja zdrowia |
-| **Lifestealer Ring** | `26832` | Kradzież życia (Lifesteal) |
-| **Pickaxe** | `4874` | Fizyczny atak średni |
-| **Boots** | `26438` | Bazowa prędkość poruszania się |
+System wymagań poziomowych chroni balans gry, uniemożliwiając noszenie potężnych przedmiotów na niskich poziomach:
+* **Przedmioty Bazowe (Kupowane u NPC / Podstawowe dropy)**: **Wymagany Poziom: 1** (Brak ograniczenia)
+* **Komponenty Fuzji Wczesne (Tier 1)** *(np. Kindlegem, Bami's Cinder, Bramble Vest, Seeker's Armguard, Verdant Barrier, Executioner's Calling, Oblivion Orb, Vampiric Scepter, Cloak of Agility)*: **Wymagany Poziom: 15** (`itemlevel = 25`)
+* **Komponenty Fuzji Zaawansowane (Tier 2)** *(np. Eclipse Wand, B. F. Sword, Giant's Belt, Sheen, Hearthbound Axe, Last Whisper)*: **Wymagany Poziom: 25** (`itemlevel = 35`)
+* **Ulepszone Buty (Upgraded Boots)** *(Berserker's Greaves, Plated Steelcaps, Boots of Swiftness, Ionian Boots, Sorcerer's Shoes)*: **Wymagany Poziom: 25** (`itemlevel = 35`)
+* **Przedmioty Legendarne (Legendary Items - Rarity 4)** *(Rabadon, Infinity Edge, Trinity Force, Thornmail, Sunfire, Zhonya, Banshee, Mortal Reminder, Morellonomicon itd.)*: **Wymagany Poziom: 40** (`itemlevel = 50`)
+
+---
+
+## 📦 Składniki Bazowe (Base Items) [Wymagany Poziom: 1]
+
+| Przedmiot Bazowy | Item ID | Podstawowa Rola | Wymagany Poziom |
+| :--- | :--- | :--- | :--- |
+| **Bronze Axe** | `26618` | Fizyczny atak bazowy | **1** |
+| **Dagger** | `36676` | Szybkość ataku / Szansa na krytyk | **1** |
+| **Druid Rod** | `26445` | Magiczny atak bazowy | **1** |
+| **Icy Wand** | `2184` | Różdżka lodu | **1** |
+| **Amplifying Tome** | `1955` | Tom magii | **1** |
+| **Druid Cape** | `26442` | Obrona magiczna bazowa | **1** |
+| **Bronze Armor** | `26393` | Pancerz fizyczny bazowy | **1** |
+| **Elven Plate** *(Ruby Crystal)* | `26491` | Zdrowie bazowe (+150 HP) | **1** |
+| **Monocle** *(Glowing Mote)* | `7900` | CDR / Mana bazowa | **1** |
+| **Recovery Ring** | `38860` | Regeneracja zdrowia | **1** |
+| **Lifestealer Ring** | `26832` | Kradzież życia (Lifesteal) | **1** |
+| **Magicvamp Amulet** | `26833` | Magiczny lifesteal bazowy | **1** |
+| **Pickaxe** | `4874` | Fizyczny atak średni | **1** |
+| **Boots** | `26438` | Bazowa prędkość poruszania się | **1** |
 
 ---
 
@@ -254,8 +266,8 @@ graph TD
 ---
 
 ### 16. ⏳ MAGE ARMOR / TIME STOP — **Zhonya's Hourglass**
-* **Krok 1:** `2x Amplifying Tome (1955) + Bronze Armor (26393) + 500 Gold` $\rightarrow$ **Seeker's Armguard (20133)** `[+30 Magic Attack, +20 Physical Defense]`
-* **Krok 2 (Finał):** `Seeker's Armguard (20133) + Eclipse Wand (8920) + 450 Gold` $\rightarrow$ **Zhonya's Hourglass (20002)**
+* **Krok 1:** `2x Amplifying Tome (1955) + Bronze Armor (26393) + 500 Gold` $\rightarrow$ **Seeker's Armguard (37790)** `[Wymagany Poziom: 15]` `[+30 Magic Attack, +20 Physical Defense]`
+* **Krok 2 (Finał):** `Seeker's Armguard (37790) + Eclipse Wand (8920) + 450 Gold` $\rightarrow$ **Zhonya's Hourglass (20002)** `[Wymagany Poziom: 40]`
   * **Implicits Przedmiotu Końcowego:**
     * `+105 Magic Attack` *(ID 7)*
     * `+50 Physical Defense` *(ID 8)*

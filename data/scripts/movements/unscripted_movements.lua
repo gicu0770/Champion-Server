@@ -3185,7 +3185,13 @@ local items = {
 	{itemid = 1423, type = "stepin", client_version = 0}, -- campfire
 	{itemid = 1423, type = "additem", client_version = 0}, -- campfire
 	{itemid = 1294, type = "equip", slot = "hand", client_version = 0}, -- small stone
-	{itemid = 1294, type = "deequip", slot = "hand", client_version = 0} -- small stone
+	{itemid = 1294, type = "deequip", slot = "hand", client_version = 0}, -- small stone
+
+	-- Custom Recombiner Items
+	{itemid = 37790, type = "equip", slot = "gloves", client_version = 0}, -- seeker's armguard
+	{itemid = 37790, type = "deequip", slot = "gloves", client_version = 0},
+	{itemid = 20002, type = "equip", slot = "head", client_version = 0}, -- zhonya's hourglass
+	{itemid = 20002, type = "deequip", slot = "head", client_version = 0}
 }
 
 for _, i in ipairs(items) do

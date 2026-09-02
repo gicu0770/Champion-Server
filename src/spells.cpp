@@ -815,6 +815,9 @@ void Spell::postCastSpell(Player* player, bool finishedCast /*= true*/, bool pay
 				int32_t cd_items;
 				player->getStorageValue(800201, cd_items);
 				cd_items += 1;
+				if (cd_items > 50) {
+					cd_items = 50;
+				}
 				uint32_t item_Cooldown = (cooldown * (cd_items)) / 100.0;
 				uint32_t finalCooldown = cooldown - item_Cooldown ;
 				if (finalCooldown < 300) {
@@ -828,6 +831,9 @@ void Spell::postCastSpell(Player* player, bool finishedCast /*= true*/, bool pay
 				int32_t cd_items;
 				player->getStorageValue(800201, cd_items);
 				cd_items += 1;
+				if (cd_items > 50) {
+					cd_items = 50;
+				}
 				uint32_t item_Cooldown = (cooldown * (cd_items)) / 100.0;		
 				uint32_t finalgroupCooldown = groupCooldown - item_Cooldown;
 				if (finalgroupCooldown < 300) {

@@ -585,13 +585,17 @@ int64_t Player::getMaxMana() const {
 //}
 
 uint32_t Player::getAttackSpeed() const {
-    const double baseAPS = 1.0;
-    const double maxAPS  = 6.0;
+    uint32_t baseMs = vocation ? vocation->getAttackSpeed() : 1500;
+    if (baseMs == 0) {
+        baseMs = 1500;
+    }
+    double baseAPS = 1000.0 / static_cast<double>(baseMs);
+    const double maxAPS  = 2.5;
 
     double bonus = static_cast<double>(varStats[STAT_ATTACKSPEED]);
 
-    // 100% = +1 APS
-    double aps = baseAPS + (bonus / 100.0);
+    // Wzór LoL: APS = Base * (1 + bonus / 100)
+    double aps = baseAPS * (1.0 + (bonus / 100.0));
 
     // HARD CAP
     if (aps > maxAPS) {

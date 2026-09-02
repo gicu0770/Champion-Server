@@ -30,7 +30,7 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-	<vocation id="3" clientid="3" name="Mia" description="a mia" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1500" basespeed="150" soulmax="100" gainsoulticks="120" >
+	<vocation id="3" clientid="3" name="Mia" description="a mia" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1240" basespeed="150" soulmax="100" gainsoulticks="120" >
 		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
 		<skill id="0" multiplier="1.1" />
 		<skill id="1" multiplier="1.1" />

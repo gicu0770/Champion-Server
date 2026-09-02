@@ -212,10 +212,10 @@ end
 
 
 CHAMPION_STATS = {
-	["Mia"] = {physical_character = true, hp_start = 550, hp_level = 3800, mana = 200, manaPL = 600, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Gorn"] = {physical_character = true, hp_start = 650, hp_level = 4500, mana = 0, manaPL = 0, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Juki"] = {magic_character = true, hp_start = 500, hp_level = 3300, mana = 300, manaPL = 800, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 3000, mana = 480, manaPL = 880, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Mia"] = {physical_character = true, hp_start = 550, hp_level = 3800, mana = 200, manaPL = 600, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Gorn"] = {physical_character = true, hp_start = 650, hp_level = 4500, mana = 0, manaPL = 0, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Juki"] = {magic_character = true, hp_start = 500, hp_level = 3300, mana = 300, manaPL = 800, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 3000, mana = 480, manaPL = 880, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
 }
 MONSTER_CONFIG = {
 	[1] = { damage = 10, physical_defense = 20, magic_defense = 20, exp = 2, gold = 2, upgrade_materials_chance = 7500 }, -- goblin

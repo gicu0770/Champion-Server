@@ -68,6 +68,9 @@ function Player:onLoadItem(item)
 	end
 
 	local itemId = item:getId()
+	if item:getCustomAttribute("recombinerItem") or (RECOMB_RECIPE_ITEM_IDS and RECOMB_RECIPE_ITEM_IDS[itemId]) then
+		return
+	end
 	local itemName = item:getName()
 	local itemLevel = item:getItemLevel() or 0
 	local unique = item:getUnique()
@@ -1298,13 +1301,14 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 			end
 		end
 
-		-- Block equipping more than 1 pair of boots (slotType feet)
+		-- Block equipping more than 1 pair of boots across any equipment slots
 		local itType = item:getType()
-		if itType and (bit.band(itType:getSlotPosition(), SLOTP_FEET) ~= 0 or formatItemType(itType, item) == 13) then
+		local isBoots = itType and (bit.band(itType:getSlotPosition(), SLOTP_FEET) ~= 0 or formatItemType(itType, item) == 13)
+		if isBoots then
 			for slot = CONST_SLOT_HEAD, CONST_SLOT_POTION2 do
-				if slot ~= toPosition.y then
+				if slot ~= toPosition.y and slot ~= CONST_SLOT_BACKPACK then
 					local equippedItem = self:getSlotItem(slot)
-					if equippedItem and equippedItem:getRealUID() ~= item:getRealUID() then
+					if equippedItem and (item:getRealUID() == 0 or equippedItem:getRealUID() ~= item:getRealUID()) then
 						local eqType = equippedItem:getType()
 						if eqType and (bit.band(eqType:getSlotPosition(), SLOTP_FEET) ~= 0 or formatItemType(eqType, equippedItem) == 13) then
 							self:sendTooltipMessage("You can only equip one pair of boots.")

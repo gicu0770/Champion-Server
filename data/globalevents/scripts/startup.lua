@@ -83,6 +83,7 @@ ani2Item3:moveTo(Position(1247, 554, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
 
 	--	CursedChestsLoad()
 	loadBuffs()
+	Game.createNpc("Jonny", Position(673, 1040, 7))
 
 
 	if configManager.getNumber(configKeys.INSTANCE_TYPE) == 0 then

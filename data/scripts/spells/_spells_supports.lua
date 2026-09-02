@@ -683,7 +683,7 @@ end
     end
   end
   local cooldown = data.cooldown - cdRed - cdrIt - subKlas + SacredImpact
-  local capCooldown = data.cooldown - (data.cooldown * 0.6)
+  local capCooldown = data.cooldown - (data.cooldown * 0.5) -- Cap at 50% max CDR
   if cooldown <= capCooldown then
     cooldown = capCooldown
   end

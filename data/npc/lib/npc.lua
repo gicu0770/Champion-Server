@@ -29,6 +29,12 @@ function doNpcSellItem(cid, itemid, amount, subType, ignoreCap, inBackpacks, bac
 		local container, b = doCreateItemEx(backpack, 1), 1
 		for i = 1, amount do
 			local item = doAddContainerItem(container, itemid, subType)
+			if item and extraItemFunc then
+				local itemObj = Item(item)
+				if itemObj then
+					extraItemFunc(itemObj, cid)
+				end
+			end
 			if table.contains({(getContainerCapById(backpack) * b), amount}, i) then
 				if doPlayerAddItemEx(cid, container, ignoreCap) ~= RETURNVALUE_NOERROR then
 					b = b - 1

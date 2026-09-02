@@ -2316,12 +2316,9 @@
 		<attribute key="range" value="5" />
 		<attribute key="attack" value="1"/>
 	</item>
-	<item id="2186" article="a" name="Moonlight Rod">
+	<item id="2186" article="a" name="Doran's Wand">
 		<attribute key="weight" value="2100" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="smallice" />
-		<attribute key="range" value="5" />
-		<attribute key="attack" value="1"/>
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2187" article="a" name="Wand of Inferno">
 		<attribute key="weight" value="2700" />
@@ -2387,7 +2384,7 @@
 	</item>
 	<item id="2195" name="boots of swiftness">
 		<attribute key="weight" value="750" />
-		<attribute key="slotType" value="head" />
+		<attribute key="slotType" value="feet" />
 	</item>
 	<item id="38690" name="void walker">
 		<attribute key="weight" value="750" />
@@ -3413,11 +3410,9 @@
 		<attribute key="hitChance" value="1" />
 		<attribute key="maxHitChance" value="95" />
 	</item>
-	<item id="2406" article="a" name="short sword">
-		<attribute key="weight" value="3500" />
-		<attribute key="defense" value="11" />
-		<attribute key="attack" value="11" />
-		<attribute key="weaponType" value="sword" />
+	<item id="2406" article="a" name="Doran's Blade">
+		<attribute key="weight" value="350" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2407" article="a" name="bright sword">
 		<attribute key="weight" value="2900" />
@@ -4126,10 +4121,9 @@
 		<attribute key="defense" value="16" />
 		<attribute key="weaponType" value="shield" />
 	</item>
-	<item id="2512" article="a" name="wooden shield">
-		<attribute key="weight" value="4000" />
-		<attribute key="defense" value="14" />
-		<attribute key="weaponType" value="shield" />
+	<item id="2512" article="a" name="Doran's Shield">
+		<attribute key="weight" value="400" />
+		<attribute key="weaponType" value="head" />
 	</item>
 	<item id="2513" article="a" name="battle shield">
 		<attribute key="weight" value="6200" />
@@ -4571,11 +4565,11 @@
 	</item>
 	<item id="2645" name="plated steelcaps">
 		<attribute key="weight" value="2900" />
-		<attribute key="slotType" value="head" />
+		<attribute key="slotType" value="feet" />
 	</item>
 	<item id="2646" name="berserker's greaves">
 		<attribute key="weight" value="3100" />
-		<attribute key="slotType" value="head" />
+		<attribute key="slotType" value="feet" />
 	</item>
 	<item id="2647" name="plate legs">
 		<attribute key="weight" value="5000" />
@@ -12702,10 +12696,7 @@
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7405" article="a" name="blade of the ruined king">
-		<attribute key="weight" value="7200" />
-		<attribute key="defense" value="34" />
-		<attribute key="attack" value="49" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="weight" value="720" />
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7406" article="a" name="blacksteel sword">
@@ -12717,16 +12708,11 @@
 		<attribute key="slotType" value="two-handed" />
 	</item>
 	<item id="7407" article="a" name="wit's end">
-		<attribute key="weight" value="3100" />
-		<attribute key="attack" value="1" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="weight" value="310" />
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7408" article="a" name="nashor's tooth">
-		<attribute key="weight" value="2000" />
-		<attribute key="defense" value="19" />
-		<attribute key="attack" value="15" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="weight" value="200" />
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7409" article="a" name="northern star">
@@ -14657,7 +14643,7 @@
 	</item>
 	<item id="7893" article="a" name="sorcerer's shoes">
 		<attribute key="weight" value="750" />
-		<attribute key="slotType" value="head" />
+		<attribute key="slotType" value="feet" />
 	</item>
 	<item id="7894" article="a" name="magma legs">
 		<attribute key="weight" value="1900" />
@@ -15837,12 +15823,7 @@
 		<attribute key="slotType" value="two-handed" />
 	</item>
 	<item id="8855" article="a" name="recurve bow">
-		<attribute key="weight" value="5200" />
-		<attribute key="weaponType" value="distance"/>
-		<attribute key="shootType" value="arrow"/>
-		<attribute key="range" value="6" />
-		<attribute key="hitChance" value="2" />
-		<attribute key="attack" value="3" />
+		<attribute key="weight" value="520" />
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8856" article="a" name="last whisper">
@@ -16056,9 +16037,7 @@
 		<attribute key="weaponType" value="shield" />
 	</item>
 	<item id="8902" article="a" name="fiendish codex">
-		<attribute key="weight" value="2450" />
-		<attribute key="defense" value="16" />
-		<attribute key="weaponType" value="shield" />
+		<attribute key="weight" value="240" />
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8903" article="a" name="morellonomicon">
@@ -27207,9 +27186,8 @@
 		
 		<attribute key="slotType" value="head" />
 	</item>
-	<item id="20133" article="a" name="seeker's armguard">
+	<item id="20133" article="a" name="lost bracers">
 		<attribute key="weight" value="1200" />
-		<attribute key="slotType" value="head" />
 	</item>
 	<item id="20134" name="mad froth">
 		<attribute key="weight" value="160" />
@@ -37576,13 +37554,8 @@
 	</item>
 	<item id="8856" article="a" name="T4 Light Bow">
 		<attribute key="weight" value="2400"/>
-		<attribute key="hitChance" value="7" />
-		<attribute key="range" value="6" />
-		<attribute key="attack" value="8"/>
-		<attribute key="weaponType" value="distance"/>
-		<attribute key="shootType" value="arrow"/>
-		<attribute key="maxHitChance" value="95" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head"/>
+
 	</item>		
 	<item id="15644" article="a" name="T4 Light Crossbow">
 		<attribute key="weight" value="4300"/>
@@ -38462,11 +38435,10 @@
 		<attribute key="slotType" value="ring" />
 		<attribute key="showattributes" value="1" />
 	</item>
-	<item id="2124" article="a" name="crystal ring">
+	<item id="2124" article="a" name="Doran's Ring">
 
 		<attribute key="weight" value="830" />
-		<attribute key="slotType" value="ring" />
-		<attribute key="showattributes" value="1" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2179" article="a" name="gold ring">
 
@@ -39089,7 +39061,7 @@
 		<attribute key="weight" value="400" />
 		<attribute key="slotType" value="gloves" />
 	</item>	
-	<item id="37790" name="Sorcery Gloves">
+	<item id="37790" article="a" name="seeker's armguard">
 		<attribute key="weight" value="400" />
 		<attribute key="slotType" value="gloves" />
 	</item>	

@@ -156,6 +156,29 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
       item = Game.createItem(data[2], 1, nil, false)
       if item then
         item:setRealUID(0)
+        local base_item = (BASE_ITEMS_BY_ID and BASE_ITEMS_BY_ID[data[2]])
+        if not base_item and BASE_ITEMS then
+          for _, items in pairs(BASE_ITEMS) do
+            for _, bi in ipairs(items) do
+              if bi[2] == data[2] then
+                base_item = bi
+                break
+              end
+            end
+            if base_item then break end
+          end
+        end
+        if base_item then
+          local implicitsSlots = #base_item[3]
+          item:setImplictSlots(implicitsSlots)
+          item:setRarity(base_item[4] or 0)
+          item:setAttribute(ITEM_ATTRIBUTE_NAME, base_item[1])
+          for x = 1, implicitsSlots do
+            local impId = base_item[3][x][1]
+            local value = base_item[3][x][2]
+            item:setImplictValue(x, impId .. "|" .. value .. "|1")
+          end
+        end
         if not player:sendSpellTooltip(item) then
           dataToSend[1] = getItemTooltipData(item, false, player)
           item:remove()

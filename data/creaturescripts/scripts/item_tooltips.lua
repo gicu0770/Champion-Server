@@ -208,7 +208,7 @@ function builtdItemTooltip(item, player, table, slot, target)
       item_data.desc = itemType:getDescription()
     end
 
-    if item:getType():isUpgradable() or item:getType():canHaveItemLevel() then
+    if item:getType():isUpgradable() or item:getType():canHaveItemLevel() or item:getImplictSlots() > 0 or item:getModifiersSlots() > 0 then
 
 
       local itemLevelTotal = item:getItemLevel()
@@ -392,7 +392,7 @@ function builtdItemTooltip(item, player, table, slot, target)
       rarityFix = 6
     end
     item_data.rarityId = rarityFix
-    if item:getType():isUpgradable() then
+    if item:getType():isUpgradable() or item:getImplictSlots() > 0 or item:getModifiersSlots() > 0 then
       local ancientValues = 0
       if item:isAncient() then
         ancientValues = ancientValues + ANCIENT_ATTRIBUTES[1]
@@ -464,6 +464,20 @@ function builtdItemTooltip(item, player, table, slot, target)
         if item:isUnique() then
           item_data.uniqueName = item:getUniqueName()
         end
+        local function safeFormatEnchant(attr, val)
+          if not attr then return tostring(val) end
+          if attr.format then
+            if type(attr.format) == "function" then
+              return attr.format(val)
+            elseif type(attr.format) == "string" then
+              return string.format(attr.format, val)
+            end
+          end
+          local percent = attr.percent and "%" or ""
+          local plus = (tonumber(val) and tonumber(val) > 0) and "+" or ""
+          return attr.name .. ": " .. plus .. tostring(val) .. percent
+        end
+
         ---Attybuty
         item_data.implict = {}
         item_data.maximplict = item:getImplictSlots()
@@ -473,7 +487,7 @@ function builtdItemTooltip(item, player, table, slot, target)
             local enchant = item:getImplictBonusAttribute(i)
             if enchant then
               local attr = US_ENCHANTMENTS[enchant[1]]
-              item_data.implict[i] = attr.format(enchant[2])
+              item_data.implict[i] = safeFormatEnchant(attr, enchant[2])
             else
               item_data.implict[i] = "Empty Slot"
             end
@@ -484,7 +498,7 @@ function builtdItemTooltip(item, player, table, slot, target)
           local imDesc = item:getImplictBonusAttribute(i)
           if imDesc then
             local attrImp = US_ENCHANTMENTS[imDesc[1]]
-            item_data.implictDesc[i] = attrImp.desc
+            item_data.implictDesc[i] = attrImp and attrImp.desc or ""
           else
             item_data.implictDesc[i] = ""
           end
@@ -503,7 +517,7 @@ function builtdItemTooltip(item, player, table, slot, target)
           local enchant = item:getBonusAttribute(i)
           if enchant then
             local attr = US_ENCHANTMENTS[enchant[1]]
-            item_data.attr[i] = attr.format(enchant[2])
+            item_data.attr[i] = safeFormatEnchant(attr, enchant[2])
             item_data.attrTier[i] = enchant[3]
             item_data.attrExalted[i] = enchant[4]
           else

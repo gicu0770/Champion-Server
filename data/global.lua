@@ -922,6 +922,9 @@ function getDetails(target)
 
 
 	local attackspeed = math.floor((1000 / target:getAttackSpeed()) * 100 + 0.5) / 100
+	if attackspeed > 2.5 then
+		attackspeed = 2.5
+	end
 	local attackspeedPercent = target:getVarStats(STAT_ATTACKSPEED)
 	local movementSpeedPercent = (((200 - target:getSpeed()) / 200) * 100) * -1
 	local details = {}
@@ -1183,8 +1186,8 @@ CAP_ATTRIBUTES = {
 	[14] = { cap = 85, perItem = 50 }, -- Elemental Protection 5
 	[21] = { cap = 85, perItem = 30 }, -- Spell Damage Reduction 3
 
-	[55] = { cap = 90, perItem = 25 }, -- Attack Speed
-	[56] = { cap = 90, perItem = 15 }, -- Cooldown Reduction
+	[55] = { cap = 250, perItem = 35 }, -- Attack Speed
+	[56] = { cap = 50, perItem = 15 }, -- Cooldown Reduction
 }
 
  STABLE_ATTRIBUTE = {
@@ -4435,9 +4438,18 @@ function Player.getTotalAttackSpeed(self, checkCollectInfo)
 
 	local as = (CHAMPION_STATS[self:getVocation():getName()].asPL / 60) * self:getLevel()
 
-	if colleftInfo[self:getId()].attributesItems[11] then
-		as = as + colleftInfo[self:getId()].attributesItems[11].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[11] then
+			as = as + colleftInfo[self:getId()].attributesItems[11].value
+		end
 	end
+	as = as + self:getAST()
+
+	-- Max 2.5 Attacks per Second (LoL formula: Base 0.65 * (1 + 2.85) = 2.5 APS)
+	if as > 285 then
+		as = 285
+	end
+
 	if as == 0 then
 		self:removeCondition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT, 712345)
 	else
@@ -4462,8 +4474,10 @@ function Player.getAST(self)
 	if self:hasBuff(FRENZY_AURA) then
 		as = as + (10 + self:getBuff(FRENZY_AURA).stacks * 0.37)
 	end
-	if colleftInfo[self:getId()].attributesItems[55] then
-		as = as + colleftInfo[self:getId()].attributesItems[55].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[55] then
+			as = as + colleftInfo[self:getId()].attributesItems[55].value
+		end
 	end
 	if self:hasBuff(SHRINE_ATTACKSPEED) then
 		as = as + 300
@@ -4483,15 +4497,20 @@ function Player.getCooldownReduction(self)
 	if self:hasBuff(CD_FLASK) then
 		cd = cd + 30
 	end
-	if colleftInfo[self:getId()].attributesItems[56] then
-		cd = cd + colleftInfo[self:getId()].attributesItems[56].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[56] then
+			cd = cd + colleftInfo[self:getId()].attributesItems[56].value
+		end
+		if colleftInfo[self:getId()].attributesItems[16] then
+			cd = cd + colleftInfo[self:getId()].attributesItems[16].value
+		end
 	end
 	if self:getCharacterStat(CHARSTAT_REGEN) then
 		cd = cd + (self:getCharacterStat(CHARSTAT_REGEN) / 2)
 	end
---	if cd >= 70 then
---		cd = 70
---	end
+	if cd > 50 then
+		cd = 50
+	end
 	self:setStorageValue(800201, cd)
 	return cd
 end
@@ -6067,7 +6086,35 @@ function generateBaseItem(player, strongBox, base, monsterLevel, magicFind)
 	return item
 end
 
+local CUSTOM_RECOMBINER_SLOT_TYPES = {
+  [37790] = 15, -- Seeker's Armguard (gloves)
+  [20002] = 9,  -- Zhonya's Hourglass (head)
+  [2180]  = 9,  -- Verdant Barrier (head)
+  [2174]  = 9,  -- Banshee's Veil (head)
+  [8856]  = 9,  -- Last Whisper (head)
+  [8857]  = 9,  -- Mortal Reminder (head)
+  [8903]  = 9,  -- Morellonomicon (head)
+  [7404]  = 9,  -- Executioner's Calling (head)
+  [2501]  = 9,  -- Liandry's Torment (head)
+  [2156]  = 9,  -- Bami's Cinder (head)
+  [2464]  = 9,  -- Chain Vest (head)
+  [2483]  = 9,  -- Bramble Vest (head)
+  [8871]  = 9,  -- Spectre's Cowl (head)
+  [8880]  = 9,  -- Spirit Visage (head)
+  [2176]  = 9,  -- Oblivion Orb (head)
+  [2646]  = 13, -- Berserker's Greaves (feet)
+  [2645]  = 13, -- Plated Steelcaps (feet)
+  [2195]  = 13, -- Boots of Swiftness (feet)
+  [2640]  = 13, -- Ionian Boots of Lucidity (feet)
+  [7893]  = 13, -- Sorcerer's Shoes (feet)
+}
+
 function formatItemType(itemType, item)
+  local customSlot = CUSTOM_RECOMBINER_SLOT_TYPES[itemType:getId()]
+  if customSlot then
+    return customSlot
+  end
+
   local weaponType = itemType:getWeaponType()
   local slotPosition = itemType:getSlotPosition() - SLOTP_LEFT - SLOTP_RIGHT
 
