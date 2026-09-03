@@ -3,6 +3,14 @@ function onAdvance(player, skill, oldLevel, newLevel)
     return true
   end
 
+  player:recalculateBaseStats()
+  player:setHealth(player:getMaxHealth())
+  player:setMana(player:getMaxMana())
+  if player.updateCharacterStats then
+    player:updateCharacterStats()
+  end
+  player:updateInspect()
+
   local pid = player:getId()
   addEvent(function()
     local player = Player(pid)
@@ -14,8 +22,6 @@ function onAdvance(player, skill, oldLevel, newLevel)
     player:updateMaxSpellLevelEver()
     player:sendSpellUpgradeInfo()
   end, 100)
-  player:setHealth(player:getMaxHealth())
-  player:addMana(player:getMaxMana())
 
 	local pos = player:getPosition()
 	local pos2 = Position(pos.x - 1, pos.y - 1, pos.z)

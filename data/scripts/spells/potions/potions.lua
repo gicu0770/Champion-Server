@@ -1,19 +1,12 @@
-POTION_CONFIG = {
-  [7618] = {health = {100, 100}, level = 1, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
-
-  [7588] = {health = {180, 180}, level = 15, description = "Only for players of level 15 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- strong health potion
-
-  [7591] = {health = {220, 220}, level = 23, description = "Only for players of level 23 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- great health potion
-
-  [8473] = {health = {280, 280}, level = 33, description = "Only for players of level 33 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- ultimate health potion
-
-  [26031] = {health = {340, 340}, level = 43, description = "Only for players of level 43 or above may drink this fluid.", effect = 306, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- ultimate spirit potion
-
-  [36912] = {health = {400, 400}, level = 52, description = "Only for players of level 52 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
-
-  [34256] = {health = {460, 460}, level = 62, description = "Only for players of level 62 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- health potion
-
-  [26917] = {health = {520, 520}, level = 72, description = "Only for players of level 72 or above may drink this fluid.", effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- energy shield
+POTION_CONFIG = POTION_CONFIG or {
+  [7618] = {name = "Health Potion", health = {100, 100}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 7588, upgradeLevel = 10, upgradeGold = 500}, -- health potion
+  [7588] = {name = "Strong Health Potion", health = {180, 180}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 7591, upgradeLevel = 15, upgradeGold = 1500}, -- strong health potion
+  [7591] = {name = "Great Health Potion", health = {220, 220}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 8473, upgradeLevel = 25, upgradeGold = 3500}, -- great health potion
+  [8473] = {name = "Ultimate Health Potion", health = {280, 280}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 26031, upgradeLevel = 35, upgradeGold = 7500}, -- ultimate health potion
+  [26031] = {name = "Ultimate Spirit Potion", health = {340, 340}, effect = 306, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 36912, upgradeLevel = 40, upgradeGold = 15000}, -- ultimate spirit potion
+  [36912] = {name = "Heroic Health Potion", health = {400, 400}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 34256, upgradeLevel = 45, upgradeGold = 25000}, -- health potion
+  [34256] = {name = "Health Flask", health = {460, 460}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000, upgradeTo = 26917, upgradeLevel = 50, upgradeGold = 40000}, -- health potion
+  [26917] = {name = "Energy Flask", health = {520, 520}, effect = 304, maxCharges = 5, regenTime = 10000, cooldownPotion = 3000}, -- energy shield
 }
 
 function Player:sendPotionCharges(slot, currentCharges, maxCharges)
@@ -75,12 +68,10 @@ local function onUse(player, item, button)
     print("Potion config not found for item id: "..item:getId())
     return
   end
-  local potionLevel = item:getItemLevel() - 10
-  if potionLevel and player:getLevel() < potionLevel or potion.vocations and
-    not table.contains(potion.vocations, player:getVocation():getId()) then
-      if potion.description then
-        player:say(potion.description, TALKTYPE_MONSTER_SAY)
-      end
+  if potion.vocations and not table.contains(potion.vocations, player:getVocation():getId()) then
+    if potion.description then
+      player:say(potion.description, TALKTYPE_MONSTER_SAY)
+    end
     return true
   end
 

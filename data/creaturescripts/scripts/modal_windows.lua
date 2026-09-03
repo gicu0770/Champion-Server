@@ -79,5 +79,12 @@ function onModalWindow(player, modalWindowId, buttonId, choiceId)
 			player:popupFYI("You already have a second Vocation Trait.")
 		end
 	end
-	
+
+	if modalWindowId == 1050 then
+		player:unregisterEvent("ModalWindow_PotionUpgrade")
+		if buttonId == 100 then
+			upgradePotionForPlayer(player)
+		end
+		return true
+	end
 end

@@ -3,6 +3,7 @@ io.stderr:setvbuf("no")
 
 dofile('data/lib/lib.lua')
 dofile('data/base_items.lua')
+dofile('data/lib/potion_upgrade.lua')
 dofile('data/upgrade_system_core.lua')
 dofile('data/upgrade_dungeon_modifiers.lua')
 dofile('data/upgrade_enchantments.lua')
@@ -934,8 +935,8 @@ function getDetails(target)
 	details[4] = math.floor(target:getTotalManaGain())
 	details[5] = math.ceil(target:getPhysicalAttack())
 	details[6] = math.ceil(target:getMagicAttack())
-	details[7] = math.ceil(target:getPhysicalDefense())
-	details[8] = math.ceil(target:getMagicDefense())
+	details[7] = string.format("%s | %s%%", math.ceil(target:getPhysicalDefense()), math.ceil(target:getPhysicalDefensePercent())) -- math.ceil(target:getPhysicalDefense())
+	details[8] = string.format("%s | %s%%", math.ceil(target:getMagicDefense()), math.ceil(target:getMagicDefensePercent())) -- math.ceil(target:getMagicDefense())
 	details[9] = string.format("%.2f | %s%%", attackspeed, attackspeedPercent)
 	details[10] = target:getCooldownReduction()
 	details[11] = target:getPhysicalSteal()
@@ -1068,6 +1069,7 @@ ExtendedOPCodes = {
 	CODE_HOUSE = 235,
 	CODE_MERGE_ITEMS = 236,
 	CODE_DEATHS = 237,
+	CODE_POTION_UPGRADE = 238,
 }
 
 -- Ensure lost_items column exists in player_deaths table
@@ -5890,6 +5892,36 @@ local t8mobs = { 36137, 36136, 36111, 36110, 36109, 36138, 36112, 36108, 36107, 
 
 function Player:updateInspect()
 	self:sendExtendedOpcode(ExtendedOPCodes.CODE_INSPECT, json.encode({reload = true}))
+end
+
+function Player:recalculateBaseStats()
+	if not self then return end
+	local vocation = self:getVocation()
+	if not vocation then return end
+	local vocName = vocation:getName()
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[vocName]
+	local level = self:getLevel()
+
+	if vocStats then
+		local supposedhealth = math.floor(vocStats.hp_start + (((vocStats.hp_level - vocStats.hp_start) / 50) * level))
+		if supposedhealth ~= self:getMaxHealth() then
+			self:setMaxHealth(supposedhealth)
+		end
+
+		local supposedmana = math.floor(vocStats.mana + (((vocStats.manaPL - vocStats.mana) / 50) * level))
+		if supposedmana ~= self:getMaxMana() then
+			self:setMaxMana(supposedmana)
+		end
+	end
+
+	local capson = 0
+	if self:getStorageValue(PlayerStorage.reborn) >= 1 then
+		capson = self:getStorageValue(PlayerStorage.reborn) * 50000
+	end
+	local supposedcap = 50000 + (vocation:getCapacityGain() * level) + capson
+	if supposedcap ~= self:getCapacity() then
+		self:setCapacity(supposedcap)
+	end
 end
 
 function generateBossUniqueItem(player, uniqueId, itemLvl, itemsTable)

@@ -118,10 +118,11 @@
 	<talkaction words="/bind" separator=" " script="bind.lua" />
 	<talkaction words="/unbind" separator=" " script="unbind.lua" />
 	<talkaction words="/itemlevel" separator=" " script="item_level.lua" />
+	<talkaction words="/itemloss;/itemdrop;/deathdrop" separator=" " script="itemloss.lua" />
 
 	<talkaction words="/played" separator=" " script="stats/played.lua" />
 	<talkaction words="/kills" separator=" " script="stats/kills.lua" />
-	<talkaction words="/deaths" separator=" " script="stats/deaths.lua" />
+	<!-- <talkaction words="/deaths" separator=" " script="stats/deaths.lua" /> handled by deathlist.lua -->
 	<talkaction words="/age" separator=" " script="stats/age.lua" />
 
 	<talkaction words="/random" script="random.lua" />

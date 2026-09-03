@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Mona" script="mona.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100" />
+	<look type="138" head="78" body="69" legs="58" feet="76" addons="1" mount="0"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. I can upgrade your potion to the next tier! {upgrade}" />
+		<parameter key="message_farewell" value="Good bye, |PLAYERNAME|." />
+	</parameters>
+</npc>

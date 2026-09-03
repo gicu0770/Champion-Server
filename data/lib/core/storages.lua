@@ -109,6 +109,7 @@ GlobalStorageKeys = {
 	globalHEALINGtime = 67867,
 	globalFOSSILtime = 67868,
 	globalUPGRADE_MATERIALStime = 67869,
+	disableDeathItemLoss = 545403,
 }
 
 

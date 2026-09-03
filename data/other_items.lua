@@ -1100,35 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Mana Soulstone",
-      38640,
-      "Glacier Warlord",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            110
-          },
-          {
-            {
-              5,
-              10,
-              23,
-              42
-            }
-          }
-        },
-        monster = "Glacier Warlord",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
       "Knight Emblem",
       38447,
       "Tidal Overlord",
@@ -1152,93 +1123,6 @@ OTHER_ITEMS = {
         weight = {
           10,
           12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            238
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Fleshrend",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            239
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Arbaziloth",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            240
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
           15,
           20
         }
@@ -1274,147 +1158,60 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
       {
-        chance = 100000,
-        forceType = 33554432,
+        chance = 5000,
+        forceType = -2147483648,
         imps = {
           {
-            242
+            288
           },
           {
             {
-              3,
-              7,
-              15,
-              30
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Molten Abyss",
+        monster = "Void Stone",
         weight = {
-          5,
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            239
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Arbaziloth",
+        weight = {
           10,
+          12,
           15,
           20
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
         }
       }
     },
@@ -1527,15 +1324,15 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
-        chance = 5000,
-        forceType = -2147483648,
+        chance = 100000,
+        forceType = 134217728,
         imps = {
           {
-            288
+            264
           },
           {
             {
@@ -1546,7 +1343,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Void Stone",
+        monster = "Bilbo",
         weight = {
           0,
           0,
@@ -1668,6 +1465,209 @@ OTHER_ITEMS = {
           10,
           12,
           15
+        }
+      }
+    },
+    {
+      "Mana Soulstone",
+      38640,
+      "Glacier Warlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            110
+          },
+          {
+            {
+              5,
+              10,
+              23,
+              42
+            }
+          }
+        },
+        monster = "Glacier Warlord",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            238
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Fleshrend",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            240
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Sand Colossus",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
         }
       }
     }

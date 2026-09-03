@@ -1562,7 +1562,7 @@
 	</item>
 	<item id="1988" article="a" name="Backpack">
 		<attribute key="weight" value="1800" />
-		<attribute key="containerSize" value="50" />
+		<attribute key="containerSize" value="5" />
 		<attribute key="slotType" value="backpack" />
 		<attribute key="moveable" value="1" />
 	</item>
@@ -4122,8 +4122,8 @@
 		<attribute key="weaponType" value="shield" />
 	</item>
 	<item id="2512" article="a" name="Doran's Shield">
-		<attribute key="weight" value="400" />
-		<attribute key="weaponType" value="head" />
+		<attribute key="weight" value="4000" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2513" article="a" name="battle shield">
 		<attribute key="weight" value="6200" />

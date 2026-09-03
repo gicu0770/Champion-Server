@@ -89,7 +89,10 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 
 	local lostItems = {}
 
-	if not player:hasFlag(PlayerFlag_NotGenerateLoot) then
+	local storageKey = GlobalStorageKeys and GlobalStorageKeys.disableDeathItemLoss or 545403
+	local isItemLossDisabled = (Game.getStorageValue(storageKey) == 1)
+
+	if not isItemLossDisabled and not player:hasFlag(PlayerFlag_NotGenerateLoot) then
 		local SLOT_NAMES = {
 			[CONST_SLOT_HEAD] = "Helmet",
 			[CONST_SLOT_NECKLACE] = "Amulet",

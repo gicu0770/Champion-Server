@@ -37,7 +37,7 @@ ENCYCLOPEDIA = {
       {
         "Doran's Blade",
         3294,
-        2,
+        9,
         {
           {
             6,
@@ -56,7 +56,7 @@ ENCYCLOPEDIA = {
       {
         "Doran's Ring",
         3007,
-        14,
+        9,
         {
           {
             7,
@@ -75,7 +75,7 @@ ENCYCLOPEDIA = {
       {
         "Doran's Shield",
         3412,
-        16,
+        9,
         {
           {
             1,
@@ -90,7 +90,7 @@ ENCYCLOPEDIA = {
       {
         "Doran's Wand",
         3070,
-        8,
+        9,
         {
           {
             7,

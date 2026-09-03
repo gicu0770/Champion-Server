@@ -440,49 +440,17 @@ function getItemTooltipData(item, floor, player)
   end
   -- oho ale skrypt
   if data.t and data.t == 17 then
+    local potionCfg = POTION_CONFIG and POTION_CONFIG[item:getId()]
     local HP = item:getCustomAttribute("potionHealth") or 0
+    if HP == 0 and potionCfg and potionCfg.health then
+      HP = potionCfg.health[1]
+    end
     local ES = 0
     local hpIncreased = 0
     local instaHeal = 0
     local healthBarrier = false
     if item:isQuality() ~= 0 then
       hpIncreased = item:isQuality()
-    end
-    if player then
-      if colleftInfo[player:getId()].attributesItems[249] then -- energy shield regeneration percent per second
-        HP = HP + colleftInfo[player:getId()].attributesItems[249].value
-      end
-      if colleftInfo[player:getId()].attributesItems[16] then -- Recovery Effectiveness
-        hpIncreased = colleftInfo[player:getId()].attributesItems[16].value
-      end
-      if player:getCharacterStat(CHARSTAT_TWO) then -- Recovery Effectiveness character stat
-        hpIncreased = hpIncreased + player:getCharacterStat(CHARSTAT_TWO)
-      end
-      local upgradeLevel = item:getUpgradeLevel() or 0
-      if upgradeLevel > 0 then
-       hpIncreased = hpIncreased + calculateUpgradeValue(upgradeLevel)
-      end
-      if hpIncreased > 0 then
-        HP = math.ceil(HP + ((HP * hpIncreased) / 100))
-      end
-      if colleftInfo[player:getId()].attributesItems[95] then -- Health Recovery
-        HP = HP + colleftInfo[player:getId()].attributesItems[95].value
-      end
-      if player:getBuff(BOSS_HEALING_REDUCTION) then
-        HP = HP / 2
-      end
-      if colleftInfo[player:getId()].attributesItems[119] then -- Energy Shield Recovery
-        player:addEnergyShield(colleftInfo[player:getId()].attributesItems[119].value)
-        ES = ES + colleftInfo[player:getId()].attributesItems[119].value
-      end
-      if colleftInfo[player:getId()].attributesItems[123] then -- Quick Heal
-        instaHeal = HP * (colleftInfo[player:getId()].attributesItems[123].value / 100)
-        HP = HP - instaHeal
-      end
-      if colleftInfo[player:getId()].attributesItems[116] then -- Health Barrier
-        healthBarrier = true
-        HP = HP * (1 + (colleftInfo[player:getId()].attributesItems[116].value / 100))
-			end
     end
     if healthBarrier then
       data.ph = 0
@@ -492,6 +460,18 @@ function getItemTooltipData(item, floor, player)
       data.ph = HP
       data.phi = instaHeal
       data.pes = ES
+    end
+
+    if potionCfg then
+      local maxCharges = potionCfg.maxCharges or 5
+      local charges = item:getCustomAttribute("charges") or maxCharges
+      data.pch = charges
+      data.pmch = maxCharges
+      data.prt = potionCfg.regenTime and math.floor(potionCfg.regenTime / 1000) or 10
+      data.pcd = potionCfg.cooldownPotion and math.floor(potionCfg.cooldownPotion / 1000) or 3
+      if potionCfg.upgradeLevel then
+        data.pUpgLvl = potionCfg.upgradeLevel
+      end
     end
   end
   return data

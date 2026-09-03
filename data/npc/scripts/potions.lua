@@ -23,7 +23,9 @@ function onCreatureSay(cid, type, msg)
     return false
   end
 
-  shopModule.requestTrade(cid:getId(), "trade", nil, {module = shopModule})
+  if not msgcontains(msg, "upgrade") and not msgcontains(msg, "potion") and not msgcontains(msg, "yes") and not msgcontains(msg, "no") then
+    shopModule.requestTrade(cid:getId(), "trade", nil, {module = shopModule})
+  end
   npcHandler:onCreatureSay(cid, type, msg)
 end
 
@@ -53,7 +55,7 @@ end
 --shopModule:addBuyableItem({'Orb of Enchantment'}, 8303, 1, 1, 'Orb of Enchantment')
 --shopModule:addBuyableItem({'Orb of Removal'}, 37114, 1, 1, 'Orb of Removal')
 
-
+--[[
 shopModule:addBuyableItem({'Fireball'}, 1987, 2000, 1, 'Fireball')
 shopModule:addBuyableItem({'Stomp'}, 37306, 2000, 1, 'Stomp')
 shopModule:addBuyableItem({'Earth Bolt'}, 37344, 2000, 1, 'Earth Bolt')
@@ -86,6 +88,8 @@ shopModule:addBuyableItem({'Buggy Backpack'}, 15646, 5000, 1, 'Buggy Backpack')
 --shopModule:addBuyableItem({'Twitch Backpack'}, 37461, 100000000, 1, 'Twitch Backpack')
 -- shopModule:addBuyableItem({'Crystal of Trait'}, 28236, 5000, 1, 'Crystal of Trait')
 -- shopModule:addBuyableItem({'Reset Talent Crystal '}, 31181, 5000, 1, 'Reset Talent Crystal ')
+
+--]]
 
 shopModule:addSellableItem({''}, 7618, 5)
 shopModule:addSellableItem({''}, 7620, 5)
@@ -294,6 +298,55 @@ shopModule:addSellableItem({''}, 37406, 500) --Double Damage Support
 shopModule:addSellableItem({''}, 37407, 500) --Cast On Crit Support
 shopModule:addSellableItem({''}, 37375, 500) --Cast When Damage Taken Support
 shopModule:addSellableItem({''}, 37376, 500) --Cast On Kill Support
+
+local function creatureSayCallback(cid, type, msg)
+  if not npcHandler:isFocused(cid) then
+    return false
+  end
+
+  local player = Player(cid)
+  if not player then
+    return false
+  end
+
+  if msgcontains(msg, "upgrade") or msgcontains(msg, "potion") then
+    local canUpgrade, reason, cfg, nextCfg, reqLevel, reqGold, potionItem = getPotionUpgradeInfo(player)
+    showPotionUpgradeModal(player)
+    if reason == "NO_POTION" then
+      npcHandler:say("You don't have any potion equipped or in your backpack!", cid)
+      npcHandler.topic[cid] = 0
+    elseif reason == "MAX_TIER" then
+      npcHandler:say("Your " .. (cfg and cfg.name or "potion") .. " is already at the maximum tier!", cid)
+      npcHandler.topic[cid] = 0
+    elseif reason == "LOW_LEVEL" then
+      npcHandler:say("You need level " .. reqLevel .. " to upgrade to " .. (nextCfg and nextCfg.name or "next tier") .. ". You are level " .. player:getLevel() .. ".", cid)
+      npcHandler.topic[cid] = 0
+    elseif reason == "NO_GOLD" then
+      npcHandler:say("You need " .. reqGold .. " gold coins to upgrade to " .. (nextCfg and nextCfg.name or "next tier") .. ". You have " .. player:getTotalMoney() .. " gold.", cid)
+      npcHandler.topic[cid] = 0
+    else
+      npcHandler.topic[cid] = 1
+      npcHandler:say("I can upgrade your " .. cfg.name .. " (+" .. cfg.health[1] .. " HP) to " .. nextCfg.name .. " (+" .. nextCfg.health[1] .. " HP) for " .. reqGold .. " gold coins (level " .. reqLevel .. " required). Do you want to upgrade? {yes}", cid)
+    end
+    return true
+
+  elseif npcHandler.topic[cid] == 1 and msgcontains(msg, "yes") then
+    if upgradePotionForPlayer(player) then
+      npcHandler:say("Here you go! Your potion has been upgraded!", cid)
+    else
+      npcHandler:say("Could not complete the upgrade.", cid)
+    end
+    npcHandler.topic[cid] = 0
+    return true
+
+  elseif npcHandler.topic[cid] == 1 and msgcontains(msg, "no") then
+    npcHandler:say("Maybe next time then.", cid)
+    npcHandler.topic[cid] = 0
+    return true
+  end
+
+  return true
+end
 
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setCallback(CALLBACK_ONADDFOCUS, onAddFocus)

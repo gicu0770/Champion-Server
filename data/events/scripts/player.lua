@@ -1386,14 +1386,6 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 
 		if not self:getGroup():getAccess() then
 			if toPosition.y <= CONST_SLOT_POTION2 and toPosition.y ~= CONST_SLOT_BACKPACK then
-				local itemType, moveItem = ItemType(item:getId())
-				local weaponType = itemType:getWeaponType()
-				if formatItemType(itemType, item) == "Potion" or formatItemType(itemType, item) == "Flask" then
-					if self:getLevel() < POTION_CONFIG[item:getId()].level then
-						self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You cannot equip this item. You need "..POTION_CONFIG[item:getId()].level.." or higher.")
-						return false
-					end
-				end
 			end
 		end
 		--[[

@@ -1,5 +1,5 @@
 SPELL_CACHE = {}
-POTION_CONFIG = {}
+POTION_CONFIG = POTION_CONFIG or {}
 SPELLS = {}
 POTIONS = {}
 local healthCast = {}

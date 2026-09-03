@@ -24,6 +24,7 @@
 	<event type="extendedopcode" name="bot" script="bot.lua" />
 	<!-- Inspect -->
 	<event type="extendedopcode" name="Inspect" script="inspect.lua" />
+	<event type="extendedopcode" name="PotionUpgrade" script="potion_upgrade_creature.lua" />
 	<!-- ATR 	-->
 	<event type="extendedopcode" name="DeathLog" script="death_log.lua" />
 	<event type="extendedopcode" name="AtrributeSkills" script="attribute_skills.lua" />
@@ -46,6 +47,7 @@
 	<event type="ModalWindow" name="WaypointsModal" script="modal_windows.lua"/>
 	<event type="ModalWindow" name="ModalWindow_Tutorial" script="modal_windows.lua"/>
 	<event type="ModalWindow" name="ModalWindow_Third_Promotion" script="modal_windows.lua"/>
+	<event type="ModalWindow" name="ModalWindow_PotionUpgrade" script="modal_windows.lua"/>
 	<event type="think" name="BonusOnTime" script="bonus.lua" />
 	<event type="think" name="Ghost" script="ghost.lua" />
 	<event type="think" name="SpellActiva" script="spellActive.lua" />

@@ -65,28 +65,8 @@ function onLogin(player)
 	local level = player:getLevel()
 	--------------------------------------------------------------- FUSION VOCATION
 
-	local capson = 0
-	if player:getStorageValue(PlayerStorage.reborn) >= 1 then
-		capson = player:getStorageValue(PlayerStorage.reborn) * 50000
-	end
-	local supposedcap = 50000 + (vocation:getCapacityGain() * level) + capson
-	local supposedhealth = CHAMPION_STATS[vocation:getName()].hp_start + (((CHAMPION_STATS[vocation:getName()].hp_level - CHAMPION_STATS[vocation:getName()].hp_start) / 50) * level) -- CHAMPION_STATS[player:getVocation():getName()].hp_start + (CHAMPION_STATS[player:getVocation():getName()].hp_level * player:getLevel())
-	if supposedhealth ~= player:getMaxHealth() then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Server detected your max health was wrongly set at " .. player:getMaxHealth() .. " and we adjusted it to " .. supposedhealth .. " automatically.")
-		player:setMaxHealth(supposedhealth)
-		player:addHealth(supposedhealth)
-	end
-	local supposedmana = CHAMPION_STATS[vocation:getName()].mana + (((CHAMPION_STATS[vocation:getName()].manaPL - CHAMPION_STATS[vocation:getName()].mana) / 50) * level) -- CHAMPION_STATS[player:getVocation():getName()].mana + (CHAMPION_STATS[player:getVocation():getName()].manaPL * player:getLevel())
-	if supposedmana ~= player:getMaxMana() then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Server detected your max mana was wrongly set at " .. player:getMaxMana() .. " and we adjusted it to " .. supposedmana .. " automatically.")
-		player:setMaxMana(supposedmana)
-		player:addMana(supposedmana)
-	end
-	if supposedcap ~= player:getCapacity() then
-		--player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "Server detected your max capacity was wrongly set at " .. (player:getCapacity() / 100) .. " and we adjusted it to " .. supposedcap/100 .. " automatically.")
-		player:setCapacity(supposedcap)
-	end
-	player:sendTextMessage(MESSAGE_STATUS_DEFAULT,"[System] For level " ..player:getLevel() ..", your max HP should be: " .. supposedhealth .. " max mana should be: " .. supposedmana .. ".")
+	player:recalculateBaseStats()
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT,"[System] For level " ..player:getLevel() ..", your max HP should be: " .. player:getMaxHealth() .. " max mana should be: " .. player:getMaxMana() .. ".")
 
 	player:addHealth(50000)
 	player:addMana(50000)
@@ -122,6 +102,7 @@ function onLogin(player)
 	player:registerEvent("CharacterStats")
 	player:registerEvent("CharacterStatsAdvance")
 	player:registerEvent("Inspect")
+	player:registerEvent("PotionUpgrade")
 	player:registerEvent("AtrributeSkills")
 	player:registerEvent("Waypoints")
 	player:registerEvent("Options")
