@@ -21,6 +21,15 @@ function Player.feed(self, food)
 	return true
 end
 
+function Player.setMana(self, mana)
+	local currentMana = self:getMana()
+	local diff = mana - currentMana
+	if diff ~= 0 then
+		self:addMana(diff)
+	end
+	return true
+end
+
 function Player.addLevel(self, amount, round)
 	local experience, level, amount = 0, self:getLevel(), amount or 1
 	if(amount > 0) then

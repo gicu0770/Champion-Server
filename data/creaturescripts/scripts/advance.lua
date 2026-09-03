@@ -5,7 +5,7 @@ function onAdvance(player, skill, oldLevel, newLevel)
 
   player:recalculateBaseStats()
   player:setHealth(player:getMaxHealth())
-  player:setMana(player:getMaxMana())
+  player:addMana(player:getMaxMana())
   if player.updateCharacterStats then
     player:updateCharacterStats()
   end

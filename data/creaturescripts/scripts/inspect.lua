@@ -45,7 +45,7 @@ function inspectPlayer(player, targetName, category)
     data = getTalents(target)
   end
 
-  player:sendExtendedOpcode(ExtendedOPCodes.CODE_INSPECT, json.encode({data = data, action = category, voc = vocations}))
+  player:sendExtendedOpcode(ExtendedOPCodes.CODE_INSPECT, json.encode({data = data, action = category, voc = vocations, target = target:getName()}))
 end
 
 function getRelics(target)
