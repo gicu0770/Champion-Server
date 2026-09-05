@@ -12,7 +12,7 @@ function onSay(player, words, param)
 
 	-- If parameter is "mats", "materials", or "ingredients", spawn all required ingredients
 	if param == "mats" or param == "materials" or param == "ingredients" or param == "skladniki" then
-		local backpack = Game.createItem(1988, 1)
+		local backpack = Game.createItem(38508, 1)
 		if not backpack then
 			player:sendCancelMessage("Failed to create backpack.")
 			return false
@@ -29,7 +29,7 @@ function onSay(player, words, param)
 					if matItem then
 						matItem:setCustomAttribute("checksum", ITEM_CHECKSUM)
 						if itemsInCurrentBag >= 19 then
-							local nextBag = Game.createItem(1988, 1)
+							local nextBag = Game.createItem(38508, 1)
 							if nextBag then
 								currentBag:addItemEx(nextBag, INDEX_WHEREEVER, FLAG_NOLIMIT)
 								currentBag = nextBag
@@ -59,7 +59,7 @@ function onSay(player, words, param)
 	end
 
 	-- Default: Generate all crafted recipe result items with full stats, implicits, level and passives
-	local backpack = Game.createItem(1988, 1)
+	local backpack = Game.createItem(38508, 1)
 	if not backpack then
 		player:sendCancelMessage("Failed to create backpack.")
 		return false
@@ -74,7 +74,7 @@ function onSay(player, words, param)
 		if item then
 			-- If current backpack is nearing full capacity (19 slots), nest a new backpack
 			if itemsInCurrentBag >= 19 then
-				local nextBag = Game.createItem(1988, 1)
+				local nextBag = Game.createItem(38508, 1)
 				if nextBag then
 					currentBag:addItemEx(nextBag, INDEX_WHEREEVER, FLAG_NOLIMIT)
 					currentBag = nextBag

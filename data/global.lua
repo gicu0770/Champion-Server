@@ -3975,6 +3975,22 @@ area3x3nocenter = createCombatArea {
 	{ 1, 1, 1 }
 }
 
+area5x5 = createCombatArea {
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 3, 1, 1 },
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1 }
+}
+
+area5x5nocenter = createCombatArea {
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 2, 1, 1 },
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1 }
+}
+
 cleaveAreaNORTH = createCombatArea {
 	{ 1, 1, 1 },
 	{ 0, 2, 0 },
@@ -5598,7 +5614,7 @@ function Player.setStatistics(self)
 	local influHRegen = 0
 	local allAttributes = 0
 	local CriticalChance = 0
-	local CriticalDamage = 0
+	local CriticalDamage = 100
 	local influShielding = 0
 	local melee_skill = 0
 	local magic_skill = 0

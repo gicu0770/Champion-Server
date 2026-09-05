@@ -4396,8 +4396,8 @@ int LuaScriptInterface::luaDoAreaCombat(lua_State* L)
 		return 1;
 	}
 
-	uint32_t cooldown = getNumber<uint32_t>(L, 9, 1);
-	uint32_t id = getNumber<uint32_t>(L, 10, 1);
+	uint32_t cooldown = getNumber<uint32_t>(L, 9, 0);
+	uint32_t id = getNumber<uint32_t>(L, 10, 0);
 	bool wave = getBoolean(L, 11, false);
 	if (cooldown > 0 && id > 0) {
 		if (creature->hasCondition(CONDITION_SPELLCOOLDOWN, id+1000)) {
@@ -4448,8 +4448,8 @@ int LuaScriptInterface::luaDoTargetCombat(lua_State* L)
 		return 1;
 	}
 
-	uint32_t cooldown = getNumber<uint32_t>(L, 8, 1);
-	uint32_t id = getNumber<uint32_t>(L, 9, 1);
+	uint32_t cooldown = getNumber<uint32_t>(L, 8, 0);
+	uint32_t id = getNumber<uint32_t>(L, 9, 0);
 	if (cooldown > 0 && id > 0) {
 		if (creature->hasCondition(CONDITION_SPELLCOOLDOWN, id+1000)) {
 			pushBoolean(L, false);

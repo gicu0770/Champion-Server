@@ -824,9 +824,8 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 
 		if (casterPlayer) {
 			if (damage.primary.value < 0 || damage.secondary.value < 0) {
-				Monster* targetMonster = target ? target->getMonster() : nullptr;
 				if (!(casterPlayer->hasCondition(CONDITION_DISABLECRIT, 0, true))) {
-					if (!damage.critical && damage.origin != ORIGIN_CONDITION && damage.origin != ORIGIN_DOT && damage.primary.type != COMBAT_HEALING && targetMonster) {
+					if (!damage.critical && damage.origin != ORIGIN_CONDITION && damage.origin != ORIGIN_DOT && damage.primary.type != COMBAT_HEALING) {
 						
 						uint16_t baseCrit = static_cast<uint16_t>(
 							std::round(casterPlayer->getSpecialSkill(SPECIALSKILL_CRITICALHITCHANCE) + damage.critChance)
@@ -1033,7 +1032,7 @@ void Combat::doAreaCombat(Creature* caster, const Position& position, const Area
 
 		CombatDamage damageCopy = damage; // we cannot avoid copying here, because we don't know if it's player combat or not, so we can't modify the initial damage.
 		
-		if (casterPlayer && !damage.critical && damage.origin != ORIGIN_CONDITION && damage.primary.type != COMBAT_HEALING && creature->getMonster()) {
+		if (casterPlayer && !damage.critical && damage.origin != ORIGIN_CONDITION && damage.primary.type != COMBAT_HEALING) {
 			if (!(casterPlayer->hasCondition(CONDITION_DISABLECRIT, 0, true))) {
 
 				uint16_t chance = damage.gambler

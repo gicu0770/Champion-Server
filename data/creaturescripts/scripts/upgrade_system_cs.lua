@@ -212,16 +212,27 @@ end
 
 
 CHAMPION_STATS = {
-	["Mia"] = {physical_character = true, hp_start = 550, hp_level = 3800, mana = 200, manaPL = 600, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Gorn"] = {physical_character = true, hp_start = 650, hp_level = 4500, mana = 0, manaPL = 0, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Juki"] = {magic_character = true, hp_start = 500, hp_level = 3300, mana = 300, manaPL = 800, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 3000, mana = 480, manaPL = 880, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Mia"] = {physical_character = true, hp_start = 550, hp_level = 7200, mana = 200, manaPL = 600, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Gorn"] = {physical_character = true, hp_start = 650, hp_level = 9000, mana = 0, manaPL = 0, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Juki"] = {magic_character = true, hp_start = 500, hp_level = 6600, mana = 300, manaPL = 800, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 6000, mana = 480, manaPL = 880, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
 }
 MONSTER_CONFIG = {
 	[1] = { damage = 10, physical_defense = 20, magic_defense = 20, exp = 2, gold = 2, upgrade_materials_chance = 7500 }, -- goblin
 	[2] = { damage = 20, physical_defense = 23, magic_defense = 23, exp = 4, gold = 3, upgrade_materials_chance = 7500 }, -- bandits
 	[3] = { damage = 30, physical_defense = 27, magic_defense = 27, exp = 8, gold = 5, upgrade_materials_chance = 7500 }, -- orcs
 }
+
+if not area5x5nocenter then
+	area5x5nocenter = createCombatArea {
+		{ 1, 1, 1, 1, 1 },
+		{ 1, 1, 1, 1, 1 },
+		{ 1, 1, 2, 1, 1 },
+		{ 1, 1, 1, 1, 1 },
+		{ 1, 1, 1, 1, 1 }
+	}
+end
+
 function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
 	local isNegative = (primaryDamage < 0)
 	primaryDamage = math.abs(primaryDamage)
@@ -590,64 +601,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			creature:getPosition():sendMagicEffect(CONST_ME_ICETORNADO)
 		end
 
-		-- [39] Thorns (Bramble Vest / Thornmail): When struck by a basic attack, reflect magic damage to attacker
-		if creature:isPlayer() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
-			local defInfo = colleftInfo[creature:getId()]
-			local defAttrs = defInfo and defInfo.attributesItems
-			if defAttrs and defAttrs[39] then
-				local thornsBase = defAttrs[39].value or 20
-				local defArmor = creature:getPhysicalDefense()
-				local rawThorns = thornsBase + math.floor(defArmor * 0.10)
-				local attMagDef = 0
-				if attacker:isMonster() then
-					attMagDef = 15 + attacker:getMonsterLevel() * 1
-				elseif attacker:isPlayer() then
-					attMagDef = attacker:getMagicDefense()
-				end
-				local magPen = creature:getMagicPenetration()
-				local effMagDef = attMagDef - magPen
-				local magMult = getDefenseMultiplier(effMagDef)
-				local finalThorns = math.max(1, math.ceil(rawThorns * magMult))
-
-				doTargetCombat(creature, attacker, COMBAT_ENERGYDAMAGE, -finalThorns, -finalThorns, CONST_ME_ENERGYHIT)
-			end
-		end
-
-		-- [40] Immolate (Bami's Cinder / Sunfire Aegis): When taking damage, deal 20 (+1% Max HP) magic damage to all nearby enemies
-		if creature:isPlayer() then
-			local defInfo = colleftInfo[creature:getId()]
-			local defAttrs = defInfo and defInfo.attributesItems
-			if defAttrs and defAttrs[40] then
-				local immolateBase = defAttrs[40].value or 20
-				local hpRatio = (immolateBase >= 20) and 0.01 or 0.005
-				local rawImmolate = immolateBase + math.floor(creature:getMaxHealth() * hpRatio)
-				local magPen = creature:getMagicPenetration()
-				local cPos = creature:getPosition()
-				local specs = Game.getSpectators(cPos, false, false, 2, 2, 2, 2)
-				local hitAny = false
-				if specs then
-					for _, target in ipairs(specs) do
-						if target and target ~= creature and (target:isMonster() or (target:isPlayer() and target:getSkull() ~= SKULL_NONE)) then
-							local tgtMagDef = 0
-							if target:isMonster() then
-								tgtMagDef = 15 + target:getMonsterLevel() * 1
-							elseif target:isPlayer() then
-								tgtMagDef = target:getMagicDefense()
-							end
-							local effMagDef = tgtMagDef - magPen
-							local magMult = getDefenseMultiplier(effMagDef)
-							local finalImmolate = math.max(1, math.ceil(rawImmolate * magMult))
-							doTargetCombat(creature, target, COMBAT_FIREDAMAGE, -finalImmolate, -finalImmolate, CONST_ME_HITBYFIRE)
-							hitAny = true
-						end
-					end
-				end
-				if hitAny then
-					cPos:sendMagicEffect(CONST_ME_FIREAREA)
-				end
-			end
-		end
-
 		-- =====================================================================
 		-- EFEKTY PASYWNE, CHAMPIONI I NAKŁADANIE DOT-ÓW (PO PRZELICZENIU OBRONY)
 		-- =====================================================================
@@ -778,6 +731,23 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 		end
 
+		-- =====================================================================
+		-- CRITICAL STRIKE DAMAGE MULTIPLIER
+		-- =====================================================================
+		local critSuffix = ""
+		local isCrit = (critical == true or critical == 1)
+		if isCrit and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
+			local critDamage = attacker:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
+			if attacker:hasBuff(CRITICAL_DAMAGE_SUPPORT) then
+				critDamage = critDamage + attacker:getBuff(CRITICAL_DAMAGE_SUPPORT).stacks
+			end
+			if critDamage <= 0 then
+				critDamage = 100 -- domyślna bazowa wartość obrażeń krytycznych (+100%)
+			end
+			primaryDamage = math.ceil(primaryDamage * (1 + (critDamage / 100)))
+			critSuffix = string.format(" | CRIT (+%d%%)", critDamage)
+		end
+
 		local lifestealHeal = 0
 		local ichorShieldGain = 0
 		if lifestealPercent > 0 and primaryDamage > 0 then
@@ -858,8 +828,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				or string.format("Def: %d (-%.1f%% Redu)", rawDef, rawReductionPct)
 
 			local logMsg = string.format(
-				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (-%.1f%% Redu) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s",
-				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix
+				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (-%.1f%% Redu) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s",
+				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix
 			)
 			print(logMsg)
 			attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, logMsg)
@@ -867,9 +837,10 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		-- Log Incoming Damage (Target Player in PvP)
 		if creature:isPlayer() and creature:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+			local takenCritSuffix = isCrit and " [CRIT]" or ""
 			local takenMsg = string.format(
-				"[TAKEN] [%s] From: %s | Base: %d (%s) | Your Def: %d (-%.1f%%) | Pen: %d -> Eff.Def: %d (-%.1f%%) | Final Taken: %d",
-				sourceStr, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawReductionPct, penetration, effectiveDef, effectiveReductionPct, primaryDamage
+				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (-%.1f%%) | Pen: %d -> Eff.Def: %d (-%.1f%%) | Final Taken: %d",
+				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawReductionPct, penetration, effectiveDef, effectiveReductionPct, primaryDamage
 			)
 			print(takenMsg)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
@@ -922,6 +893,35 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			)
 			print(takenMsg)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
+		end
+	end
+
+	-- =====================================================================
+	-- DEFENDER ON-DAMAGED PASSIVES (Thorns & Immolate)
+	-- Triggers whenever a player takes damage (from Player or Monster)
+	-- =====================================================================
+	if creature:isPlayer() and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
+		local defInfo = colleftInfo[creature:getId()]
+		local defAttrs = defInfo and defInfo.attributesItems
+		if defAttrs then
+			-- [39] Thorns (Bramble Vest / Thornmail): When struck by a basic attack, reflect magic damage to attacker
+			if defAttrs[39] and attacker and not attacker:isRemoved() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+				local thornsBase = defAttrs[39].value or 20
+				local defArmor = creature:getPhysicalDefense()
+				local rawThorns = thornsBase + math.floor(defArmor * 0.10)
+				doTargetCombat(creature:getId(), attacker:getId(), COMBAT_ENERGYDAMAGE, -rawThorns, -rawThorns, CONST_ME_ENERGYHIT, ORIGIN_REFLECT, 0, 0)
+			end
+
+			-- [40] Immolate (Bami's Cinder / Sunfire Aegis): When taking damage, deal 20 (+1% Max HP) magic damage in 5x5 AoE to nearby enemies
+			if defAttrs[40] and not creature:isRemoved() then
+				local immolateVal = defAttrs[40].value or 20
+				local immolateBase = (immolateVal >= 20) and 20 or 10
+				local hpRatio = (immolateBase >= 20) and 0.01 or 0.005
+				local rawImmolate = immolateBase + math.floor(creature:getMaxHealth() * hpRatio)
+				local cPos = creature:getPosition()
+				cPos:sendMagicEffect(CONST_ME_FIREAREA)
+				doAreaCombat(creature:getId(), COMBAT_FIREDAMAGE, cPos, area5x5nocenter, -rawImmolate, -rawImmolate, CONST_ME_HITBYFIRE, ORIGIN_REFLECT, 0, 0)
+			end
 		end
 	end
 
