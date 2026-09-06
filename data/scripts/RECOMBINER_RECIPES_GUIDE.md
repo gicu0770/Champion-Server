@@ -92,6 +92,27 @@ graph TD
     %% Sunfire Aegis
     EP4["Elven Plate (26491)"] & Mon4["Monocle (7900)"] -->|250g| Bami["Bami's Cinder (2156)"]
     Bami & CV2["Chain Vest (2464)"] & EP5["Elven Plate (26491)"] -->|700g| SA["Sunfire Aegis (8881)"]:::legend
+
+    %% Riftmaker
+    FC & EP6["Elven Plate (26491)"] & Tome3["Amplifying Tome (1955)"] -->|800g| Rift["Riftmaker (8922)"]:::legend
+
+    %% Rod of Ages
+    BW3["Blasting Wand (2189)"] & GB["Giant's Belt (2487)"] & BR["Blue Robe (2656)"] -->|450g| RoA["Rod of Ages (7426)"]:::legend
+
+    %% Archangel's Staff
+    FC & BR2["Blue Robe (2656)"] & Tome4["Amplifying Tome (1955)"] -->|450g| Arch["Archangel's Staff (7429)"]:::legend
+
+    %% Luden's Echo
+    Tome5["Amplifying Tome (1955)"] & BR3["Blue Robe (2656)"] & Mon5["Monocle (7900)"] -->|450g| Luden["Luden's Echo (2190)"]:::legend
+
+    %% Muramana
+    Pick5["Pickaxe (4874)"] & BR4["Blue Robe (2656)"] & Mon6["Monocle (7900)"] -->|450g| Mura["Muramana (7390)"]:::legend
+
+    %% Overlord's Bloodmail
+    GB2["Giant's Belt (2487)"] & Pick6["2x Pickaxe (4874)"] -->|450g| Overlord["Overlord's Bloodmail (8889)"]:::legend
+
+    %% Stormrazor
+    BFS3["B. F. Sword (2393)"] & Cloak4["Cloak of Agility (2660)"] & Dag3["Dagger (36676)"] -->|500g| Storm["Stormrazor (2412)"]:::legend
 ```
 
 ---
@@ -305,6 +326,105 @@ graph TD
     * `+15% Cooldown Reduction` *(ID 16)*
     * `+350 Health` *(ID 1)*
     * **UNIQUE - Cursed Touch** *(ID 48)*: Zadanie obrażeń magicznych nakłada na cel debuff **Grievous Wounds (Głębokie Rany)** na 3 sekundy, redukując wszelkie otrzymywane przez niego leczenie i regenerację zdrowia o **40%**.
+
+---
+
+### 20. 🍃 TANK MAGIC RESIST & SPEED — **Force of Nature**
+* **Krok 1:** `Elven Plate (26491) + Boots (26438) + 400 Gold` $\rightarrow$ **Winged Moonplate (2486)** `[+150 Health, +4% Movement Speed]`
+* **Krok 2 (Finał):** `Negatron Cloak (8870) + Winged Moonplate (2486) + Elven Plate (26491) + 700 Gold` $\rightarrow$ **Force of Nature (8883)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+400 Health` *(ID 1)*
+    * `+55 Magic Defense` *(ID 9)*
+    * `+20 Movement Speed` *(ID 21)*
+    * **UNIQUE - Dissipate** *(ID 49)*: Redukuje wszelkie otrzymywane **obrażenia magiczne o 25%**.
+
+---
+
+### 21. 🩸 TANK COLOSSAL HEALTH & ON-HIT — **Heartsteel**
+* **Krok 1 (Finał):** `2x Giant's Belt (2487) + Crystalline Bracer (2469) + 400 Gold` $\rightarrow$ **Heartsteel (8886)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+900 Health` *(ID 1)*
+    * `+15 Health Regeneration` *(ID 4)*
+    * **UNIQUE - Colossal Consumption** *(ID 50)*: Raz na 12 sekund kolejny atak z ręki (podstawowy) zadaje dodatkowe **50 + 6% Twojego MAX HP** w postaci **obrażeń fizycznych**.
+
+---
+
+### 22. 🌌 TANK VOID CARAPACE & HYBRID DEFENSE — **Jak'Sho, The Protean**
+* **Krok 1 (Finał):** `Giant's Belt (2487) + Chain Vest (2464) + Negatron Cloak (8870) + 650 Gold` $\rightarrow$ **Jak'Sho, The Protean (8887)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+350 Health` *(ID 1)*
+    * `+45 Physical Defense` *(ID 8)*
+    * `+45 Magic Defense` *(ID 9)*
+    * **UNIQUE - Voidborn Resilience** *(ID 51)*: Zwiększa Twoją **całkowitą obronę fizyczną oraz magiczną o +20%** (Physical Defense +20%, Magic Defense +20%).
+
+---
+
+### 23. 🔮 VOID AP, SUSTAIN & HEALTH SCALING — **Riftmaker**
+* **Krok 1 (Finał):** `Fiendish Codex (8902) + Elven Plate (26491) + Amplifying Tome (1955) + 800 Gold` $\rightarrow$ **Riftmaker (8922)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+70 Magic Attack` *(ID 7)*
+    * `+15% Cooldown Reduction` *(ID 16)*
+    * `+350 Health` *(ID 1)*
+    * **UNIQUE - Void Infusion** *(ID 52)*: Zwiększa Twój Magic Attack o **2% Twojego MAX HP** oraz daje **+5% Magic Lifesteal** (Wyssanie życia z czarów magicznych).
+
+---
+
+### 24. 💎 MAGE AP, HEALTH & MANA SCALING — **Rod of Ages**
+* **Krok 1 (Finał):** `Blasting Wand (2189) + Giant's Belt (2487) + Blue Robe (2656) + 450 Gold` $\rightarrow$ **Rod of Ages (7426)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+45 Magic Attack` *(ID 7)*
+    * `+350 Health` *(ID 1)*
+    * `+500 Mana` *(ID 2)*
+    * **UNIQUE - Timeless** *(ID 53)*: Zwiększa Twoje **Maksymalne Zdrowie (MAX HP), Maksymalną Manę (MAX MANA) oraz Magic Attack o +10%**.
+
+---
+
+### 25. 🪽 MAGE AP, CDR & MANA SCALING — **Archangel's Staff**
+* **Krok 1 (Finał):** `Fiendish Codex (8902) + Blue Robe (2656) + Amplifying Tome (1955) + 450 Gold` $\rightarrow$ **Archangel's Staff (7429)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+70 Magic Attack` *(ID 7)*
+    * `+25% Cooldown Reduction` *(ID 16)*
+    * `+600 Mana` *(ID 2)*
+    * **UNIQUE - Awe** *(ID 54)*: Zwiększa Twoją **Maksymalną Manę (MAX MANA) o +15%** oraz dodaje **+5% Twojego całkowitego MAX MANA jako bonusowy Magic Attack**.
+
+---
+
+### 26. ⚡ MAGE AP, BURST & MANA TREE — **Luden's Echo**
+* **Krok 1 (Finał):** `Amplifying Tome (1955) + Blue Robe (2656) + Monocle (7900) + 450 Gold` $\rightarrow$ **Luden's Echo (2190)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+100 Magic Attack` *(ID 7)*
+    * `+10% Cooldown Reduction` *(ID 16)*
+    * `+600 Mana` *(ID 2)*
+    * **UNIQUE - Echo** *(ID 55)*: Co 15 sekund kolejny zadany czar/umiejętność zadaje obszarowe obrażenia magiczne w strefie 3x3 wokół celu w wysokości **50 (+30% Magic Attack)**.
+
+---
+
+### 27. 🗡️ AD, CDR & MANA SCALING — **Muramana**
+* **Krok 1 (Finał):** `Pickaxe (4874) + Blue Robe (2656) + Monocle (7900) + 450 Gold` $\rightarrow$ **Muramana (7390)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+50 Physical Attack` *(ID 6)*
+    * `+15% Cooldown Reduction` *(ID 16)*
+    * `+800 Mana` *(ID 2)*
+    * **UNIQUE - Shock** *(ID 56)*: Zwiększa Twój Physical Attack o **2% Twojej Maksymalnej Many (MAX MANA)**. Dodatkowo podstawowe ataki przy trafieniu (on-hit) zadają bonusowe obrażenia fizyczne równe **1.2% Twojej Maksymalnej Many (MAX MANA)**.
+
+---
+
+### 28. 🩸 AD & HEALTH SCALING BRUISER / TANK — **Overlord's Bloodmail**
+* **Krok 1 (Finał):** `Giant's Belt (2487) + 2x Pickaxe (4874) + 450 Gold` $\rightarrow$ **Overlord's Bloodmail (8889)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+40 Physical Attack` *(ID 6)*
+    * `+550 Health` *(ID 1)*
+    * **UNIQUE - Tyranny** *(ID 57)*: Zwiększa Twój Physical Attack o **1% Twojego Maksymalnego Zdrowia (MAX HP)**. Dodatkowo podstawowe ataki przy trafieniu (on-hit) zadają bonusowe obrażenia fizyczne równe **1% Twojego Maksymalnego Zdrowia (MAX HP)**.
+
+---
+
+### 29. ⚡ AD, ATTACK SPEED & CRIT — **Stormrazor**
+* **Krok 1 (Finał):** `B. F. Sword (2393) + Cloak of Agility (2660) + Dagger (36676) + 500 Gold` $\rightarrow$ **Stormrazor (2412)** `[Wymagany Poziom: 40]`
+  * **Implicits Przedmiotu Końcowego:**
+    * `+50 Physical Attack` *(ID 6)*
+    * `+25% Attack Speed` *(ID 11)*
+    * `+20% Critical Chance` *(ID 12)*
+    * **UNIQUE - Storm Surge** *(ID 58)*: Podstawowe ataki przy trafieniu (on-hit) zwiększają Twój **Attack Speed o +4%** na 4 sekundy (efekt kumuluje się do **8 razy $\rightarrow$ max +32% Attack Speed**). Przy osiągnięciu 8 ładunków ataki zadają dodatkowo **+40 obrażeń magicznych**.
 
 ---
 

@@ -95,6 +95,9 @@ end
 function Player:sendTasksList(last)
   if not last then
     last = 1
+    if not GRIZZLY_TASKS[1] or not GRIZZLY_TASKS[1].rewardsTooltip then
+      getOutfitForTasks()
+    end
   end
 
   local available = {}
@@ -111,8 +114,8 @@ function Player:sendTasksList(last)
       finished = startedStorage == 2,
       kills = killsStorage,
       monsters = GRIZZLY_TASKS[i].monsters,
-      outfits = GRIZZLY_TASKS[i].outfits,
-      rewards = GRIZZLY_TASKS[i].rewardsTooltip,
+      outfits = GRIZZLY_TASKS[i].outfits or {},
+      rewards = GRIZZLY_TASKS[i].rewardsTooltip or GRIZZLY_TASKS[i].rewards or {},
       repeatable = GRIZZLY_TASKS[i].repeatable or false
     }
     table.insert(available, task)

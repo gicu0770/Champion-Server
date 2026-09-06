@@ -212,7 +212,109 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 
 	local playerGuid = player:getGuid()
 	local lostItemsJson = json.encode(lostItems)
-	db.query("INSERT INTO `player_deaths` (`player_id`, `time`, `level`, `killed_by`, `is_player`, `mostdamage_by`, `mostdamage_is_player`, `unjustified`, `mostdamage_unjustified`, `lost_items`) VALUES (" .. playerGuid .. ", " .. os.time() .. ", " .. player:getLevel() .. ", " .. db.escapeString(killerName) .. ", " .. byPlayer .. ", " .. db.escapeString(mostDamageName) .. ", " .. byPlayerMostDamage .. ", " .. (lastHitUnjustified and 1 or 0) .. ", " .. (mostDamageUnjustified and 1 or 0) .. ", " .. db.escapeString(lostItemsJson) .. ")")
+
+	local recapJson = ""
+	local hasPvPHits = (PVP_RECENT_DAMAGE and PVP_RECENT_DAMAGE[playerGuid] and #PVP_RECENT_DAMAGE[playerGuid] > 0)
+
+	if (byPlayer == 1 or byPlayerMostDamage == 1 or hasPvPHits) and hasPvPHits then
+		local recentHits = PVP_RECENT_DAMAGE[playerGuid]
+		local totalDamage = 0
+		local physicalDamage = 0
+		local magicDamage = 0
+		local contributors = {}
+		local hitsList = {}
+
+		local deathClock = os.clock()
+
+		local abilitiesMap = {}
+		for i = #recentHits, 1, -1 do
+			local hit = recentHits[i]
+			totalDamage = totalDamage + hit.damage
+			local cat = (hit.category == "Physical") and "Physical" or "Magic"
+			if cat == "Physical" then
+				physicalDamage = physicalDamage + hit.damage
+			else
+				magicDamage = magicDamage + hit.damage
+			end
+
+			contributors[hit.attacker] = (contributors[hit.attacker] or 0) + hit.damage
+
+			local abKey = hit.action
+			if not abilitiesMap[abKey] then
+				abilitiesMap[abKey] = {
+					name = hit.action,
+					attacker = hit.attacker,
+					attackerLevel = hit.attackerLevel,
+					damage = 0,
+					hitsCount = 0,
+					category = cat,
+					iconItemId = hit.iconItemId,
+					spellId = hit.spellId,
+					hasCrit = false
+				}
+			end
+			abilitiesMap[abKey].damage = abilitiesMap[abKey].damage + hit.damage
+			abilitiesMap[abKey].hitsCount = abilitiesMap[abKey].hitsCount + 1
+			if hit.critical then
+				abilitiesMap[abKey].hasCrit = true
+			end
+			if not abilitiesMap[abKey].iconItemId and hit.iconItemId then
+				abilitiesMap[abKey].iconItemId = hit.iconItemId
+			end
+
+			local diffSec = math.max(0, math.floor(((deathClock - (hit.clock or deathClock)) * 10) + 0.5) / 10)
+			table.insert(hitsList, {
+				attacker = hit.attacker,
+				attackerLevel = hit.attackerLevel,
+				damage = hit.damage,
+				category = cat,
+				action = hit.action,
+				spellId = hit.spellId,
+				iconItemId = hit.iconItemId,
+				critical = hit.critical,
+				timeOffset = diffSec
+			})
+		end
+
+		if #hitsList > 0 then
+			local contributorsList = {}
+			for atkName, dmgDone in pairs(contributors) do
+				local pct = math.floor((dmgDone / totalDamage * 100) + 0.5)
+				table.insert(contributorsList, {
+					name = atkName,
+					damage = dmgDone,
+					percent = pct
+				})
+			end
+			table.sort(contributorsList, function(a, b) return a.damage > b.damage end)
+
+			local abilitiesList = {}
+			for _, ab in pairs(abilitiesMap) do
+				ab.percent = totalDamage > 0 and math.floor((ab.damage / totalDamage * 100) + 0.5) or 0
+				table.insert(abilitiesList, ab)
+			end
+			table.sort(abilitiesList, function(a, b) return a.damage > b.damage end)
+
+			local physPct = totalDamage > 0 and math.floor((physicalDamage / totalDamage * 100) + 0.5) or 0
+			local magicPct = totalDamage > 0 and (100 - physPct) or 0
+
+			local recapData = {
+				totalDamage = totalDamage,
+				physicalDamage = physicalDamage,
+				magicDamage = magicDamage,
+				physicalPercent = physPct,
+				magicPercent = magicPct,
+				contributors = contributorsList,
+				abilities = abilitiesList,
+				hits = hitsList
+			}
+			recapJson = json.encode(recapData)
+		end
+
+		PVP_RECENT_DAMAGE[playerGuid] = nil
+	end
+
+	db.query("INSERT INTO `player_deaths` (`player_id`, `time`, `level`, `killed_by`, `is_player`, `mostdamage_by`, `mostdamage_is_player`, `unjustified`, `mostdamage_unjustified`, `lost_items`, `death_recap`) VALUES (" .. playerGuid .. ", " .. os.time() .. ", " .. player:getLevel() .. ", " .. db.escapeString(killerName) .. ", " .. byPlayer .. ", " .. db.escapeString(mostDamageName) .. ", " .. byPlayerMostDamage .. ", " .. (lastHitUnjustified and 1 or 0) .. ", " .. (mostDamageUnjustified and 1 or 0) .. ", " .. db.escapeString(lostItemsJson) .. ", " .. db.escapeString(recapJson) .. ")")
 	
 	local resultId = db.storeQuery("SELECT `player_id` FROM `player_deaths` WHERE `player_id` = " .. playerGuid)
 	local deathRecords = 0

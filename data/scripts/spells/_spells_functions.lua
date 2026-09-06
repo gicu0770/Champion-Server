@@ -244,6 +244,19 @@ function spellSetupAuraEnd(player, CONFIG, item, uid)
 end
 
 function spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
+  if player and CONFIG then
+    if not PLAYER_LAST_CAST_SPELL then PLAYER_LAST_CAST_SPELL = {} end
+    local sName = CONFIG.spellName
+    if not sName and CONFIG.spellId and GLOBAL_SPELL_COOLDOWNS and GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId] then
+      sName = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].name
+    end
+    PLAYER_LAST_CAST_SPELL[player:getId()] = {
+      id = CONFIG.spellId,
+      name = sName,
+      clock = os.clock()
+    }
+  end
+
   local cooldown = CONFIG_SUP.cooldown
   if CONFIG.aura then
     cooldown = 500
@@ -619,6 +632,19 @@ function spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraF
 end
 
 function spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos, free)
+  if player and CONFIG then
+    if not PLAYER_LAST_CAST_SPELL then PLAYER_LAST_CAST_SPELL = {} end
+    local sName = CONFIG.spellName
+    if not sName and CONFIG.spellId and GLOBAL_SPELL_COOLDOWNS and GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId] then
+      sName = GLOBAL_SPELL_COOLDOWNS[CONFIG.spellId].name
+    end
+    PLAYER_LAST_CAST_SPELL[player:getId()] = {
+      id = CONFIG.spellId,
+      name = sName,
+      clock = os.clock()
+    }
+  end
+
   local variant = variant or spellSetupVariant(player, CONFIG, CONFIG_SUP, mousePos)
   if not variant then
     return false

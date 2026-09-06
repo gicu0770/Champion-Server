@@ -41,5 +41,13 @@ function onLogout(player)
 	 player:teleportTo(player:loadPosition(PlayerStorage.playerPosition))
 	end
 
+	local guid = player:getGuid()
+	if PVP_RECENT_DAMAGE and PVP_RECENT_DAMAGE[guid] then
+		PVP_RECENT_DAMAGE[guid] = nil
+	end
+	if PLAYER_LAST_CAST_SPELL and PLAYER_LAST_CAST_SPELL[playerId] then
+		PLAYER_LAST_CAST_SPELL[playerId] = nil
+	end
+
 	return true
 end

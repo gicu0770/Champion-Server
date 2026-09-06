@@ -1100,6 +1100,209 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            239
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Arbaziloth",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            240
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Sand Colossus",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "The Epic Wisdom",
+      13946,
+      "Toxic Witch",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            241
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Toxic Witch",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            238
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Fleshrend",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Treasure Goblin Trophy",
       38732,
       "Bilbo",
@@ -1120,6 +1323,62 @@ OTHER_ITEMS = {
           }
         },
         monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            69
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Eldritch Reaver",
+        unique = true,
         weight = {
           0,
           0,
@@ -1409,265 +1668,6 @@ OTHER_ITEMS = {
           12,
           15,
           20
-        }
-      }
-    },
-    {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            238
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Fleshrend",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            239
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Arbaziloth",
-        weight = {
-          10,
-          12,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            240
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "The Epic Wisdom",
-      13946,
-      "Toxic Witch",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            241
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Toxic Witch",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            242
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Molten Abyss",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            69
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Eldritch Reaver",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
         }
       }
     }

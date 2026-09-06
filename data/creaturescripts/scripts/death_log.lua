@@ -10,7 +10,7 @@ function onExtendedOpcode(player, opcode, buffer)
 		local action = json_data.action
 		if action == "fetch" then
 			local playerGuid = player:getGuid()
-			local resultId = db.storeQuery("SELECT `time`, `level`, `killed_by`, `is_player`, `mostdamage_by`, `mostdamage_is_player`, `unjustified`, `lost_items` FROM `player_deaths` WHERE `player_id` = " .. playerGuid .. " ORDER BY `time` DESC LIMIT 20")
+			local resultId = db.storeQuery("SELECT `time`, `level`, `killed_by`, `is_player`, `mostdamage_by`, `mostdamage_is_player`, `unjustified`, `lost_items`, `death_recap` FROM `player_deaths` WHERE `player_id` = " .. playerGuid .. " ORDER BY `time` DESC LIMIT 20")
 
 			local deathsList = {}
 			if resultId ~= false then
@@ -23,6 +23,7 @@ function onExtendedOpcode(player, opcode, buffer)
 					local mostDamageIsPlayer = result.getNumber(resultId, "mostdamage_is_player")
 					local unjustified = result.getNumber(resultId, "unjustified")
 					local lostItemsStr = result.getString(resultId, "lost_items")
+					local recapStr = result.getString(resultId, "death_recap")
 
 					local lostItems = {}
 					if lostItemsStr and lostItemsStr ~= "" then
@@ -40,6 +41,14 @@ function onExtendedOpcode(player, opcode, buffer)
 						end
 					end
 
+					local deathRecap = nil
+					if recapStr and recapStr ~= "" and recapStr ~= "null" then
+						local okRecap, decodedRecap = pcall(function() return json.decode(recapStr) end)
+						if okRecap and type(decodedRecap) == "table" then
+							deathRecap = decodedRecap
+						end
+					end
+
 					table.insert(deathsList, {
 						time = timeVal,
 						level = levelVal,
@@ -48,7 +57,8 @@ function onExtendedOpcode(player, opcode, buffer)
 						mostDamageBy = mostDamageBy,
 						mostDamageIsPlayer = mostDamageIsPlayer,
 						unjustified = unjustified,
-						lostItems = lostItems
+						lostItems = lostItems,
+						deathRecap = deathRecap
 					})
 				until not result.next(resultId)
 				result.free(resultId)

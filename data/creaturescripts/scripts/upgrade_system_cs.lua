@@ -46,6 +46,9 @@ function onHealthChange(creature, attacker, primaryDamage, primaryType, secondar
 		end
 	end
 	if origin == ORIGIN_CONDITION then
+		if recordPvPDamage and creature and creature:isPlayer() and attacker then
+			recordPvPDamage(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID)
+		end
 		return primaryDamage, primaryType, secondaryDamage, secondaryType
 	end
 	return us_onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
@@ -128,6 +131,7 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 							if nextProc < 0 or now >= nextProc then
 								creature:setStorageValue(PlayerStorage.zhonyaCooldown, now + 120)
 								creature:addBuff(RESTART_IMMORTAL, 3000)
+								creature:addBuff(TIME_STOP_CD, 120000)
 								creature:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
 								creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Zhonya's Hourglass] Time Stop activated! You are Immortal for 3 seconds (Cooldown: 120s).")
 								primaryDamage = 0
@@ -141,6 +145,7 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 					if creature:hasBuff(SPELL_SHIELD) and (origin == ORIGIN_SPELL or primaryType ~= COMBAT_PHYSICALDAMAGE) then
 						creature:removeBuff(SPELL_SHIELD)
 						creature:setStorageValue(PlayerStorage.bansheeCooldown, os.time() + 40)
+						creature:addBuff(ANNUL_CD, 40000)
 						creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 						creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Banshee's Veil] Spell Shield absorbed the incoming ability! (Cooldown: 40s).")
 						addEvent(function(pid)
@@ -395,6 +400,18 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 		end
 
+		-- [49] Dissipate (Force of Nature): Reduces all incoming magic damage by 25%
+		if creature:isPlayer() and primaryType ~= COMBAT_PHYSICALDAMAGE then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[49] then
+				primaryDamage = math.ceil(primaryDamage * 0.75)
+				if secondaryDamage and secondaryDamage > 0 then
+					secondaryDamage = math.ceil(secondaryDamage * 0.75)
+				end
+			end
+		end
+
 		-- [24] Focusing Mark: 10% more damage to marked enemy
 		if creature:hasBuff(FOCUSING_MARK_DEBUFF) then
 			primaryDamage = math.ceil(primaryDamage * 1.10)
@@ -435,6 +452,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if lastMark < 0 or (now - lastMark) >= 4 then
 				attacker:setStorageValue(PlayerStorage.focusingMarkCooldown, now)
 				attacker:addBuff(FOCUSING_MARK, 3000)
+				attacker:addBuff(FOCUSING_MARK_CD, 4000)
 				local speedCond = Condition(CONDITION_HASTE)
 				speedCond:setParameter(CONDITION_PARAM_TICKS, 3000)
 				speedCond:setParameter(CONDITION_PARAM_SPEED, math.ceil(attacker:getBaseSpeed() * 0.10))
@@ -451,6 +469,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local lastSmite = attacker:getStorageValue(PlayerStorage.braveSmiteCooldown)
 			if lastSmite < 0 or (now - lastSmite) >= 9 then
 				attacker:setStorageValue(PlayerStorage.braveSmiteCooldown, now)
+				attacker:addBuff(BRAVE_SMITE_CD, 9000)
 				local healAmount = math.ceil(attacker:getMaxHealth() * 0.03)
 				attacker:addHealth(healAmount)
 				attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
@@ -463,6 +482,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local lastBlast = attacker:getStorageValue(PlayerStorage.concussiveBlastCooldown)
 			if lastBlast < 0 or (now - lastBlast) >= 15 then
 				attacker:setStorageValue(PlayerStorage.concussiveBlastCooldown, now)
+				attacker:addBuff(CONCUSSIVE_BLAST_CD, 15000)
 				local blastDamage = 100 + math.floor(attacker:getMaxHealth() * 0.07)
 				local center = creature:getPosition()
 				center:sendMagicEffect(CONST_ME_EXPLOSIONAREA)
@@ -481,6 +501,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local readyTime = attacker:getStorageValue(PlayerStorage.weaknessFinderCooldown)
 			if readyTime < 0 or now >= readyTime then
 				attacker:setStorageValue(PlayerStorage.weaknessFinderCooldown, now + 10)
+				attacker:addBuff(WEAKNESS_FINDER_CD, 10000)
 				local slow = math.ceil(creature:getSpeed() * 0.50)
 				local paralyze = Condition(CONDITION_PARALYZE)
 				paralyze:setParameter(CONDITION_PARAM_TICKS, 1000)
@@ -494,6 +515,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				if remaining > 3 then
 					local newReady = math.max(readyTime - 1, now + 3)
 					attacker:setStorageValue(PlayerStorage.weaknessFinderCooldown, newReady)
+					local newRemainingMs = math.max(1000, (newReady - now) * 1000)
+					attacker:addBuff(WEAKNESS_FINDER_CD, newRemainingMs)
 				end
 			end
 		end
@@ -599,6 +622,87 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local finalBotrk = math.max(1, math.ceil(rawBotrk * targetDefMult))
 			primaryDamage = primaryDamage + finalBotrk
 			creature:getPosition():sendMagicEffect(CONST_ME_ICETORNADO)
+		end
+
+		-- [56] Shock (Muramana): Basic attacks deal bonus physical damage on-hit equal to 1.2% of Maximum Mana
+		if attackerAttrs and attackerAttrs[56] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local maxMana = attacker:getMaxMana() or 0
+			local rawShock = math.floor(maxMana * 0.012)
+			if rawShock > 0 then
+				local finalShock = math.max(1, math.ceil(rawShock * targetDefMult))
+				primaryDamage = primaryDamage + finalShock
+				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			end
+		end
+
+		-- [57] Tyranny (Overlord's Bloodmail): Basic attacks deal bonus physical damage on-hit equal to 1% of Maximum Health
+		if attackerAttrs and attackerAttrs[57] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local maxHp = attacker:getMaxHealth() or 0
+			local rawTyranny = math.floor(maxHp * 0.01)
+			if rawTyranny > 0 then
+				local finalTyranny = math.max(1, math.ceil(rawTyranny * targetDefMult))
+				primaryDamage = primaryDamage + finalTyranny
+				creature:getPosition():sendMagicEffect(CONST_ME_DRAWBLOOD)
+			end
+		end
+
+		-- [58] Storm Surge (Stormrazor): Basic attacks grant +4% Attack Speed for 4s (stacks up to 8 times -> +32% Attack Speed). At 8 stacks, deals +40 bonus magic damage on-hit.
+		if attackerAttrs and attackerAttrs[58] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			attacker:addBuff(STORM_SURGE_BUFF, 4000)
+			local buff = attacker:getBuff(STORM_SURGE_BUFF)
+			local stacks = buff and buff.stacks or 1
+			attacker:getTotalAttackSpeed()
+			if stacks >= 8 then
+				local stormBonus = 40
+				local stormDef = 0
+				if creature:isMonster() then
+					stormDef = (15 + creature:getMonsterLevel() * 1)
+				elseif creature:isPlayer() then
+					stormDef = creature:getMagicDefense()
+				end
+				local effStormDef = stormDef - attacker:getMagicPenetration()
+				local stormMult = getDefenseMultiplier(effStormDef)
+				local finalStorm = math.max(1, math.ceil(stormBonus * stormMult))
+				if isNegative then
+					finalStorm = -finalStorm
+				end
+				secondaryDamage = secondaryDamage + finalStorm
+				secondaryType = COMBAT_ENERGYDAMAGE
+				creature:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
+			else
+				creature:getPosition():sendMagicEffect(CONST_ME_BLUE_ENERGY_SPARK)
+			end
+		end
+
+		-- [50] Colossal Consumption (Heartsteel): Every 12s, basic attacks deal extra 50 (+6% Max HP) Physical Damage on-hit
+		if attackerAttrs and attackerAttrs[50] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local now = os.time()
+			local nextAvailable = attacker:getStorageValue(PlayerStorage.heartsteelCooldown)
+			if nextAvailable < 0 or now >= nextAvailable then
+				attacker:setStorageValue(PlayerStorage.heartsteelCooldown, now + 12)
+				local maxHp = attacker:getMaxHealth()
+				local rawBonus = 50 + math.floor(maxHp * 0.06)
+				local finalBonus = math.max(1, math.ceil(rawBonus * targetDefMult))
+				primaryDamage = primaryDamage + finalBonus
+				creature:getPosition():sendMagicEffect(CONST_ME_FIREAREA)
+				attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+				attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("[Heartsteel] Colossal Consumption dealt +%d bonus physical damage! (Cooldown: 12s)", finalBonus))
+			end
+		end
+
+		-- [55] Echo (Luden's Echo): Every 15s, next spell deals 50 (+30% Magic Attack) AoE magic damage in a 3x3 area
+		if attackerAttrs and attackerAttrs[55] and (origin == ORIGIN_SPELL or origin == ORIGIN_AUTOCAST or (origin ~= ORIGIN_MELEE and origin ~= ORIGIN_RANGED and origin ~= ORIGIN_WAND and primaryType ~= COMBAT_PHYSICALDAMAGE)) then
+			local now = os.time()
+			local nextAvailable = attacker:getStorageValue(PlayerStorage.ludensCooldown)
+			if nextAvailable < 0 or now >= nextAvailable then
+				attacker:setStorageValue(PlayerStorage.ludensCooldown, now + 15)
+				attacker:addBuff(LUDENS_ECHO_CD, 15000)
+				local ap = attacker:getMagicAttack()
+				local echoDamage = 50 + math.floor(ap * 0.30)
+				doAreaCombatHealth(attacker:getId(), COMBAT_ENERGYDAMAGE, creature:getPosition(), area3x3, -echoDamage, -echoDamage, CONST_ME_ENERGYAREA, ORIGIN_CONDITION)
+				creature:getPosition():sendMagicEffect(CONST_ME_ENERGYAREA)
+				attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("[Luden's Echo] Echo dealt %d AoE magic damage! (Cooldown: 15s)", echoDamage))
+			end
 		end
 
 		-- =====================================================================
@@ -831,7 +935,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (-%.1f%% Redu) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s",
 				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix
 			)
-			print(logMsg)
 			attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, logMsg)
 		end
 
@@ -842,7 +945,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (-%.1f%%) | Pen: %d -> Eff.Def: %d (-%.1f%%) | Final Taken: %d",
 				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawReductionPct, penetration, effectiveDef, effectiveReductionPct, primaryDamage
 			)
-			print(takenMsg)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
 		end
 		
@@ -882,6 +984,15 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			primaryDamage = primaryDamage - (primaryDamage * magic_defense / 100)
 		end
 
+		-- [49] Dissipate (Force of Nature): Reduces all incoming magic damage by 25%
+		if primaryType ~= COMBAT_PHYSICALDAMAGE then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[49] then
+				primaryDamage = math.ceil(primaryDamage * 0.75)
+			end
+		end
+
 		primaryDamage = math.ceil(primaryDamage)
 
 		-- Log Damage Taken from Monster
@@ -891,7 +1002,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				"[TAKEN] From: %s | Base: %d (%s) | Your Def: %.1f%% | Final Taken: %d",
 				attacker:getName(), dmgBeforeDef, dmgTypeStr, defPercent, primaryDamage
 			)
-			print(takenMsg)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
 		end
 	end
@@ -923,6 +1033,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				doAreaCombat(creature:getId(), COMBAT_FIREDAMAGE, cPos, area5x5nocenter, -rawImmolate, -rawImmolate, CONST_ME_HITBYFIRE, ORIGIN_REFLECT, 0, 0)
 			end
 		end
+	end
+
+	-- Record PvP damage for Death Recap / Replay
+	if recordPvPDamage and creature and creature:isPlayer() and attacker then
+		recordPvPDamage(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID)
 	end
 
 	if isNegative then

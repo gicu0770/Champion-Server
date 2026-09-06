@@ -859,6 +859,174 @@ RECOMB_ITEM_RECIPES = {
       {48, 40},  -- ID 48 (Cursed Touch): Magic damage inflicts Grievous Wounds for 3s (-40% healing)
     },
   },
+
+  -- [TANK MAGIC RESIST & NATURE TREE - FORCE OF NATURE]
+  -- Step 1: Negatron Cloak (8870) + Winged Moonplate (2486) + Elven Plate (26491) + 700 Gold -> Force of Nature (8883)
+  {
+    items = {8870, 2486, 26491},
+    result = 8883,
+    gold = 700,
+    name = "Force of Nature",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 400},  -- ID 1 (Health): +400
+      {9, 55},   -- ID 9 (Magic Defense): +55
+      {21, 20},  -- ID 21 (Movement Speed): +20
+      {49, 25},  -- ID 49 (Dissipate): Reduces all incoming magic damage by 25%
+    },
+  },
+
+  -- [TANK COLOSSAL HEALTH & ON-HIT TREE - HEARTSTEEL]
+  -- Step 1: 2x Giant's Belt (2487) + Crystalline Bracer (2469) + 400 Gold -> Heartsteel (8886)
+  {
+    items = {2487, 2487, 2469},
+    result = 8886,
+    gold = 400,
+    name = "Heartsteel",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 900},  -- ID 1 (Health): +900
+      {4, 15},   -- ID 4 (Health Regeneration): +15
+      {50, 6},   -- ID 50 (Colossal Consumption): Every 12s, basic attacks deal bonus 50 (+6% Max HP) physical damage
+    },
+  },
+
+  -- [TANK VOID CARAPACE & HYBRID DEFENSE TREE - JAK'SHO, THE PROTEAN]
+  -- Step 1: Giant's Belt (2487) + Chain Vest (2464) + Negatron Cloak (8870) + 650 Gold -> Jak'Sho, The Protean (8887)
+  {
+    items = {2487, 2464, 8870},
+    result = 8887,
+    gold = 650,
+    name = "Jak'Sho, The Protean",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 350},  -- ID 1 (Health): +350
+      {8, 45},   -- ID 8 (Physical Defense): +45
+      {9, 45},   -- ID 9 (Magic Defense): +45
+      {51, 20},  -- ID 51 (Voidborn Resilience): Increases Total Physical and Magic Defense by +20%
+    },
+  },
+
+  -- [VOID AP, SUSTAIN & HEALTH SCALING - RIFTMAKER]
+  -- Step 1: Fiendish Codex (8902) + Elven Plate (26491) + Amplifying Tome (1955) + 800 Gold -> Riftmaker (8922)
+  {
+    items = {8902, 26491, 1955},
+    result = 8922,
+    gold = 800,
+    name = "Riftmaker",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 70},   -- ID 7 (Magic Attack): +70
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {1, 350},  -- ID 1 (Health): +350
+      {52, 2},   -- ID 52 (Void Infusion): Grants 2% of Max HP as bonus Magic Attack and +5% Magic Lifesteal
+    },
+  },
+
+  -- [MAGE AP, HEALTH & MANA SCALING - ROD OF AGES]
+  -- Step 1: Blasting Wand (2189) + Giant's Belt (2487) + Blue Robe (2656) + 450 Gold -> Rod of Ages (7426)
+  {
+    items = {2189, 2487, 2656},
+    result = 7426,
+    gold = 450,
+    name = "Rod of Ages",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 45},   -- ID 7 (Magic Attack): +45
+      {1, 350},  -- ID 1 (Health): +350
+      {2, 500},  -- ID 2 (Mana): +500
+      {53, 10},  -- ID 53 (Timeless): Increases Maximum Health, Maximum Mana, and Magic Attack by +10%
+    },
+  },
+
+  -- [MAGE AP, CDR & MANA SCALING - ARCHANGEL'S STAFF]
+  -- Step 1: Fiendish Codex (8902) + Blue Robe (2656) + Amplifying Tome (1955) + 450 Gold -> Archangel's Staff (7429)
+  {
+    items = {8902, 2656, 1955},
+    result = 7429,
+    gold = 450,
+    name = "Archangel's Staff",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 70},   -- ID 7 (Magic Attack): +70
+      {16, 25},  -- ID 16 (Cooldown Reduction): +25%
+      {2, 600},  -- ID 2 (Mana): +600
+      {54, 15},  -- ID 54 (Awe): Increases Maximum Mana by +15% and grants +5% of Max Mana as bonus Magic Attack
+    },
+  },
+
+  -- [MAGE AP, BURST & MANA TREE - LUDEN'S ECHO]
+  -- Step 1: Amplifying Tome (1955) + Blue Robe (2656) + Monocle (7900) + 450 Gold -> Luden's Echo (2190)
+  {
+    items = {1955, 2656, 7900},
+    result = 2190,
+    gold = 450,
+    name = "Luden's Echo",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 100},  -- ID 7 (Magic Attack): +100
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+      {2, 600},  -- ID 2 (Mana): +600
+      {55, 15},  -- ID 55 (Echo): Every 15s, next spell deals 50 (+30% Magic Attack) 3x3 AoE magic damage
+    },
+  },
+
+  -- [AD, CDR & MANA SCALING - MURAMANA]
+  -- Step 1: Pickaxe (4874) + Blue Robe (2656) + Monocle (7900) + 450 Gold -> Muramana (7390)
+  {
+    items = {4874, 2656, 7900},
+    result = 7390,
+    gold = 450,
+    name = "Muramana",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {6, 50},   -- ID 6 (Physical Attack): +50
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {2, 800},  -- ID 2 (Mana): +800
+      {56, 12},  -- ID 56 (Shock): Grants +2% Max Mana as bonus Physical Attack, basic attacks on-hit deal 1.2% Max Mana bonus physical damage
+    },
+  },
+
+  -- [AD & HEALTH SCALING BRUISER / TANK - OVERLORD'S BLOODMAIL]
+  -- Step 1: Giant's Belt (2487) + 2x Pickaxe (4874) + 450 Gold -> Overlord's Bloodmail (8889)
+  {
+    items = {2487, 4874, 4874},
+    result = 8889,
+    gold = 450,
+    name = "Overlord's Bloodmail",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {6, 40},   -- ID 6 (Physical Attack): +40
+      {1, 550},  -- ID 1 (Health): +550
+      {57, 10},  -- ID 57 (Tyranny): Grants +1% Max HP as bonus Physical Attack, basic attacks on-hit deal 1% Max HP bonus physical damage
+    },
+  },
+
+  -- [MARKSMAN / ASSASSIN AD, ATTACK SPEED & CRIT - STORMRAZOR]
+  -- Step 1: B. F. Sword (2393) + Cloak of Agility (2660) + Dagger (36676) + 500 Gold -> Stormrazor (2412)
+  {
+    items = {2393, 2660, 36676},
+    result = 2412,
+    gold = 500,
+    name = "Stormrazor",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {6, 50},   -- ID 6 (Physical Attack): +50
+      {11, 25},  -- ID 11 (Attack Speed): +25%
+      {12, 20},  -- ID 12 (Critical Chance): +20%
+      {58, 4},   -- ID 58 (Storm Surge): Basic attacks grant +4% Attack Speed for 4s (stacks up to 8x -> +32% Attack Speed). At 8 stacks, deals +40 bonus magic damage on-hit
+    },
+  },
 }
 
 local RECOMB_RECIPE_ITEM_IDS = {}

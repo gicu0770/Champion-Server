@@ -181,8 +181,22 @@ end
 function Player.getPhysicalAttack(self)
 	if not self then return 0 end
 	local getPhysicalAttack = CHAMPION_STATS[self:getVocation():getName()].physical_attack + (((CHAMPION_STATS[self:getVocation():getName()].physical_attackPL - CHAMPION_STATS[self:getVocation():getName()].physical_attack) / 50) * self:getLevel())
-	if colleftInfo[self:getId()].attributesItems[6] then
-		getPhysicalAttack = getPhysicalAttack + colleftInfo[self:getId()].attributesItems[6].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[6] then
+			getPhysicalAttack = getPhysicalAttack + colleftInfo[self:getId()].attributesItems[6].value
+		end
+		-- [56] Shock / Awe (Muramana): Grants bonus physical attack equal to 2% maximum mana
+		if colleftInfo[self:getId()].attributesItems[56] then
+			local maxMp = self:getMaxMana() or 0
+			local bonusFromMana = math.floor(maxMp * 0.02)
+			getPhysicalAttack = getPhysicalAttack + bonusFromMana
+		end
+		-- [57] Tyranny (Overlord's Bloodmail): Grants bonus physical attack equal to 1% maximum health
+		if colleftInfo[self:getId()].attributesItems[57] then
+			local maxHp = self:getMaxHealth() or 0
+			local bonusFromHp = math.floor(maxHp * 0.01)
+			getPhysicalAttack = getPhysicalAttack + bonusFromHp
+		end
 	end
 	return getPhysicalAttack
 end
@@ -193,6 +207,22 @@ function Player.getMagicAttack(self)
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[7] then
 			getMagicAttack = getMagicAttack + colleftInfo[self:getId()].attributesItems[7].value
+		end
+		-- [52] Void Infusion (Riftmaker): Grants +2% of Max HP as bonus Magic Attack
+		if colleftInfo[self:getId()].attributesItems[52] then
+			local bonusFromHp = math.floor(self:getMaxHealth() * 0.02)
+			getMagicAttack = getMagicAttack + bonusFromHp
+		end
+		-- [53] Timeless (Rod of Ages): Increases Magic Attack by +10%
+		if colleftInfo[self:getId()].attributesItems[53] then
+			local pct = colleftInfo[self:getId()].attributesItems[53].value or 10
+			getMagicAttack = math.ceil(getMagicAttack * (1 + pct / 100))
+		end
+		-- [54] Awe (Archangel's Staff): Grants +5% of Max Mana as bonus Magic Attack
+		if colleftInfo[self:getId()].attributesItems[54] then
+			local maxMp = self:getMaxMana() or 0
+			local bonusFromMana = math.floor(maxMp * 0.05)
+			getMagicAttack = getMagicAttack + bonusFromMana
 		end
 		if colleftInfo[self:getId()].attributesItems[30] then
 			local pct = colleftInfo[self:getId()].attributesItems[30].value or 30
@@ -224,8 +254,15 @@ function Player.getPhysicalDefense(self)
 	if not self then return 0 end
 	local getPhysicalDefense = 0
 	getPhysicalDefense = CHAMPION_STATS[self:getVocation():getName()].physical_defense + (((CHAMPION_STATS[self:getVocation():getName()].physical_defensePL - CHAMPION_STATS[self:getVocation():getName()].physical_defense) / 50) * self:getLevel())
-	if colleftInfo[self:getId()].attributesItems[8] then
-		getPhysicalDefense = getPhysicalDefense + colleftInfo[self:getId()].attributesItems[8].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[8] then
+			getPhysicalDefense = getPhysicalDefense + colleftInfo[self:getId()].attributesItems[8].value
+		end
+		-- [51] Voidborn Resilience (Jak'Sho, The Protean): Increases Total Physical & Magic Defense by +20%
+		if colleftInfo[self:getId()].attributesItems[51] then
+			local pct = colleftInfo[self:getId()].attributesItems[51].value or 20
+			getPhysicalDefense = math.ceil(getPhysicalDefense * (1 + pct / 100))
+		end
 	end
 	return getPhysicalDefense
 end
@@ -241,15 +278,22 @@ function Player.getMagicDefense(self)
 	if not self then return 0 end
 	local getMagicDefense = 0
 	getMagicDefense = CHAMPION_STATS[self:getVocation():getName()].magic_defense + (((CHAMPION_STATS[self:getVocation():getName()].magic_defensePL - CHAMPION_STATS[self:getVocation():getName()].magic_defense) / 50) * self:getLevel())
-	if colleftInfo[self:getId()].attributesItems[9] then
-		getMagicDefense = getMagicDefense + colleftInfo[self:getId()].attributesItems[9].value
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		if colleftInfo[self:getId()].attributesItems[9] then
+			getMagicDefense = getMagicDefense + colleftInfo[self:getId()].attributesItems[9].value
+		end
+		-- [51] Voidborn Resilience (Jak'Sho, The Protean): Increases Total Physical & Magic Defense by +20%
+		if colleftInfo[self:getId()].attributesItems[51] then
+			local pct = colleftInfo[self:getId()].attributesItems[51].value or 20
+			getMagicDefense = math.ceil(getMagicDefense * (1 + pct / 100))
+		end
 	end
 	return getMagicDefense
 end
 
 function Player.getMagicDefensePercent(self)
 	if not self then return 0 end
-	local getMagicDefensePercent = math.ceil((self:getPhysicalDefense() / (100 + self:getPhysicalDefense())) * 100)
+	local getMagicDefensePercent = math.ceil((self:getMagicDefense() / (100 + self:getMagicDefense())) * 100)
 	return getMagicDefensePercent
 end
 
@@ -278,8 +322,14 @@ function Player.getMagicSteal(self)
 	if not self then return 0 end
 	local getMagicSteal = 0
 	local pInfo = colleftInfo[self:getId()]
-	if pInfo and pInfo.attributesItems and pInfo.attributesItems[18] then
-		getMagicSteal = getMagicSteal + (tonumber(pInfo.attributesItems[18].value) or 0)
+	if pInfo and pInfo.attributesItems then
+		if pInfo.attributesItems[18] then
+			getMagicSteal = getMagicSteal + (tonumber(pInfo.attributesItems[18].value) or 0)
+		end
+		-- [52] Void Infusion (Riftmaker): Grants +5% Magic Lifesteal
+		if pInfo.attributesItems[52] then
+			getMagicSteal = getMagicSteal + 5
+		end
 	end
 	return getMagicSteal
 end
@@ -1078,6 +1128,175 @@ if testDeathCol == false then
 	db.query("ALTER TABLE `player_deaths` ADD COLUMN `lost_items` TEXT DEFAULT NULL")
 else
 	result.free(testDeathCol)
+end
+
+-- Ensure death_recap column exists in player_deaths table
+local testRecapCol = db.storeQuery("SHOW COLUMNS FROM `player_deaths` LIKE 'death_recap'")
+if testRecapCol == false then
+	db.query("ALTER TABLE `player_deaths` ADD COLUMN `death_recap` MEDIUMTEXT DEFAULT NULL")
+else
+	result.free(testRecapCol)
+end
+
+if not PVP_RECENT_DAMAGE then
+	PVP_RECENT_DAMAGE = {}
+end
+
+function getCombatTypeName(combatType)
+	if combatType == COMBAT_PHYSICALDAMAGE then
+		return "Physical"
+	end
+	return "Magic"
+end
+
+local SPELL_ITEM_ID_CACHE = {
+	["Fireball"] = 1987,
+	["Searing Torrent"] = 37306,
+	["Vengeance Flame"] = 37307,
+	["Thousand Pounder"] = 37308,
+	["Body Slam"] = 37309,
+	["Heavy Spin"] = 37310,
+	["Rapid Fire"] = 37311,
+	["Arrow Volley"] = 37312,
+	["Arrow Rain"] = 37313,
+	["Auto Attack"] = 7385,
+	["Auto Attack (Melee)"] = 7385,
+	["Auto Attack (Ranged)"] = 7385,
+	["Auto Attack (Wand)"] = 7385,
+	["Damage Over Time"] = 2247,
+	["Damage Reflect"] = 2537,
+}
+
+local function toItemServerId(serverItemIdOrName)
+	if not serverItemIdOrName then return 0 end
+	if type(serverItemIdOrName) == "number" then
+		return serverItemIdOrName
+	end
+	local it = ItemType(serverItemIdOrName)
+	if it and it:getId() > 0 then
+		return it:getId()
+	end
+	return 0
+end
+
+function recordPvPDamage(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID)
+	if not creature or not creature:isPlayer() or not attacker then
+		return
+	end
+
+	local atkPlayer = nil
+	if attacker:isPlayer() then
+		atkPlayer = attacker
+	elseif attacker.getMaster then
+		local master = attacker:getMaster()
+		if master and master:isPlayer() then
+			atkPlayer = master
+		end
+	end
+
+	if not atkPlayer or atkPlayer:getId() == creature:getId() then
+		return
+	end
+
+	local pDmg = math.abs(primaryDamage or 0)
+	local sDmg = math.abs(secondaryDamage or 0)
+	local totalDmg = pDmg + sDmg
+	if totalDmg <= 0 or primaryType == COMBAT_HEALING or secondaryType == COMBAT_HEALING then
+		return
+	end
+
+	local targetGuid = creature:getGuid()
+	if not PVP_RECENT_DAMAGE[targetGuid] then
+		PVP_RECENT_DAMAGE[targetGuid] = {}
+	end
+
+	-- Determine action name, spellId and iconItemId (storing Client ID for UI display)
+	local actionName = "Auto Attack"
+	local spellIdNum = nil
+	local iconItemId = nil
+
+	if origin == ORIGIN_SPELL or origin == ORIGIN_AUTOCAST then
+		actionName = "Spell"
+		if spellUID and type(spellUID) == "number" and spellUID > 0 then
+			local spellCfg = GLOBAL_SPELL_COOLDOWNS and GLOBAL_SPELL_COOLDOWNS[spellUID]
+			if not spellCfg and SPELL_CACHE and SPELL_CACHE[spellUID] then
+				local cached = SPELL_CACHE[spellUID]
+				spellIdNum = cached.id or cached.spellId or (cached.config and cached.config.spellId)
+				if spellIdNum and GLOBAL_SPELL_COOLDOWNS then
+					spellCfg = GLOBAL_SPELL_COOLDOWNS[spellIdNum]
+				end
+			else
+				spellIdNum = spellUID
+			end
+			if spellCfg and spellCfg.name then
+				actionName = spellCfg.name
+			end
+		end
+
+		-- If spellUID didn't resolve the name, check attacker's last cast spell (10s window for channels/spins)
+		if actionName == "Spell" and PLAYER_LAST_CAST_SPELL and atkPlayer then
+			local lastSpell = PLAYER_LAST_CAST_SPELL[atkPlayer:getId()]
+			if lastSpell and (os.clock() - (lastSpell.clock or 0) <= 10.0) then
+				actionName = lastSpell.name or actionName
+				spellIdNum = lastSpell.id or spellIdNum
+			end
+		end
+
+		if actionName == "Spell" and spellIdNum and GLOBAL_SPELL_COOLDOWNS and GLOBAL_SPELL_COOLDOWNS[spellIdNum] then
+			actionName = GLOBAL_SPELL_COOLDOWNS[spellIdNum].name or actionName
+		end
+
+		-- Resolve icon item Client ID for the spell using fast cache
+		if actionName ~= "Spell" then
+			if not SPELL_ITEM_ID_CACHE[actionName] then
+				local sid = toItemServerId(actionName)
+				if sid and sid > 0 then
+					SPELL_ITEM_ID_CACHE[actionName] = sid
+				elseif spellIdNum and spellIdNum > 1 then
+					SPELL_ITEM_ID_CACHE[actionName] = 37304 + spellIdNum
+				else
+					SPELL_ITEM_ID_CACHE[actionName] = 2175 -- spellbook fallback
+				end
+			end
+			iconItemId = SPELL_ITEM_ID_CACHE[actionName]
+		else
+			if not SPELL_ITEM_ID_CACHE["__fallback_spell"] then
+				SPELL_ITEM_ID_CACHE["__fallback_spell"] = 2175 -- spellbook fallback
+			end
+			iconItemId = SPELL_ITEM_ID_CACHE["__fallback_spell"]
+		end
+	elseif origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then
+		actionName = "Auto Attack"
+		iconItemId = 7385
+	elseif origin == ORIGIN_DOT or origin == ORIGIN_CONDITION then
+		actionName = "Damage Over Time"
+		iconItemId = 2247
+	elseif origin == ORIGIN_REFLECT then
+		actionName = "Damage Reflect"
+		iconItemId = 2537
+	end
+
+	-- Only Physical or Magic damage
+	local damageCategory = (primaryType == COMBAT_PHYSICALDAMAGE) and "Physical" or "Magic"
+	local isCrit = (critical == true or critical == 1)
+
+	local targetBuffer = PVP_RECENT_DAMAGE[targetGuid]
+	table.insert(targetBuffer, {
+		time = os.time(),
+		clock = os.clock(),
+		attacker = atkPlayer:getName(),
+		attackerLevel = atkPlayer:getLevel(),
+		damage = totalDmg,
+		category = damageCategory,
+		action = actionName,
+		spellId = spellIdNum,
+		iconItemId = iconItemId,
+		critical = isCrit
+	})
+
+	if #targetBuffer > 30 then
+		table.remove(targetBuffer, 1)
+	end
 end
 
 UNIQUE_BOSS_STORAGES = {}
@@ -2039,6 +2258,9 @@ function Player.setCollectionInfo(self)
 	else
 		if self:hasBuff(SPELL_SHIELD) then
 			self:removeBuff(SPELL_SHIELD)
+		end
+		if self:hasBuff(ANNUL_CD) then
+			self:removeBuff(ANNUL_CD)
 		end
 	end
 	--[[
@@ -4492,6 +4714,9 @@ function Player.getAST(self)
 	if self:hasBuff(FRENZY_AURA) then
 		as = as + (10 + self:getBuff(FRENZY_AURA).stacks * 0.37)
 	end
+	if self:hasBuff(STORM_SURGE_BUFF) then
+		as = as + (self:getBuff(STORM_SURGE_BUFF).stacks * 4)
+	end
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[55] then
 			as = as + colleftInfo[self:getId()].attributesItems[55].value
@@ -5668,6 +5893,20 @@ function Player.setStatistics(self)
 	self:addManaPrecentGain(1, manaRegenPercent, true)
 	self:addEnergyShieldPrecentGainForce(1, energyShieldPercentRegen, true)
 
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
+		-- [53] Timeless (Rod of Ages): Increases Max Health, Max Mana, and Magic Attack by +10%
+		if colleftInfo[self:getId()].attributesItems[53] then
+			local pct = colleftInfo[self:getId()].attributesItems[53].value or 10
+			healthPercent = healthPercent + pct
+			manaPercent = manaPercent + pct
+		end
+		-- [54] Awe (Archangel's Staff): Increases Max Mana by +15%
+		if colleftInfo[self:getId()].attributesItems[54] then
+			local pct = colleftInfo[self:getId()].attributesItems[54].value or 15
+			manaPercent = manaPercent + pct
+		end
+	end
+
 	if manaPercent > 0 or manaPercent < 0 then
 		local conditionES = Condition(CONDITION_ATTRIBUTES)
 		conditionES:setParameter(CONDITION_PARAM_SUBID, 810004)
@@ -6149,6 +6388,16 @@ local CUSTOM_RECOMBINER_SLOT_TYPES = {
   [2483]  = 9,  -- Bramble Vest (head)
   [8871]  = 9,  -- Spectre's Cowl (head)
   [8880]  = 9,  -- Spirit Visage (head)
+  [8883]  = 9,  -- Force of Nature (head)
+  [8886]  = 9,  -- Heartsteel (head)
+  [8887]  = 9,  -- Jak'Sho, The Protean (head)
+  [8889]  = 11, -- Overlord's Bloodmail (head / armor)
+  [8922]  = 8,  -- Riftmaker (head / wand)
+  [7426]  = 8,  -- Rod of Ages (head / wand)
+  [7429]  = 8,  -- Archangel's Staff (head / wand)
+  [2190]  = 8,  -- Luden's Echo (head / wand)
+  [7390]  = 2,  -- Muramana (head / sword)
+  [2412]  = 2,  -- Stormrazor (head / sword)
   [2176]  = 9,  -- Oblivion Orb (head)
   [2646]  = 13, -- Berserker's Greaves (feet)
   [2645]  = 13, -- Plated Steelcaps (feet)

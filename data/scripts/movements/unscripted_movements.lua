@@ -2045,8 +2045,6 @@ local items = {
 	{itemid = 8924, type = "deequip", slot = "hand", client_version = 820}, -- hellforged axe
 	{itemid = 8923, type = "equip", slot = "legs",  client_version = 820}, -- ranger legs
 	{itemid = 8923, type = "deequip", slot = "legs", client_version = 820}, -- ranger legs
-	{itemid = 8922, type = "equip", slot = "hand",   client_version = 820}, -- wand of voodoo
-	{itemid = 8922, type = "deequip", slot = "hand",  client_version = 820}, -- wand of voodoo
 	{itemid = 8921, type = "equip", slot = "hand",   client_version = 810}, -- wand of draconia
 	{itemid = 8921, type = "deequip", slot = "hand",  client_version = 810}, -- wand of draconia
 	{itemid = 8920, type = "equip", slot = "hand",   client_version = 820}, -- wand of starmstorm
@@ -2085,20 +2083,12 @@ local items = {
 	{itemid = 8891, type = "deequip", slot = "armor", client_version = 820}, -- paladin armor
 	{itemid = 8890, type = "equip", slot = "armor",   client_version = 820}, -- robe of the underworld
 	{itemid = 8890, type = "deequip", slot = "armor",  client_version = 820}, -- robe of the underworld
-	{itemid = 8889, type = "equip", slot = "armor",   client_version = 820}, -- skullcracker armor
-	{itemid = 8889, type = "deequip", slot = "armor",  client_version = 820}, -- skullcracker armor
 	{itemid = 8888, type = "equip", slot = "armor",   client_version = 820}, -- master archer's armor
 	{itemid = 8888, type = "deequip", slot = "armor",  client_version = 820}, -- master archer's armor
-	{itemid = 8887, type = "equip", slot = "armor",   client_version = 820}, -- frozen plate
-	{itemid = 8887, type = "deequip", slot = "armor",  client_version = 820}, -- frozen plate
-	{itemid = 8886, type = "equip", slot = "armor",   client_version = 820}, -- molten plate
-	{itemid = 8886, type = "deequip", slot = "armor",  client_version = 820}, -- molten plate
 	{itemid = 8885, type = "equip", slot = "armor",   client_version = 820}, -- divine plate
 	{itemid = 8885, type = "deequip", slot = "armor",  client_version = 820}, -- divine plate
 	{itemid = 8884, type = "equip", slot = "armor",   client_version = 820}, -- oceanborn leviathan armor
 	{itemid = 8884, type = "deequip", slot = "armor",  client_version = 820}, -- oceanborn leviathan armor
-	{itemid = 8883, type = "equip", slot = "armor",   client_version = 820}, -- windborn colossus armor
-	{itemid = 8883, type = "deequip", slot = "armor",  client_version = 820}, -- windborn colossus armor
 	{itemid = 8882, type = "equip", slot = "armor",   client_version = 820}, -- earthborn titan armor
 	{itemid = 8882, type = "deequip", slot = "armor",  client_version = 820}, -- earthborn titan armor
 	{itemid = 8881, type = "equip", slot = "armor",   client_version = 820}, -- fireborn giant armor
@@ -2389,14 +2379,10 @@ local items = {
 	{itemid = 7432, type = "deequip", slot = "hand", client_version = 800}, -- furry club
 	{itemid = 7430, type = "equip", slot = "hand", client_version = 800}, -- dragonbone staff
 	{itemid = 7430, type = "deequip", slot = "hand", client_version = 800}, -- dragonbone staff
-	{itemid = 7429, type = "equip", slot = "hand", client_version = 800}, -- blessed sceptre
-	{itemid = 7429, type = "deequip", slot = "hand", client_version = 800}, -- blessed sceptre
 	{itemid = 7428, type = "equip", slot = "hand", client_version = 800}, -- bonebreaker
 	{itemid = 7428, type = "deequip", slot = "hand", client_version = 800}, -- bonebreaker
 	{itemid = 7427, type = "equip", slot = "hand", client_version = 800}, -- chaos mace
 	{itemid = 7427, type = "deequip", slot = "hand", client_version = 800}, -- chaos mace
-	{itemid = 7426, type = "equip", slot = "hand", client_version = 800}, -- amber staff
-	{itemid = 7426, type = "deequip", slot = "hand", client_version = 800}, -- amber staff
 	{itemid = 7425, type = "equip", slot = "hand", client_version = 800}, -- taurus mace
 	{itemid = 7425, type = "deequip", slot = "hand", client_version = 800}, -- taurus mace
 	{itemid = 7424, type = "equip", slot = "hand", client_version = 800}, -- lunar staff
@@ -2447,8 +2433,6 @@ local items = {
 	{itemid = 7392, type = "deequip", slot = "hand", client_version = 800}, -- orcish maul
 	{itemid = 7391, type = "equip", slot = "hand", client_version = 800}, -- thaian sword
 	{itemid = 7391, type = "deequip", slot = "hand", client_version = 800}, -- thaian sword
-	{itemid = 7390, type = "equip", slot = "hand", client_version = 800}, -- the justice seeker
-	{itemid = 7390, type = "deequip", slot = "hand", client_version = 800}, -- the justice seeker
 	{itemid = 7389, type = "equip", slot = "hand", client_version = 800}, -- heroic axe
 	{itemid = 7389, type = "deequip", slot = "hand", client_version = 800}, -- heroic axe
 	{itemid = 7388, type = "equip", slot = "hand", client_version = 800}, -- vile axe
@@ -2889,8 +2873,6 @@ local items = {
 	{itemid = 2414, type = "deequip", slot = "hand", client_version = 0}, -- dragon lance
 	{itemid = 2413, type = "equip", slot = "hand", client_version = 0}, -- broadsword
 	{itemid = 2413, type = "deequip", slot = "hand", client_version = 0}, -- broadsword
-	{itemid = 2412, type = "equip", slot = "hand", client_version = 0}, -- katana
-	{itemid = 2412, type = "deequip", slot = "hand", client_version = 0}, -- katana
 	{itemid = 2411, type = "equip", slot = "hand", client_version = 0}, -- poison dagger
 	{itemid = 2411, type = "deequip", slot = "hand", client_version = 0}, -- poison dagger
 	{itemid = 2410, type = "equip", slot = "hand", client_version = 0}, -- throwing knife
@@ -3034,8 +3016,6 @@ local items = {
 	{itemid = 2195, type = "deequip", slot = "feet", client_version = 0}, -- boots of haste
 	{itemid = 2191, type = "equip", slot = "hand",   client_version = 760}, -- wand of dragonbreath
 	{itemid = 2191, type = "deequip", slot = "hand",  client_version = 760}, -- wand of dragonbreath
-	{itemid = 2190, type = "equip", slot = "hand",   client_version = 760}, -- wand of vortex
-	{itemid = 2190, type = "deequip", slot = "hand",  client_version = 760}, -- wand of vortex
 	{itemid = 2189, type = "equip", slot = "hand",   client_version = 760}, -- wand of cosmic energy
 	{itemid = 2189, type = "deequip", slot = "hand",  client_version = 760}, -- wand of cosmic energy
 	{itemid = 2188, type = "equip", slot = "hand",   client_version = 760}, -- wand of decay
@@ -3191,7 +3171,27 @@ local items = {
 	{itemid = 37790, type = "equip", slot = "gloves", client_version = 0}, -- seeker's armguard
 	{itemid = 37790, type = "deequip", slot = "gloves", client_version = 0},
 	{itemid = 20002, type = "equip", slot = "head", client_version = 0}, -- zhonya's hourglass
-	{itemid = 20002, type = "deequip", slot = "head", client_version = 0}
+	{itemid = 20002, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 8883, type = "equip", slot = "head", client_version = 0}, -- force of nature
+	{itemid = 8883, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 8886, type = "equip", slot = "head", client_version = 0}, -- heartsteel
+	{itemid = 8886, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 8887, type = "equip", slot = "head", client_version = 0}, -- jak'sho, the protean
+	{itemid = 8887, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 8922, type = "equip", slot = "head", client_version = 0}, -- riftmaker
+	{itemid = 8922, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 7426, type = "equip", slot = "head", client_version = 0}, -- rod of ages
+	{itemid = 7426, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 7429, type = "equip", slot = "head", client_version = 0}, -- archangel's staff
+	{itemid = 7429, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 2190, type = "equip", slot = "head", client_version = 0}, -- luden's echo
+	{itemid = 2190, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 7390, type = "equip", slot = "head", client_version = 0}, -- muramana
+	{itemid = 7390, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 8889, type = "equip", slot = "head", client_version = 0}, -- overlord's bloodmail
+	{itemid = 8889, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 2412, type = "equip", slot = "head", client_version = 0}, -- stormrazor
+	{itemid = 2412, type = "deequip", slot = "head", client_version = 0}
 }
 
 for _, i in ipairs(items) do

@@ -3452,11 +3452,9 @@
 		<attribute key="hitChance" value="1" />
 		<attribute key="maxHitChance" value="95" />
 	</item>
-	<item id="2412" article="a" name="katana">
+	<item id="2412" article="a" name="stormrazor">
 		<attribute key="weight" value="3100" />
-		<attribute key="defense" value="12" />
-		<attribute key="attack" value="16" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2413" article="a" name="broadsword">
 		<attribute key="weight" value="5250" />
@@ -12633,12 +12631,9 @@
 		<attribute key="weaponType" value="axe" />
 		<attribute key="description" value="This axe is only granted to a scrapper of the Svargrond arena." />
 	</item>
-	<item id="7390" name="the justice seeker">
-		<attribute key="weight" value="5000" />
-		<attribute key="defense" value="24" />
-		<attribute key="attack" value="47" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="description" value="This sword is only granted to a warlord of the Svargrond arena." />
+	<item id="7390" article="a" name="muramana">
+		<attribute key="weight" value="4500" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7391" article="a" name="thaian sword">
 		<attribute key="weight" value="6100" />
@@ -12801,12 +12796,9 @@
 		<attribute key="attack" value="30" />
 		<attribute key="weaponType" value="club" />
 	</item>
-	<item id="7426" article="an" name="amber staff">
+	<item id="7426" article="a" name="rod of ages">
 		<attribute key="weight" value="3500" />
-		<attribute key="defense" value="25" />
-		<attribute key="attack" value="43" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7427" article="a" name="chaos mace">
 		<attribute key="weight" value="6300" />
@@ -12821,11 +12813,9 @@
 		<attribute key="weaponType" value="club" />
 		<attribute key="slotType" value="two-handed" />
 	</item>
-	<item id="7429" article="a" name="blessed sceptre">
+	<item id="7429" article="an" name="archangel's staff">
 		<attribute key="weight" value="3900" />
-		<attribute key="defense" value="21" />
-		<attribute key="attack" value="47" />
-		<attribute key="weaponType" value="club" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="7430" article="a" name="dragonbone staff">
 		<attribute key="weight" value="1800" />
@@ -15950,12 +15940,9 @@
 		<attribute key="weight" value="12000" />
 		<attribute key="slotType" value="head" />
 	</item>
-	<item id="8883" article="a" name="windborn colossus armor">
-		<attribute key="weight" value="12000" />
-		
-		
-		
-		<attribute key="slotType" value="body" />
+	<item id="8883" article="a" name="force of nature">
+		<attribute key="weight" value="8500" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8884" article="an" name="oceanborn leviathan armor">
 		<attribute key="weight" value="10000" />
@@ -15978,31 +15965,22 @@
 		
 		
 	</item>
-	<item id="8886" article="a" name="molten plate">
-		
-		<attribute key="slotType" value="body" />
-		<attribute key="weight" value="7500" />
-		
-		
+	<item id="8886" article="a" name="heartsteel">
+		<attribute key="weight" value="9500" />
+		<attribute key="slotType" value="head" />
 	</item>
-	<item id="8887" article="a" name="frozen plate">
-		
-		<attribute key="slotType" value="body" />
-		<attribute key="weight" value="7500" />
-		
-		
+	<item id="8887" article="a" name="jak'sho, the protean">
+		<attribute key="weight" value="9000" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8888" article="a" name="master archer's armor">
 		
 		<attribute key="slotType" value="body" />
 		<attribute key="weight" value="6900" />
 	</item>
-	<item id="8889" article="a" name="skullcracker armor">
+	<item id="8889" article="an" name="overlord's bloodmail">
 		<attribute key="weight" value="11000" />
-		
-		
-		
-		<attribute key="slotType" value="body" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8890" article="a" name="robe of the underworld">
 		<attribute key="weight" value="3100" />
@@ -16115,12 +16093,9 @@
 		<attribute key="range" value="5" />
 		<attribute key="attack" value="13"/>
 	</item>
-	<item id="8922" article="a" name="wand of voodoo">
+	<item id="8922" article="a" name="riftmaker">
 		<attribute key="weight" value="2850" />
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="death" />
-		<attribute key="range" value="3" />
-		<attribute key="attack" value="24"/>
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="8923" name="ranger legs">
 		<attribute key="weight" value="3500" />
@@ -42361,5 +42336,10 @@
 	<item id="38580" article="a" name="Abyssbound Ring">
 		<attribute key="slotType" value="ring" />	
 	</item>	
+
+	<item id="2190" article="a" name="luden's echo">
+		<attribute key="weight" value="2300" />
+		<attribute key="slotType" value="head" />
+	</item>
 
 </items>

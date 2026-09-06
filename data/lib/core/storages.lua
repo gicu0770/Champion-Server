@@ -165,6 +165,8 @@ PlayerStorage = {
 	ichorShieldAmount = 801137,
 	zhonyaCooldown = 801138,
 	bansheeCooldown = 801139,
+	heartsteelCooldown = 801141,
+	ludensCooldown = 801142,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

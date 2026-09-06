@@ -201,6 +201,14 @@ SPELLBLADE_BUFF = 195
 QUICKEN_BUFF = 196
 MIA_RAPID_FIRE = 197
 MIA_SLOW_DEBUFF = 198
+STORM_SURGE_BUFF = 199
+LUDENS_ECHO_CD = 200
+TIME_STOP_CD = 201
+CONCUSSIVE_BLAST_CD = 202
+BRAVE_SMITE_CD = 203
+WEAKNESS_FINDER_CD = 204
+FOCUSING_MARK_CD = 205
+ANNUL_CD = 206
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2397,6 +2405,93 @@ BUFFS = {
 		maxStacks = 1,
 		debuff = true,
 		ticks = 1500
+	},
+	[STORM_SURGE_BUFF] = {
+		id = STORM_SURGE_BUFF,
+		name = "Storm Surge",
+		description = "Attack Speed increased by 4% per stack (up to 32%).",
+		icon = "speedbuff",
+		border = "frame-9-jade",
+		stacked = true,
+		maxStacks = 8,
+		ticks = 4000
+	},
+	[LUDENS_ECHO_CD] = {
+		id = LUDENS_ECHO_CD,
+		name = "Echo (Cooldown)",
+		description = "Luden's Echo is on cooldown. Next spell will not trigger Echo until fully recharged.",
+		icon = "balllightning",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 15000
+	},
+	[TIME_STOP_CD] = {
+		id = TIME_STOP_CD,
+		name = "Time Stop (Cooldown)",
+		description = "Zhonya's Hourglass is on cooldown. Time Stop cannot trigger again until recharged.",
+		icon = "last_stand",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 120000
+	},
+	[CONCUSSIVE_BLAST_CD] = {
+		id = CONCUSSIVE_BLAST_CD,
+		name = "Concussive Blast (Cooldown)",
+		description = "Concussive Blast is recharging.",
+		icon = "crushingblow",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 15000
+	},
+	[BRAVE_SMITE_CD] = {
+		id = BRAVE_SMITE_CD,
+		name = "Brave Smite (Cooldown)",
+		description = "Brave Smite is recharging.",
+		icon = "recovery_strike",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 9000
+	},
+	[WEAKNESS_FINDER_CD] = {
+		id = WEAKNESS_FINDER_CD,
+		name = "Weakness Finder (Cooldown)",
+		description = "Weakness Finder is recharging. Basic attacks reduce remaining cooldown by 1s (down to 3s).",
+		icon = "monster_weak_spot",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 10000
+	},
+	[FOCUSING_MARK_CD] = {
+		id = FOCUSING_MARK_CD,
+		name = "Focusing Mark (Cooldown)",
+		description = "Focusing Mark is recharging.",
+		icon = "marksman_instinct",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 4000
+	},
+	[ANNUL_CD] = {
+		id = ANNUL_CD,
+		name = "Annul (Cooldown)",
+		description = "Banshee's Veil is recharging Spell Shield.",
+		icon = "magic_shield",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 40000
 	},
 }
 

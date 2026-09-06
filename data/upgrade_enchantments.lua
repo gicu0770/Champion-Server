@@ -303,7 +303,7 @@ US_ENCHANTMENTS = {
         desc = "Basic attacks deal bonus magic damage on-hit.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -312,7 +312,7 @@ US_ENCHANTMENTS = {
         desc = "Basic attacks deal 15 (+15% Magic Attack) bonus magic damage on-hit.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -321,7 +321,7 @@ US_ENCHANTMENTS = {
         desc = "Basic attacks deal bonus physical damage equal to (9% melee / 6% ranged) of the target's current health on-hit.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -330,7 +330,7 @@ US_ENCHANTMENTS = {
         desc = "When struck by a basic attack, deal 20 (+10% Physical Defense) magic damage to the attacker.",
         category = 2,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -339,7 +339,7 @@ US_ENCHANTMENTS = {
         desc = "When taking damage, deal 20 (+1% Max HP) magic damage to nearby enemies.",
         category = 2,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -348,7 +348,7 @@ US_ENCHANTMENTS = {
         desc = "Reduces all incoming basic attack damage by 10%.",
         category = 2,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -357,7 +357,7 @@ US_ENCHANTMENTS = {
         desc = "Increases Movement Speed and grants Slow Resistance.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -366,7 +366,7 @@ US_ENCHANTMENTS = {
         desc = "Increases all healing, shielding received, and health regeneration by 25%.",
         category = 2,
         percent = true,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -375,7 +375,7 @@ US_ENCHANTMENTS = {
         desc = "Abilities and attacks burn enemies for 1% of their Max HP per second for 4 seconds.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -384,7 +384,7 @@ US_ENCHANTMENTS = {
         desc = "Upon falling below 30% HP, gain Immortality for 3 seconds (120s cooldown).",
         category = 2,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -393,7 +393,7 @@ US_ENCHANTMENTS = {
         desc = "Grants a Spell Shield that blocks the next hostile ability (40s cooldown).",
         category = 2,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -402,7 +402,7 @@ US_ENCHANTMENTS = {
         desc = "Physical damage inflicts Grievous Wounds for 3s, reducing healing received by 40%.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
@@ -411,7 +411,97 @@ US_ENCHANTMENTS = {
         desc = "Magic damage inflicts Grievous Wounds for 3s, reducing healing received by 40%.",
         category = 1,
         percent = false,
-        noValue = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [49] = {
+        name = "Dissipate",
+        desc = "Reduces all incoming magic damage by 25%.",
+        category = 2,
+        percent = true,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [50] = {
+        name = "Colossal Consumption",
+        desc = "Every 12s, basic attacks deal bonus 50 (+6% Max HP) physical damage.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [51] = {
+        name = "Voidborn Resilience",
+        desc = "Increases Total Physical and Magic Defense by 20%.",
+        category = 2,
+        percent = true,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [52] = {
+        name = "Void Infusion",
+        desc = "Grants 2% of Max HP as bonus Magic Attack and +5% Magic Lifesteal.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [53] = {
+        name = "Timeless",
+        desc = "Increases Maximum Health, Maximum Mana, and Magic Attack by 10%.",
+        category = 1,
+        percent = true,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [54] = {
+        name = "Awe",
+        desc = "Increases Maximum Mana by 15% and grants 5% of Max Mana as bonus Magic Attack.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [55] = {
+        name = "Echo",
+        desc = "Every 15s, your next spell deals 50 (+30% Magic Attack) AoE magic damage in a 3x3 area around the target.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [56] = {
+        name = "Shock",
+        desc = "Grants bonus Physical Attack equal to 2% Max Mana. Basic attacks on-hit deal 1.2% Max Mana bonus physical damage.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [57] = {
+        name = "Tyranny",
+        desc = "Grants bonus Physical Attack equal to 1% Max HP. Basic attacks on-hit deal 1% Max HP bonus physical damage.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [58] = {
+        name = "Storm Surge",
+        desc = "Basic attacks grant +4% Attack Speed for 4s (stacks up to 8 times, max +32% Attack Speed). At 8 stacks, deals +40 bonus magic damage on-hit.",
+        category = 1,
+        percent = false,
+        noValue = true,
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
