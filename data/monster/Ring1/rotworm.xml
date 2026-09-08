@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Rotworm" nameDescription="a rotworm" race="blood" experience="32" speed="110" tier="1" manacost="330">
+	<health now="230" max="230" />
+	<look type="26" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="8" max="8" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-30" max="-40" />
+	</attacks>
+	<defenses armor="2" defense="3" />
+	<voices interval="5000" chance="10">
+	</voices>
+	<loot>
+	</loot>
+</monster>

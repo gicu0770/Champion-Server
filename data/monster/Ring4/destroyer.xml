@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Destroyer" nameDescription="a destroyer" race="undead" experience="1600" speed="135" tier="4" manacost="1300">
+	<health now="2800" max="2800" />
+	<look type="236" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="46" max="46" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-340" max="-460" />
+	</attacks>
+	<defenses armor="14" defense="14" />
+	<voices interval="5000" chance="10">
+		<voice sentence="DESTRUCTION!" yell="1" />
+		<voice sentence="CRUSH AND SMASH!" yell="1" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

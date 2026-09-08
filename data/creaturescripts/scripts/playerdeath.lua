@@ -347,9 +347,10 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 					result.free(resultId)
 				end
 
-				if warId ~= false then
-					db.asyncQuery("INSERT INTO `guildwar_kills` (`killer`, `target`, `killerguild`, `targetguild`, `time`, `warid`) VALUES (" .. db.escapeString(killerName) .. ", " .. db.escapeString(player:getName()) .. ", " .. killerGuild .. ", " .. targetGuild .. ", " .. os.time() .. ", " .. warId .. ")")
-				end
+				-- War frags and kills logging are handled by GuildWarDeath event in data/scripts/guild_system.lua
+				-- if warId ~= false then
+				-- 	db.asyncQuery("INSERT INTO `guildwar_kills` (`killer`, `target`, `killerguild`, `targetguild`, `time`, `warid`) VALUES (" .. db.escapeString(killerName) .. ", " .. db.escapeString(player:getName()) .. ", " .. killerGuild .. ", " .. targetGuild .. ", " .. os.time() .. ", " .. warId .. ")")
+				-- end
 			end
 		end
 	end

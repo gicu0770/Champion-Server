@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Crypt Shambler" nameDescription="a crypt shambler" race="undead" experience="120" speed="105" tier="2" manacost="500">
+	<health now="450" max="450" />
+	<look type="100" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="18" max="18" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-80" max="-110" />
+	</attacks>
+	<defenses armor="3" defense="4" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Aaaaahhhh!" />
+		<voice sentence="Death..." />
+	</voices>
+	<loot>
+	</loot>
+</monster>

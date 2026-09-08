@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Demon" nameDescription="a demon" race="fire" experience="2500" speed="145" tier="4" manacost="1500">
+	<health now="3800" max="3800" />
+	<look type="35" corpse="27196" />
+	<targetchange interval="4000" chance="20" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="3" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="50" max="50" />
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="4" radius="3" target="1" min="-450" max="-600">
+			<attribute key="shootEffect" value="fire" />
+			<attribute key="areaEffect" value="firearea" />
+		</attack>
+	</attacks>
+	<defenses armor="14" defense="14" />
+	<voices interval="5000" chance="10">
+		<voice sentence="MUHAHAHAHA!" yell="1" />
+		<voice sentence="YOUR SOUL WILL BE MINE!" yell="1" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

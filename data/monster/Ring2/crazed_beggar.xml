@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Crazed Beggar" nameDescription="a crazed beggar" race="blood" experience="50" speed="115" tier="2" manacost="300">
+	<health now="210" max="210" />
+	<look type="153" body="38" feet="97" head="59" legs="38" addons="3" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag staticattack="80" />
+		<flag targetdistance="3" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="11" max="11" />
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="4" min="-30" max="-45">
+			<attribute key="shootEffect" value="poisonarrow" />
+			<attribute key="areaEffect" value="greenspark" />
+		</attack>
+	</attacks>
+	<defenses armor="1" defense="2" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Hehehe!" />
+		<voice sentence="Raahhh!" />
+		<voice sentence="You are one of THEM! Die!" />
+		<voice sentence="Wanna buy roses??" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

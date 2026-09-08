@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Lich" nameDescription="a lich" race="undead" experience="1200" speed="130" tier="4" manacost="1100">
+	<health now="2100" max="2100" />
+	<look type="99" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="4" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="43" max="43" />
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="5" min="-300" max="-410">
+			<attribute key="shootEffect" value="suddendeath" />
+			<attribute key="areaEffect" value="mortarea" />
+		</attack>
+	</attacks>
+	<defenses armor="8" defense="8" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Death awaits..." />
+		<voice sentence="You will bow before the grave!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

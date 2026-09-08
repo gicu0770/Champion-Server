@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Draken Spellweaver" nameDescription="a draken spellweaver" race="blood" experience="1900" speed="135" tier="4" manacost="1400">
+	<health now="2900" max="2900" />
+	<look type="340" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="4" />
+		<flag staticattack="70" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="48" max="48" />
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="5" min="-380" max="-520">
+			<attribute key="shootEffect" value="fire" />
+			<attribute key="areaEffect" value="firearea" />
+		</attack>
+	</attacks>
+	<defenses armor="10" defense="10" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Dragons fire burn you!" />
+		<voice sentence="Ancient magic destroys all!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

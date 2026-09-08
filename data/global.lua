@@ -1120,6 +1120,7 @@ ExtendedOPCodes = {
 	CODE_MERGE_ITEMS = 236,
 	CODE_DEATHS = 237,
 	CODE_POTION_UPGRADE = 238,
+	CODE_GUILD = 239,
 }
 
 -- Ensure lost_items column exists in player_deaths table

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Minotaur Mage" nameDescription="a minotaur mage" race="blood" experience="150" speed="120" tier="2" manacost="600">
+	<health now="470" max="470" />
+	<look type="23" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="3" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="20" max="20" />
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="4" min="-55" max="-80">
+			<attribute key="shootEffect" value="energy" />
+			<attribute key="areaEffect" value="energyarea" />
+		</attack>
+	</attacks>
+	<defenses armor="3" defense="4" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Kaplar magic!" />
+		<voice sentence="Feel the surge!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

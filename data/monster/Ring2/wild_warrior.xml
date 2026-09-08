@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Wild Warrior" nameDescription="a wild warrior" race="blood" experience="50" speed="120" tier="2" manacost="420">
+	<health now="220" max="220" />
+	<look type="131" head="38" body="38" legs="38" feet="38" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="11" max="11" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-45" max="-60" />
+	</attacks>
+	<defenses armor="2" defense="3">
+		<defense name="speed" interval="2000" chance="15" speedchange="200" duration="5000">
+			<attribute key="areaEffect" value="redshimmer" />
+		</defense>
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="Your money or your life!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

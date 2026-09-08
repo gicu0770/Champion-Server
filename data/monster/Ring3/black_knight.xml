@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Black Knight" nameDescription="a black knight" race="blood" experience="900" speed="135" tier="3" manacost="950">
+	<health now="1800" max="1800" />
+	<look type="131" head="95" body="95" legs="95" feet="95" addons="3" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="40" max="40" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-240" max="-330" />
+	</attacks>
+	<defenses armor="12" defense="12" />
+	<voices interval="5000" chance="10">
+		<voice sentence="NO MERCY!" yell="1" />
+		<voice sentence="You will pay with blood!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

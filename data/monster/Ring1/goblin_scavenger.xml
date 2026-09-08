@@ -12,14 +12,13 @@
 		<flag pushable="1" />
 		<flag canpushitems="0" />
 		<flag canpushcreatures="0" />
-		<flag targetdistance="1" />
+		<flag targetdistance="3" />
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
 	</flags>
 	<level min="7" max="7" />
 	<attacks>
-		<attack name="melee" interval="2000" min="-25" max="-32" />
-		<attack name="physical" interval="2000" chance="20" range="4" min="-12" max="-18">
+		<attack name="physical" interval="2000" chance="100" range="4" min="-25" max="-32">
 			<attribute key="shootEffect" value="smallstone" />
 		</attack>
 	</attacks>

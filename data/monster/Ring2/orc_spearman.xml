@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Orc Spearman" nameDescription="an orc spearman" race="blood" experience="62" speed="120" tier="2" manacost="400">
+	<health now="270" max="270" />
+	<look type="50" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="3" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="13" max="13" />
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="4" min="-45" max="-65">
+			<attribute key="shootEffect" value="spear" />
+		</attack>
+	</attacks>
+	<defenses armor="2" defense="3" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Urrrk!" />
+		<voice sentence="Grak!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

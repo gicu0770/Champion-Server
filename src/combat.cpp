@@ -297,6 +297,10 @@ ReturnValue Combat::canDoCombat(Creature* attacker, Creature* target)
 		if (attackerPlayer && attackerPlayer->isPartner(targetPlayer)) {
 			return RETURNVALUE_EMPTY; // Block combat between party members
 		}
+
+		if (attackerPlayer && attackerPlayer->getGuild() && attackerPlayer->getGuild() == targetPlayer->getGuild()) {
+			return RETURNVALUE_EMPTY; // Block combat between guild members
+		}
 	} else if (target->getMonster()) {
 		if (attackerPlayer) {
 			if (attackerPlayer->hasFlag(PlayerFlag_CannotAttackMonster)) {

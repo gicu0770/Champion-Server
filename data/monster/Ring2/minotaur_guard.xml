@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Minotaur Guard" nameDescription="a minotaur guard" race="blood" experience="230" speed="125" tier="2" manacost="720">
+	<health now="650" max="650" />
+	<look type="29" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="23" max="23" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-110" max="-150" />
+	</attacks>
+	<defenses armor="5" defense="6" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Kaplar!" />
+		<voice sentence="Die, intruder!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

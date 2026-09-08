@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Draken Warmaster" nameDescription="a draken warmaster" race="blood" experience="1900" speed="140" tier="4" manacost="1400">
+	<health now="3100" max="3100" />
+	<look type="334" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="3" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="48" max="48" />
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="4" min="-370" max="-500">
+			<attribute key="shootEffect" value="throwingknife" />
+			<attribute key="areaEffect" value="explosionarea" />
+		</attack>
+	</attacks>
+	<defenses armor="12" defense="12" />
+	<voices interval="5000" chance="10">
+		<voice sentence="My blade sings for blood!" />
+		<voice sentence="Zzzzzzt!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

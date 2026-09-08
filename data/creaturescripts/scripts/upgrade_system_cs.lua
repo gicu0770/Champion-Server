@@ -37,6 +37,17 @@ function onHealthChange(creature, attacker, primaryDamage, primaryType, secondar
 			return primaryDamage, primaryType, secondaryDamage, secondaryType
 		end
 	end
+	if attacker and creature and creature:isPlayer() then
+		local attackerPlayer = attacker:isPlayer() and attacker or (attacker:getMaster() and attacker:getMaster():isPlayer() and attacker:getMaster())
+		if attackerPlayer and attackerPlayer:getId() ~= creature:getId() then
+			local g1 = creature:getGuild()
+			local g2 = attackerPlayer:getGuild()
+			if g1 and g2 and g1:getId() == g2:getId() then
+				return 0, primaryType, 0, secondaryType
+			end
+		end
+	end
+
 	if attacker and creature then
 		if creature:isPlayer() and attacker:isPlayer() and primaryType ~= COMBAT_HEALING then
 			if creature:getName() ~= attacker:getName() then
@@ -54,6 +65,16 @@ function onHealthChange(creature, attacker, primaryDamage, primaryType, secondar
 	return us_onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
 end
 function onManaChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin, critical, spellUID, critChance, distance)
+	if attacker and creature and creature:isPlayer() then
+		local attackerPlayer = attacker:isPlayer() and attacker or (attacker:getMaster() and attacker:getMaster():isPlayer() and attacker:getMaster())
+		if attackerPlayer and attackerPlayer:getId() ~= creature:getId() then
+			local g1 = creature:getGuild()
+			local g2 = attackerPlayer:getGuild()
+			if g1 and g2 and g1:getId() == g2:getId() then
+				return 0, primaryType, 0, secondaryType
+			end
+		end
+	end
 	return us_onManaChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin,critical, spellUID, critChance, distance)
 end
 function onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitunjustified, mostdamageunjustified)

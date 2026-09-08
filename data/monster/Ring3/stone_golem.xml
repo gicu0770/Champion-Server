@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Stone Golem" nameDescription="a stone golem" race="undead" experience="380" speed="110" tier="3" manacost="680">
+	<health now="950" max="950" />
+	<look type="67" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="29" max="29" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-140" max="-185" />
+	</attacks>
+	<defenses armor="10" defense="10" />
+	<voices interval="5000" chance="10">
+		<voice sentence="GRRRR-KLUNK!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

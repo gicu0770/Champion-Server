@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Necromancer" nameDescription="a necromancer" race="blood" experience="750" speed="125" tier="3" manacost="880">
+	<health now="1350" max="1350" />
+	<look type="9" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="4" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="38" max="38" />
+	<attacks>
+		<attack name="energy" interval="2000" chance="100" range="5" min="-210" max="-285">
+			<attribute key="shootEffect" value="energy" />
+			<attribute key="areaEffect" value="energyarea" />
+		</attack>
+	</attacks>
+	<defenses armor="8" defense="8" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Death comes to all!" />
+		<voice sentence="Serve me in death!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<monster name="Goblin Scavenger" nameDescription="a goblin scavenger" race="blood" experience="24" speed="125" tier="1" manacost="310">
-	<health now="175" max="175" />
-	<look type="297" corpse="27196" />
+<monster name="Goblin" nameDescription="a goblin" race="blood" experience="12" speed="120" tier="1" manacost="280">
+	<health now="90" max="90" />
+	<look type="61" corpse="27196" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
 		<flag summonable="1" />
@@ -16,17 +16,17 @@
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
 	</flags>
-	<level min="7" max="7" />
+	<level min="4" max="4" />
 	<attacks>
-		<attack name="melee" interval="2000" min="-25" max="-32" />
-		<attack name="physical" interval="2000" chance="20" range="4" min="-12" max="-18">
+		<attack name="melee" interval="2000" min="-15" max="-22" />
+		<attack name="physical" interval="2000" chance="20" range="4" min="-8" max="-14">
 			<attribute key="shootEffect" value="smallstone" />
 		</attack>
 	</attacks>
-	<defenses armor="3" defense="4" />
+	<defenses armor="1" defense="2" />
 	<voices interval="5000" chance="10">
-		<voice sentence="Shiny, Shiny!" />
-		<voice sentence="All mine!" />
+		<voice sentence="Shiny, shiny!" />
+		<voice sentence="You pay!" />
 	</voices>
 	<loot>
 	</loot>

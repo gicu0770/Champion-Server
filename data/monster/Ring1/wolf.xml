@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Wolf" nameDescription="a wolf" race="blood" experience="8" speed="130" tier="1" manacost="260">
+	<health now="65" max="65" />
+	<look type="27" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="3" max="3" />
+	<attacks>
+		<attack name="melee" interval="2000" min="-12" max="-18" />
+	</attacks>
+	<defenses armor="1" defense="1" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Grrrrrrr" />
+		<voice sentence="Awoooo!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>

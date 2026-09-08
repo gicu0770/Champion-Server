@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monster name="Minotaur Archer" nameDescription="a minotaur archer" race="blood" experience="80" speed="125" tier="2" manacost="490">
+	<health now="320" max="320" />
+	<look type="24" corpse="27196" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="1" />
+		<flag pushable="1" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="4" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<level min="15" max="15" />
+	<attacks>
+		<attack name="physical" interval="2000" chance="100" range="5" min="-55" max="-75">
+			<attribute key="shootEffect" value="bolt" />
+		</attack>
+	</attacks>
+	<defenses armor="3" defense="4" />
+	<voices interval="5000" chance="10">
+		<voice sentence="Kaplar!" />
+		<voice sentence="Bullseye!" />
+	</voices>
+	<loot>
+	</loot>
+</monster>
