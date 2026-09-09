@@ -703,21 +703,17 @@ void Creature::onDeath()
 								int32_t killed;
 								member->getStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed);
 								member->addStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed + 1);
-								member->addKill();
 							}
 
-	
 							int32_t killed;
 							party->getLeader()->getStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed);
 							party->getLeader()->addStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed + 1);
-							party->getLeader()->addKill();
 						}
 					} else {
 						if (bestiaryId != 0) {
 							int32_t killed;
 							attackerPlayer->getStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed);
 							attackerPlayer->addStorageValue(PSTRG_BESTIARY_RANGE_START+bestiaryId, killed + 1);
-							attackerPlayer->addKill();
 						}
 					}
 				}

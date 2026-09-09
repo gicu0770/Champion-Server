@@ -1549,11 +1549,14 @@ function generateGold(player, monsterTier, difficulty, elite, boss, monsterLevel
   if player:hasBuff(SELF_GOLD_BOOST) then
     globalGold = globalGold + 0.2
   end
+  if colleftInfo[playerId] and colleftInfo[playerId].attributesItems and colleftInfo[playerId].attributesItems[60] then
+    globalGold = globalGold + (colleftInfo[playerId].attributesItems[60].value / 100)
+  end
   goldBasic = math.ceil(goldBasic * globalGold)
   if elite == 7 then
-		globalGold = globalGold * affixes[1].lootChance
+		goldBasic = goldBasic * affixes[1].lootChance
 	elseif elite == 8 then
-		globalGold = globalGold * affixes[2].lootChance
+		goldBasic = goldBasic * affixes[2].lootChance
 	end
 --  goldBasic = math.ceil(math.random(goldBasic * 0.25, goldBasic * 1.5))
   local party = player:getParty()

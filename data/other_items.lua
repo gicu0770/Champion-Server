@@ -1100,6 +1100,87 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            69
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Eldritch Reaver",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            68
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Grave Spearlord",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Minotaur Helmet",
+      38562,
+      "Minotaur Liberator",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            70
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Minotaur Liberator",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Lich Voodoo Mask",
       38566,
       "Soulbound Lich",
@@ -1301,31 +1382,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 134217728,
         imps = {
           {
-            237
+            264
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Tidal Overlord",
+        monster = "Bilbo",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1475,35 +1556,6 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Champion Trophy",
       38736,
       "Gorok",
@@ -1591,83 +1643,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
       {
-        chance = 15000,
-        forceType = 33554432,
+        chance = 100000,
+        forceType = 16777216,
         imps = {
           {
-            69
+            237
           },
           {
             {
+              15,
+              22,
+              35,
               50
             }
           }
         },
-        monster = "Eldritch Reaver",
-        unique = true,
+        monster = "Tidal Overlord",
         weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Minotaur Helmet",
-      38562,
-      "Minotaur Liberator",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            70
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Minotaur Liberator",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     }

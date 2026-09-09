@@ -16,7 +16,7 @@
 		<flag staticattack="70" />
 		<flag runonhealth="0" />
 	</flags>
-	<level min="50" max="50" />
+	<level min="41" max="65" />
 	<attacks>
 		<attack name="energy" interval="2000" chance="100" range="4" radius="3" target="1" min="-450" max="-600">
 			<attribute key="shootEffect" value="fire" />

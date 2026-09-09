@@ -12,13 +12,13 @@
 		<flag pushable="0" />
 		<flag canpushitems="1" />
 		<flag canpushcreatures="1" />
-		<flag targetdistance="3" />
+		<flag targetdistance="1" />
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
 	</flags>
-	<level min="44" max="44" />
+	<level min="41" max="65" />
 	<attacks>
-		<attack name="energy" interval="2000" chance="100" range="4" min="-310" max="-420">
+		<attack name="physical" interval="2000" chance="100" range="4" min="-310" max="-420">
 			<attribute key="shootEffect" value="suddendeath" />
 			<attribute key="areaEffect" value="mortarea" />
 		</attack>

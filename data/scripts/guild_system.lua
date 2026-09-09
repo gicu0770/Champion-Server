@@ -25,32 +25,56 @@ GuildSystem = {
     BUFFS = {
         {
             id = 1,
+            levelReq = 2,
+            enchantId = 4,
+            value = 3,
+            icon = "/images/buffs/healthregenbuff",
             name = "Health Regeneration",
-            levelReq = 1,
-            desc = "+3 Health Regeneration per second for all guild members.",
-            icon = "health_regen",
+            desc = "Increases Health Regeneration by +3 per second.",
         },
         {
             id = 2,
-            name = "Vitality Boost",
             levelReq = 5,
-            desc = "+100 Maximum Health for all guild members.",
-            icon = "vitality",
+            enchantId = 59,
+            value = 5,
+            icon = "/images/buffs/exp",
+            name = "Experience Surge",
+            desc = "Increases Experience gain by +5%.",
         },
         {
             id = 3,
-            name = "Experience Surge",
-            levelReq = 10,
-            desc = "+5% Bonus Experience from monster kills.",
-            icon = "exp_surge",
+            levelReq = 8,
+            enchantId = 1,
+            value = 120,
+            icon = "/images/buffs/vitality_master",
+            name = "Vitality Boost",
+            desc = "Increases Maximum Health by +120.",
         },
         {
             id = 4,
-            name = "Battle Aura",
-            levelReq = 14,
-            desc = "+5% Physical and Magic damage mitigation.",
-            icon = "battle_aura",
-        }
+            levelReq = 12,
+            enchantId = 60,
+            value = 10,
+            icon = "/images/buffs/gold",
+            name = "Prosperity",
+            desc = "Increases Gold gain by +10%.",
+        },
+        {
+            id = 5,
+            levelReq = 15,
+            enchants = { {8, 10}, {9, 10} },
+            icon = "/images/buffs/stoneform",
+            name = "Iron Bulwark",
+            desc = "Increases Physical and Magic Defense by +10.",
+        },
+        {
+            id = 6,
+            levelReq = 20,
+            enchants = { {6, 10}, {7, 10} },
+            icon = "/images/buffs/blade_master",
+            name = "Battle Supremacy",
+            desc = "Increases Physical and Magic Attack by +10.",
+        },
     }
 }
 
@@ -257,39 +281,42 @@ function Player:updateGuildTitle()
     end
 end
 
--- Buff management
+-- Guild level caching & retrieval
+GuildSystem.guildLevelCache = {}
+
+function GuildSystem.getGuildLevel(guildId)
+    if not guildId or guildId <= 0 then return 0 end
+    if GuildSystem.guildLevelCache[guildId] then
+        return GuildSystem.guildLevelCache[guildId]
+    end
+    local query = string.format("SELECT `level` FROM `guilds` WHERE `id` = %d LIMIT 1", guildId)
+    local res = db.storeQuery(query)
+    if res then
+        local lvl = result.getNumber(res, "level") or 1
+        result.free(res)
+        GuildSystem.guildLevelCache[guildId] = lvl
+        return lvl
+    end
+    return 0
+end
+
+-- Buff management (Stats recalculated dynamically in Player:setCollectionInfo())
 function GuildSystem.applyGuildBuffs(player, guildLevel)
     if not player then return end
-    GuildSystem.removeGuildBuffs(player)
-
-    if not guildLevel or guildLevel < 1 then return end
-
-    -- Buff 1: Health Regeneration (+3 HP / tick)
-    if guildLevel >= 1 then
-        local condition = Condition(CONDITION_REGENERATION)
-        condition:setParameter(CONDITION_PARAM_SUBID, GuildSystem.SUBID_BUFF_REGEN)
-        condition:setParameter(CONDITION_PARAM_TICKS, -1)
-        condition:setParameter(CONDITION_PARAM_HEALTHGAIN, 3)
-        condition:setParameter(CONDITION_PARAM_HEALTHTICKS, 1000)
-        condition:setParameter(CONDITION_PARAM_BUFF_SPELL, false)
-        player:addCondition(condition)
-    end
-
-    -- Buff 2: Vitality Boost (+100 Max HP)
-    if guildLevel >= 5 then
-        local condHp = Condition(CONDITION_ATTRIBUTES)
-        condHp:setParameter(CONDITION_PARAM_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
-        condHp:setParameter(CONDITION_PARAM_TICKS, -1)
-        condHp:setParameter(CONDITION_PARAM_STAT_MAXHITPOINTS, 100)
-        condHp:setParameter(CONDITION_PARAM_BUFF_SPELL, false)
-        player:addCondition(condHp)
-    end
+    pcall(function()
+        player:removeCondition(CONDITION_REGENERATION, CONDITION_SUBID, GuildSystem.SUBID_BUFF_REGEN)
+        player:removeCondition(CONDITION_ATTRIBUTES, CONDITION_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
+    end)
+    player:setCollectionInfo()
 end
 
 function GuildSystem.removeGuildBuffs(player)
     if not player then return end
-    player:removeCondition(CONDITION_REGENERATION, CONDITION_SUBID, GuildSystem.SUBID_BUFF_REGEN)
-    player:removeCondition(CONDITION_ATTRIBUTES, CONDITION_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
+    pcall(function()
+        player:removeCondition(CONDITION_REGENERATION, CONDITION_SUBID, GuildSystem.SUBID_BUFF_REGEN)
+        player:removeCondition(CONDITION_ATTRIBUTES, CONDITION_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
+    end)
+    player:setCollectionInfo()
 end
 
 -- Broadcast message to all online guild members
@@ -911,6 +938,7 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
 
         -- Deduct guild gold & level up
         db.query(string.format("UPDATE `guilds` SET `gold` = `gold` - %d, `level` = %d WHERE `id` = %d", nextConfig.cost, nextLevel, guildId))
+        GuildSystem.guildLevelCache[guildId] = nextLevel
 
         -- Notify and update all online members
         local allM = db.storeQuery(string.format("SELECT p.name FROM `guild_membership` gm JOIN `players` p ON gm.player_id = p.id WHERE gm.guild_id = %d", guildId))
@@ -1244,6 +1272,7 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
         db.query(string.format("DELETE FROM `guild_membership` WHERE `guild_id` = %d", guildId))
         db.query(string.format("DELETE FROM `guild_ranks` WHERE `guild_id` = %d", guildId))
         db.query(string.format("DELETE FROM `guilds` WHERE `id` = %d", guildId))
+        GuildSystem.guildLevelCache[guildId] = nil
 
         return true
 

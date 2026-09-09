@@ -5974,9 +5974,8 @@ void Game::playerHighscores(Player* player, uint8_t category, std::vector<uint16
 	std::string categoryTable;
 	switch (category) {
 		case 0: categoryTable = "p"; categoryName = "experience"; break;
-		case 1: categoryTable = "p"; categoryName = "onlinetime"; break;
-		case 2: categoryTable = "p"; categoryName = "dungeontier"; break;
-		case 3: categoryTable = "p"; categoryName = "dps"; break;
+		case 1: categoryTable = "p"; categoryName = "kills"; break;
+		case 2: categoryTable = "p"; categoryName = "onlinetime"; break;
 	
 		default: {
 			category = 0;

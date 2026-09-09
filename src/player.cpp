@@ -3902,6 +3902,10 @@ bool Player::onKilledCreature(Creature* target, bool lastHit/* = true*/)
 		return false;
 	}
 
+	if (targetPlayer != this && lastHit) {
+		addKill();
+	}
+
 	if (targetPlayer->getZone() == ZONE_PVP) {
 		targetPlayer->setDropLoot(false);
 		targetPlayer->setSkillLoss(false);

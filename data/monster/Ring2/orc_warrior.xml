@@ -16,7 +16,7 @@
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
 	</flags>
-	<level min="17" max="17" />
+	<level min="11" max="25" />
 	<attacks>
 		<attack name="melee" interval="2000" min="-65" max="-90" />
 	</attacks>

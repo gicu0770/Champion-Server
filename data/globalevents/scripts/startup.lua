@@ -41,20 +41,10 @@ function onStartup()
 		local position = town:getTemplePosition()
 		db.query("INSERT INTO `towns` (`id`, `name`, `posx`, `posy`, `posz`) VALUES (" .. town:getId() .. ", " .. db.escapeString(town:getName()) .. ", " .. position.x .. ", " .. position.y .. ", " .. position.z .. ")")
 	end
-
+--[[
 local ani1Item1 = generateUniqueItem(player, 26, 20)
 ani1Item1:moveTo(Position(503, 462, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-local ani1Item2 = generateUniqueItem(player, 27, 20)
-ani1Item2:moveTo(Position(505, 462, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-local ani1Item3 = generateUniqueItem(player, 28, 20)
-ani1Item3:moveTo(Position(507, 462, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-
-local ani2Item1 = generateUniqueItem(player, 29, 50)
-ani2Item1:moveTo(Position(1243, 554, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-local ani2Item2 = generateUniqueItem(player, 30, 50)
-ani2Item2:moveTo(Position(1245, 554, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-local ani2Item3 = generateUniqueItem(player, 31, 50)
-ani2Item3:moveTo(Position(1247, 554, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
+--]]
 
 --	local shrineC = Game.createItem(1945, -1, Position(1333, 1466, 7))
 --	shrineC:setActionId(27543)
@@ -78,13 +68,14 @@ ani2Item3:moveTo(Position(1247, 554, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
 --	trainingPortal:setActionId(27546)
 
 
- local teleportBack = Game.createItem(31100, -1, Position(691, 1033, 7))
- teleportBack:setActionId(5623)
+-- local teleportBack = Game.createItem(31100, -1, Position(691, 1033, 7))
+-- teleportBack:setActionId(5623)
 
 	--	CursedChestsLoad()
 	loadBuffs()
-	Game.createNpc("Jonny", Position(673, 1040, 7))
-	Game.createNpc("Mona", Position(675, 1040, 7))
+	Game.createNpc("Jonny", Position(659, 1034, 7))
+	Game.createNpc("Mona", Position(659, 1043, 7))
+	Game.createNpc("Andromida", Position(659, 1043, 7))
 
 
 	if configManager.getNumber(configKeys.INSTANCE_TYPE) == 0 then

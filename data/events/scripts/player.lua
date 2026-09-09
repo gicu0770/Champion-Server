@@ -800,7 +800,26 @@ function Player:onLook(thing, position, distance)
 				shortNumbers(thing:getMaxMana(), 2))
 		end
 		description = string.format(str, description, shortNumbers(thing:getHealth(), 2), shortNumbers(thing:getMaxHealth(), 2)) .. ""
-
+		local affixes = {
+		[1] = {
+			name = "Elite",
+			skull = 7,
+			hpMultiplier = 1.5,
+			dmgMultiplier = 1.15,
+			clones = 2,
+			weight = 50, -- Większa szansa na Elite
+			lootChance = 1.20 -- 20% wiecej gold i exp
+		},
+		[2] = {
+			name = "Champion",
+			skull = 8,
+			hpMultiplier = 2.5,
+			dmgMultiplier = 2.0,
+			clones = 0,
+			weight = 50, -- Mniejsza szansa na Champion
+			lootChance = 4.00 -- 3 x wiecej gold i exp
+		}
+		}
 			local monsterLevel = thing:getMonsterLevel()
 			local mType = thing:getType()
 			local monsterGold = goldFormula(monsterLevel)
@@ -833,7 +852,9 @@ function Player:onLook(thing, position, distance)
 		if getGlobalBuff(BUFF_GLOBAL_EXP) then
 			EXPO = EXPO + 20
 		end
-
+		if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems and colleftInfo[self:getId()].attributesItems[59] then
+			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[59].value
+		end
 		monsterExp = monsterExp + ((monsterExp * EXPO) / 100)
   		if self:getSkull() == 7 then
 			monsterExp = monsterExp * affixes[1].lootChance
@@ -841,25 +862,6 @@ function Player:onLook(thing, position, distance)
 			monsterExp = monsterExp * affixes[2].lootChance
 		end
 		description = string.format("%s\nExp: %s", description, math.ceil(monsterExp))
-
-
-		local globalGold = 1
-		if getGlobalBuff(BUFF_GLOBAL_GOLD) then
-			globalGold = globalGold + 0.2 -- 1.2
-		end
-		if self:hasBuff(SELF_GOLD_BOOST) then
-			globalGold = globalGold + 0.2 -- 1.2
-		end
-		if self:hasBuff(MONSTER_SOUL_GOLD) then
-			globalGold = globalGold + 0.2 -- 0.2
-		end
-		monsterGold = math.ceil(monsterGold * globalGold)
-		description = string.format("%s\nGold: %s", description, math.ceil(monsterGold))
-
-		if thing:getStorageValue(PlayerStorage.keyTier) >= 1 then
-			description = string.format("%s\nKey Tier: %s", description, thing:getStorageValue(PlayerStorage.keyTier))
-		end
-		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
 
 		eliteAffix_name = {
 			[1] = "Elite",
@@ -874,6 +876,33 @@ function Player:onLook(thing, position, distance)
 		local skullPlus = thing:getSkull() - 6
 		local affixName = eliteAffix_name[skullPlus]
 		local affixDesc = eliteAffix_desc[skullPlus]
+		local globalGold = 1
+		if getGlobalBuff(BUFF_GLOBAL_GOLD) then
+			globalGold = globalGold + 0.2 -- 1.2
+		end
+		if self:hasBuff(SELF_GOLD_BOOST) then
+			globalGold = globalGold + 0.2 -- 1.2
+		end
+		if self:hasBuff(MONSTER_SOUL_GOLD) then
+			globalGold = globalGold + 0.2 -- 0.2
+		end
+		if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems and colleftInfo[self:getId()].attributesItems[60] then
+			globalGold = globalGold + (colleftInfo[self:getId()].attributesItems[60].value / 100)
+		end
+		monsterGold = math.ceil(monsterGold * globalGold)
+		if skull == 7 then
+			monsterGold = monsterGold * affixes[1].lootChance
+		elseif skull == 8 then
+			monsterGold = monsterGold * affixes[2].lootChance
+		end
+		description = string.format("%s\nGold: %s", description, math.ceil(monsterGold))
+
+		if thing:getStorageValue(PlayerStorage.keyTier) >= 1 then
+			description = string.format("%s\nKey Tier: %s", description, thing:getStorageValue(PlayerStorage.keyTier))
+		end
+		description = string.format("%s\nSpeed: %s", description, thing:getSpeed())
+
+
 		if skull >= 7 and affixName and affixDesc then
 			description = string.format("%s\nBoost: %s\n%s", description, affixName, affixDesc)
 		end
@@ -1609,21 +1638,21 @@ function Player:onGainExperience(source, gainPrecent, rawExp)
 
 
 	local party = self:getParty()
-  if not party or (party and not party:isSharedExperienceEnabled()) then
---		if colleftInfo[self:getId()].attributesItems[10] then
---			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[10].value
---		end
+	if not party or (party and not party:isSharedExperienceEnabled()) then
+		if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems and colleftInfo[self:getId()].attributesItems[59] then
+			EXPO = EXPO + colleftInfo[self:getId()].attributesItems[59].value
+		end
 	elseif (party and party:isSharedExperienceEnabled()) then
 		local leader = party:getLeader()
 		EXPO = EXPO - ((#party:getMembers() + 1) * 7.5)
 		if leader then
---			if colleftInfo[leader:getId()].attributesItems[10] then
---				EXPO = EXPO + colleftInfo[leader:getId()].attributesItems[10].value
---			end
+			if colleftInfo[leader:getId()] and colleftInfo[leader:getId()].attributesItems and colleftInfo[leader:getId()].attributesItems[59] then
+				EXPO = EXPO + colleftInfo[leader:getId()].attributesItems[59].value
+			end
 			for _, member in ipairs(party:getMembers()) do
---				if colleftInfo[member:getId()].attributesItems[10] then
---					EXPO = EXPO + colleftInfo[member:getId()].attributesItems[10].value
---				end
+				if colleftInfo[member:getId()] and colleftInfo[member:getId()].attributesItems and colleftInfo[member:getId()].attributesItems[59] then
+					EXPO = EXPO + colleftInfo[member:getId()].attributesItems[59].value
+				end
 			end
 		end
 	end

@@ -1,5 +1,832 @@
 <?xml version="1.0"?>
 <spawns>
+	<spawn centerx="764" centery="1030" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="758" centery="1031" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="772" centery="1032" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="749" centery="1033" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="754" centery="1035" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="786" centery="1035" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="781" centery="1036" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="775" centery="1038" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="741" centery="1039" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="768" centery="1039" centerz="7" radius="1">
+		<monster name="Void Imp" x="1" y="-1" z="7" spawntime="163216128" />
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Void Imp" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="754" centery="1040" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="762" centery="1041" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="782" centery="1042" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="791" centery="1042" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="736" centery="1044" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="752" centery="1045" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="775" centery="1045" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="794" centery="1047" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="744" centery="1048" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="763" centery="1048" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="785" centery="1051" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="-1" z="7" spawntime="163216128" />
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="730" centery="1052" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="799" centery="1052" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Voidfang" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="753" centery="1054" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="764" centery="1054" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="768" centery="1055" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="736" centery="1057" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="777" centery="1057" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="792" centery="1058" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="730" centery="1059" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="652" centery="1060" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="802" centery="1060" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="746" centery="1061" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="647" centery="1062" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="662" centery="1062" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="697" centery="1062" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="657" centery="1063" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="764" centery="1063" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="785" centery="1063" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="643" centery="1064" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="668" centery="1064" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="724" centery="1064" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="771" centery="1064" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="699" centery="1065" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="739" centery="1065" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="793" centery="1065" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Voidforged" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="639" centery="1066" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="651" centery="1066" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="662" centery="1066" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="692" centery="1066" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="755" centery="1066" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="678" centery="1067" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="697" centery="1067" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="600" centery="1068" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="656" centery="1068" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="761" centery="1068" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="-1" z="7" spawntime="163216128" />
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="731" centery="1069" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="619" centery="1070" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="684" centery="1070" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="689" centery="1070" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="605" centery="1071" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="642" centery="1071" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="648" centery="1071" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="653" centery="1071" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="696" centery="1071" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="767" centery="1071" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Voidforged" x="0" y="1" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="544" centery="1072" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="595" centery="1072" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="748" centery="1072" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="-1" z="7" spawntime="163216128" />
+		<monster name="Voidforged" x="1" y="-1" z="7" spawntime="163216128" />
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="777" centery="1072" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="567" centery="1073" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="586" centery="1073" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="674" centery="1073" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="721" centery="1073" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="626" centery="1074" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="679" centery="1074" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="756" centery="1074" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="785" centery="1074" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="798" centery="1074" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="523" centery="1075" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="610" centery="1075" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="621" centery="1075" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="696" centery="1075" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="771" centery="1075" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Voidfang" x="0" y="1" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="588" centery="1076" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="600" centery="1076" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="667" centery="1076" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="741" centery="1076" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="791" centery="1076" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="540" centery="1077" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="654" centery="1077" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="1077" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="691" centery="1077" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="627" centery="1078" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="729" centery="1078" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="571" centery="1079" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="676" centery="1079" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="686" centery="1079" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="749" centery="1079" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="561" centery="1080" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="623" centery="1080" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="632" centery="1080" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="-1" z="7" spawntime="163216128" />
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="759" centery="1080" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="564" centery="1081" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="596" centery="1081" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="609" centery="1081" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="1081" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="681" centery="1081" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="722" centery="1081" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="526" centery="1082" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="538" centery="1082" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="669" centery="1082" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="677" centery="1082" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="764" centery="1082" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="790" centery="1082" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="688" centery="1083" centerz="7" radius="1">
+		<monster name="Goblin Scavenger" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="576" centery="1084" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="672" centery="1084" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="692" centery="1084" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="778" centery="1084" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="519" centery="1085" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="681" centery="1085" centerz="7" radius="1">
+		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="739" centery="1085" centerz="7" radius="1">
+		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="748" centery="1085" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="757" centery="1085" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="613" centery="1086" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="728" centery="1086" centerz="7" radius="1">
+		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="554" centery="1087" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="565" centery="1087" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="602" centery="1087" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="625" centery="1087" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="636" centery="1087" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="772" centery="1087" centerz="7" radius="1">
+		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="606" centery="1088" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="531" centery="1089" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="648" centery="1090" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="654" centery="1091" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="521" centery="1092" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="561" centery="1092" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="573" centery="1092" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="639" centery="1092" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="-1" y="0" z="7" spawntime="163216128" />
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="613" centery="1093" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="-1" z="7" spawntime="163216128" />
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="671" centery="1093" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="565" centery="1094" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="587" centery="1094" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="606" centery="1094" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="1094" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="553" centery="1095" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="580" centery="1095" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="609" centery="1097" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="624" centery="1097" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="649" centery="1097" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="678" centery="1097" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="528" centery="1098" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="535" centery="1098" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="655" centery="1098" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="666" centery="1099" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="572" centery="1100" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="620" centery="1100" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="519" centery="1101" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="584" centery="1101" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="563" centery="1102" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="632" centery="1102" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="671" centery="1103" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="594" centery="1104" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="621" centery="1104" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="678" centery="1104" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="542" centery="1105" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Betrayed Wraith" x="0" y="1" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="559" centery="1105" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="579" centery="1105" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Cyclops Drone" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="648" centery="1105" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="639" centery="1106" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="525" centery="1107" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="572" centery="1107" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="635" centery="1107" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="584" centery="1108" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="629" centery="1108" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="534" centery="1110" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="644" centery="1110" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="648" centery="1110" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="638" centery="1111" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="659" centery="1111" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="566" centery="1112" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="541" centery="1113" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="586" centery="1114" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="576" centery="1115" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="653" centery="1115" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="679" centery="1115" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="540" centery="1116" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="595" centery="1116" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="648" centery="1116" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="670" centery="1116" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="609" centery="1117" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="519" centery="1119" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="527" centery="1119" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="573" centery="1119" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="676" centery="1119" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="656" centery="1120" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Orc Shaman" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="543" centery="1121" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="597" centery="1122" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="1122" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="531" centery="1123" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="552" centery="1123" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="588" centery="1123" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="617" centery="1123" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="672" centery="1123" centerz="7" radius="1">
+		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="626" centery="1124" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="603" centery="1125" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="611" centery="1125" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="677" centery="1126" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="618" centery="1127" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="638" centery="1128" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="555" centery="1129" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="545" centery="1130" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="523" centery="1131" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="532" centery="1131" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="606" centery="1131" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="551" centery="1132" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="591" centery="1132" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="624" centery="1132" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="653" centery="1134" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="600" centery="1135" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="634" centery="1135" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="643" centery="1136" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="619" centery="1137" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="666" centery="1138" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="612" centery="1140" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="637" centery="1140" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="576" centery="1141" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="649" centery="1141" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="658" centery="1141" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="632" centery="1142" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="562" centery="1143" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="627" centery="1143" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="571" centery="1145" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="644" centery="1145" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="665" centery="1146" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="652" centery="1147" centerz="7" radius="1">
+		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="635" centery="1148" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="589" centery="1149" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="657" centery="1150" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="586" centery="1152" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="647" centery="1152" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="664" centery="1152" centerz="7" radius="1">
+		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="571" centery="1153" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="592" centery="1158" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="602" centery="1158" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="576" centery="1160" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="619" centery="1160" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="612" centery="1161" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="583" centery="1163" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="640" centery="1164" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="593" centery="1166" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="633" centery="1167" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="605" centery="1168" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="625" centery="1171" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="643" centery="1171" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="582" centery="1172" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="613" centery="1172" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="636" centery="1173" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="596" centery="1175" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="620" centery="1178" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="606" centery="1179" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="645" centery="1181" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="595" centery="1182" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="632" centery="1182" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="619" centery="1186" centerz="7" radius="1">
+		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Betrayed Wraith" x="1" y="0" z="7" spawntime="163216128" />
+	</spawn>
+	<spawn centerx="631" centery="1187" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="603" centery="1190" centerz="7" radius="1">
+		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
+	</spawn>
 	<spawn centerx="2072" centery="2012" centerz="7" radius="1">
 		<monster name="Dummy" x="-1" y="-1" z="7" spawntime="60" direction="2" />
 		<monster name="Dummy" x="1" y="-1" z="7" spawntime="60" direction="2" />

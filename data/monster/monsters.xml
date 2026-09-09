@@ -1,79 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monsters>
 	<!-- Ring 1 (Lvl 1 - 10) -->
-	<monster name="Rat" file="Ring1/rat.xml" />
-	<monster name="Cave Rat" file="Ring1/cave_rat.xml" />
-	<monster name="Snake" file="Ring1/snake.xml" />
-	<monster name="Wolf" file="Ring1/wolf.xml" />
 	<monster name="Goblin" file="Ring1/goblin.xml" />
 	<monster name="Goblin Scavenger" file="Ring1/goblin_scavenger.xml" />
-	<monster name="Swamp Troll" file="Ring1/swamp_troll.xml" />
-	<monster name="Troll" file="Ring1/troll.xml" />
-	<monster name="Skeleton" file="Ring1/skeleton.xml" />
-	<monster name="Rotworm" file="Ring1/rotworm.xml" />
-	<monster name="Dwarf" file="Ring1/dwarf.xml" />
-	<monster name="Carrion Worm" file="Ring1/carrion_worm.xml" />
 	<!-- Ring 2 (Lvl 11 - 25) -->
-	<monster name="Wild Warrior" file="Ring2/wild_warrior.xml" />
-	<monster name="Crazed Beggar" file="Ring2/crazed_beggar.xml" />
-	<monster name="Bandit" file="Ring2/bandit.xml" />
-	<monster name="Smuggler" file="Ring2/smuggler.xml" />
-	<monster name="Orc Spearman" file="Ring2/orc_spearman.xml" />
-	<monster name="Minotaur" file="Ring2/minotaur.xml" />
-	<monster name="Minotaur Archer" file="Ring2/minotaur_archer.xml" />
-	<monster name="Ghoul" file="Ring2/ghoul.xml" />
 	<monster name="Orc Warrior" file="Ring2/orc_warrior.xml" />
-	<monster name="Crypt Shambler" file="Ring2/crypt_shambler.xml" />
 	<monster name="Orc Shaman" file="Ring2/orc_shaman.xml" />
-	<monster name="Bonelord" file="Ring2/bonelord.xml" />
-	<monster name="Minotaur Mage" file="Ring2/minotaur_mage.xml" />
-	<monster name="Dwarf Guard" file="Ring2/dwarf_guard.xml" />
-	<monster name="Cyclops" file="Ring2/cyclops.xml" />
-	<monster name="Minotaur Guard" file="Ring2/minotaur_guard.xml" />
-	<monster name="Cyclops Drone" file="Ring2/cyclops_drone.xml" />
-
 	<!-- Ring 3 (Lvl 26 - 40) -->
-	<monster name="Orc Berserker" file="Ring3/orc_berserker.xml" />
-	<monster name="Orc Leader" file="Ring3/orc_leader.xml" />
 	<monster name="Cyclops Smith" file="Ring3/cyclops_smith.xml" />
-	<monster name="Stone Golem" file="Ring3/stone_golem.xml" />
-	<monster name="Gargoyle" file="Ring3/gargoyle.xml" />
-	<monster name="Dragon Hatchling" file="Ring3/dragon_hatchling.xml" />
-	<monster name="Dragon" file="Ring3/dragon.xml" />
-	<monster name="Wyvern" file="Ring3/wyvern.xml" />
-	<monster name="Mutated Human" file="Ring3/mutated_human.xml" />
-	<monster name="Mutated Rat" file="Ring3/mutated_rat.xml" />
-	<monster name="Bog Raider" file="Ring3/bog_raider.xml" />
-	<monster name="Dark Monk" file="Ring3/dark_monk.xml" />
-	<monster name="Vampire" file="Ring3/vampire.xml" />
-	<monster name="Necromancer" file="Ring3/necromancer.xml" />
-	<monster name="Hero" file="Ring3/hero.xml" />
-	<monster name="Black Knight" file="Ring3/black_knight.xml" />
-	<monster name="Giant Spider" file="Ring3/giant_spider.xml" />
-
-	<!-- Ring 4 (Lvl 41 - 50) -->
-	<monster name="Dragon Lord" file="Ring4/dragon_lord.xml" />
-	<monster name="Frost Dragon" file="Ring4/frost_dragon.xml" />
-	<monster name="Hydra" file="Ring4/hydra.xml" />
-	<monster name="Warlock" file="Ring4/warlock.xml" />
-	<monster name="Lich" file="Ring4/lich.xml" />
-	<monster name="Lost Soul" file="Ring4/lost_soul.xml" />
+	<monster name="Cyclops Drone" file="Ring3/cyclops_drone.xml" />
+	<!-- Ring 4 (Lvl 41 - 60) -->
 	<monster name="Betrayed Wraith" file="Ring4/betrayed_wraith.xml" />
-	<monster name="Nightmare" file="Ring4/nightmare.xml" />
-	<monster name="Diabolic Imp" file="Ring4/diabolic_imp.xml" />
-	<monster name="Destroyer" file="Ring4/destroyer.xml" />
-	<monster name="Hellhound" file="Ring4/hellhound.xml" />
-	<monster name="Draken Warmaster" file="Ring4/draken_warmaster.xml" />
-	<monster name="Draken Spellweaver" file="Ring4/draken_spellweaver.xml" />
-	<monster name="Dark Torturer" file="Ring4/dark_torturer.xml" />
 	<monster name="Demon" file="Ring4/demon.xml" />
-	<monster name="Grim Reaper" file="Ring4/grim_reaper.xml" />
-
-	<!-- Falcons Tier 1 -->
-	<monster name="Falcon Knight" file="falcons/falcon_knight.xml" />
-	<monster name="Falcon Wizard" file="falcons/falcon_wizard.xml" />
-
-
+	<!-- SideMap  (Lvl 70 - 100) -->
+	<monster name="Voidfang" file="SideMap/voidfang.xml" />
+	<monster name="Void Imp" file="SideMap/void_imp.xml" />
+	<monster name="Voidforged" file="SideMap/voidforged.xml" />
 
 	<!-- Goblin -->
 	<monster name="Treasure Goblin" file="treasure goblin.xml" />

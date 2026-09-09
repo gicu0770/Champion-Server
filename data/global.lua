@@ -997,6 +997,43 @@ function getDetails(target)
 	details[16] = target:getSpecialSkill(SPECIALSKILL_CRITICALHITAMOUNT)
 	details[17] = string.format("%s | %s%%", target:getSpeed(), movementSpeedPercent) -- target:getSpeed()
 	details[18] = 0 -- Resilience
+
+	local expBoost = 0
+	if (target.getBuff and target:getBuff(BUFF_EXP_BOOST)) or (target.hasBuff and target:hasBuff(BUFF_EXP_BOOST)) then
+		expBoost = expBoost + 20
+	end
+	if (target.getBuff and target:getBuff(BUFF_EXP_SCROLL)) or (target.hasBuff and target:hasBuff(BUFF_EXP_SCROLL)) then
+		expBoost = expBoost + 30
+	end
+	if (target.getBuff and target:getBuff(BUFF_EXP_DAILY)) or (target.hasBuff and target:hasBuff(BUFF_EXP_DAILY)) then
+		expBoost = expBoost + 30
+	end
+	if (target.getBuff and target:getBuff(MONSTER_SOUL_EXP)) or (target.hasBuff and target:hasBuff(MONSTER_SOUL_EXP)) then
+		expBoost = expBoost + 25
+	end
+	if getGlobalBuff and getGlobalBuff(BUFF_GLOBAL_EXP) then
+		expBoost = expBoost + 20
+	end
+	if attrs and attrs[59] then
+		expBoost = expBoost + attrs[59].value
+	end
+
+	local goldBoost = 0
+	if getGlobalBuff and getGlobalBuff(BUFF_GLOBAL_GOLD) then
+		goldBoost = goldBoost + 20
+	end
+	if (target.hasBuff and target:hasBuff(SELF_GOLD_BOOST)) or (target.getBuff and target:getBuff(SELF_GOLD_BOOST)) then
+		goldBoost = goldBoost + 20
+	end
+	if (target.hasBuff and target:hasBuff(MONSTER_SOUL_GOLD)) or (target.getBuff and target:getBuff(MONSTER_SOUL_GOLD)) then
+		goldBoost = goldBoost + 20
+	end
+	if attrs and attrs[60] then
+		goldBoost = goldBoost + attrs[60].value
+	end
+
+	details[19] = expBoost
+	details[20] = goldBoost
 	return details
   end
 
@@ -2220,6 +2257,50 @@ function Player.setCollectionInfo(self)
 					category = attr.category,
 					percent = attr.percent,
 				}
+			end
+		end
+	end
+
+	-- Guild Buffs (active bonuses unlocked by guild level)
+	local guild = self:getGuild()
+	local guildId = guild and guild:getId() or nil
+	if not guildId then
+		local gRes = db.storeQuery(string.format("SELECT `guild_id` FROM `guild_membership` WHERE `player_id` = %d LIMIT 1", self:getGuid()))
+		if gRes then
+			guildId = result.getNumber(gRes, "guild_id")
+			result.free(gRes)
+		end
+	end
+
+	if guildId and guildId > 0 and GuildSystem and GuildSystem.BUFFS then
+		local guildLevel = GuildSystem.getGuildLevel(guildId)
+		if guildLevel and guildLevel > 0 then
+			for _, buff in ipairs(GuildSystem.BUFFS) do
+				if guildLevel >= buff.levelReq then
+					local enchantList = buff.enchants or (buff.enchantId and { {buff.enchantId, buff.value} }) or {}
+					for _, ench in ipairs(enchantList) do
+						local enchantId = ench[1]
+						local value = ench[2]
+						local attr = US_ENCHANTMENTS[enchantId]
+						if attr then
+							if attributesTables[enchantId] ~= nil then
+								if attr.unique then
+									attributesTables[enchantId].value = math.max(attributesTables[enchantId].value, value)
+								else
+									attributesTables[enchantId].value = attributesTables[enchantId].value + value
+								end
+								attributesTables[enchantId].text = attr.name
+							else
+								attributesTables[enchantId] = {
+									text = attr.name,
+									value = value,
+									category = attr.category,
+									percent = attr.percent,
+								}
+							end
+						end
+					end
+				end
 			end
 		end
 	end
@@ -5867,6 +5948,12 @@ function Player.setStatistics(self)
 
 	self:addHealthGain(1, base_healthRegen, true)
 	self:addManaGain(1, base_manaRegen, true)
+	if colleftInfo[self:getId()].attributesItems[1] then -- max health
+		Healthadded = Healthadded + colleftInfo[self:getId()].attributesItems[1].value
+	end
+	if colleftInfo[self:getId()].attributesItems[2] then -- max mana
+		Manaadded = Manaadded + colleftInfo[self:getId()].attributesItems[2].value
+	end
 	if colleftInfo[self:getId()].attributesItems[4] then -- health regeneration
 		healthRegen = healthRegen + colleftInfo[self:getId()].attributesItems[4].value
 	end

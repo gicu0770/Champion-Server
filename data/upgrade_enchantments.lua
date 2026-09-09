@@ -505,6 +505,20 @@ US_ENCHANTMENTS = {
         unique = true,
         itemType = US_ITEM_TYPES.ALL
     },
+    [59] = {
+        name = "EXP",
+        desc = "Increase experience gain.",
+        category = 1,
+        percent = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [60] = {
+        name = "Gold",
+        desc = "Increase gold gain.",
+        category = 1,
+        percent = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
 }
 
 REDUCTION_ATTR_VALUES = {

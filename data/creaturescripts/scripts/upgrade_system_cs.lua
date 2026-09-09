@@ -975,7 +975,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local monster_damage_bonus = 0
 		if attacker:getType():tier() then
 			local monsterTier = attacker:getType():tier()
-			primaryDamage = MONSTER_CONFIG[monsterTier].damage
+			primaryDamage = damageFormula(attacker:getMonsterLevel()) --MONSTER_CONFIG[monsterTier].damage
 			local skull = attacker:getSkull()
 			if skull == 7 then -- Elite (+15% damage)
 				monster_damage_bonus = monster_damage_bonus + 15

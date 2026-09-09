@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<monster name="Goblin" nameDescription="a goblin" race="blood" experience="12" speed="120" tier="1" manacost="280">
-	<health now="90" max="90" />
+<monster name="Goblin" nameDescription="a goblin" race="blood" experience="5" speed="120" tier="1" manacost="290">
+	<health now="120" max="120" />
 	<look type="61" corpse="27196" />
 	<targetchange interval="4000" chance="10" />
 	<flags>
@@ -15,16 +15,20 @@
 		<flag targetdistance="1" />
 		<flag staticattack="90" />
 		<flag runonhealth="0" />
+
 	</flags>
-	<level min="4" max="4" />
+	<level min="1" max="3" />
 	<attacks>
-		<attack name="melee" interval="2000" min="-15" max="-22" />
+		<attack name="melee" interval="2000" min="-15" max="-15" />
 	</attacks>
-	<defenses armor="1" defense="2" />
+	<defenses armor="0" defense="0" />
 	<voices interval="5000" chance="10">
-		<voice sentence="Shiny, shiny!" />
-		<voice sentence="You pay!" />
+		<voice sentence="Go go, Gobo attack !!" />
+		<voice sentence="Me the greenest and the meanest!" />
+		<voice sentence="Me have power to crush you!" />
+		<voice sentence="Goblinkiller! Catch him !!" />
 	</voices>
 	<loot>
+
 	</loot>
 </monster>
