@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<spawns>
+	<spawn centerx="730" centery="1040" centerz="7" radius="10">
+		<monster name="Goblin" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Goblin" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="702" centery="1087" centerz="7" radius="10">
+		<monster name="Goblin Scavenger" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Goblin Scavenger" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="647" centery="1087" centerz="7" radius="10">
+		<monster name="Rat" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Rat" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="620" centery="1040" centerz="7" radius="10">
+		<monster name="Wolf" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Wolf" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="647" centery="992" centerz="7" radius="10">
+		<monster name="Skeleton" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Skeleton" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="702" centery="992" centerz="7" radius="10">
+		<monster name="Rotworm" x="0" y="0" z="0" spawntime="30" />
+		<monster name="Rotworm" x="2" y="2" z="0" spawntime="30" />
+	</spawn>
+	<spawn centerx="785" centery="1040" centerz="7" radius="12">
+		<monster name="Orc Warrior" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Orc Warrior" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="730" centery="1135" centerz="7" radius="12">
+		<monster name="Orc Shaman" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Orc Shaman" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="620" centery="1135" centerz="7" radius="12">
+		<monster name="Bandit" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Bandit" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="565" centery="1040" centerz="7" radius="12">
+		<monster name="Minotaur" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Minotaur" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="620" centery="944" centerz="7" radius="12">
+		<monster name="Ghoul" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Ghoul" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="730" centery="944" centerz="7" radius="12">
+		<monster name="Cyclops" x="0" y="0" z="0" spawntime="45" />
+		<monster name="Cyclops" x="-2" y="2" z="0" spawntime="45" />
+	</spawn>
+	<spawn centerx="855" centery="1040" centerz="7" radius="14">
+		<monster name="Cyclops Smith" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="765" centery="1195" centerz="7" radius="14">
+		<monster name="Cyclops Drone" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="585" centery="1195" centerz="7" radius="14">
+		<monster name="Orc Berserker" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="495" centery="1040" centerz="7" radius="14">
+		<monster name="Dragon" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="584" centery="884" centerz="7" radius="14">
+		<monster name="Hero" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="765" centery="884" centerz="7" radius="14">
+		<monster name="Giant Spider" x="0" y="0" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="940" centery="1040" centerz="7" radius="15">
+		<monster name="Betrayed Wraith" x="0" y="0" z="0" spawntime="90" />
+	</spawn>
+	<spawn centerx="756" centery="1292" centerz="7" radius="15">
+		<monster name="Demon" x="0" y="0" z="0" spawntime="90" />
+	</spawn>
+	<spawn centerx="460" centery="1195" centerz="7" radius="15">
+		<monster name="Dragon Lord" x="0" y="0" z="0" spawntime="90" />
+	</spawn>
+	<spawn centerx="460" centery="884" centerz="7" radius="15">
+		<monster name="Hellhound" x="0" y="0" z="0" spawntime="90" />
+	</spawn>
+	<spawn centerx="756" centery="787" centerz="7" radius="15">
+		<monster name="Grim Reaper" x="0" y="0" z="0" spawntime="90" />
+	</spawn>
+	<spawn centerx="415" centery="780" centerz="7" radius="15">
+		<monster name="Frost Dragon" x="0" y="0" z="0" spawntime="300" />
+	</spawn>
+	<spawn centerx="935" centery="780" centerz="7" radius="15">
+		<monster name="Hero" x="0" y="0" z="0" spawntime="300" />
+	</spawn>
+	<spawn centerx="415" centery="1300" centerz="7" radius="15">
+		<monster name="Hydra" x="0" y="0" z="0" spawntime="300" />
+	</spawn>
+	<spawn centerx="935" centery="1300" centerz="7" radius="15">
+		<monster name="Demon" x="0" y="0" z="0" spawntime="300" />
+	</spawn>
+	<!-- SideMap: North (Góra) -->
+	<spawn centerx="675" centery="688" centerz="7" radius="12">
+		<monster name="Void Imp" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Void Imp" x="3" y="2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="710" centerz="7" radius="12">
+		<monster name="Voidfang" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Voidfang" x="2" y="-2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="687" centery="710" centerz="7" radius="12">
+		<monster name="Voidforged" x="0" y="0" z="0" spawntime="75" />
+		<monster name="Voidforged" x="-2" y="2" z="0" spawntime="75" />
+	</spawn>
+	<!-- SideMap: South (Dół) -->
+	<spawn centerx="675" centery="1368" centerz="7" radius="12">
+		<monster name="Void Imp" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Void Imp" x="3" y="2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="663" centery="1390" centerz="7" radius="12">
+		<monster name="Voidfang" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Voidfang" x="2" y="-2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="687" centery="1390" centerz="7" radius="12">
+		<monster name="Voidforged" x="0" y="0" z="0" spawntime="75" />
+		<monster name="Voidforged" x="-2" y="2" z="0" spawntime="75" />
+	</spawn>
+	<!-- SideMap: West (Lewo) -->
+	<spawn centerx="335" centery="1028" centerz="7" radius="12">
+		<monster name="Void Imp" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Void Imp" x="3" y="2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="323" centery="1050" centerz="7" radius="12">
+		<monster name="Voidfang" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Voidfang" x="2" y="-2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="347" centery="1050" centerz="7" radius="12">
+		<monster name="Voidforged" x="0" y="0" z="0" spawntime="75" />
+		<monster name="Voidforged" x="-2" y="2" z="0" spawntime="75" />
+	</spawn>
+	<!-- SideMap: East (Prawo) -->
+	<spawn centerx="1015" centery="1028" centerz="7" radius="12">
+		<monster name="Void Imp" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Void Imp" x="3" y="2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="1003" centery="1050" centerz="7" radius="12">
+		<monster name="Voidfang" x="0" y="0" z="0" spawntime="60" />
+		<monster name="Voidfang" x="2" y="-2" z="0" spawntime="60" />
+	</spawn>
+	<spawn centerx="1027" centery="1050" centerz="7" radius="12">
+		<monster name="Voidforged" x="0" y="0" z="0" spawntime="75" />
+		<monster name="Voidforged" x="-2" y="2" z="0" spawntime="75" />
+	</spawn>
+</spawns>
