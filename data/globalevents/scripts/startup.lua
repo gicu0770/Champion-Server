@@ -75,7 +75,8 @@ ani1Item1:moveTo(Position(503, 462, 9), 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
 	loadBuffs()
 	Game.createNpc("Jonny", Position(659, 1034, 7))
 	Game.createNpc("Mona", Position(659, 1043, 7))
-	Game.createNpc("Andromida", Position(659, 1043, 7))
+	Game.createNpc("Andromida", Position(689, 1043, 7))
+	Game.createNpc("Kito", Position(689, 1034, 7))
 
 
 	if configManager.getNumber(configKeys.INSTANCE_TYPE) == 0 then

@@ -16,7 +16,7 @@ function onAddFocus(cid)
 end
 
 function onCreatureSay(cid, type, msg)
-  if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) >= 4 then
+  if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) > 2 then
     return false
   end
 

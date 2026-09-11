@@ -1100,29 +1100,118 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
       {
-        chance = 15000,
-        forceType = 33554432,
+        chance = 100000,
+        forceType = 536870912,
         imps = {
           {
-            69
+            266
           },
           {
             {
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Eldritch Reaver",
-        unique = true,
+        monster = "Viliaan",
         weight = {
           0,
           0,
           0,
           0
+        }
+      }
+    },
+    {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            237
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Tidal Overlord",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            238
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Fleshrend",
+        weight = {
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1411,31 +1500,29 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
       {
-        chance = 100000,
-        forceType = 16777216,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            238
+            69
           },
           {
             {
-              15,
-              22,
-              35,
               50
             }
           }
         },
-        monster = "Fleshrend",
+        monster = "Eldritch Reaver",
+        unique = true,
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1581,93 +1668,6 @@ OTHER_ITEMS = {
           0,
           0,
           0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            237
-          },
-          {
-            {
-              15,
-              22,
-              35,
-              50
-            }
-          }
-        },
-        monster = "Tidal Overlord",
-        weight = {
-          10,
-          12,
-          15,
-          20
         }
       }
     }

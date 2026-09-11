@@ -24,7 +24,7 @@ function onAddFocus(cid)
 end
 
 function onCreatureSay(cid, type, msg)
-	if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) >= 4 then
+	if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) > 2 then
 		return false
 	end
 
@@ -34,11 +34,57 @@ function onCreatureSay(cid, type, msg)
   npcHandler:onCreatureSay(cid, type, msg)
 end
 
-for key, value in pairs(BASE_ITEMS) do
-  for x = 1, #BASE_ITEMS[key] do
-    local item = BASE_ITEMS[key][x]
-    if item then
-      shopModule:addSellableItem({item[1]}, item[2], 1, item[1])
+local RARITY_SELL_MULTIPLIERS = {
+  [0] = 2,    -- Normal
+  [1] = 6,    -- Common
+  [2] = 15,   -- Magic
+  [3] = 35,   -- Rare
+  [4] = 70,   -- Legendary (~2450 gp on lvl 50)
+  [5] = 100,  -- Unique
+}
+
+if BASE_ITEMS then
+  for tier, items in pairs(BASE_ITEMS) do
+    local mobGold = goldFormula(tonumber(tier) or 1)
+    for x = 1, #items do
+      local item = items[x]
+      if item then
+        local rarity = item[4] or 0
+        local rMult = RARITY_SELL_MULTIPLIERS[rarity] or 2
+        local price = math.max(1, math.ceil(mobGold * rMult))
+        shopModule:addSellableItem({item[1]}, item[2], price, item[1])
+      end
+    end
+  end
+end
+
+if not RECOMB_ITEM_RECIPES then
+  dofile('data/scripts/recombiner.lua')
+end
+
+if RECOMB_ITEM_RECIPES then
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    if recipe.result and recipe.result > 0 then
+      local name = recipe.name
+      if not name or name == "" then
+        local it = ItemType(recipe.result)
+        name = it and it:getName() or "item"
+      end
+      local lvl = recipe.itemlevel or 30
+      local mobGold = goldFormula(lvl)
+      local rMult = RARITY_SELL_MULTIPLIERS[recipe.rarity or 1] or 15
+      local price = math.max(1, math.ceil(mobGold * rMult))
+      shopModule:addSellableItem({name}, recipe.result, price, name)
+    end
+    if recipe.items then
+      for _, ingId in ipairs(recipe.items) do
+        if ingId and ingId > 0 then
+          local it = ItemType(ingId)
+          local name = it and it:getName() or "item"
+          local price = math.max(1, math.ceil(goldFormula(recipe.itemlevel or 20)))
+          shopModule:addSellableItem({name}, ingId, price, name)
+        end
+      end
     end
   end
 end

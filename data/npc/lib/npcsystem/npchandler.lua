@@ -67,7 +67,7 @@ if NpcHandler == nil then
 		talkStart = nil,
 		idleTime = 120,
 		shopItemsLevelBased = nil,
-		talkRadius = 3,
+		talkRadius = 2,
 		talkDelayTime = 1, -- Seconds to delay outgoing messages.
 		talkDelay = nil,
 		callbackFunctions = nil,

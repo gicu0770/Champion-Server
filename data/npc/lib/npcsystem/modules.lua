@@ -1052,6 +1052,14 @@ if Modules == nil then
 	function Item:sellItem(player, shopModule, cid, realUID, sendMesssage)
 		local name = self:getName()
 		local money = self:calculateItemCost()
+		if not money or money <= 0 then
+			local shopItem = shopModule:getShopItem(self:getId(), 0)
+			if shopItem and shopItem.sell and shopItem.sell > 0 then
+				money = shopItem.sell
+			else
+				money = 1
+			end
+		end
 
 		if money > 0 and player:removeItemUnique(realUID) then
 			player:setBankBalance(player:getBankBalance() + money)

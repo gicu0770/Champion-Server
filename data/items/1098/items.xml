@@ -1562,7 +1562,7 @@
 	</item>
 	<item id="1988" article="a" name="Backpack">
 		<attribute key="weight" value="1800" />
-		<attribute key="containerSize" value="5" />
+		<attribute key="containerSize" value="10" />
 		<attribute key="slotType" value="backpack" />
 		<attribute key="moveable" value="1" />
 	</item>

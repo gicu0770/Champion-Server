@@ -178,6 +178,31 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
             local value = base_item[3][x][2]
             item:setImplictValue(x, impId .. "|" .. value .. "|1")
           end
+        elseif RECOMB_ITEM_RECIPES then
+          for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+            if recipe.result == data[2] then
+              if recipe.rarity then
+                item:setRarity(recipe.rarity)
+              end
+              if recipe.name then
+                item:setAttribute(ITEM_ATTRIBUTE_NAME, recipe.name)
+              end
+              if recipe.itemlevel then
+                item:setItemLevel(recipe.itemlevel)
+              end
+              if recipe.implicits then
+                local implicitsSlots = #recipe.implicits
+                item:setImplictSlots(implicitsSlots)
+                for x = 1, implicitsSlots do
+                  local impId = recipe.implicits[x][1]
+                  local value = recipe.implicits[x][2]
+                  local impTier = recipe.implicits[x][3] or 1
+                  item:setImplictValue(x, impId .. "|" .. value .. "|" .. impTier)
+                end
+              end
+              break
+            end
+          end
         end
         if not player:sendSpellTooltip(item) then
           dataToSend[1] = getItemTooltipData(item, false, player)

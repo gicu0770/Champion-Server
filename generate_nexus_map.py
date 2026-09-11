@@ -64,13 +64,15 @@ TILE_BURNT_11561 = 11561  # Scorched / burnt earth ground (User: "W fire biom uz
 TILE_LAVA = 23857         # Lava ground with black borders (Border ID 211 / items 15503-15514)
 WALL_VOLCANO = 4468       # Mountain rock obstacle in volcano realm
 
-# Void SideMap Grounds & Structures (User: dark scaled 28225, patch 35847, trees 35854/35855/35882, cliff 36243)
-TILE_DARK_SCALED = 28225   # Main Void ground: dark scaled ground
-TILE_VOID_PATCH = 35847    # Secondary Void ground patch (Photo 2 & 3 purple void carpet)
-VOID_TREE_1 = 35854        # Void purple tree 1
-VOID_TREE_2 = 35855        # Void purple tree 2
-VOID_TREE_3 = 35882        # Void purple tree 3
-VOID_OBSTACLE = 36243      # Inaccessible Void rock/cliff structure (Photo 3)
+# Void SideMap Grounds & Structures (Auto-bordering in RME)
+TILE_DARK_SCALED = 25549      # Main Void ground: dark scaled ground (RME brush 'dark scaled ground', border 204)
+TILE_VOID_PATCH = 25753       # Secondary Void patch: overgrown rift floor (RME brush 'unknown7', border 205)
+VOID_OBSTACLE = 17854         # Inaccessible Void basalt mountain (RME brush 'basalt', border 61 / basalt walls)
+VOID_CRYSTAL_OBSTACLE = 20724 # Inaccessible purple crystal mountain (RME brush 'purple crystal mountain', border 64)
+CRYSTAL_BLACK_LARGE = 11753   # Large black crystal doodad
+VOID_TREE_1 = 35854           # Void purple tree 1
+VOID_TREE_2 = 35855           # Void purple tree 2
+VOID_TREE_3 = 35882           # Void purple tree 3
 TILE_WATER = 493          # Citadel pond
 
 # Walls & Perimeter Structures
@@ -392,16 +394,16 @@ def generate_nexus():
                     elif w_ax > 275 - side_noise_c and abs(w_ay) <= 130 + side_noise_c: is_void_c = True
 
                 if is_void_c:
-                    # User: Void trees 35854, 35855, 35882, and 36243 obstacles
+                    # Void flora & crystal clusters (doodads sitting on walkable ground)
                     if cluster_type < 0.55:
                         tree_void = [VOID_TREE_1, VOID_TREE_2, VOID_TREE_3][int(hash2d(ax, ay, 111) * 3)]
                         clusters[(ax, ay)] = tree_void
                         ox1, oy1 = sat_offsets[0]
                         clusters[(ax + ox1, ay + oy1)] = [CRYSTAL_PURPLE_1, CRYSTAL_PURPLE_2, JAGGED_STONE_WALKABLE][int(hash2d(ax, ay, 112) * 3)]
                     else:
-                        clusters[(ax, ay)] = VOID_OBSTACLE
+                        clusters[(ax, ay)] = CRYSTAL_BLACK_LARGE
                         ox1, oy1 = sat_offsets[0]
-                        clusters[(ax + ox1, ay + oy1)] = [VOID_OBSTACLE, CRYSTAL_PURPLE_1][int(hash2d(ax, ay, 113) * 2)]
+                        clusters[(ax + ox1, ay + oy1)] = [CRYSTAL_PURPLE_1, CRYSTAL_PURPLE_2, JAGGED_STONE_WALKABLE][int(hash2d(ax, ay, 113) * 3)]
 
                 # NW: ICE REALM
                 elif w_ax < 0 and w_ay < 0:
@@ -782,26 +784,26 @@ def generate_nexus():
                         elif wx > 275 - side_noise and abs(wy) <= 130 + side_noise: is_void = True
 
                     if is_void:
-                        # User: "Void biom uzyj ground dark scaled 28225, drzew 35854, 35855, 35882 losowy dodatkowy ground takie male placki zdjecie 2. miejsca niedostepne z 36243 ID w stylu zdjecie 3"
+                        # Void SideMaps with full RME Automagic border support
                         void_patch_n = smooth_noise(x, y, 9.0, 1102)
                         void_ridge_n = smooth_noise(x, y, 7.0, 1103)
 
-                        # Primary ground: dark scaled ground 28225
-                        # Secondary patches: purple void carpet 35847 (Photo 2)
+                        # Primary ground: dark scaled ground (25549, 25704-25708, border 204)
+                        # Secondary patches: overgrown rift floor (25753-25754, border 205)
                         if void_patch_n > 0.68:
-                            ground_id = TILE_VOID_PATCH
+                            ground_id = TILE_VOID_PATCH if (rnd < 0.5) else 25754
                         else:
-                            ground_id = TILE_DARK_SCALED
+                            ground_id = [25549, 25704, 25705, 25706, 25707, 25708][int(rnd * 100) % 6]
 
-                        # Inaccessible areas & ridges with 36243 (Photo 3 cliff formations)
+                        # Inaccessible areas & ridges (Basalt & Crystal Mountains - auto-bordered with 61 & 64)
                         if dist >= RADIUS_WORLD - 6:
-                            top_item = VOID_OBSTACLE
+                            ground_id = VOID_OBSTACLE
                         elif void_ridge_n > 0.81:
-                            top_item = VOID_OBSTACLE
+                            ground_id = VOID_CRYSTAL_OBSTACLE if rnd < 0.5 else VOID_OBSTACLE
                         elif (x, y) in clusters:
                             top_item = clusters[(x, y)]
                         elif rnd < 0.05:
-                            top_item = [VOID_TREE_1, VOID_TREE_2, VOID_TREE_3, CRYSTAL_PURPLE_1, CRYSTAL_PURPLE_2][int(rnd * 100) % 5]
+                            top_item = [VOID_TREE_1, VOID_TREE_2, VOID_TREE_3, CRYSTAL_PURPLE_1, CRYSTAL_PURPLE_2, CRYSTAL_BLACK_LARGE][int(rnd * 100) % 6]
 
                     # -------------------------------------------------------------
                     # 4 EXPANDED ELEMENTAL BOSS BIOMES (Organic Quadrant Division)

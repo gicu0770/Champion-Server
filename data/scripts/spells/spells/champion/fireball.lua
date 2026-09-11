@@ -53,6 +53,7 @@ local CONFIG = {
     distanceEffect = 74,
   },
   distanceEffect = 74,
+  trajectoryEffect = CONST_ME_HITBYFIRE,
   effectEx = 488,
   offsetX = 3,
   offsetY = 3,
@@ -102,8 +103,28 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
 
   local maxRange = CONFIG_SUP.range or CONFIG.range or 5
-  local impactPos = spellGetSkillshotTarget(player, mousePos, maxRange)
+  local impactPos, checkedTiles = spellGetSkillshotTarget(player, mousePos, maxRange)
   player:getPosition():sendDistanceEffect(impactPos, CONFIG.distanceEffect or 74)
+
+  -- Trajectory visualization and logging: show every SQM checked along flight path
+  if checkedTiles and #checkedTiles > 0 then
+    local pathLog = {}
+    for _, t in ipairs(checkedTiles) do
+      local checkPos = Position(t.x, t.y, t.z)
+      checkPos:sendMagicEffect(CONFIG.trajectoryEffect or CONST_ME_HITBYFIRE)
+
+      local statusStr = string.format("(%d, %d)", t.x, t.y)
+      if t.hit then
+        statusStr = statusStr .. string.format(" [HIT: %s]", t.creature or "target")
+      elseif t.blocked then
+        statusStr = statusStr .. " [BLOCKED]"
+      end
+      table.insert(pathLog, statusStr)
+    end
+
+    local logMsg = string.format("[Fireball] %s -> Impact at (%d, %d, %d) | Trajectory SQMs: %s", player:getName(), impactPos.x, impactPos.y, impactPos.z, table.concat(pathLog, " -> "))
+    print(logMsg)
+  end
 
   if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, Variant(impactPos), mousePos) then
     spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)

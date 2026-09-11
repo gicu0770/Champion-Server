@@ -19,7 +19,7 @@ function onAddFocus(cid)
 end
 
 function onCreatureSay(cid, type, msg)
-  if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) >= 4 then
+  if getDistanceBetween(getThingPos(cid), Creature(getNpcCid()):getPosition()) > 2 then
     return false
   end
 
@@ -126,6 +126,19 @@ shopModule:addSellableItem({''}, 36907, 500)
 shopModule:addSellableItem({''}, 34256, 250)
 shopModule:addSellableItem({''}, 21705, 250)
 shopModule:addSellableItem({''}, 32367, 500)
+
+-- Dungeon Keys
+shopModule:addSellableItem({'Queen Lair Key'}, 37929, 200)
+shopModule:addSellableItem({'Pyramid Ruins Key'}, 2086, 300)
+shopModule:addSellableItem({'Golden Horizon Key'}, 2087, 400)
+shopModule:addSellableItem({'Flame Cave Key'}, 37926, 500)
+shopModule:addSellableItem({'Ice Castle Key'}, 2088, 600)
+shopModule:addSellableItem({'Amethyst Peaks Key'}, 2089, 700)
+shopModule:addSellableItem({'Swamp Pit Key'}, 37928, 800)
+shopModule:addSellableItem({'Infernal Tar Key'}, 2092, 900)
+shopModule:addSellableItem({'Undead Cave Key'}, 37927, 1000)
+shopModule:addSellableItem({'Celestial Ascent Key'}, 2091, 1200)
+shopModule:addSellableItem({'Glacier Pass Key'}, 2090, 1500)
 
 -- Runes
 -- 1 Lev
@@ -298,6 +311,88 @@ shopModule:addSellableItem({''}, 37406, 500) --Double Damage Support
 shopModule:addSellableItem({''}, 37407, 500) --Cast On Crit Support
 shopModule:addSellableItem({''}, 37375, 500) --Cast When Damage Taken Support
 shopModule:addSellableItem({''}, 37376, 500) --Cast On Kill Support
+
+-- =========================================================
+-- Base Items & Combiner / Fusion Altar Items
+-- =========================================================
+if not BASE_ITEMS then
+  dofile('data/base_items.lua')
+end
+
+if not RECOMB_ITEM_RECIPES then
+  dofile('data/scripts/recombiner.lua')
+end
+
+local registeredSellable = {}
+
+if shopModule and shopModule.npcHandler and shopModule.npcHandler.shopItems then
+  for _, item in ipairs(shopModule.npcHandler.shopItems) do
+    if item.id then
+      registeredSellable[item.id] = true
+    end
+  end
+end
+
+local RARITY_SELL_MULTIPLIERS = {
+  [0] = 2,    -- Normal
+  [1] = 6,    -- Common
+  [2] = 15,   -- Magic
+  [3] = 35,   -- Rare
+  [4] = 70,   -- Legendary (~2450 gp on lvl 50)
+  [5] = 100,  -- Unique
+}
+
+-- 1. Base Items
+if BASE_ITEMS then
+  for tier, items in pairs(BASE_ITEMS) do
+    local mobGold = goldFormula(tonumber(tier) or 1)
+    for _, item in ipairs(items) do
+      local name = item[1]
+      local itemId = item[2]
+      local rarity = item[4] or 0
+      local rMult = RARITY_SELL_MULTIPLIERS[rarity] or 2
+      local price = math.max(1, math.ceil(mobGold * rMult))
+      if itemId and itemId > 0 and not registeredSellable[itemId] then
+        registeredSellable[itemId] = true
+        local realName = name or (ItemType(itemId):getName())
+        shopModule:addSellableItem({realName}, itemId, price, realName)
+      end
+    end
+  end
+end
+
+-- 2. Combiner / Fusion Altar Items (Results and Ingredients)
+if RECOMB_ITEM_RECIPES then
+  for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    -- Recipe Result item
+    if recipe.result and recipe.result > 0 and not registeredSellable[recipe.result] then
+      registeredSellable[recipe.result] = true
+      local name = recipe.name
+      if not name or name == "" then
+        local it = ItemType(recipe.result)
+        name = it and it:getName() or "item"
+      end
+      local lvl = recipe.itemlevel or 30
+      local mobGold = goldFormula(lvl)
+      local rMult = RARITY_SELL_MULTIPLIERS[recipe.rarity or 1] or 15
+      local price = math.max(1, math.ceil(mobGold * rMult))
+      shopModule:addSellableItem({name}, recipe.result, price, name)
+    end
+
+    -- Recipe Ingredients
+    if recipe.items then
+      for _, ingId in ipairs(recipe.items) do
+        if ingId and ingId > 0 and not registeredSellable[ingId] then
+          registeredSellable[ingId] = true
+          local it = ItemType(ingId)
+          local name = it and it:getName() or "item"
+          local price = math.max(1, math.ceil(goldFormula(recipe.itemlevel or 20)))
+          shopModule:addSellableItem({name}, ingId, price, name)
+        end
+      end
+    end
+  end
+end
 
 local function creatureSayCallback(cid, type, msg)
   if not npcHandler:isFocused(cid) then

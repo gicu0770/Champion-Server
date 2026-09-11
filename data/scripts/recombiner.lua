@@ -62,7 +62,7 @@ RECOMB_ITEM_RECIPES = {
   -- Example: 1 item + Gold recipe (Bronze Axe + 1000 Gold = Ravenwing 7433 with 20 Physical Attack)
   {
     items = {26618},
-    gold = 1000,
+    gold = 3500,
     result = 7433,
     name = "Ravenwing",
     rarity = 2,
@@ -77,7 +77,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 25522},
     result = 7402,
-    gold = 1000,
+    gold = 3500,
     name = "Dragon Sword",
     rarity = 2,
     itemlevel = 25,
@@ -90,7 +90,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676},
     result = 36678,
-    gold = 1000,
+    gold = 3500,
     name = "Culling Dagger",
     rarity = 2,
     itemlevel = 25,
@@ -101,7 +101,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676, 36676},
     result = 7402,
-    gold = 1000,
+    gold = 3500,
     name = "X X",
     rarity = 2,
     itemlevel = 25,
@@ -115,7 +115,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26445, 26445},
     result = 2191,
-    gold = 500,
+    gold = 2000,
     name = "Dragon Wand",
     rarity = 1,
     itemlevel = 25,
@@ -128,7 +128,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2191, 2184},
     result = 8920,
-    gold = 1500,
+    gold = 8500,
     name = "Eclipse Wand",
     rarity = 3,
     itemlevel = 35,
@@ -141,7 +141,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8920, 8920},
     result = 8820,
-    gold = 5000,
+    gold = 26000,
     name = "Rabadon's Deathcap",
     rarity = 4,
     itemlevel = 50,
@@ -157,7 +157,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26442, 26442},
     result = 8870,
-    gold = 500,
+    gold = 2000,
     name = "Negatron Cloak",
     rarity = 1,
     itemlevel = 25,
@@ -170,7 +170,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 7900},
     result = 38641,
-    gold = 500,
+    gold = 2000,
     name = "Kindlegem",
     rarity = 1,
     itemlevel = 25,
@@ -184,7 +184,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {38641, 8870},
     result = 9778,
-    gold = 2500,
+    gold = 26000,
     name = "Abyssal Mask",
     rarity = 4,
     itemlevel = 50,
@@ -201,7 +201,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955},
     result = 2178,
-    gold = 700,
+    gold = 2000,
     name = "Blighting Jewel",
     rarity = 1,
     itemlevel = 25,
@@ -215,7 +215,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26445, 26445},
     result = 2189,
-    gold = 500,
+    gold = 2000,
     name = "Blasting Wand",
     rarity = 1,
     itemlevel = 25,
@@ -228,7 +228,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2178, 2189},
     result = 7424,
-    gold = 2000,
+    gold = 26000,
     name = "Void Staff",
     rarity = 4,
     itemlevel = 50,
@@ -243,7 +243,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26491},
     result = 7415,
-    gold = 350,
+    gold = 2000,
     name = "Phage",
     rarity = 1,
     itemlevel = 25,
@@ -257,7 +257,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7415, 38641, 4874},
     result = 7419,
-    gold = 1000,
+    gold = 26000,
     name = "Black Cleaver",
     rarity = 4,
     itemlevel = 50,
@@ -274,7 +274,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618},
     result = 2393,
-    gold = 500,
+    gold = 8500,
     name = "B. F. Sword",
     rarity = 3,
     itemlevel = 35,
@@ -287,7 +287,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26832},
     result = 2424,
-    gold = 500,
+    gold = 2000,
     name = "Vampiric Scepter",
     rarity = 1,
     itemlevel = 25,
@@ -301,7 +301,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 2424, 4874},
     result = 7416,
-    gold = 1000,
+    gold = 26000,
     name = "Bloodthirster",
     rarity = 4,
     itemlevel = 50,
@@ -317,7 +317,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676},
     result = 2660,
-    gold = 300,
+    gold = 2000,
     name = "Cloak of Agility",
     rarity = 1,
     itemlevel = 25,
@@ -330,7 +330,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 4874, 2660},
     result = 7417,
-    gold = 1000,
+    gold = 26000,
     name = "Infinity Edge",
     rarity = 4,
     itemlevel = 50,
@@ -346,7 +346,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26491},
     result = 2487,
-    gold = 500,
+    gold = 2000,
     name = "Giant's Belt",
     rarity = 1,
     itemlevel = 25,
@@ -359,7 +359,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26438},
     result = 2486,
-    gold = 400,
+    gold = 2000,
     name = "Winged Moonplate",
     rarity = 1,
     itemlevel = 25,
@@ -373,7 +373,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 38860},
     result = 2469,
-    gold = 100,
+    gold = 2000,
     name = "Crystalline Bracer",
     rarity = 1,
     itemlevel = 25,
@@ -387,7 +387,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2486, 2469},
     result = 8878,
-    gold = 800,
+    gold = 26000,
     name = "Warmog's Armor",
     rarity = 4,
     itemlevel = 50,
@@ -404,7 +404,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7900},
     result = 7418,
-    gold = 650,
+    gold = 3500,
     name = "Sheen",
     rarity = 2,
     itemlevel = 25,
@@ -418,7 +418,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618, 36676},
     result = 7411,
-    gold = 250,
+    gold = 3500,
     name = "Hearthbound Axe",
     rarity = 2,
     itemlevel = 25,
@@ -433,7 +433,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7418, 7415, 7411},
     result = 8927,
-    gold = 133,
+    gold = 26000,
     name = "Trinity Force",
     rarity = 4,
     itemlevel = 50,
@@ -452,7 +452,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676},
     result = 8855,
-    gold = 450,
+    gold = 2000,
     name = "Recurve Bow",
     rarity = 1,
     itemlevel = 25,
@@ -466,7 +466,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8855, 8870, 8855},
     result = 7407,
-    gold = 550,
+    gold = 26000,
     name = "Wit's End",
     rarity = 4,
     itemlevel = 50,
@@ -483,7 +483,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 7900},
     result = 8902,
-    gold = 200,
+    gold = 2000,
     name = "Fiendish Codex",
     rarity = 1,
     itemlevel = 25,
@@ -497,7 +497,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8855, 2189, 8902},
     result = 7408,
-    gold = 500,
+    gold = 26000,
     name = "Nashor's Tooth",
     rarity = 4,
     itemlevel = 50,
@@ -514,7 +514,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2424, 8855, 4874},
     result = 7405,
-    gold = 725,
+    gold = 26000,
     name = "Blade of the Ruined King",
     rarity = 4,
     itemlevel = 50,
@@ -531,7 +531,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26393},
     result = 2464,
-    gold = 500,
+    gold = 2000,
     name = "Chain Vest",
     rarity = 1,
     itemlevel = 25,
@@ -544,7 +544,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26393, 26393},
     result = 2483,
-    gold = 200,
+    gold = 2000,
     name = "Bramble Vest",
     rarity = 1,
     itemlevel = 25,
@@ -558,7 +558,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2483, 2464, 26491},
     result = 8882,
-    gold = 450,
+    gold = 26000,
     name = "Thornmail",
     rarity = 4,
     itemlevel = 50,
@@ -574,7 +574,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 7900},
     result = 2156,
-    gold = 250,
+    gold = 2000,
     name = "Bami's Cinder",
     rarity = 1,
     itemlevel = 25,
@@ -589,7 +589,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2156, 2464, 26491},
     result = 8881,
-    gold = 700,
+    gold = 26000,
     name = "Sunfire Aegis",
     rarity = 4,
     itemlevel = 50,
@@ -606,7 +606,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 36676, 36676},
     result = 2646,
-    gold = 500,
+    gold = 5000,
     name = "Berserker's Greaves",
     rarity = 2,
     itemlevel = 35,
@@ -620,7 +620,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 26393},
     result = 2645,
-    gold = 500,
+    gold = 5000,
     name = "Plated Steelcaps",
     rarity = 2,
     itemlevel = 35,
@@ -635,7 +635,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 26438},
     result = 2195,
-    gold = 500,
+    gold = 5000,
     name = "Boots of Swiftness",
     rarity = 2,
     itemlevel = 35,
@@ -650,7 +650,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 7900},
     result = 2640,
-    gold = 500,
+    gold = 5000,
     name = "Ionian Boots of Lucidity",
     rarity = 2,
     itemlevel = 35,
@@ -664,7 +664,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 1955},
     result = 7893,
-    gold = 500,
+    gold = 5000,
     name = "Sorcerer's Shoes",
     rarity = 2,
     itemlevel = 35,
@@ -679,7 +679,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26442, 38860},
     result = 8871,
-    gold = 150,
+    gold = 2000,
     name = "Spectre's Cowl",
     rarity = 1,
     itemlevel = 25,
@@ -694,7 +694,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8871, 38641},
     result = 8880,
-    gold = 650,
+    gold = 26000,
     name = "Spirit Visage",
     rarity = 4,
     itemlevel = 50,
@@ -712,7 +712,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2189, 2487, 26833},
     result = 2501,
-    gold = 800,
+    gold = 26000,
     name = "Liandry's Torment",
     rarity = 4,
     itemlevel = 50,
@@ -729,7 +729,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 1955, 26393},
     result = 37790,
-    gold = 500,
+    gold = 2000,
     name = "Seeker's Armguard",
     rarity = 1,
     itemlevel = 25,
@@ -743,7 +743,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {37790, 8920},
     result = 20002,
-    gold = 450,
+    gold = 26000,
     name = "Zhonya's Hourglass",
     rarity = 4,
     itemlevel = 50,
@@ -759,7 +759,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 1955, 26442},
     result = 2180,
-    gold = 400,
+    gold = 2000,
     name = "Verdant Barrier",
     rarity = 1,
     itemlevel = 25,
@@ -773,7 +773,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2180, 8920},
     result = 2174,
-    gold = 200,
+    gold = 26000,
     name = "Banshee's Veil",
     rarity = 4,
     itemlevel = 50,
@@ -789,7 +789,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618},
     result = 7404,
-    gold = 450,
+    gold = 2000,
     name = "Executioner's Calling",
     rarity = 1,
     itemlevel = 25,
@@ -803,7 +803,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618},
     result = 8856,
-    gold = 750,
+    gold = 5000,
     name = "Last Whisper",
     rarity = 2,
     itemlevel = 35,
@@ -817,7 +817,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7404, 8856, 2660},
     result = 8857,
-    gold = 350,
+    gold = 26000,
     name = "Mortal Reminder",
     rarity = 4,
     itemlevel = 50,
@@ -834,7 +834,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955},
     result = 2176,
-    gold = 400,
+    gold = 2000,
     name = "Oblivion Orb",
     rarity = 1,
     itemlevel = 25,
@@ -848,7 +848,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2176, 2189, 38641},
     result = 8903,
-    gold = 500,
+    gold = 26000,
     name = "Morellonomicon",
     rarity = 4,
     itemlevel = 50,
@@ -865,7 +865,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8870, 2486, 26491},
     result = 8883,
-    gold = 700,
+    gold = 26000,
     name = "Force of Nature",
     rarity = 4,
     itemlevel = 50,
@@ -882,7 +882,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2487, 2469},
     result = 8886,
-    gold = 400,
+    gold = 26000,
     name = "Heartsteel",
     rarity = 4,
     itemlevel = 50,
@@ -898,7 +898,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2464, 8870},
     result = 8887,
-    gold = 650,
+    gold = 26000,
     name = "Jak'Sho, The Protean",
     rarity = 4,
     itemlevel = 50,
@@ -915,7 +915,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8902, 26491, 1955},
     result = 8922,
-    gold = 800,
+    gold = 26000,
     name = "Riftmaker",
     rarity = 4,
     itemlevel = 50,
@@ -932,7 +932,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2189, 2487, 2656},
     result = 7426,
-    gold = 450,
+    gold = 26000,
     name = "Rod of Ages",
     rarity = 4,
     itemlevel = 50,
@@ -949,7 +949,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8902, 2656, 1955},
     result = 7429,
-    gold = 450,
+    gold = 26000,
     name = "Archangel's Staff",
     rarity = 4,
     itemlevel = 50,
@@ -966,7 +966,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 2656, 7900},
     result = 2190,
-    gold = 450,
+    gold = 26000,
     name = "Luden's Echo",
     rarity = 4,
     itemlevel = 50,
@@ -983,7 +983,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {4874, 2656, 7900},
     result = 7390,
-    gold = 450,
+    gold = 26000,
     name = "Muramana",
     rarity = 4,
     itemlevel = 50,
@@ -1000,7 +1000,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 4874, 4874},
     result = 8889,
-    gold = 450,
+    gold = 26000,
     name = "Overlord's Bloodmail",
     rarity = 4,
     itemlevel = 50,
@@ -1016,7 +1016,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 2660, 36676},
     result = 2412,
-    gold = 500,
+    gold = 26000,
     name = "Stormrazor",
     rarity = 4,
     itemlevel = 50,
@@ -1029,10 +1029,26 @@ RECOMB_ITEM_RECIPES = {
   },
 }
 
+function calculateRecipeFusionCost(recipe)
+  local rarity = recipe.rarity or 1
+  local lvl = recipe.itemlevel or (rarity == 4 and 50 or (rarity >= 2 and 35 or 25))
+  local mobGold = (type(goldFormula) == "function" and goldFormula(lvl)) or (lvl * 0.5 + 10)
+  local kills = (rarity == 1 and 100) or (rarity == 2 and 200) or (rarity == 3 and 350) or 750
+  local rawCost = mobGold * kills
+  if rarity >= 4 then
+    return math.floor((rawCost + 500) / 1000) * 1000
+  else
+    return math.floor((rawCost + 250) / 500) * 500
+  end
+end
+
 local RECOMB_RECIPE_ITEM_IDS = {}
 local function buildRecipeIndex()
   RECOMB_RECIPE_ITEM_IDS = {}
   for _, recipe in ipairs(RECOMB_ITEM_RECIPES) do
+    if not recipe.gold or recipe.gold <= 0 then
+      recipe.gold = calculateRecipeFusionCost(recipe)
+    end
     for _, itemId in ipairs(recipe.items) do
       RECOMB_RECIPE_ITEM_IDS[itemId] = true
     end

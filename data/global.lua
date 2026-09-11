@@ -6656,8 +6656,12 @@ function Item:calculateItemCost()
 	if iType == TYPE_DEFUALT then
 		local extraGold = 0
 		local upgradeLevel = self:getUpgradeLevel()
+		local itemLevel = self:getItemLevel() or 1
+		if itemLevel <= 0 then
+			itemLevel = 1
+		end
 		if upgradeLevel and upgradeLevel > 0 then
-			extraGold = math.floor(calculateGoldCost(self:getItemLevel() or 1, upgradeLevel))
+			extraGold = math.floor(calculateGoldCost(itemLevel, upgradeLevel))
 		end
 		local currentAttr = self:getBonusAttributes()
 		if currentAttr then
@@ -6667,7 +6671,10 @@ function Item:calculateItemCost()
 				end
 			end
 		end
-		cost = math.ceil(self:getItemLevel() * ((goldMultiplier * 2) + 1.0)) + extraGold
+		local rarity = self:getRarityId() or 0
+		local rarityMultiplier = ({[0]=2, [1]=6, [2]=15, [3]=35, [4]=70, [5]=100})[rarity] or 2
+		local mobGold = goldFormula(itemLevel)
+		cost = math.ceil(mobGold * rarityMultiplier * ((goldMultiplier * 2) + 1.0)) + extraGold
 	elseif iType == TYPE_UNIQUE then
 		-- can't sell unique
 	elseif iType == TYPE_KEY then
@@ -6680,7 +6687,12 @@ function Item:calculateItemCost()
 				end
 			end
 		end
-		cost = math.ceil(self:getItemLevel() * (goldMultiplier + 1.0))
+		local keyLevel = self:getItemLevel() or 1
+		if keyLevel <= 0 then
+			keyLevel = 1
+		end
+		local mobGold = goldFormula(keyLevel)
+		cost = math.ceil(mobGold * (goldMultiplier + 1.0))
 	elseif iType == TYPE_SPELL then
 		local minLevel, minPrice = 1, 50
 		local maxLevel, maxPrice = 200, 100000
@@ -6702,6 +6714,10 @@ function Item:calculateItemCost()
 		end
 		local rarity = self:getRarityId() or 0
 		cost = math.ceil((rarity * 50) * ((goldMultiplier * 2) + 1.0))
+	end
+
+	if (not cost or cost <= 0) and iType ~= TYPE_UNIQUE then
+		cost = 1
 	end
 
 	return cost

@@ -543,6 +543,7 @@ function spellGetSkillshotTarget(player, mousePos, maxRange)
   local currX = px + 0.5
   local currY = py + 0.5
   local playerId = player:getId()
+  local checkedTiles = {}
 
   for i = 1, maxRange do
     currX = currX + stepX
@@ -552,7 +553,11 @@ function spellGetSkillshotTarget(player, mousePos, maxRange)
 
     if checkX ~= lastX or checkY ~= lastY then
       local tile = Tile(checkX, checkY, pz)
+      local tileInfo = {x = checkX, y = checkY, z = pz, hit = false, blocked = false, creature = nil}
+      table.insert(checkedTiles, tileInfo)
+
       if not tile or tile:hasProperty(CONST_PROP_BLOCKPROJECTILE) or tile:hasProperty(CONST_PROP_BLOCKSOLID) then
+        tileInfo.blocked = true
         break
       end
 
@@ -561,12 +566,14 @@ function spellGetSkillshotTarget(player, mousePos, maxRange)
 
       local topCreature = tile:getTopCreature()
       if topCreature and topCreature:getId() ~= playerId and not topCreature:isInGhostMode() then
+        tileInfo.hit = true
+        tileInfo.creature = topCreature:getName()
         break
       end
     end
   end
 
-  return Position(lastX, lastY, pz)
+  return Position(lastX, lastY, pz), checkedTiles
 end
 
 function spellSetupVariant(player, CONFIG, CONFIG_SUP, mousePos)
