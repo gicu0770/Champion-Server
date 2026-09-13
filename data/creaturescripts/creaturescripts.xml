@@ -24,6 +24,7 @@
 	<event type="extendedopcode" name="bot" script="bot.lua" />
 	<!-- Inspect -->
 	<event type="extendedopcode" name="Inspect" script="inspect.lua" />
+	<event type="extendedopcode" name="PlayerLevel" script="player_level.lua" />
 	<event type="extendedopcode" name="PotionUpgrade" script="potion_upgrade_creature.lua" />
 	<!-- ATR 	-->
 	<event type="extendedopcode" name="DeathLog" script="death_log.lua" />

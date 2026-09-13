@@ -11,6 +11,16 @@ function onAdvance(player, skill, oldLevel, newLevel)
   end
   player:updateInspect()
 
+  local spectators = Game.getSpectators(player:getPosition(), false, true, 12, 12, 12, 12)
+  local levelMsg = json.encode({
+    id = player:getId(),
+    name = player:getName(),
+    level = newLevel
+  })
+  for _, spectator in ipairs(spectators) do
+    spectator:sendExtendedOpcode(ExtendedOPCodes.CODE_PLAYER_LEVEL, levelMsg)
+  end
+
   local pid = player:getId()
   addEvent(function()
     local player = Player(pid)

@@ -54,7 +54,11 @@ Monster::Monster(MonsterType* mType) :
 	defaultOutfit = mType->info.outfit;
 	currentOutfit = mType->info.outfit;
 	skull = mType->info.skull;
-	level = mType->info.maxLevel; //uniform_random(mType->info.minLevel, mType->info.maxLevel);
+	if (mType->info.minLevel > 0 || mType->info.maxLevel > 0) {
+		level = uniform_random(mType->info.minLevel, mType->info.maxLevel);
+	} else {
+		level = 0;
+	}
 	health = mType->info.health;
 	healthMax = mType->info.healthMax;
 	baseSpeed = mType->info.baseSpeed;
@@ -63,9 +67,6 @@ Monster::Monster(MonsterType* mType) :
 	titleText = mType->info.titleText;
 	titleFont = mType->info.titleFont;
 	titleColor = mType->info.titleColor;
-	if (level > 0) {
-		level += ((mType->info.minLevel + mType->info.maxLevel) / 2) - mType->info.maxLevel;
-	}
 
 	// register creature events
 	for (const std::string& scriptName : mType->info.scripts) {

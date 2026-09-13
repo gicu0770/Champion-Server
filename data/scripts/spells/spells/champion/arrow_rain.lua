@@ -117,18 +117,28 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
 
-  local targetPos = mousePos
-  if not targetPos then
-    local target = player:getTarget()
-    if target and not target:isRemoved() then
-      targetPos = target:getPosition()
-    else
-      targetPos = player:getPosition()
+  local maxRange = CONFIG_SUP.range or CONFIG.range or 6
+  local target = player:getTarget()
+  local targetPos = nil
+
+  if target and not target:isRemoved() then
+    if not player:targetRechable(target:getPosition(), maxRange) then
+      return false
     end
+    targetPos = target:getPosition()
+  else
+    if not mousePos then
+      return false
+    end
+    if not player:targetRechable(mousePos, maxRange) then
+      return false
+    end
+    targetPos = mousePos
   end
 
-  if not player:targetRechable(targetPos, CONFIG_SUP.range or CONFIG.range) then
-    return false
+  local dir = spellGetDirectionTo(player:getPosition(), targetPos)
+  if dir then
+    player:setDirection(dir)
   end
 
   local resizeLevel = CONFIG_SUP.resizeTo or 0

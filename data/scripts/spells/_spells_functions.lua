@@ -44,9 +44,6 @@ function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtr
 
   if CONFIG.spellId == 5 then -- Body Slam (+6% Total HP)
     totalBase = totalBase + math.ceil(player:getMaxHealth() * 0.06)
-  elseif CONFIG.spellId == 6 then -- Heavy Spin
-    totalBase = 150 + (math.max(1, spellLevel) - 1) * 100
-    multiplier = 0.30 + (math.max(1, spellLevel) - 1) * 0.10
   end
   local max = math.ceil(totalBase + (attackpower * multiplier))
   local max2 = 0

@@ -103,30 +103,35 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
 
   local maxRange = CONFIG_SUP.range or CONFIG.range or 5
-  local impactPos, checkedTiles = spellGetSkillshotTarget(player, mousePos, maxRange)
-  player:getPosition():sendDistanceEffect(impactPos, CONFIG.distanceEffect or 74)
+  local target = player:getTarget()
+  local impactPos = nil
+  local variant = nil
 
-  -- Trajectory visualization and logging: show every SQM checked along flight path
-  if checkedTiles and #checkedTiles > 0 then
-    local pathLog = {}
-    for _, t in ipairs(checkedTiles) do
-      local checkPos = Position(t.x, t.y, t.z)
-      checkPos:sendMagicEffect(CONFIG.trajectoryEffect or CONST_ME_HITBYFIRE)
-
-      local statusStr = string.format("(%d, %d)", t.x, t.y)
-      if t.hit then
-        statusStr = statusStr .. string.format(" [HIT: %s]", t.creature or "target")
-      elseif t.blocked then
-        statusStr = statusStr .. " [BLOCKED]"
-      end
-      table.insert(pathLog, statusStr)
+  if target and not target:isRemoved() then
+    if not player:targetRechable(target:getPosition(), maxRange) then
+      return false
     end
-
-    local logMsg = string.format("[Fireball] %s -> Impact at (%d, %d, %d) | Trajectory SQMs: %s", player:getName(), impactPos.x, impactPos.y, impactPos.z, table.concat(pathLog, " -> "))
-    print(logMsg)
+    impactPos = target:getPosition()
+    variant = Variant(target)
+  else
+    if not mousePos then
+      return false
+    end
+    if not player:targetRechable(mousePos, maxRange) then
+      return false
+    end
+    impactPos = mousePos
+    variant = Variant(mousePos)
   end
 
-  if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, Variant(impactPos), mousePos) then
+  local dir = spellGetDirectionTo(player:getPosition(), impactPos)
+  if dir then
+    player:setDirection(dir)
+  end
+
+  player:getPosition():sendDistanceEffect(impactPos, CONFIG.distanceEffect or 74)
+
+  if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos) then
     spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
 
     -- Centered magic effect with offset

@@ -4867,7 +4867,16 @@ void ProtocolGame::AddCreature(const Creature* creature, bool known, uint32_t re
 		if (creatureType == CREATURETYPE_HIDDEN) {
 			playermsg.addString(std::string());
 		} else {
-			playermsg.addString(creature->getName());
+			if (const Monster* monster = creature->getMonster()) {
+				int32_t mLevel = monster->getLevel();
+				if (mLevel > 0 && creature->getName().find(" Lv. ") == std::string::npos) {
+					playermsg.addString(creature->getName() + " Lv. " + std::to_string(mLevel));
+				} else {
+					playermsg.addString(creature->getName());
+				}
+			} else {
+				playermsg.addString(creature->getName());
+			}
 		}
 		playermsg.addString(creature->getTitleText());
 		playermsg.addString(creature->getTitleFont());

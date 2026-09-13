@@ -2390,7 +2390,7 @@ function Monster:onSpawn(position, startup, artificial, dungeon)
   if selfName =="Toxic Hydra" then
     setHP = false
   end
-  if mType:items() == "titan" or mType:items() == "dummy" or mType:items() == "dungeonboss" or mType:items() == "stone" or mType:items() == "stoneminion" then
+  if mType:items() == "titan" or mType:items() == "dummy" or mType:items() == "dungeonboss" or mType:items() == "stone" then
     setHP = false
   end
   if selfName =="Treasure Goblin" then

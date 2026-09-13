@@ -42,10 +42,14 @@ function LoginEvent.onLogin(player)
     for i = 1, 2 do
       local item = pla:getSlotItem(15+i)
       if item then
-        local potion = POTION_CONFIG[item:getId()]
-        if potion and potion.maxCharges then
-          local charges = item:getCustomAttribute("charges") or potion.maxCharges
-          pla:sendPotionCharges(i, charges, potion.maxCharges)
+        if updateAndSyncPotionCharges then
+          updateAndSyncPotionCharges(pla, item, i)
+        else
+          local potion = POTION_CONFIG[item:getId()]
+          if potion and potion.maxCharges then
+            local charges = item:getCustomAttribute("charges") or potion.maxCharges
+            pla:sendPotionCharges(i, charges, potion.maxCharges)
+          end
         end
       end
     end
@@ -136,10 +140,14 @@ function ExtendedEvent.onExtendedOpcode(player, opcode, buffer)
       local slot = data.slot or 1
       local item = player:getSlotItem(15+slot)
       if item then
-        local potion = POTION_CONFIG[item:getId()]
-        if potion and potion.maxCharges then
-          local charges = item:getCustomAttribute("charges") or potion.maxCharges
-          player:sendPotionCharges(slot, charges, potion.maxCharges)
+        if updateAndSyncPotionCharges then
+          updateAndSyncPotionCharges(player, item, slot)
+        else
+          local potion = POTION_CONFIG[item:getId()]
+          if potion and potion.maxCharges then
+            local charges = item:getCustomAttribute("charges") or potion.maxCharges
+            player:sendPotionCharges(slot, charges, potion.maxCharges)
+          end
         end
       end
       return

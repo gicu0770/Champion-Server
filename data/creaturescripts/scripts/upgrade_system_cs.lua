@@ -238,10 +238,10 @@ end
 
 
 CHAMPION_STATS = {
-	["Mia"] = {physical_character = true, hp_start = 550, hp_level = 7200, mana = 200, manaPL = 600, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Gorn"] = {physical_character = true, hp_start = 650, hp_level = 9000, mana = 0, manaPL = 0, physical_attack = 50, physical_attackPL = 150, magic_attack = 0, magic_attackPL = 0, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Juki"] = {magic_character = true, hp_start = 500, hp_level = 6600, mana = 300, manaPL = 800, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
-	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 6000, mana = 480, manaPL = 880, physical_attack = 0, physical_attackPL = 0, magic_attack = 50, magic_attackPL = 150, asPL = 90, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 80, health_regen = 1, regen_mana = 1},
+	["Mia"] = {physical_character = true, hp_start = 610, hp_level = 2600, mana = 280, manaPL = 969, physical_attack = 59, physical_attackPL = 127, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 26, physical_defensePL = 116, magic_defense = 33, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
+	["Gorn"] = {physical_character = true, hp_start = 620, hp_level = 2100, mana = 0, manaPL = 0, physical_attack = 66, physical_attackPL = 142, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 36, physical_defensePL = 87, magic_defense = 33, magic_defensePL = 54, health_regen = 3, regen_mana = 1},
+	["Juki"] = {magic_character = true, hp_start = 570, hp_level = 2700, mana = 470, manaPL = 881, physical_attack = 57, physical_attackPL = 116, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 24, physical_defensePL = 107, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
+	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 6000, mana = 480, manaPL = 880, physical_attack = 50, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
 }
 MONSTER_CONFIG = {
 	[1] = { damage = 10, physical_defense = 20, magic_defense = 20, exp = 2, gold = 2, upgrade_materials_chance = 7500 }, -- goblin
@@ -273,7 +273,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local physical_damage = 0
 		local magic_damage = 0
 		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee
-			primaryDamage = player_damage
+			primaryDamage = attacker:getPhysicalAttack() --player_damage
+			primaryType = COMBAT_PHYSICALDAMAGE
 			if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne wrecz
 			elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne wrecz
 			end

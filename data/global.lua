@@ -1158,6 +1158,7 @@ ExtendedOPCodes = {
 	CODE_DEATHS = 237,
 	CODE_POTION_UPGRADE = 238,
 	CODE_GUILD = 239,
+	CODE_PLAYER_LEVEL = 240,
 }
 
 -- Ensure lost_items column exists in player_deaths table
@@ -1489,15 +1490,15 @@ TAGS = {
 	[29] = {"shield", "#da932d"},
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
-	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.8, baseDamage = 30, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
-	[2] = {name = "Searing Torrent", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.6, baseDamage = 25, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Searing Torrent",
+	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
+	[2] = {name = "Searing Torrent", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Searing Torrent",
 	[3] = {name = "Vengeance Flame", cooldown = 3000, manaCost = 20, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = false},-- "Vengeance Flame",
-	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 0.5, baseDamage = 300, baseDamagePerLevel = 60, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
-	[5] = {name = "Body Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 270, baseDamagePerLevel = 50, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Body Slam",
-	[6] = {name = "Heavy Spin", cooldown = 6000, manaCost = 0, range = 0, hits = 4, multipler = 0.3, baseDamage = 150, baseDamagePerLevel = 75, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Heavy Spin",
+	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
+	[5] = {name = "Body Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Body Slam",
+	[6] = {name = "Heavy Spin", cooldown = 6000, manaCost = 0, range = 0, hits = 4, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 35, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Heavy Spin",
 	[7] = {name = "Rapid Fire", cooldown = 8000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 3, tag = {11, 25}, element = 100, aoe = false},-- "Rapid Fire",
-	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 0.6, baseDamage = 200, baseDamagePerLevel = 45, scaling = 2, addDamage = 3, tag = {11, 16, 20}, element = 100, aoe = true},-- "Arrow Volley",
-	[9] = {name = "Arrow Rain", cooldown = 10000, manaCost = 0, range = 6, hits = 3, multipler = 0.4, baseDamage = 180, baseDamagePerLevel = 50, scaling = 2, addDamage = 3, tag = {11, 20, 27}, element = 100, aoe = true},-- "Arrow Rain",
+	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 1.1, baseDamage = 70, baseDamagePerLevel = 35, scaling = 2, addDamage = 3, tag = {11, 16, 20}, element = 100, aoe = true},-- "Arrow Volley",
+	[9] = {name = "Arrow Rain", cooldown = 10000, manaCost = 0, range = 6, hits = 3, multipler = 0.6, baseDamage = 110, baseDamagePerLevel = 30, scaling = 2, addDamage = 3, tag = {11, 20, 27}, element = 100, aoe = true},-- "Arrow Rain",
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -5940,7 +5941,7 @@ function Player.setStatistics(self)
 	local manaPercent = 0
 	local energyshieldregen = 1
 	-- bazowa regeneracja
-	local base_healthRegen = 1
+	local base_healthRegen = 3
 	local base_manaRegen = 1
 
 
@@ -6451,7 +6452,7 @@ function generateBaseItem(player, strongBox, base, monsterLevel, magicFind)
 	item:setAttribute(ITEM_ATTRIBUTE_NAME, base[1])
 	item:setCustomAttribute("checksum", ITEM_CHECKSUM)
 
-	item:addRandomCrystalSlots(monsterLevel, magicFind)
+--	item:addRandomCrystalSlots(monsterLevel, magicFind)
 	for x = 1, implictsSlots do
 		local impId = base[3][x][1]
 		local value = base[3][x][2]

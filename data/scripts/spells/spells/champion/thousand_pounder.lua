@@ -81,11 +81,25 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local py = fromPos.y
   local playerId = player:getId()
 
-  -- Calculate direction offsets from mousePos or facing direction
+  local maxRange = CONFIG_SUP.range or CONFIG.range or 4
+  local target = player:getTarget()
+  local aimPos = nil
+  local targetEnemy = nil
+
+  if target and not target:isRemoved() then
+    aimPos = target:getPosition()
+    targetEnemy = target
+  elseif mousePos and (mousePos.x ~= px or mousePos.y ~= py) then
+    aimPos = mousePos
+  end
+
+  -- Calculate direction offsets from target, mousePos or facing direction
   local dx, dy = 0, 0
-  if mousePos and (mousePos.x ~= px or mousePos.y ~= py) then
-    dx = mousePos.x - px
-    dy = mousePos.y - py
+  local totalDistance = 0
+  if aimPos then
+    dx = aimPos.x - px
+    dy = aimPos.y - py
+    totalDistance = math.max(math.abs(dx), math.abs(dy))
   else
     local dirOffsets = {
       [DIRECTION_NORTH] = {0, -1},
@@ -96,6 +110,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
     local offset = dirOffsets[player:getDirection()] or {0, 1}
     dx = offset[1]
     dy = offset[2]
+    totalDistance = maxRange
   end
 
   local dist = math.max(math.abs(dx), math.abs(dy))
@@ -104,7 +119,9 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local stepX = dx / dist
   local stepY = dy / dist
 
-  local maxRange = CONFIG_SUP.range or CONFIG.range or 4
+  local steps = math.min(maxRange, totalDistance)
+  if steps == 0 then steps = 1 end
+
   local destPos = Position(px, py, pz)
   local firstHitEnemy = nil
   local currX = px + 0.5
@@ -112,7 +129,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local lastX = px
   local lastY = py
 
-  for i = 1, maxRange do
+  for i = 1, steps do
     currX = currX + stepX
     currY = currY + stepY
     local checkX = math.floor(currX)
@@ -149,6 +166,12 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
       if firstHitEnemy then
         break
       end
+    end
+  end
+
+  if not firstHitEnemy and targetEnemy and not targetEnemy:isRemoved() then
+    if destPos.x == targetEnemy:getPosition().x and destPos.y == targetEnemy:getPosition().y then
+      firstHitEnemy = targetEnemy
     end
   end
 

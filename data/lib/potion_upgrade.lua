@@ -1,74 +1,74 @@
 POTION_CONFIG = {
   [7618] = {
     name = "Health Potion",
-    health = {100, 100},
+    health = {150, 150},
     level = 1,
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 7588,
-    upgradeLevel = 10,
+    upgradeLevel = 5,
     upgradeGold = 500,
   },
   [7588] = {
     name = "Strong Health Potion",
-    health = {150, 150},
+    health = {200, 200},
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 7591,
-    upgradeLevel = 15,
+    upgradeLevel = 10,
     upgradeGold = 1500,
   },
   [7591] = {
     name = "Great Health Potion",
-    health = {230, 230},
+    health = {250, 250},
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 8473,
-    upgradeLevel = 25,
+    upgradeLevel = 15,
     upgradeGold = 3500,
   },
   [8473] = {
     name = "Ultimate Health Potion",
-    health = {330, 330},
+    health = {300, 300},
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 26031,
-    upgradeLevel = 35,
+    upgradeLevel = 20,
     upgradeGold = 7500,
   },
   [26031] = {
     name = "Ultimate Spirit Potion",
-    health = {410, 410},
+    health = {400, 400},
     effect = 306,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 36912,
-    upgradeLevel = 40,
+    upgradeLevel = 30,
     upgradeGold = 15000,
   },
   [36912] = {
     name = "Heroic Health Potion",
-    health = {570, 570},
+    health = {500, 500},
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
     cooldownPotion = 3000,
     upgradeTo = 34256,
-    upgradeLevel = 45,
+    upgradeLevel = 35,
     upgradeGold = 25000,
   },
   [34256] = {
     name = "Health Flask",
-    health = {750, 750},
+    health = {650, 650},
     effect = 304,
     maxCharges = 5,
     regenTime = 10000,
@@ -146,7 +146,12 @@ function upgradePotionForPlayer(player)
   potionItem:setCustomAttribute("potionHealth", nextCfg.health[1])
   player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
   player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! Your potion has been upgraded to " .. (nextCfg.name or "next tier") .. "!")
-  player:sendPotionCharges(1, nextCfg.maxCharges, nextCfg.maxCharges)
+  potionItem:setCustomAttribute("lastChargeRegen", os.time())
+  local slot = 1
+  if getEquippedPotionSlot then
+    slot = getEquippedPotionSlot(player, potionItem:getRealUID()) or 1
+  end
+  player:sendPotionCharges(slot, nextCfg.maxCharges, nextCfg.maxCharges)
   return true
 end
 
