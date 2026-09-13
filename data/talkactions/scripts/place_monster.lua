@@ -27,9 +27,9 @@ function onSay(player, words, param)
 			if skullVal == 7 then
 				monsterHP = math.ceil(monsterHP * 1.5)
 			elseif skullVal == 8 then
-				monsterHP = math.ceil(monsterHP * 2.5)
+				monsterHP = math.ceil(monsterHP * 4.0)
 			else
-				monsterHP = math.ceil(monsterHP * 2.5)
+				monsterHP = math.ceil(monsterHP * 4.0)
 			end
 			monster:setMaxHealth(monsterHP)
 			monster:setHealth(monsterHP)

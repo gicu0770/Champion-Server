@@ -18,8 +18,8 @@ local affixes = {
   [2] = {
     name = "Champion",
     skull = 8,
-    hpMultiplier = 2.5,
-    dmgMultiplier = 2.0,
+    hpMultiplier = 4.0,
+    dmgMultiplier = 3.0,
     clones = 0,
     weight = 50, -- Mniejsza szansa na Champion
     lootChance = 4.00 -- 3 x wiecej gold i exp
@@ -813,8 +813,8 @@ function Player:onLook(thing, position, distance)
 		[2] = {
 			name = "Champion",
 			skull = 8,
-			hpMultiplier = 2.5,
-			dmgMultiplier = 2.0,
+			hpMultiplier = 4.0,
+			dmgMultiplier = 3.0,
 			clones = 0,
 			weight = 50, -- Mniejsza szansa na Champion
 			lootChance = 4.00 -- 3 x wiecej gold i exp
@@ -870,7 +870,7 @@ function Player:onLook(thing, position, distance)
 
 		eliteAffix_desc = {
 			[1] = "Health +50%, Damage +15%, Gold, EXP and Loot Chance + 20%, spawns in a pack of 3",
-			[2] = "Health x2.5, Damage x2, Gold, EXP and Loot Chance x4",
+			[2] = "Health x4, Damage x3, Gold, EXP and Loot Chance x4",
 		}
 		local skull = thing:getSkull()
 		local skullPlus = thing:getSkull() - 6

@@ -238,11 +238,20 @@ end
 
 
 CHAMPION_STATS = {
+	["Hunter"] = {physical_character = true, hp_start = 550, hp_level = 3000, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, regen_mana = 1}, -- Hunter
+	["Guard"] = {physical_character = true, hp_start = 600, hp_level = 4000, mana = 200, manaPL = 500, physical_attack = 65, physical_attackPL = 140, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 40, physical_defensePL = 125, magic_defense = 30, magic_defensePL = 90, health_regen = 3, regen_mana = 1}, -- Guard
+	["Mage"] = {magic_character = true, hp_start = 500, hp_level = 2500, mana = 500, manaPL = 1000, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Mage
+	["Assassin"] = {physical_character = true, hp_start = 500, hp_level = 2500, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Assassin
+	["Cleric"] = {magic_character = true, hp_start = 550, hp_level = 3200, mana = 400, manaPL = 850, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, regen_mana = 1}, -- Cleric
+}
+--[[
+CHAMPION_STATS = {
 	["Mia"] = {physical_character = true, hp_start = 610, hp_level = 2600, mana = 280, manaPL = 969, physical_attack = 59, physical_attackPL = 127, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 26, physical_defensePL = 116, magic_defense = 33, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
 	["Gorn"] = {physical_character = true, hp_start = 620, hp_level = 2100, mana = 0, manaPL = 0, physical_attack = 66, physical_attackPL = 142, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 36, physical_defensePL = 87, magic_defense = 33, magic_defensePL = 54, health_regen = 3, regen_mana = 1},
 	["Juki"] = {magic_character = true, hp_start = 570, hp_level = 2700, mana = 470, manaPL = 881, physical_attack = 57, physical_attackPL = 116, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 24, physical_defensePL = 107, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
 	["Limona"] = {magic_character = true, hp_start = 500, hp_level = 6000, mana = 480, manaPL = 880, physical_attack = 50, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1},
 }
+--]]
 MONSTER_CONFIG = {
 	[1] = { damage = 10, physical_defense = 20, magic_defense = 20, exp = 2, gold = 2, upgrade_materials_chance = 7500 }, -- goblin
 	[2] = { damage = 20, physical_defense = 23, magic_defense = 23, exp = 4, gold = 3, upgrade_materials_chance = 7500 }, -- bandits
@@ -273,8 +282,14 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local physical_damage = 0
 		local magic_damage = 0
 		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee
-			primaryDamage = attacker:getPhysicalAttack() --player_damage
-			primaryType = COMBAT_PHYSICALDAMAGE
+			primaryDamage = player_damage-- attacker:getPhysicalAttack() --player_damage
+			print(attacker:getCharacterTypeEx())
+			if attacker:getCharacterTypeEx() == "magic" then
+				primaryDamage = primaryDamage * 0.50
+				primaryType = COMBAT_ENERGYDAMAGE
+			else
+				primaryType = COMBAT_PHYSICALDAMAGE
+			end
 			if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne wrecz
 			elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne wrecz
 			end
@@ -585,7 +600,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		-- [36] Fray (Wit's End / Recurve Bow): Basic attacks deal bonus magic damage on-hit
 		if attackerAttrs and attackerAttrs[36] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
-			local frayValue = attackerAttrs[36].value or 45
+			local frayValue = US_ENCHANTMENTS[36].subvalue
 			local frayDef = 0
 			if creature:isMonster() then
 				frayDef = (15 + creature:getMonsterLevel() * 1)
@@ -608,8 +623,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		-- [37] Icathian Bite (Nashor's Tooth): Basic attacks deal 15 (+15% AP) bonus magic damage on-hit
 		if attackerAttrs and attackerAttrs[37] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
 			local ap = attacker:getMagicAttack()
-			local biteRatio = (attackerAttrs[37].value or 15) / 100
-			local biteBase = 15 + math.floor(ap * biteRatio)
+			local biteRatio = (US_ENCHANTMENTS[36].subvalue) / 100
+			local biteBase = US_ENCHANTMENTS[36].subvalue + math.floor(ap * biteRatio)
 			local biteDef = 0
 			if creature:isMonster() then
 				biteDef = (15 + creature:getMonsterLevel() * 1)
@@ -980,8 +995,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local skull = attacker:getSkull()
 			if skull == 7 then -- Elite (+15% damage)
 				monster_damage_bonus = monster_damage_bonus + 15
-			elseif skull == 8 then -- Champion (+100% damage)
-				monster_damage_bonus = monster_damage_bonus + 100
+			elseif skull == 8 then -- Champion (+200% damage = 3x total)
+				monster_damage_bonus = monster_damage_bonus + 200
 			elseif skull > 8 then
 				monster_damage_bonus = monster_damage_bonus + 20
 			end

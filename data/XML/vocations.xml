@@ -10,7 +10,7 @@
 		<skill id="5" multiplier="1.2" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-	<vocation id="1" clientid="1" name="Juki" description="a juki" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1500" basespeed="150" soulmax="100" gainsoulticks="120" >
+	<vocation id="1" clientid="1" name="Hunter" description="a hunter" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1450" basespeed="165" soulmax="100" gainsoulticks="120" >
 		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
 		<skill id="0" multiplier="1.1" />
 		<skill id="1" multiplier="1.1" />
@@ -20,7 +20,7 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-	<vocation id="2" clientid="2" name="Gorn" description="a gorn" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1500" basespeed="150" soulmax="100" gainsoulticks="120" >
+	<vocation id="2" clientid="2" name="Guard" description="a guard" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1600" basespeed="150" soulmax="100" gainsoulticks="120" >
 		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
 		<skill id="0" multiplier="1.1" />
 		<skill id="1" multiplier="1.1" />
@@ -30,7 +30,7 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-	<vocation id="3" clientid="3" name="Mia" description="a mia" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1240" basespeed="150" soulmax="100" gainsoulticks="120" >
+	<vocation id="3" clientid="3" name="Mage" description="a mage" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1650" basespeed="145" soulmax="100" gainsoulticks="120" >
 		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
 		<skill id="0" multiplier="1.1" />
 		<skill id="1" multiplier="1.1" />
@@ -40,7 +40,17 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-	<vocation id="4" clientid="4" name="Limona" description="a limona" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1500" basespeed="150" soulmax="100" gainsoulticks="120" >
+	<vocation id="4" clientid="4" name="Assassin" description="a assassin" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1500" basespeed="170" soulmax="100" gainsoulticks="120" >
+		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
+		<skill id="0" multiplier="1.1" />
+		<skill id="1" multiplier="1.1" />
+		<skill id="2" multiplier="1.1" />
+		<skill id="3" multiplier="1.1" />
+		<skill id="4" multiplier="1.1" />
+		<skill id="5" multiplier="1.1" />
+		<skill id="6" multiplier="1.1" />
+	</vocation>
+	<vocation id="5" clientid="5" name="Cleric" description="a cleric" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1600" basespeed="145" soulmax="100" gainsoulticks="120" >
 		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
 		<skill id="0" multiplier="1.1" />
 		<skill id="1" multiplier="1.1" />

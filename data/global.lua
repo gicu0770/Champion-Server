@@ -176,6 +176,15 @@ function Player.getCharacterType(self)
 	end
 	return typeEx
 end
+function Player.getCharacterTypeEx(self)
+	local typeMorP = "physical"
+	if CHAMPION_STATS[self:getVocation():getName()].physical_character then
+		typeMorP = "physical"
+	elseif CHAMPION_STATS[self:getVocation():getName()].magic_character then
+		typeMorP = "magic"
+	end
+	return typeMorP
+end
 
 
 function Player.getPhysicalAttack(self)
@@ -4759,7 +4768,7 @@ function Player.getTotalAttackSpeed(self, checkCollectInfo)
 		return 0
 	end
 
-	local as = (CHAMPION_STATS[self:getVocation():getName()].asPL / 60) * self:getLevel()
+	local as = (CHAMPION_STATS[self:getVocation():getName()].asPL / 50) * self:getLevel()
 
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[11] then
