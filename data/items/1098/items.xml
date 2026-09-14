@@ -40511,17 +40511,17 @@
 		<attribute key="spellGem" value="1" />
 		<attribute key="spell" value="Fireball" />
 	</item>
-	<item id="37306" article="a" name="Searing Torrent">
+	<item id="37306" article="a" name="Frost Wave">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="2" />
-		<attribute key="spell" value="Searing Torrent" />
+		<attribute key="spell" value="Frost Wave" />
 	</item>
-	<item id="37307" article="a" name="Vengeance Flame">
+	<item id="37307" article="a" name="Thunderstorm">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="3" />
-		<attribute key="spell" value="Vengeance Flame" />
+		<attribute key="spell" value="Thunderstorm" />
 	</item>
 	<item id="37308" article="a" name="Thousand Pounder">
 		<attribute key="containerSize" value="3" />
@@ -40529,17 +40529,17 @@
 		<attribute key="spellGem" value="4" />
 		<attribute key="spell" value="Thousand Pounder" />
 	</item>
-	<item id="37309" article="a" name="Body Slam">
+	<item id="37309" article="a" name="Ground Slam">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="5" />
-		<attribute key="spell" value="Body Slam" />
+		<attribute key="spell" value="Ground Slam" />
 	</item>
-	<item id="37310" article="a" name="Heavy Spin">
+	<item id="37310" article="a" name="Colossus Rampage">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="6" />
-		<attribute key="spell" value="Heavy Spin" />
+		<attribute key="spell" value="Colossus Rampage" />
 	</item>
 	<item id="37311" article="a" name="Rapid Fire">
 		<attribute key="containerSize" value="3" />

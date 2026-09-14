@@ -1,68 +1,160 @@
+local resizeTo = {
+  [1] = {
+    {0, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 3, 1, 1},
+    {1, 1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1, 0},
+  },
+  [2] = {
+    {0, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 3, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1, 1, 0},
+  },
+  [3] = {
+    {0, 0, 1, 1, 1, 1, 0, 0},
+    {0, 1, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 3, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 1, 1, 1, 1, 0, 0},
+  },
+  [4] = {
+    {0, 0, 1, 1, 1, 1, 1, 0, 0},
+    {0, 1, 1, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 3, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 1, 1, 1, 1, 1, 0, 0},
+  },
+}
+
 local CONFIG = {
   spellName = GLOBAL_SPELL_COOLDOWNS[3].name,
   level = 1,
   magLevel = 0,
   manaCost = GLOBAL_SPELL_COOLDOWNS[3].manaCost,
   spellId = 3,
-  range = 0,
-  aggressive = false,
+  range = GLOBAL_SPELL_COOLDOWNS[3].range or 6,
+  aggressive = true,
+  forwardCast = true,
   cooldown = GLOBAL_SPELL_COOLDOWNS[3].cooldown,
   type = COMBAT_ENERGYDAMAGE,
-  selfTarget = true,
 
   combat_config = {
-    effect = 488,
+    effect = 0,
   },
-  effectEx = 488,
-  offsetX = 3,
-  offsetY = 3,
+
+  defualtArea = {
+    {0, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 3, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1, 1, 0},
+  },
 
   supports = {
     ["dot"] = false,
-    ["aoe"] = false,
-    ["resize"] = false,
-  }
+    ["close"] = false,
+    ["aoe"] = true,
+    ["resize"] = true,
+  },
 }
+
+local function playRainVisualEffects(centerPos, radius)
+  local r = radius or 2
+  for dx = -r, r do
+    for dy = -r, r do
+      if math.random(1, 100) <= 60 then
+        local targetTile = Position(centerPos.x + dx, centerPos.y + dy, centerPos.z)
+        local skyPos = Position(targetTile.x - 2, targetTile.y - 4, targetTile.z)
+      --  skyPos:sendDistanceEffect(targetTile, 1) -- Arrow projectile falling from sky
+      --  targetTile:sendMagicEffect(716)
+      end
+    end
+  end
+end
+
+local function executeRainTick(playerId, posX, posY, posZ, tickNum, tickDmg, resizeLevel)
+  local player = Player(playerId)
+  if not player or player:isRemoved() then return end
+
+  local centerPos = Position(posX, posY, posZ)
+  local areaMatrix = (resizeLevel and resizeLevel > 0 and resizeTo[resizeLevel]) or CONFIG.defualtArea
+
+  local combat = Combat()
+  combat:setParameter(COMBAT_PARAM_TYPE, CONFIG.type or COMBAT_ENERGYDAMAGE)
+  combat:setParameter(COMBAT_PARAM_AGGRESSIVE, true)
+  combat:setParameter(COMBAT_PARAM_DAMAGE, math.abs(tickDmg))
+  combat:setArea(createCombatArea(areaMatrix))
+
+  combat:execute(player, Variant(centerPos))
+
+  -- Visual effects of raining arrows across the area
+  playRainVisualEffects(centerPos, (resizeLevel and resizeLevel > 0) and (2 + resizeLevel) or 2)
+  Position(centerPos.x + 3, centerPos.y + 3, centerPos.z):sendMagicEffect(687, 1)
+  if tickNum < 2 then -- 3 ticks total (0, 1, 2)
+    addEvent(executeRainTick, 500, playerId, posX, posY, posZ, tickNum + 1, tickDmg, resizeLevel)
+  end
+end
 
 local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   if not spellCheckForCast(player, item, CONFIG.spellId, getInfoOnly, force) then return end
   local CONFIG_SUP = item:applySupportSpells(CONFIG, player:getId())
+  local area, tempArea = spellSetupArea(CONFIG, CONFIG_SUP, resizeTo)
+
   if getInfoOnly then
-    return spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, nil)
+    return spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, tempArea)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
 
-  local spellLevel = 1
-  if CONFIG_SUP and CONFIG_SUP.level and CONFIG_SUP.level > 0 then
-    spellLevel = CONFIG_SUP.level
-  elseif item and item:getId() > 0 then
-    spellLevel = item:getCustomAttribute("level") or 1
+  local maxRange = CONFIG_SUP.range or CONFIG.range or 6
+  local target = player:getTarget()
+  local targetPos = nil
+
+  if target and not target:isRemoved() then
+    if not player:targetRechable(target:getPosition(), maxRange) then
+      return false
+    end
+    targetPos = target:getPosition()
+  else
+    if not mousePos then
+      return false
+    end
+    if not player:targetRechable(mousePos, maxRange) then
+      return false
+    end
+    targetPos = mousePos
   end
 
-  local dmgPercent = 30 + (math.max(1, spellLevel) - 1) * 5
-  player:setStorageValue(PlayerStorage.vengeanceFlameDmg, dmgPercent)
-
-  -- Add Buff for 10s (10000 ms)
-  player:addBuff(VENGEANCE_FLAME, 10000)
-
-  -- Speed bonus +30% for 10s
-  local speed = math.floor(player:getBaseSpeed() * 0.30)
-  if speed > 0 then
-    local speedCondition = Condition(CONDITION_HASTE)
-    speedCondition:setParameter(CONDITION_PARAM_TICKS, 10000)
-    speedCondition:setParameter(CONDITION_PARAM_SPEED, speed)
-    player:addCondition(speedCondition)
+  local dir = spellGetDirectionTo(player:getPosition(), targetPos)
+  if dir then
+    player:setDirection(dir)
   end
 
-  -- Visual Effect on player
-  local playerPos = player:getPosition()
-  local effectPos = Position(playerPos.x + (CONFIG.offsetX or 3), playerPos.y + (CONFIG.offsetY or 3), playerPos.z)
-  effectPos:sendMagicEffect(CONFIG.effectEx or 488)
+  local resizeLevel = CONFIG_SUP.resizeTo or 0
+  local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
+  local tickDmg = dmg[1] -- negative damage
 
   spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
   if not force then
     spellTakeCost(player, CONFIG, CONFIG_SUP)
   end
+
+  -- Initial tick (0ms) and subsequent ticks (500ms, 1000ms)
+  executeRainTick(player:getId(), targetPos.x, targetPos.y, targetPos.z, 0, tickDmg, resizeLevel)
 
   return true
 end

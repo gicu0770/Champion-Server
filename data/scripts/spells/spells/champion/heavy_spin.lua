@@ -41,12 +41,12 @@ local CONFIG = {
   spellName = GLOBAL_SPELL_COOLDOWNS[6].name,
   level = 1,
   magLevel = 0,
-  manaCost = GLOBAL_SPELL_COOLDOWNS[6].manaCost,
+  manaCost = GLOBAL_SPELL_COOLDOWNS[6].manaCost or 0,
   spellId = 6,
-  range = GLOBAL_SPELL_COOLDOWNS[6].range,
-  aggressive = true,
+  range = GLOBAL_SPELL_COOLDOWNS[6].range or 0,
+  aggressive = false,
   selfTarget = true,
-  cooldown = GLOBAL_SPELL_COOLDOWNS[6].cooldown,
+  cooldown = GLOBAL_SPELL_COOLDOWNS[6].cooldown or 60000,
   type = COMBAT_PHYSICALDAMAGE,
 
   combat_config = {
@@ -61,91 +61,48 @@ local CONFIG = {
   supports = {
     ["dot"] = false,
     ["close"] = true,
-    ["aoe"] = true,
-    ["resize"] = true,
+    ["aoe"] = false,
+    ["resize"] = false,
   },
 }
-
-local function executeSpinTick(playerId, tickNum, tickDmg, resizeLevel)
-  local player = Player(playerId)
-  if not player or player:isRemoved() then return end
-
-  local playerPos = player:getPosition()
-  local areaMatrix = (resizeLevel and resizeLevel > 0 and resizeTo[resizeLevel]) or CONFIG.defualtArea
-
-  local combat = Combat()
-  combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-  combat:setParameter(COMBAT_PARAM_AGGRESSIVE, true)
-  combat:setParameter(COMBAT_PARAM_DAMAGE, math.abs(tickDmg))
-  combat:setArea(createCombatArea(areaMatrix))
-
-  combat:execute(player, Variant(playerPos))
-
-  local effect = 517
-  local offset = 1
-  if resizeLevel and resizeLevel >= 1 and resizeLevel <= 2 then
-    effect = 513
-    offset = 2
-  elseif resizeLevel and resizeLevel >= 3 then
-    effect = 467
-    offset = 3
-  end
-  local position = Position(playerPos.x + offset, playerPos.y + offset, playerPos.z)
-  position:sendMagicEffect(effect, 0)
-
-  if tickNum < 3 then
-    addEvent(executeSpinTick, 1000, playerId, tickNum + 1, tickDmg, resizeLevel)
-  end
-end
-
-local function spinRotationStep(playerId, step)
-  local player = Player(playerId)
-  if not player or player:isRemoved() then return end
-
-  local curDir = player:getDirection()
-  player:setDirection((curDir + 1) % 4)
-
-  if step < 19 then -- 20 steps * 200ms = 4000ms
-    addEvent(spinRotationStep, 200, playerId, step + 1)
-  end
-end
 
 local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   if not spellCheckForCast(player, item, CONFIG.spellId, getInfoOnly, force) then return end
   local CONFIG_SUP = item:applySupportSpells(CONFIG, player:getId())
-  local area, tempArea = spellSetupArea(CONFIG, CONFIG_SUP, resizeTo)
 
   if getInfoOnly then
-    return spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, tempArea)
+    return spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, nil)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
-
-  -- Add Buff for 4s (4000 ms)
-  player:addBuff(HEAVY_SPIN_BUFF, 4000)
-
-  -- Speed bonus +70% for 4s
-  local speed = math.floor((player:getBaseSpeed() or 150) * 0.70)
-  if speed > 0 then
-    local speedCondition = Condition(CONDITION_HASTE)
-    speedCondition:setParameter(CONDITION_PARAM_TICKS, 4000)
-    speedCondition:setParameter(CONDITION_PARAM_SPEED, speed)
-    player:addCondition(speedCondition)
-  end
-
-  local resizeLevel = CONFIG_SUP.resizeTo or 0
-  local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
-  local tickDmg = dmg[1] -- negative damage
 
   spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
   if not force then
     spellTakeCost(player, CONFIG, CONFIG_SUP)
   end
 
-  -- Initial tick (0s) and subsequent ticks every 1000ms (4 ticks total: 0s, 1s, 2s, 3s)
-  executeSpinTick(player:getId(), 0, tickDmg, resizeLevel)
+  local expireTime = os.time() + 7
+  player:setStorageValue(PlayerStorage.colossusRampageTime, expireTime)
 
-  -- Spin rotation animation (every 200ms for 4s)
-  spinRotationStep(player:getId(), 0)
+  -- CC Cleanse: remove any active paralyze/slow
+  player:removeCondition(CONDITION_PARALYZE)
+
+  -- Visual effects
+  local playerPos = player:getPosition()
+  playerPos:sendMagicEffect(CONST_ME_MAGIC_RED)
+  playerPos:sendMagicEffect(517)
+  player:say("COLOSSUS!", TALKTYPE_MONSTER_SAY)
+
+  -- Pulse visual effect and cleanse CC every 1s for 7 seconds
+  local playerId = player:getId()
+  for i = 1, 6 do
+    addEvent(function()
+      local p = Player(playerId)
+      if p and p:getStorageValue(PlayerStorage.colossusRampageTime) >= os.time() then
+        p:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+        p:removeCondition(CONDITION_PARALYZE)
+      end
+    end, i * 1000)
+  end
 
   return true
 end

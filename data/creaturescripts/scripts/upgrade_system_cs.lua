@@ -277,25 +277,16 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local attackerAttrs = colleftInfo[attacker:getId()] and colleftInfo[attacker:getId()].attributesItems
 		local physical_penetration = attacker:getPhysicalPenetration()
 		local magic_penetration = attacker:getMagicPenetration()
-		attacker:getTotalAttackSpeed()
-		local player_damage = attacker:getCharacterType()
-		local physical_damage = 0
-		local magic_damage = 0
-		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee
-			primaryDamage = player_damage-- attacker:getPhysicalAttack() --player_damage
-			print(attacker:getCharacterTypeEx())
+		if origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND then -- obrazenia melee / z reki
 			if attacker:getCharacterTypeEx() == "magic" then
-				primaryDamage = primaryDamage * 0.50
+				local physAtk = attacker:getPhysicalAttack()
+				local magicBonus = math.floor(attacker:getMagicAttack() * 0.50)
+				primaryDamage = physAtk + magicBonus
 				primaryType = COMBAT_ENERGYDAMAGE
 			else
+				primaryDamage = attacker:getPhysicalAttack()
 				primaryType = COMBAT_PHYSICALDAMAGE
 			end
-			if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne wrecz
-			elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne wrecz
-			end
-		end
-		if primaryType == COMBAT_PHYSICALDAMAGE then -- obrazenia fizyczne
-		elseif primaryType ~= COMBAT_PHYSICALDAMAGE then -- obrazenia magiczne
 		end
 		if attacker:hasBuff(VENGEANCE_FLAME) then
 			local bonus = attacker:getStorageValue(PlayerStorage.vengeanceFlameDmg)
@@ -305,16 +296,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			primaryDamage = math.ceil(primaryDamage * (1 + bonus / 100))
 		end
 
-		-- Gorn Passive: Basic attacks deal extra 25 (+5% Total HP) Physical Damage (10s cooldown)
-		if attacker:getVocation():getId() == 2 and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
-			local now = os.time()
-			local nextAvailable = attacker:getStorageValue(PlayerStorage.gornAttackCooldown)
-			if nextAvailable < 0 or now >= nextAvailable then
-				attacker:setStorageValue(PlayerStorage.gornAttackCooldown, now + 10)
-				local gornBonus = math.ceil(25 + (attacker:getMaxHealth() * 0.05))
-				primaryDamage = primaryDamage + gornBonus
-				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-			end
+		-- Colossus Rampage (Guard Ultimate): Basic attacks deal extra 4% Max HP physical damage on-hit during Colossus
+		if attacker:getStorageValue(PlayerStorage.colossusRampageTime) >= os.time() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
+			local rampageBonus = math.ceil(attacker:getMaxHealth() * 0.04)
+			primaryDamage = primaryDamage + rampageBonus
+			creature:getPosition():sendMagicEffect(CONST_ME_HITAREA)
 		end
 
 		-- Mia Passive (Vocation 3): Basic attacks slow by 20% for 1.5s. Every 5s, deals 50% Physical Attack extra Physical Damage.
@@ -1068,6 +1054,41 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				local cPos = creature:getPosition()
 				cPos:sendMagicEffect(CONST_ME_FIREAREA)
 				doAreaCombat(creature:getId(), COMBAT_FIREDAMAGE, cPos, area5x5nocenter, -rawImmolate, -rawImmolate, CONST_ME_HITBYFIRE, ORIGIN_REFLECT, 0, 0)
+			end
+		end
+	end
+
+	-- Colossus Rampage (Guard Ultimate): 50% damage reduction from all incoming damage & CC Cleanse
+	if creature:isPlayer() and creature:getStorageValue(PlayerStorage.colossusRampageTime) >= os.time() and primaryType ~= COMBAT_HEALING then
+		primaryDamage = math.ceil(primaryDamage * 0.50)
+		creature:removeCondition(CONDITION_PARALYZE)
+	end
+
+	-- Guard Passive (Niezlomny Bastion): When HP drops below 35%, gain Energy Shield equal to 25% Max HP for 5s (60s cooldown)
+	if creature:isPlayer() and creature:getVocation():getId() == 2 and primaryType ~= COMBAT_HEALING then
+		local remainingHp = creature:getHealth() - primaryDamage
+		local maxHp = creature:getMaxHealth()
+		if remainingHp > 0 and remainingHp <= math.floor(maxHp * 0.35) then
+			local now = os.time()
+			local nextCd = creature:getStorageValue(PlayerStorage.guardPassiveCd)
+			if nextCd < 0 or now >= nextCd then
+				creature:setStorageValue(PlayerStorage.guardPassiveCd, now + 60)
+				local shieldAmount = math.floor(maxHp * 0.25)
+				local curShield = creature:getEnergyShield() or 0
+				local newShield = curShield + shieldAmount
+				if creature:getMaxEnergyShield() < newShield then
+					creature:setMaxEnergyShield(newShield)
+				end
+				creature:setEnergyShield(newShield)
+				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+				local playerId = creature:getId()
+				addEvent(function()
+					local p = Player(playerId)
+					if p then
+						local s = p:getEnergyShield() or 0
+						p:setEnergyShield(math.max(0, s - shieldAmount))
+					end
+				end, 5000)
 			end
 		end
 	end

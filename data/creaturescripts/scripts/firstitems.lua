@@ -1,5 +1,5 @@
 local config = {
-	[1] = { -- Juki
+	[1] = { -- Mage
 		items = {
 			{26637, 1}, -- wooden rod
 		},
@@ -9,17 +9,17 @@ local config = {
 			{37307, 1, CONST_SLOT_SPELL3}, -- spell3
 		}
 	},
-	[2] = { -- Gorn
+	[2] = { -- Guard
 		items = {
 			{36666, 1}, -- sword
 		},
 		spells = {
 			{37308, 1, CONST_SLOT_SPELL1}, -- Thousand Pounder
-			{37309, 1, CONST_SLOT_SPELL2}, -- Body Slam
-			{37310, 1, CONST_SLOT_SPELL3}, -- Heavy Spin
+			{37309, 1, CONST_SLOT_SPELL2}, -- Ground Slam
+			{37310, 1, CONST_SLOT_SPELL3}, -- Colossus Rampage
 		}
 	},
-	[3] = { -- Mia
+	[3] = { -- Hunter
 		items = {
 			{2456, 1}, -- bow
 		},
@@ -29,9 +29,17 @@ local config = {
 			{37313, 1, CONST_SLOT_SPELL3}, -- Arrow Rain
 		},
 	},
-	[4] = { -- Limone
+	[4] = { -- Assassin
 		items = {
-			{26637, 1}, -- wooden rod
+			{36666, 1}, -- wooden rod
+		},
+		spells = {
+			{1987, 1, CONST_SLOT_SPELL1}, -- spell1
+		},
+	},
+	[5] = { -- Cleric
+		items = {
+			{36666, 1}, -- wooden rod
 		},
 		spells = {
 			{1987, 1, CONST_SLOT_SPELL1}, -- spell1

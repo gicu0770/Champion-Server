@@ -436,6 +436,8 @@ PlayerStorage = {
 
 	EnchantmentsAltar = 125105, -- 125205
 	inspectable = 900000,
+	guardPassiveCd = 712401,
+	colossusRampageTime = 712402,
 }
 
 

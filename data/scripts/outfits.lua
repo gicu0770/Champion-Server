@@ -168,35 +168,6 @@ function Player:showFootprint(position)
   end
 
   local footPrint = self:getStorageValue(PlayerStorage.footChoosen)
-  if colleftInfo[self:getId()].attributesItems[52] then -- Evansion
-    local buff = self:getBuff(EVANSION)
-    if buff then
-      if buff.stacks >= 10 then
-        self:removeBuff(EVANSION)
-      else
-        self:addBuff(EVANSION)
-      end
-      else
-        self:addBuff(EVANSION)
-    end
-  end
-
-  if colleftInfo[self:getId()].attributesItems[172] then
-    self:addBuff(FLEETFOOT)
-    if self:getBuff(FLEETFOOT) then
-      local hasteAdded = self:getBaseSpeed() * US_ENCHANTMENTS[172].subvalue / 100
-      local conditionHaste = Condition(CONDITION_HASTE, CONDITIONID_DEFAULT)
-      conditionHaste:setParameter(CONDITION_PARAM_SUBID, 777778)
-      conditionHaste:setParameter(CONDITION_PARAM_TICKS, 1 * 1000) --2 secs
-      conditionHaste:setFormula(0.0, hasteAdded, 0.0, hasteAdded)
-      self:addCondition(conditionHaste)
-      local conditionAS = Condition(CONDITION_ATTRIBUTES)
-			conditionAS:setParameter(CONDITION_PARAM_SUBID, 712349)
-			conditionAS:setParameter(CONDITION_PARAM_ATTACKSPEED, 15)
-			conditionAS:setParameter(CONDITION_PARAM_TICKS, 3000)
-			self:addCondition(conditionAS)
-    end
-  end
 
   if footPrint > 0 then
     local foot = footPrints[footPrint]

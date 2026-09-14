@@ -42,8 +42,10 @@ function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtr
 
   local totalBase = baseDmg + (math.max(1, spellLevel) - 1) * basePerLvl
 
-  if CONFIG.spellId == 5 then -- Body Slam (+6% Total HP)
-    totalBase = totalBase + math.ceil(player:getMaxHealth() * 0.06)
+  if CONFIG.spellId == 4 then -- Thousand Pounder (+5% Max HP)
+    totalBase = totalBase + math.ceil(player:getMaxHealth() * 0.05)
+  elseif CONFIG.spellId == 5 then -- Ground Slam (+50% Physical Defense)
+    totalBase = totalBase + math.ceil(player:getPhysicalDefense() * 0.50)
   end
   local max = math.ceil(totalBase + (attackpower * multiplier))
   local max2 = 0

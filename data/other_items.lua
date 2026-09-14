@@ -1100,261 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Minotaur Helmet",
-      38562,
-      "Minotaur Liberator",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            70
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Minotaur Liberator",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            107
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Soulbound Lich",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
-      {
-        chance = 5000,
-        forceType = -2147483648,
-        imps = {
-          {
-            288
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Void Stone",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
-      {
-        chance = 100000,
-        forceType = 67108864,
-        imps = {
-          {
-            26
-          },
-          {
-            {
-              150,
-              200,
-              400,
-              750
-            }
-          }
-        },
-        monster = "Toxic Hydra",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Energy Soulstone",
-      38639,
-      "Ethereal Seraph",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            72
-          },
-          {
-            {
-              5,
-              10,
-              23,
-              42
-            }
-          }
-        },
-        monster = "Ethereal Seraph",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Knight Emblem",
       38447,
       "Tidal Overlord",
@@ -1529,26 +1274,252 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Mana Soulstone",
-      38640,
-      "Glacier Warlord",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 134217728,
         imps = {
           {
-            110
+            264
           },
           {
             {
-              5,
-              10,
-              23,
-              42
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Glacier Warlord",
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            68
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Grave Spearlord",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Minotaur Helmet",
+      38562,
+      "Minotaur Liberator",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            70
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Minotaur Liberator",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            107
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Soulbound Lich",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
+      {
+        chance = 5000,
+        forceType = -2147483648,
+        imps = {
+          {
+            288
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Void Stone",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Vampire Heart",
+      38239,
+      "Vampire Queen",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            23
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Vampire Queen",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            26
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Toxic Hydra",
         weight = {
           7,
           10,
@@ -1587,60 +1558,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Vampire Heart",
-      38239,
-      "Vampire Queen",
+      "Energy Soulstone",
+      38639,
+      "Ethereal Seraph",
       {
         chance = 100000,
-        forceType = 67108864,
+        forceType = 16777216,
         imps = {
           {
-            23
+            72
           },
           {
             {
-              150,
-              200,
-              400,
-              750
+              5,
+              10,
+              23,
+              42
             }
           }
         },
-        monster = "Vampire Queen",
+        monster = "Ethereal Seraph",
         weight = {
           7,
           10,
           12,
           15
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
         }
       }
     },
@@ -1668,6 +1610,64 @@ OTHER_ITEMS = {
           0,
           0,
           0
+        }
+      }
+    },
+    {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Mana Soulstone",
+      38640,
+      "Glacier Warlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            110
+          },
+          {
+            {
+              5,
+              10,
+              23,
+              42
+            }
+          }
+        },
+        monster = "Glacier Warlord",
+        weight = {
+          7,
+          10,
+          12,
+          15
         }
       }
     }
@@ -1924,7 +1924,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Searing Torrent",
+      "Frost Wave",
       37306,
       1
     },
@@ -1959,7 +1959,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Vengeance Flame",
+      "Thunderstorm",
       37307,
       1
     },
@@ -2144,7 +2144,7 @@ OTHER_ITEMS = {
       12
     },
     {
-      "Heavy Spin",
+      "Colossus Rampage",
       37310,
       12
     },
@@ -2259,7 +2259,7 @@ OTHER_ITEMS = {
       12
     },
     {
-      "Body Slam",
+      "Ground Slam",
       37309,
       12
     },

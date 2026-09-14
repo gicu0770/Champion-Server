@@ -175,23 +175,48 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
     end
   end
 
-  -- Turn player towards destination
-  local dir = spellGetDirectionTo(fromPos, destPos)
-  if dir then
-    player:setDirection(dir)
+  -- Turn player towards aim
+  local aimDir = spellGetDirectionTo(fromPos, destPos)
+  if aimDir then
+    player:setDirection(aimDir)
   end
 
-  -- Move player to target position
-  fromPos:sendMagicEffect(CONST_ME_POFF)
-  player:teleportTo(destPos)
-  destPos:sendMagicEffect(CONST_ME_POFF)
-
-  -- Damage calculation via standard spellGlobalFormule
+  -- Damage calculation via standard spellGlobalFormule (includes +5% Max HP from _spells_functions.lua)
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local totalDmg = dmg[1] -- negative damage
 
-  -- ONLY apply damage and knockup if an enemy was actually hit along the dash path
+  -- Send projectile towards destination
+  fromPos:sendDistanceEffect(destPos, CONST_ANI_WHIRLWINDAXE)
+
+  -- If an enemy was hit, pull them to the player
   if firstHitEnemy and not firstHitEnemy:isRemoved() then
+    local playerPos = player:getPosition()
+    local pullDir = spellGetDirectionTo(playerPos, firstHitEnemy:getPosition())
+    if pullDir then
+      player:setDirection(pullDir)
+    else
+      pullDir = player:getDirection()
+    end
+
+    -- Determine tile 1 step in front of player
+    local pullPos = Position(playerPos.x, playerPos.y, playerPos.z)
+    if pullDir == DIRECTION_NORTH then pullPos.y = pullPos.y - 1
+    elseif pullDir == DIRECTION_SOUTH then pullPos.y = pullPos.y + 1
+    elseif pullDir == DIRECTION_EAST then pullPos.x = pullPos.x + 1
+    elseif pullDir == DIRECTION_WEST then pullPos.x = pullPos.x - 1
+    end
+
+    local pullTile = Tile(pullPos)
+    if not pullTile or pullTile:hasProperty(CONST_PROP_BLOCKSOLID) or pullTile:hasProperty(CONST_PROP_BLOCKPROJECTILE) then
+      pullPos = player:getClosestFreePosition(playerPos, 1) or playerPos
+    end
+
+    -- Visual effects and teleport target
+    firstHitEnemy:getPosition():sendMagicEffect(CONST_ME_POFF)
+    firstHitEnemy:teleportTo(pullPos)
+    pullPos:sendMagicEffect(CONST_ME_HITAREA)
+
+    -- Damage and 0.5s stun
     doTargetCombat(player, firstHitEnemy, COMBAT_PHYSICALDAMAGE, totalDmg, totalDmg, CONST_ME_HITAREA, ORIGIN_SPELL)
 
     local stunCond = Condition(CONDITION_PARALYZE)

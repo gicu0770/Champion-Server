@@ -40,24 +40,26 @@ local CONFIG = {
   directional = true,
 
   combat_config = {
-    effect = 7,
+    effect = 44,
   },
 
   defualtArea = {
-    {1, 1, 1, 1, 1, 1, 1},
-    {0, 1, 1, 1, 1, 1, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0},
     {0, 0, 1, 1, 1, 0, 0},
     {0, 0, 1, 1, 1, 0, 0},
     {0, 0, 0, 3, 0, 0, 0}
   },
 
   diaoganlArea = {
-    {0, 0, 0, 0, 0, 1, 0},
-    {0, 0, 0, 0, 1, 1, 0},
-    {0, 0, 0, 1, 1, 1, 0},
-    {0, 0, 1, 1, 1, 1, 0},
+    {0, 0, 1, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0, 0, 0},
+    {1, 1, 1, 1, 1, 0, 0},
     {0, 1, 1, 1, 1, 1, 0},
-    {1, 1, 1, 1, 1, 1, 1},
+    {0, 0, 1, 1, 1, 1, 0},
+    {0, 0, 0, 1, 1, 1, 1},
     {0, 0, 0, 0, 0, 1, 3}
   },
 
@@ -87,7 +89,24 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)
 
-  spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item)
+  -- Slow 30% for 1.5s on hit targets
+  local extraFunc = function(caster, target)
+    if not target or target:isRemoved() then return end
+    local slow = 0
+    if target:isMonster() then
+      slow = math.floor((target:getSpeed() * 30) / 100)
+    elseif target:isPlayer() then
+      slow = math.floor((target:getBaseSpeed() * 30) / 100)
+    end
+    if slow > 0 then
+      local slowCondition = Condition(CONDITION_PARALYZE)
+      slowCondition:setParameter(CONDITION_PARAM_TICKS, 1500)
+      slowCondition:setParameter(CONDITION_PARAM_SPEED, -slow)
+      target:addCondition(slowCondition)
+    end
+  end
+
+  spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
 
   local variant = Variant(player, true)
   if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos) then

@@ -1199,11 +1199,11 @@ end
 
 local SPELL_ITEM_ID_CACHE = {
 	["Fireball"] = 1987,
-	["Searing Torrent"] = 37306,
-	["Vengeance Flame"] = 37307,
+	["Frost Wave"] = 37306,
+	["Thunderstorm"] = 37307,
 	["Thousand Pounder"] = 37308,
-	["Body Slam"] = 37309,
-	["Heavy Spin"] = 37310,
+	["Ground Slam"] = 37309,
+	["Colossus Rampage"] = 37310,
 	["Rapid Fire"] = 37311,
 	["Arrow Volley"] = 37312,
 	["Arrow Rain"] = 37313,
@@ -1500,11 +1500,11 @@ TAGS = {
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
 	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
-	[2] = {name = "Searing Torrent", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Searing Torrent",
-	[3] = {name = "Vengeance Flame", cooldown = 3000, manaCost = 20, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = false},-- "Vengeance Flame",
+	[2] = {name = "Frost Wave", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Frost Wave",
+	[3] = {name = "Thunderstorm", cooldown = 3000, manaCost = 20, range = 5, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
 	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
-	[5] = {name = "Body Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Body Slam",
-	[6] = {name = "Heavy Spin", cooldown = 6000, manaCost = 0, range = 0, hits = 4, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 35, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Heavy Spin",
+	[5] = {name = "Ground Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 27}, element = 100, aoe = true},-- "Ground Slam",
+	[6] = {name = "Colossus Rampage", cooldown = 60000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Colossus Rampage",
 	[7] = {name = "Rapid Fire", cooldown = 8000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 3, tag = {11, 25}, element = 100, aoe = false},-- "Rapid Fire",
 	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 1.1, baseDamage = 70, baseDamagePerLevel = 35, scaling = 2, addDamage = 3, tag = {11, 16, 20}, element = 100, aoe = true},-- "Arrow Volley",
 	[9] = {name = "Arrow Rain", cooldown = 10000, manaCost = 0, range = 6, hits = 3, multipler = 0.6, baseDamage = 110, baseDamagePerLevel = 30, scaling = 2, addDamage = 3, tag = {11, 20, 27}, element = 100, aoe = true},-- "Arrow Rain",
@@ -1544,11 +1544,11 @@ TAGS = {
 
 GLOBAL_SPELL_NUMBER = {
 	[1] = "Fireball",
-	[2] = "Searing Torrent",
-	[3] = "Vengeance Flame",
+	[2] = "Frost Wave",
+	[3] = "Thunderstorm",
 	[4] = "Thousand Pounder",
-	[5] = "Body Slam",
-	[6] = "Heavy Spin",
+	[5] = "Ground Slam",
+	[6] = "Colossus Rampage",
 	[7] = "Rapid Fire",
 	[8] = "Arrow Volley",
 	[9] = "Arrow Rain",
