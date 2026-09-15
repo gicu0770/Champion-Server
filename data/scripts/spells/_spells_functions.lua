@@ -772,27 +772,52 @@ function spellChainCast(combat, cid, tid, lastPos, time, effect, CONFIG, CONFIG_
   end, time)
 end
 
-function getClosestTargets(player, currentTarget, position, range, maxTargets, canWalkTo)
+function getClosestTargets(player, currentTarget, position, range, maxTargets, canWalkTo, allowPlayers)
   local closestTargets = {}
   local spectators = Game.getSpectators(position, false, false, range, range, range, range)
   table.sort(spectators, function(a, b) return a:getPosition():getDistance(position) < b:getPosition():getDistance(position) end)
+  
   for i = 1, #spectators do
-    if spectators[i] ~= player and not spectators[i]:isPlayer() then
-      if spectators[i]:isMonster() then
-        if spectators[i] ~= currentTarget then
-          if not table.contains(closestTargets, spectators[i]) then
-            local checkPathing = false
-            if canWalkTo then 
-              checkPathing = player:targetRechable(spectators[i]:getPosition(), range, false)
+    local spec = spectators[i]
+    if spec ~= player and spec ~= currentTarget then
+      local isValid = false
+      if spec:isMonster() then
+        isValid = true
+      elseif allowPlayers and spec:isPlayer() then
+        if player and player:isPlayer() then
+          isValid = true
+          -- Check Party
+          local party = player:getParty()
+          if party and party == spec:getParty() then
+            isValid = false
+          end
+          -- Check Guild
+          local guild = player:getGuild()
+          if guild and guild == spec:getGuild() then
+            isValid = false
+          end
+        else
+          isValid = true
+        end
+      end
+
+      if isValid then
+        if not table.contains(closestTargets, spec) then
+          local checkPathing = false
+          if canWalkTo then 
+            if player and player.targetRechable then
+              checkPathing = player:targetRechable(spec:getPosition(), range, false)
             else
               checkPathing = true
             end
+          else
+            checkPathing = true
+          end
 
-            if checkPathing then
-              table.insert(closestTargets, spectators[i])
-              if #closestTargets >= maxTargets then
-                break
-              end
+          if checkPathing then
+            table.insert(closestTargets, spec)
+            if #closestTargets >= maxTargets then
+              break
             end
           end
         end

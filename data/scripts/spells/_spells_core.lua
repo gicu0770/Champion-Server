@@ -450,46 +450,6 @@ function Player:upgradeSpellSlot(slot)
   return true
 end
 
-function Player:addGornShield()
-  if self:getVocation():getId() == 2 then
-    local now = os.time()
-    local nextAvailable = self:getStorageValue(PlayerStorage.gornShieldCooldown)
-    if nextAvailable > 0 and now < nextAvailable then
-      return
-    end
-
-    self:setStorageValue(PlayerStorage.gornShieldCooldown, now + 10)
-
-    local maxHp = self:getMaxHealth()
-    local shieldValue = math.ceil(25 + (maxHp * 0.05))
-
-    if self:getMaxEnergyShield() < shieldValue then
-      self:setMaxEnergyShield(shieldValue)
-    end
-
-    self:setEnergyShield(shieldValue)
-    self:addBuff(GORN_SHIELD, 4000)
-    self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-
-    local castTime = now
-    self:setStorageValue(PlayerStorage.gornShieldAmount, castTime)
-
-    local cid = self:getId()
-    addEvent(function(playerId, timestamp, amount)
-      local p = Player(playerId)
-      if p and p:getStorageValue(PlayerStorage.gornShieldAmount) == timestamp then
-        local cur = p:getEnergyShield()
-        if cur > 0 then
-          p:setEnergyShield(math.max(0, cur - amount))
-        end
-        if p:getEnergyShield() <= 0 then
-          p:setMaxEnergyShield(0)
-        end
-        p:removeBuff(GORN_SHIELD)
-      end
-    end, 4000, cid, castTime, shieldValue)
-  end
-end
 
 function Player:sendKnockup(target, duration, height)
   if not target or not target:isCreature() then return end
@@ -528,16 +488,26 @@ function Player:castSpell(id, pos, force)
   end
 
   SPELL.cast(self, item, force, pos)
-  self:addGornShield()
 
   local pInfo = colleftInfo and colleftInfo[self:getId()]
-  if pInfo and pInfo.attributesItems and pInfo.attributesItems[34] then
-    local now = os.time()
-    local lastCd = self:getStorageValue(PlayerStorage.spellbladeCooldown)
-    if lastCd < 0 or now >= lastCd then
-      self:setStorageValue(PlayerStorage.spellbladeProc, now + 10)
-      self:addBuff(SPELLBLADE_BUFF, 10000)
-      self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+  if pInfo and pInfo.attributesItems then
+    if pInfo.attributesItems[34] then
+      local now = os.time()
+      local lastCd = self:getStorageValue(PlayerStorage.spellbladeCooldown)
+      if lastCd < 0 or now >= lastCd then
+        self:setStorageValue(PlayerStorage.spellbladeProc, now + 10)
+        self:addBuff(SPELLBLADE_BUFF, 10000)
+        self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+      end
+    end
+    if pInfo.attributesItems[61] then
+      local now = os.time()
+      local lastCd = self:getStorageValue(PlayerStorage.lichBaneCooldown)
+      if lastCd < 0 or now >= lastCd then
+        self:setStorageValue(PlayerStorage.lichBaneProc, now + 10)
+        self:addBuff(LICH_BANE_BUFF, 10000)
+        self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+      end
     end
   end
 end

@@ -521,6 +521,24 @@ US_ENCHANTMENTS = {
         percent = true,
         itemType = US_ITEM_TYPES.ALL
     },
+    [61] = {
+        name = "Spellweaver",
+        desc = "After using an ability, your next basic attack deals 80% Physical Attack and 40% Magic Attack as bonus damage (3s CD).",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [62] = {
+        name = "Wind's Fury",
+        desc = "Basic attacks fire additional bolts at up to 2 nearby enemies, each dealing 65% Physical Attack as physical damage.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
 }
 
 REDUCTION_ATTR_VALUES = {

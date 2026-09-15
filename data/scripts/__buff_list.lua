@@ -209,6 +209,8 @@ BRAVE_SMITE_CD = 203
 WEAKNESS_FINDER_CD = 204
 FOCUSING_MARK_CD = 205
 ANNUL_CD = 206
+LICH_BANE_BUFF = 207
+LICH_BANE_CD = 208
 
 
 PLAYERSTATE_SWORDS = 128
@@ -2492,6 +2494,27 @@ BUFFS = {
 		maxStacks = 1,
 		debuff = true,
 		ticks = 40000
+	},
+	[LICH_BANE_BUFF] = {
+		id = LICH_BANE_BUFF,
+		name = "Spellweaver",
+		description = "Next basic attack deals 80% PA + 40% MA bonus damage.",
+		icon = "weapon_strike",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 10000
+	},
+	[LICH_BANE_CD] = {
+		id = LICH_BANE_CD,
+		name = "Spellweaver (Cooldown)",
+		description = "Spellweaver is on cooldown.",
+		icon = "weapon_strike",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 3000
 	},
 }
 

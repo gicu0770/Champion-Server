@@ -31,15 +31,17 @@ local config = {
 	},
 	[4] = { -- Assassin
 		items = {
-			{36666, 1}, -- wooden rod
+			{36666, 1}, -- sword
 		},
 		spells = {
-			{1987, 1, CONST_SLOT_SPELL1}, -- spell1
+			{37314, 1, CONST_SLOT_SPELL1}, -- Shadowstep
+			{37315, 1, CONST_SLOT_SPELL2}, -- Blade Fan
+			{37316, 1, CONST_SLOT_SPELL3}, -- Death Mark
 		},
 	},
 	[5] = { -- Cleric
 		items = {
-			{36666, 1}, -- wooden rod
+			{26637, 1}, -- wooden rod
 		},
 		spells = {
 			{1987, 1, CONST_SLOT_SPELL1}, -- spell1

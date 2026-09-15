@@ -302,19 +302,75 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			primaryDamage = primaryDamage + rampageBonus
 			creature:getPosition():sendMagicEffect(CONST_ME_HITAREA)
 		end
+		-- Hunter Passive: Snajperski Dystans (Longshot)
+		-- Increases damage by +3% per tile of distance to target beyond 1 tile (max +18% at 7+ tiles)
+		if (attacker:getVocation():getId() == 3 or attacker:getVocation():getName() == "Hunter") and creature and not creature:isRemoved() then
+			local dist = (distance and distance > 0) and distance or attacker:getPosition():getDistance(creature:getPosition())
+			if dist > 1 then
+				local bonusPercent = math.min(18, (dist - 1) * 3)
+				if bonusPercent > 0 then
+					primaryDamage = math.ceil(primaryDamage * (1 + bonusPercent / 100))
+				end
+			end
+		end
 
-		-- Mia Passive (Vocation 3): Basic attacks slow by 20% for 1.5s. Every 5s, deals 50% Physical Attack extra Physical Damage.
-		if attacker:getVocation():getId() == 3 and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
-			local baseSpeed = creature:getBaseSpeed() or 100
-			local slow = math.floor(baseSpeed * 0.20)
-			if slow > 0 then
-				local slowCond = Condition(CONDITION_PARALYZE)
-				slowCond:setParameter(CONDITION_PARAM_TICKS, 1500)
-				slowCond:setParameter(CONDITION_PARAM_SPEED, -slow)
-				creature:addCondition(slowCond)
-				creature:addBuff(MIA_SLOW_DEBUFF, 1500)
+		local function getDefenseMultiplier(defFlat)
+			if defFlat >= 0 then
+				return 100 / (100 + defFlat)
+			else
+				local cappedDef = math.max(-60, defFlat)
+				return 2 - (100 / (100 - cappedDef))
+			end
+		end
+
+		local function applyOnHitEffectsToTarget(attacker, target, isNegative, attackerAttrs)
+			local totalEnergy = 0
+			local totalPhysical = 0
+			local attrs = attackerAttrs or {}
+
+			-- [36] Fray
+			if attrs[36] then
+				local frayValue = US_ENCHANTMENTS[36].subvalue
+				local def = target:isMonster() and (15 + target:getMonsterLevel() * 1) or target:getMagicDefense()
+				local magMult = getDefenseMultiplier(def - attacker:getMagicPenetration())
+				local dmg = math.max(1, math.ceil(frayValue * magMult))
+				totalEnergy = totalEnergy + dmg
 			end
 
+			-- [37] Icathian Bite
+			if attrs[37] then
+				local ap = attacker:getMagicAttack()
+				local biteBase = 15 + math.floor(ap * 0.15)
+				local def = target:isMonster() and (15 + target:getMonsterLevel() * 1) or target:getMagicDefense()
+				local magMult = getDefenseMultiplier(def - attacker:getMagicPenetration())
+				local dmg = math.max(1, math.ceil(biteBase * magMult))
+				totalEnergy = totalEnergy + dmg
+			end
+
+			-- [38] Mist's Edge
+			if attrs[38] then
+				local isMelee = attacker:isPlayer() and attacker:hasMeleeWeapon()
+				local pct = isMelee and 0.09 or 0.06
+				local hpDmg = math.floor(target:getHealth() * pct)
+				if target:isMonster() then
+					hpDmg = math.min(hpDmg, target:isBoss() and 100 or 500)
+				end
+				local def = target:isMonster() and (10 + target:getMonsterLevel() * 1) or target:getPhysicalDefense()
+				local mult = getDefenseMultiplier(def - attacker:getArmorPenetrationFlat())
+				local dmg = math.max(1, math.ceil(hpDmg * mult))
+				totalPhysical = totalPhysical + dmg
+			end
+
+			if totalEnergy > 0 then
+				doTargetCombatHealth(attacker:getId(), target, COMBAT_ENERGYDAMAGE, (isNegative and -totalEnergy or totalEnergy), (isNegative and -totalEnergy or totalEnergy), 0, ORIGIN_REFLECT, 0, CONST_ME_ENERGYHIT)
+			end
+			if totalPhysical > 0 then
+				doTargetCombatHealth(attacker:getId(), target, COMBAT_PHYSICALDAMAGE, (isNegative and -totalPhysical or totalPhysical), (isNegative and -totalPhysical or totalPhysical), 0, ORIGIN_REFLECT, 0, CONST_ME_HITAREA)
+			end
+		end
+
+		-- Mia Passive: Moon Blessing (+50% PA extra physical damage if basic attacking after wait)
+		if attacker:getStorageValue(PlayerStorage.miaPassiveUnlock) == 1 and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
 			local now = os.time()
 			local nextAvailable = attacker:getStorageValue(PlayerStorage.miaPassiveCooldown)
 			if nextAvailable < 0 or now >= nextAvailable then
@@ -330,6 +386,17 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		if attacker:hasBuff(MIA_RAPID_FIRE) and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND) then
 			primaryDamage = math.ceil(primaryDamage * 1.20)
 			attacker:getPosition():sendDistanceEffect(creature:getPosition(), 33)
+			if (origin == ORIGIN_MELEE or origin == ORIGIN_WAND or origin == ORIGIN_RANGED) then
+				local extraHits = 2
+				local multiDamage = 0.3
+				local extraTargets = getClosestTargets(attacker, creature, creature:getPosition(), 4, extraHits, true, true)
+				for i = 1, #extraTargets do
+						if doTargetCombatHealth(attacker:getId(), extraTargets[i], primaryType, primaryDamage * multiDamage, primaryDamage * multiDamage, 0, ORIGIN_CONDITION, 0, 104) then
+							attacker:getPosition():sendDistanceEffect(extraTargets[i]:getPosition(), 4)
+							applyOnHitEffectsToTarget(attacker, extraTargets[i], isNegative, attackerAttrs)
+						end
+				end
+			end
 		end
 		local function getDefenseMultiplier(defFlat)
 			if defFlat >= 0 then
@@ -574,6 +641,50 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 		end
 
+		-- [61] Spellblade (Lich Bane): Next basic attack deals 80% PA + 40% MA bonus damage after casting an ability
+		if attackerAttrs and attackerAttrs[61] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			local now = os.time()
+			local procUntil = attacker:getStorageValue(PlayerStorage.lichBaneProc)
+			if procUntil > 0 and now <= procUntil then
+				local cdReady = attacker:getStorageValue(PlayerStorage.lichBaneCooldown)
+				if cdReady < 0 or now >= cdReady then
+					attacker:setStorageValue(PlayerStorage.lichBaneProc, 0)
+					attacker:setStorageValue(PlayerStorage.lichBaneCooldown, now + 3)
+					attacker:removeBuff(LICH_BANE_BUFF)
+					attacker:addBuff(LICH_BANE_CD, 3000)
+					local pa = attacker:getPhysicalAttack()
+					local ma = attacker:getMagicAttack()
+					local lichDmg = math.ceil(pa * 0.8 + ma * 0.4)
+					primaryDamage = primaryDamage + lichDmg
+					creature:getPosition():sendMagicEffect(CONST_ME_HITAREA)
+				end
+			end
+		end
+
+		-- [62] Wind's Fury (Runaan's Hurricane): Basic attacks fire additional bolts at up to 2 nearby enemies
+		if attackerAttrs and attackerAttrs[62] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			if (origin == ORIGIN_MELEE or origin == ORIGIN_WAND or origin == ORIGIN_RANGED) then
+				local extraHits = 2
+				local pa = attacker:getPhysicalAttack() or 0
+				local runaanDamage = math.ceil(pa * 0.65)
+				
+				if isNegative then
+					runaanDamage = -runaanDamage
+				end
+
+				local extraTargets = getClosestTargets(attacker, creature, creature:getPosition(), 4, extraHits, true, true)
+				for i = 1, #extraTargets do
+					if doTargetCombatHealth(attacker:getId(), extraTargets[i], primaryType, runaanDamage, runaanDamage, 0, ORIGIN_CONDITION, 0, 104) then
+						-- 32 is roughly the distance effect of a generic arrow/bolt if it matches Ranged. 
+						-- Using origin to determine distance effect if wand, but let's default to a small arrow/bolt or generic shot.
+						local distEffect = 4 -- CONST_ANI_EARTH or similar, change to appropriate bolt effect
+						attacker:getPosition():sendDistanceEffect(extraTargets[i]:getPosition(), distEffect)
+						applyOnHitEffectsToTarget(attacker, extraTargets[i], isNegative, attackerAttrs)
+					end
+				end
+			end
+		end
+
 		-- [35] Quicken (Hearthbound Axe / Trinity Force): Basic attacks on-hit grant +20 Movement Speed for 2 seconds
 		if attackerAttrs and attackerAttrs[35] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
 			local speedCond = Condition(CONDITION_HASTE)
@@ -585,7 +696,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [36] Fray (Wit's End / Recurve Bow): Basic attacks deal bonus magic damage on-hit
-		if attackerAttrs and attackerAttrs[36] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[36] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local frayValue = US_ENCHANTMENTS[36].subvalue
 			local frayDef = 0
 			if creature:isMonster() then
@@ -607,10 +718,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [37] Icathian Bite (Nashor's Tooth): Basic attacks deal 15 (+15% AP) bonus magic damage on-hit
-		if attackerAttrs and attackerAttrs[37] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[37] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local ap = attacker:getMagicAttack()
-			local biteRatio = (US_ENCHANTMENTS[36].subvalue) / 100
-			local biteBase = US_ENCHANTMENTS[36].subvalue + math.floor(ap * biteRatio)
+			local biteBase = 15 + math.floor(ap * 0.15)
 			local biteDef = 0
 			if creature:isMonster() then
 				biteDef = (15 + creature:getMonsterLevel() * 1)
@@ -631,7 +741,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [38] Mist's Edge (Blade of the Ruined King): Basic attacks deal bonus physical damage on-hit equal to (9% melee / 6% ranged) target's current HP
-		if attackerAttrs and attackerAttrs[38] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[38] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local isMelee = (origin == ORIGIN_MELEE or (attacker:isPlayer() and attacker:hasMeleeWeapon()))
 			local hpRatio = isMelee and 0.09 or 0.06
 			local targetCurrentHp = creature:getHealth()
@@ -648,7 +758,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [56] Shock (Muramana): Basic attacks deal bonus physical damage on-hit equal to 1.2% of Maximum Mana
-		if attackerAttrs and attackerAttrs[56] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[56] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local maxMana = attacker:getMaxMana() or 0
 			local rawShock = math.floor(maxMana * 0.012)
 			if rawShock > 0 then
@@ -659,7 +769,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [57] Tyranny (Overlord's Bloodmail): Basic attacks deal bonus physical damage on-hit equal to 1% of Maximum Health
-		if attackerAttrs and attackerAttrs[57] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[57] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local maxHp = attacker:getMaxHealth() or 0
 			local rawTyranny = math.floor(maxHp * 0.01)
 			if rawTyranny > 0 then
@@ -670,7 +780,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [58] Storm Surge (Stormrazor): Basic attacks grant +4% Attack Speed for 4s (stacks up to 8 times -> +32% Attack Speed). At 8 stacks, deals +40 bonus magic damage on-hit.
-		if attackerAttrs and attackerAttrs[58] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[58] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			attacker:addBuff(STORM_SURGE_BUFF, 4000)
 			local buff = attacker:getBuff(STORM_SURGE_BUFF)
 			local stacks = buff and buff.stacks or 1
@@ -698,7 +808,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- [50] Colossal Consumption (Heartsteel): Every 12s, basic attacks deal extra 50 (+6% Max HP) Physical Damage on-hit
-		if attackerAttrs and attackerAttrs[50] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+		if attackerAttrs and attackerAttrs[50] and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 			local now = os.time()
 			local nextAvailable = attacker:getStorageValue(PlayerStorage.heartsteelCooldown)
 			if nextAvailable < 0 or now >= nextAvailable then
@@ -752,7 +862,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		local appliedDotSummary = nil
 
-		-- Champion: Juki (Vocation 3) - nakłada Burn
+		-- Mage (Vocation 3) - nakłada Burn
 		if attacker:getVocation():getId() == 1 then
 			local targetMaxHp = creature:getMaxHealth()
 			if creature:isMonster() and (creature:getName():lower():find("dummy") or targetMaxHp > 10000000) then
@@ -774,9 +884,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				interval = 1000,
 				effect = 16
 			})
-			if creature.setShader then
-				creature:setShader("Burn", 4)
-			end
 
 			appliedDotSummary = string.format("DoT: +%d Burn (4s, %d/tick)", sumDotDamage, dmgPerTick)
 		end
@@ -855,6 +962,57 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				isAoE = (spellCfg.aoe == true)
 			else
 				isAoE = true -- domyślnie dla czarów bez podanego spellUID
+			end
+		end
+
+		-- =====================================================================
+		-- ASSASSIN PASSIVES & DEATH MARK
+		-- =====================================================================
+		if attacker:getVocation():getId() == 4 and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
+			-- Phantom Steps (Guaranteed Crit from behind or after dash)
+			local phantomStepCrit = false
+			if attacker:getStorageValue(PlayerStorage.phantomStepCrit) == 1 then
+				phantomStepCrit = true
+				attacker:setStorageValue(PlayerStorage.phantomStepCrit, -1)
+			else
+				local targetDir = creature:getDirection()
+				local aPos = attacker:getPosition()
+				local cPos = creature:getPosition()
+				local isBehind = false
+				if targetDir == DIRECTION_NORTH and aPos.y > cPos.y then isBehind = true
+				elseif targetDir == DIRECTION_SOUTH and aPos.y < cPos.y then isBehind = true
+				elseif targetDir == DIRECTION_EAST and aPos.x < cPos.x then isBehind = true
+				elseif targetDir == DIRECTION_WEST and aPos.x > cPos.x then isBehind = true
+				end
+				if isBehind then
+					phantomStepCrit = true
+				end
+			end
+			if phantomStepCrit then
+				critical = true
+			end
+
+			-- Death Mark
+			local dmTime = attacker:getStorageValue(PlayerStorage.deathMarkActive)
+			if dmTime > 0 and os.time() <= dmTime then
+				attacker:setStorageValue(PlayerStorage.deathMarkActive, -1)
+				-- 200% damage multiplier
+				primaryDamage = primaryDamage * 2.0
+				-- Apply Grievous Wounds for 4s
+				creature:addBuff(GRIEVOUS_WOUNDS, 4000)
+			end
+			
+			-- Przerwanie niewidzialności po zaatakowaniu czegokolwiek (tylko dla zwykłych graczy)
+			if attacker:isInGhostMode() and not attacker:getGroup():getAccess() then
+				attacker:setGhostMode(false)
+				attacker:removeCondition(CONDITION_INVISIBLE)
+				
+				-- Safe teleport delay to allow client to process AddCreature before RemoveThing
+				local playerId = attacker:getId()
+				addEvent(function()
+					local p = Player(playerId)
+					if p then p:teleportTo(p:getPosition(), true) end
+				end, 50)
 			end
 		end
 
@@ -1038,7 +1196,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local defAttrs = defInfo and defInfo.attributesItems
 		if defAttrs then
 			-- [39] Thorns (Bramble Vest / Thornmail): When struck by a basic attack, reflect magic damage to attacker
-			if defAttrs[39] and attacker and not attacker:isRemoved() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or primaryType == COMBAT_PHYSICALDAMAGE) then
+			if defAttrs[39] and attacker and not attacker:isRemoved() and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
 				local thornsBase = defAttrs[39].value or 20
 				local defArmor = creature:getPhysicalDefense()
 				local rawThorns = thornsBase + math.floor(defArmor * 0.10)
@@ -1063,7 +1221,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		primaryDamage = math.ceil(primaryDamage * 0.50)
 		creature:removeCondition(CONDITION_PARALYZE)
 	end
-
+	
 	-- Guard Passive (Niezlomny Bastion): When HP drops below 35%, gain Energy Shield equal to 25% Max HP for 5s (60s cooldown)
 	if creature:isPlayer() and creature:getVocation():getId() == 2 and primaryType ~= COMBAT_HEALING then
 		local remainingHp = creature:getHealth() - primaryDamage

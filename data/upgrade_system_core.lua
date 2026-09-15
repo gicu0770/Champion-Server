@@ -331,10 +331,26 @@ function us_onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitun
 end
 
 function us_onKill(player, target, lastHit)
-  if not player or not player:isPlayer() or not target or not target:isMonster() then
-    return
-  end
-  local center = target:getPosition()
+    if not player or not player:isPlayer() or not target then
+      return
+    end
+	
+	if player:getVocation():getId() == 4 then
+		local item = player:getSlotItem(12) -- Spell 1 slot
+		if item and item:getSpellName() == "Shadowstep" then
+			player:removeCondition(CONDITION_SPELLCOOLDOWN, CONDITIONID_DEFAULT, 10)
+		end
+		
+		local healPercent = target:isMonster() and 0.02 or 0.15
+		player:addHealth(player:getMaxHealth() * healPercent)
+		
+		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
+	end
+
+    if not target:isMonster() then
+      return
+    end
+    local center = target:getPosition()
   if colleftInfo[player:getId()].attributesItems[254] then -- Void Walker
     if target:getSkull() >= 7 then
       player:addBuff(VOID_WALKER)

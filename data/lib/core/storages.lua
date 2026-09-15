@@ -115,6 +115,8 @@ GlobalStorageKeys = {
 
 
 PlayerStorage = {
+	phantomStepCrit = 728000,
+	deathMarkActive = 728001,
 	portals = 727500, -- 727500 - 727599 reserved
 	portalSelected = 727600,
 
@@ -167,6 +169,8 @@ PlayerStorage = {
 	bansheeCooldown = 801139,
 	heartsteelCooldown = 801141,
 	ludensCooldown = 801142,
+	lichBaneCooldown = 801143,
+	lichBaneProc = 801144,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

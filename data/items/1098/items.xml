@@ -3738,7 +3738,7 @@
 		<attribute key="attack" value="1" />
 		<attribute key="weaponType" value="distance" />
 		<attribute key="shootType" value="arrow" />
-		<attribute key="range" value="6" />
+		<attribute key="range" value="7" />
 		<attribute key="hitChance" value="1" />
 		<attribute key="moveable" value="0" />
 	</item>
@@ -40553,29 +40553,29 @@
 		<attribute key="spellGem" value="8" />
 		<attribute key="spell" value="Arrow Volley" />
 	</item>
-	<item id="37313" article="a" name="Arrow Rain">
+	<item id="37313" article="a" name="Snipe">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="9" />
-		<attribute key="spell" value="Arrow Rain" />
+		<attribute key="spell" value="Snipe" />
 	</item>
-	<item id="37314" article="a" name="Anger Aura">
+	<item id="37314" article="a" name="Shadowstep">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="10" />
-		<attribute key="spell" value="Anger Aura" />
+		<attribute key="spell" value="Shadowstep" />
 	</item>
-	<item id="37315" article="a" name="Physical Aura">
+	<item id="37315" article="a" name="Blade Fan">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="11" />
-		<attribute key="spell" value="Physical Aura" />
+		<attribute key="spell" value="Blade Fan" />
 	</item>
-	<item id="37316" article="a" name="Elemental Aura">
+	<item id="37316" article="a" name="Death Mark">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="12" />
-		<attribute key="spell" value="Elemental Aura" />
+		<attribute key="spell" value="Death Mark" />
 	</item>
 	<item id="37317" article="a" name="Stone Aura">
 		<attribute key="containerSize" value="3" />

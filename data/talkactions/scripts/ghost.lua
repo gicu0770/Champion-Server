@@ -16,6 +16,7 @@ function onSay(player, words, param)
 		player:sendTextMessage(MESSAGE_INFO_DESCR, "You are visible again.")
 		position.x = position.x + 1
 		position:sendMagicEffect(CONST_ME_SMOKE)
+		player:teleportTo(player:getPosition(), true)
 	end
 	return false
 end

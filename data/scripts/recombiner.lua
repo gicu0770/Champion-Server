@@ -509,6 +509,68 @@ RECOMB_ITEM_RECIPES = {
     },
   },
 
+  -- [AP SPELLBLADE TREE - LICH BANE]
+  -- Step 1: Sheen (7418) + Blasting Wand (2189) + Fiendish Codex (8902) + 1000 Gold -> Lich Bane (8930)
+  {
+    items = {7418, 2189, 8902},
+    result = 8930,
+    gold = 26000,
+    name = "Lich Bane",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 85},   -- ID 7 (Magic Attack): +85
+      {10, 8},   -- ID 10 (Movement Speed Percent): +8%
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {61, 100}, -- ID 61 (Spellweaver - Lich Bane): Next basic attack deals 80% PA + 40% MA bonus damage after casting ability
+    },
+  },
+
+  -- [PHYSICAL CRITICAL / AOE TREE - RUNAAN'S HURRICANE]
+  -- Step 1: Cloak of Agility (2660) + Dagger (36676) + 350 Gold -> Zeal (8850)
+  {
+    items = {2660, 36676},
+    result = 8850,
+    gold = 2000,
+    name = "Zeal",
+    rarity = 2,
+    itemlevel = 35,
+    implicits = {
+      {11, 15},  -- ID 11 (Attack Speed): +15%
+      {12, 15},  -- ID 12 (Critical Chance): +15%
+      {10, 5},   -- ID 10 (Movement Speed Percent): +5%
+    },
+  },
+
+  -- Step 2: Dagger (36676) + Dagger (36676) + 100 Gold -> Scout's Slingshot (8851)
+  {
+    items = {36676, 36676},
+    result = 8851,
+    gold = 1000,
+    name = "Scout's Slingshot",
+    rarity = 1,
+    itemlevel = 25,
+    implicits = {
+      {11, 20},  -- ID 11 (Attack Speed): +20%
+    },
+  },
+
+  -- Step 3: Zeal (8850) + Scout's Slingshot (8851) + 850 Gold -> Runaan's Hurricane (8852)
+  {
+    items = {8850, 8851},
+    result = 8852,
+    gold = 26000,
+    name = "Runaan's Hurricane",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {11, 40},  -- ID 11 (Attack Speed): +40%
+      {12, 25},  -- ID 12 (Critical Chance): +25%
+      {10, 5},   -- ID 10 (Movement Speed Percent): +5%
+      {62, 65},  -- ID 62 (Wind's Fury): Basic attacks fire 2 additional bolts
+    },
+  },
+
   -- [PHYSICAL ON-HIT LIFESTEAL TREE - BLADE OF THE RUINED KING]
   -- Step 1: Vampiric Scepter (2424) + Recurve Bow (8855) + Pickaxe (4874) + 725 Gold -> Blade of the Ruined King (7405)
   {
@@ -781,6 +843,51 @@ RECOMB_ITEM_RECIPES = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {9, 40},   -- ID 9 (Magic Defense): +40
       {46, 40},  -- ID 46 (Annul): Grants a Spell Shield that blocks the next hostile ability (40s cooldown)
+    },
+  },
+
+  -- [PHYSICAL LETHALITY / SPELL SHIELD TREE - EDGE OF NIGHT]
+  -- Step 1: Bronze Axe (26618) + Bronze Axe (26618) + 300 Gold -> Serrated Dirk (8859)
+  {
+    items = {26618, 26618},
+    result = 8859,
+    gold = 1000,
+    name = "Serrated Dirk",
+    rarity = 1,
+    itemlevel = 25,
+    implicits = {
+      {6, 30},   -- ID 6 (Physical Attack): +30
+      {14, 10},  -- ID 14 (Physical Penetration): +10
+    },
+  },
+
+  -- Step 2: Bronze Axe (26618) + Elven Plate (26491) + 400 Gold -> Tunneler (8860)
+  {
+    items = {26618, 26491},
+    result = 8860,
+    gold = 1000,
+    name = "Tunneler",
+    rarity = 1,
+    itemlevel = 25,
+    implicits = {
+      {6, 15},   -- ID 6 (Physical Attack): +15
+      {1, 250},  -- ID 1 (Health): +250
+    },
+  },
+
+  -- Step 3: Serrated Dirk (8859) + Tunneler (8860) + 850 Gold -> Edge of Night (8861)
+  {
+    items = {8859, 8860},
+    result = 8861,
+    gold = 26000,
+    name = "Edge of Night",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {6, 50},   -- ID 6 (Physical Attack): +50
+      {14, 15},  -- ID 14 (Physical Penetration): +15
+      {1, 250},  -- ID 1 (Health): +250
+      {46, 40},  -- ID 46 (Annul): Spell shield
     },
   },
 
