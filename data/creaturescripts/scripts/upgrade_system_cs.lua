@@ -32,12 +32,20 @@ function onHealthChange(creature, attacker, primaryDamage, primaryType, secondar
 	-- 	end
 	--end
 
+	if creature and creature:isPlayer() then
+		if primaryType ~= COMBAT_HEALING and secondaryType ~= COMBAT_HEALING then
+			if creature:hasBuff(RESTART_IMMORTAL) or creature:hasBuff(BOSS_IMMORTAL) or creature:hasBuff(SHADOW) then
+				return 0, primaryType, 0, secondaryType
+			end
+		end
+	end
+
 	if creature and creature:isMonster() then
 		if primaryType == COMBAT_HEALING then
 			return primaryDamage, primaryType, secondaryDamage, secondaryType
 		end
 	end
-	if attacker and creature and creature:isPlayer() then
+	if attacker and creature and creature:isPlayer() and primaryType ~= COMBAT_HEALING and secondaryType ~= COMBAT_HEALING then
 		local attackerPlayer = attacker:isPlayer() and attacker or (attacker:getMaster() and attacker:getMaster():isPlayer() and attacker:getMaster())
 		if attackerPlayer and attackerPlayer:getId() ~= creature:getId() then
 			local g1 = creature:getGuild()
@@ -1003,16 +1011,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 			
 			-- Przerwanie niewidzialności po zaatakowaniu czegokolwiek (tylko dla zwykłych graczy)
-			if attacker:isInGhostMode() and not attacker:getGroup():getAccess() then
-				attacker:setGhostMode(false)
-				attacker:removeCondition(CONDITION_INVISIBLE)
-				
-				-- Safe teleport delay to allow client to process AddCreature before RemoveThing
-				local playerId = attacker:getId()
-				addEvent(function()
-					local p = Player(playerId)
-					if p then p:teleportTo(p:getPosition(), true) end
-				end, 50)
+			if attacker:getCondition(CONDITION_OUTFIT) then
+				attacker:removeCondition(CONDITION_OUTFIT)
 			end
 		end
 

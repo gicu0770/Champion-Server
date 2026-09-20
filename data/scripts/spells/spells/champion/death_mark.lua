@@ -36,26 +36,18 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   -- Smoke cloud effect
   player:getPosition():sendMagicEffect(CONST_ME_POFF)
 
-  -- Stealth (monsters ignore)
-  local stealth = Condition(CONDITION_INVISIBLE)
-  stealth:setParameter(CONDITION_PARAM_TICKS, 3500)
-  player:addCondition(stealth)
+  -- Real Invisibility via Outfit (Custom LookType 9 + hide health bar)
+  local invisibleOutfit = Condition(CONDITION_OUTFIT)
+  invisibleOutfit:setParameter(CONDITION_PARAM_TICKS, 3500)
+  invisibleOutfit:setOutfit({lookType = 9, lookHealthBar = 0, lookManaBar = 0, lookAura = 0, lookWings = 0})
+  player:addCondition(invisibleOutfit)
 
-  -- Real Invisibility (players don't see, completely hidden)
-  if not player:isInGhostMode() then
-    player:setGhostMode(true)
-    local playerId = player:getId()
-    addEvent(function()
-      local p = Player(playerId)
-      if p and p:isInGhostMode() and not p:getGroup():getAccess() then
-        p:setGhostMode(false)
-        -- Small delay to let the client process the appearance before teleporting to force update
-        addEvent(function()
-          local p2 = Player(playerId)
-          if p2 then p2:teleportTo(p2:getPosition(), true) end
-        end, 50)
-      end
-    end, 3500)
+  -- Drop monster aggro to simulate stealth (since we can't use CONDITION_INVISIBLE which forces sparkles)
+  local spectators = Game.getSpectators(player:getPosition(), false, false, 9, 9, 7, 7)
+  for _, spec in ipairs(spectators) do
+    if spec:isMonster() and spec:getTarget() == player then
+      spec:setTarget(nil)
+    end
   end
 
   -- Speed boost +35%
@@ -69,6 +61,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
 
   spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
   if not force then
+    Position(centerPos.x + 3, centerPos.y + 3, centerPos.z):sendMagicEffect(506, 1)
     spellTakeCost(player, CONFIG, CONFIG_SUP)
   end
   

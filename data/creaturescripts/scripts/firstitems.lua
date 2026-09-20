@@ -14,7 +14,7 @@ local config = {
 			{36666, 1}, -- sword
 		},
 		spells = {
-			{37308, 1, CONST_SLOT_SPELL1}, -- Thousand Pounder
+			{37308, 1, CONST_SLOT_SPELL1}, -- Colossal Grasp
 			{37309, 1, CONST_SLOT_SPELL2}, -- Ground Slam
 			{37310, 1, CONST_SLOT_SPELL3}, -- Colossus Rampage
 		}
@@ -44,7 +44,9 @@ local config = {
 			{26637, 1}, -- wooden rod
 		},
 		spells = {
-			{1987, 1, CONST_SLOT_SPELL1}, -- spell1
+			{37317, 1, CONST_SLOT_SPELL1}, -- Heal
+			{37318, 1, CONST_SLOT_SPELL2}, -- Holy Smite
+			{37319, 1, CONST_SLOT_SPELL3}, -- Divine Judgement
 		},
 	},
 

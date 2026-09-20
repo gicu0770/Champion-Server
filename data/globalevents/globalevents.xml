@@ -8,5 +8,5 @@
 	<globalevent name="CleanMemory" interval="3600000" script="cleanmemory.lua" />
 	<!-- <globalevent name="MsgInfo" interval="900000" script="infomsg.lua" /> -->
 
-<!-- <globalevent name="WorldBoss" time="15:00:00" script="worldboss.lua" /> -->	
+	<globalevent name="ClericPassive" interval="1000" script="cleric_passive.lua" />
 </globalevents>

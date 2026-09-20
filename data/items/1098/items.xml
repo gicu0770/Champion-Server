@@ -40523,11 +40523,11 @@
 		<attribute key="spellGem" value="3" />
 		<attribute key="spell" value="Thunderstorm" />
 	</item>
-	<item id="37308" article="a" name="Thousand Pounder">
+	<item id="37308" article="a" name="Colossal Grasp">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="4" />
-		<attribute key="spell" value="Thousand Pounder" />
+		<attribute key="spell" value="Colossal Grasp" />
 	</item>
 	<item id="37309" article="a" name="Ground Slam">
 		<attribute key="containerSize" value="3" />
@@ -40577,23 +40577,23 @@
 		<attribute key="spellGem" value="12" />
 		<attribute key="spell" value="Death Mark" />
 	</item>
-	<item id="37317" article="a" name="Stone Aura">
+	<item id="37317" article="a" name="Heal">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="13" />
-		<attribute key="spell" value="Stone Aura" />
+		<attribute key="spell" value="Heal" />
 	</item>
-	<item id="37318" article="a" name="Magic Aura">
+	<item id="37318" article="a" name="Holy Smite">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="14" />
-		<attribute key="spell" value="Magic Aura" />
+		<attribute key="spell" value="Holy Smite" />
 	</item>
-	<item id="37319" article="a" name="Thornmail Aura">
+	<item id="37319" article="a" name="Divine Judgement">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="15" />
-		<attribute key="spell" value="Thornmail Aura" />
+		<attribute key="spell" value="Divine Judgement" />
 	</item>
 	<item id="37320" article="a" name="Aimed Shot">
 		<attribute key="containerSize" value="3" />

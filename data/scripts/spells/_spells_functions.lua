@@ -1,4 +1,4 @@
-function spellGlobalTotalDamage(player, CONFIG, dot, type)
+﻿function spellGlobalTotalDamage(player, CONFIG, dot, type)
   local totalDamage = 0
 --	if player:hasBuff(ILLUMINATION_DOT_UNIQUE) then
 --		if type == COMBAT_HOLYDAMAGE then
@@ -42,7 +42,7 @@ function spellGlobalFormule(player, CONFIG, CONFIG_SUP, item, dot, dotDamageExtr
 
   local totalBase = baseDmg + (math.max(1, spellLevel) - 1) * basePerLvl
 
-  if CONFIG.spellId == 4 then -- Thousand Pounder (+5% Max HP)
+  if CONFIG.spellId == 4 then -- Colossal Grasp (+5% Max HP)
     totalBase = totalBase + math.ceil(player:getMaxHealth() * 0.05)
   elseif CONFIG.spellId == 5 then -- Ground Slam (+50% Physical Defense)
     totalBase = totalBase + math.ceil(player:getPhysicalDefense() * 0.50)

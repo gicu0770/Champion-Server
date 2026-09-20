@@ -364,29 +364,29 @@ function Player.getMagicPenetration(self)
 end
 
 function calculateUpgradeValue(upgradeLevel)
-    -- Definicje stałych
+    -- Definicje staÅ‚ych
     local MAX_LEVEL = 10
     local STATIC_BONUS_ABOVE_MAX = 10
-    local VALUE_PER_LEVEL_1_TO_10 = 5 -- NOWA STAŁA: Wartość dodawana za każdy poziom 1-10
+    local VALUE_PER_LEVEL_1_TO_10 = 5 -- NOWA STAÅA: WartoÅ›Ä‡ dodawana za kaÅ¼dy poziom 1-10
     
-    -- Obliczamy wartość bazową dla Poziomu 10 zgodnie z nową logiką:
-    -- Wartość na poziomie 10 to: 10 * 5 = 50
+    -- Obliczamy wartoÅ›Ä‡ bazowÄ… dla Poziomu 10 zgodnie z nowÄ… logikÄ…:
+    -- WartoÅ›Ä‡ na poziomie 10 to: 10 * 5 = 50
     local VALUE_AT_MAX = MAX_LEVEL * VALUE_PER_LEVEL_1_TO_10
     
     -- Sprawdzamy, czy poziom jest w zakresie 1-10
     if upgradeLevel <= MAX_LEVEL then
-        -- Jeśli tak, używamy nowej formuły: poziom * stała wartość (5)
-        -- Ta formuła zastępuje oryginalną formułę sumy ciągu arytmetycznego
+        -- JeÅ›li tak, uÅ¼ywamy nowej formuÅ‚y: poziom * staÅ‚a wartoÅ›Ä‡ (5)
+        -- Ta formuÅ‚a zastÄ™puje oryginalnÄ… formuÅ‚Ä™ sumy ciÄ…gu arytmetycznego
         return upgradeLevel * VALUE_PER_LEVEL_1_TO_10
     else
-        -- Jeśli poziom jest powyżej 10:
-        -- 1. Obliczamy liczbę poziomów ponad 10
+        -- JeÅ›li poziom jest powyÅ¼ej 10:
+        -- 1. Obliczamy liczbÄ™ poziomÃ³w ponad 10
         local levelsAboveMax = upgradeLevel - MAX_LEVEL
         
-        -- 2. Obliczamy dodatkowy bonus (stała wartość 10 * liczba poziomów)
+        -- 2. Obliczamy dodatkowy bonus (staÅ‚a wartoÅ›Ä‡ 10 * liczba poziomÃ³w)
         local extraBonus = levelsAboveMax * STATIC_BONUS_ABOVE_MAX
         
-        -- 3. Sumujemy nową wartość bazową (50) z dodatkowym bonusem
+        -- 3. Sumujemy nowÄ… wartoÅ›Ä‡ bazowÄ… (50) z dodatkowym bonusem
         return VALUE_AT_MAX + extraBonus
     end
 end
@@ -834,7 +834,7 @@ function applyResourceRegen(player, resource, regenPercent, duration, eventId, b
         PLAYER_REGEN_EVENTS[id][eventId] = nil
     end
 
-    -- Funkcja dodająca regen
+    -- Funkcja dodajÄ…ca regen
     local function addRegen()
         if player then
             player:addBuff(buffIcon)
@@ -848,7 +848,7 @@ function applyResourceRegen(player, resource, regenPercent, duration, eventId, b
         end
     end
 
-    -- Funkcja usuwająca regen
+    -- Funkcja usuwajÄ…ca regen
     local function removeRegen()
         local p = Player(id)
         if p then
@@ -866,7 +866,7 @@ function applyResourceRegen(player, resource, regenPercent, duration, eventId, b
         end
     end
 
-    -- Dodanie regeneracji i ustawienie eventu do jej zdjęcia po czasie
+    -- Dodanie regeneracji i ustawienie eventu do jej zdjÄ™cia po czasie
     addRegen()
     PLAYER_REGEN_EVENTS[id][eventId] = addEvent(removeRegen, duration * 1000)
 end
@@ -877,10 +877,10 @@ function resourceRegen(player, HP, duration, eventId, regenType)
     if not eventId then return end
     if not duration or duration <= 0 then duration = 1 end
 
-    -- Inicjalizacja struktury dla eventów gracza
+    -- Inicjalizacja struktury dla eventÃ³w gracza
     PLAYER_REGEN_EVENTS[id] = PLAYER_REGEN_EVENTS[id] or {}
 
-    -- Jeśli istnieje zdarzenie z tym samym eventId, zatrzymujemy je
+    -- JeÅ›li istnieje zdarzenie z tym samym eventId, zatrzymujemy je
     if PLAYER_REGEN_EVENTS[id][eventId] then
         stopEvent(PLAYER_REGEN_EVENTS[id][eventId])
         PLAYER_REGEN_EVENTS[id][eventId] = nil
@@ -898,7 +898,7 @@ function resourceRegen(player, HP, duration, eventId, regenType)
         return
     end
 
-    -- Dodanie zdarzenia, które usunie regenerację po czasie
+    -- Dodanie zdarzenia, ktÃ³re usunie regeneracjÄ™ po czasie
     PLAYER_REGEN_EVENTS[id][eventId] = addEvent(function()
         local p = Player(id)
         if p then
@@ -977,9 +977,46 @@ function totalAttackPower(player, type, spellId, baseChange, shield)
 	return attackpower
 end
 
+function Player:hasClericPartyRegen()
+	if not self or self:isRemoved() then
+		return false
+	end
+
+	local voc = self:getVocation()
+	if voc and voc:getId() == 5 then
+		return true
+	end
+
+	local party = self:getParty()
+	if party then
+		local leader = party:getLeader()
+		if leader and not leader:isRemoved() then
+			local lVoc = leader:getVocation()
+			if lVoc and lVoc:getId() == 5 then
+				return true
+			end
+		end
+
+		for _, member in ipairs(party:getMembers()) do
+			if member and not member:isRemoved() then
+				local mVoc = member:getVocation()
+				if mVoc and mVoc:getId() == 5 then
+					return true
+				end
+			end
+		end
+	end
+
+	return false
+end
+
 function getDetails(target)
 	local attrs = colleftInfo[target:getId()].attributesItems
 
+	local clericBonus = 0
+	if target and target.hasClericPartyRegen and target:hasClericPartyRegen() then
+		clericBonus = math.ceil(target:getMaxHealth() * 0.02)
+	end
 
 	local attackspeed = math.floor((1000 / target:getAttackSpeed()) * 100 + 0.5) / 100
 	if attackspeed > 2.5 then
@@ -989,7 +1026,7 @@ function getDetails(target)
 	local movementSpeedPercent = (((200 - target:getSpeed()) / 200) * 100) * -1
 	local details = {}
 	details[1] = target:getMaxHealth()
-	details[2] = math.floor(target:getTotalHealthGain())
+	details[2] = math.floor(target:getTotalHealthGain()) + clericBonus
 	details[3] = target:getMaxMana()
 	details[4] = math.floor(target:getTotalManaGain())
 	details[5] = math.ceil(target:getPhysicalAttack())
@@ -1201,7 +1238,7 @@ local SPELL_ITEM_ID_CACHE = {
 	["Fireball"] = 1987,
 	["Frost Wave"] = 37306,
 	["Thunderstorm"] = 37307,
-	["Thousand Pounder"] = 37308,
+	["Colossal Grasp"] = 37308,
 	["Ground Slam"] = 37309,
 	["Colossus Rampage"] = 37310,
 	["Rapid Fire"] = 37311,
@@ -1497,20 +1534,25 @@ TAGS = {
 	[27] = {"expansion", "#da932d"},
 	[28] = {"basic aura", "#da932d"},
 	[29] = {"shield", "#da932d"},
+	[30] = {"cc", "#FF4444"},
+	[31] = {"slow", "#55AAFF"}
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
-	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20}, element = 100, aoe = true},-- "Fireball",
-	[2] = {name = "Frost Wave", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},-- "Frost Wave",
+	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
+	[2] = {name = "Frost Wave", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
 	[3] = {name = "Thunderstorm", cooldown = 6000, manaCost = 20, range = 5, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
-	[4] = {name = "Thousand Pounder", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 20}, element = 100, aoe = true},-- "Thousand Pounder",
-	[5] = {name = "Ground Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20}, element = 100, aoe = true},-- "Ground Slam",
+	[4] = {name = "Colossal Grasp", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 30}, element = 100, aoe = false},-- "Colossal Grasp",
+	[5] = {name = "Ground Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 31}, element = 100, aoe = true},-- "Ground Slam",
 	[6] = {name = "Colossus Rampage", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Colossus Rampage",
 	[7] = {name = "Rapid Fire", cooldown = 6000, manaCost = 0, range = 6, hits = 2, multipler = 0.8, baseDamage = 40, baseDamagePerLevel = 15, scaling = 2, addDamage = 3, tag = {1, 25}, element = 100, aoe = false},-- "Rapid FIre",
 	[8] = {name = "Arrow Volley", cooldown = 12000, manaCost = 0, range = 6, hits = 1, multipler = 1.2, baseDamage = 80, baseDamagePerLevel = 25, scaling = 2, addDamage = 3, tag = {1, 16, 20}, element = 100, aoe = false},-- "Arrow Volley",
 	[9] = {name = "Snipe", cooldown = 6000, manaCost = 0, range = 9, hits = 1, multipler = 3.5, baseDamage = 300, baseDamagePerLevel = 50, scaling = 2, addDamage = 3, tag = {1, 26}, element = 100, aoe = false},-- "Snipe",
 	[10] = {name = "Shadowstep", cooldown = 6000, manaCost = 0, range = 5, hits = 1, multipler = 1.0, baseDamage = 120, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 15, 26}, element = 100, aoe = false},-- "Shadowstep",
-	[11] = {name = "Blade Fan", cooldown = 5000, manaCost = 0, range = 0, hits = 1, multipler = 1.2, baseDamage = 100, baseDamagePerLevel = 20, scaling = 3, addDamage = 2, tag = {1, 20}, element = 100, aoe = true},-- "Blade Fan",
+	[11] = {name = "Blade Fan", cooldown = 5000, manaCost = 0, range = 0, hits = 1, multipler = 1.2, baseDamage = 100, baseDamagePerLevel = 20, scaling = 3, addDamage = 2, tag = {1, 20, 30}, element = 100, aoe = true},-- "Blade Fan",
 	[12] = {name = "Death Mark", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 3, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Death Mark",
+	[13] = {name = "Heal", cooldown = 2000, manaCost = 0, range = 5, hits = 1, multipler = 0.7, baseDamage = 100, baseDamagePerLevel = 10, scaling = 1, addDamage = 1, tag = {13, 26, 25}, element = 100, aoe = false},
+	[14] = {name = "Holy Smite", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0.5, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
+	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.9, baseDamage = 150, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -1549,7 +1591,7 @@ GLOBAL_SPELL_NUMBER = {
 	[1] = "Fireball",
 	[2] = "Frost Wave",
 	[3] = "Thunderstorm",
-	[4] = "Thousand Pounder",
+	[4] = "Colossal Grasp",
 	[5] = "Ground Slam",
 	[6] = "Colossus Rampage",
 	[7] = "Rapid FIre",
@@ -1558,9 +1600,9 @@ GLOBAL_SPELL_NUMBER = {
 	[10] = "Shadowstep",
 	[11] = "Blade Fan",
 	[12] = "Death Mark",
-	[13] = "Stone Aura",
-	[14] = "Magic Aura",
-	[15] = "Thornmail Aura",
+	[13] = "Heal",
+	[14] = "Holy Smite",
+	[15] = "Divine Judgement",
 	[16] = "Aimed Shot",
 	[17] = "Wild Vines",
 	[18] = "Ricochet",
@@ -1869,7 +1911,7 @@ function getAilmentChancesFromTable(player, attributesTables)
     for name, attrId in pairs(AILMENTS) do
         local chance = 0
 
-        -- szansa z itemów w attributesTables
+        -- szansa z itemÃ³w w attributesTables
         if attributesTables[attrId] then
             chance = chance + attributesTables[attrId].value
         end
@@ -5765,12 +5807,12 @@ function getExpForLevel(level)
 	end
 	--[[
 	if level >= 120 then
-		local power = 1.6 -- im większa, tym szybciej rośnie
+		local power = 1.6 -- im wiÄ™ksza, tym szybciej roÅ›nie
 		local factor = ((level - 119) ^ power) / (1 ^ power)
 		exp = exp * factor
 	end
 	--]]
-	    -- smooth scaling po 120 (bez ściany)
+	    -- smooth scaling po 120 (bez Å›ciany)
 	if level >= 120 then
 		local x = level - 120
 		local factor = 1 + x * 0.174
