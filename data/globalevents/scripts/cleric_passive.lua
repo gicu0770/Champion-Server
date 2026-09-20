@@ -1,11 +1,5 @@
+-- Cleric passive regeneration (+2% Max HP/s) is handled natively by the server engine via Player:setStatistics() and healthGainMap.
+-- No periodic Lua polling or Game.getPlayers() loops are needed, resulting in 0% CPU background overhead.
 function onThink(interval)
-	for _, player in ipairs(Game.getPlayers()) do
-		if player and not player:isRemoved() and player:hasClericPartyRegen() then
-			if player:getHealth() > 0 and player:getHealth() < player:getMaxHealth() then
-				local regen = math.ceil(player:getMaxHealth() * 0.02)
-				player:addHealth(regen)
-			end
-		end
-	end
 	return true
 end

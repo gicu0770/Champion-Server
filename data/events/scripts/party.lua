@@ -61,14 +61,14 @@ function Party:onJoin(player)
 
 	addEvent(function()
 		local p = Player(playerGuid)
-		if p then p:updateInspect() end
+		if p then p:refreshPartyRegen() end
 		if leaderGuid then
 			local l = Player(leaderGuid)
-			if l then l:updateInspect() end
+			if l then l:refreshPartyRegen() end
 		end
 		for _, mid in ipairs(memberGuids) do
 			local m = Player(mid)
-			if m then m:updateInspect() end
+			if m then m:refreshPartyRegen() end
 		end
 	end, 100)
 
@@ -115,14 +115,14 @@ function Party:onLeave(player)
 
 	addEvent(function()
 		local p = Player(playerGuid)
-		if p then p:updateInspect() end
+		if p then p:refreshPartyRegen() end
 		if leaderGuid then
 			local l = Player(leaderGuid)
-			if l then l:updateInspect() end
+			if l then l:refreshPartyRegen() end
 		end
 		for _, mid in ipairs(memberGuids) do
 			local m = Player(mid)
-			if m then m:updateInspect() end
+			if m then m:refreshPartyRegen() end
 		end
 	end, 100)
 
@@ -159,11 +159,11 @@ function Party:onDisband()
 	addEvent(function()
 		if leaderGuid then
 			local l = Player(leaderGuid)
-			if l then l:updateInspect() end
+			if l then l:refreshPartyRegen() end
 		end
 		for _, mid in ipairs(memberGuids) do
 			local m = Player(mid)
-			if m then m:updateInspect() end
+			if m then m:refreshPartyRegen() end
 		end
 	end, 100)
 
@@ -177,11 +177,11 @@ function Party:onLeaderPass(oldLeader, newLeader)
 	addEvent(function()
 		if oldId then
 			local o = Player(oldId)
-			if o then o:updateInspect() end
+			if o then o:refreshPartyRegen() end
 		end
 		if newId then
 			local n = Player(newId)
-			if n then n:updateInspect() end
+			if n then n:refreshPartyRegen() end
 		end
 	end, 100)
 end

@@ -4,6 +4,9 @@ function onAdvance(player, skill, oldLevel, newLevel)
   end
 
   player:recalculateBaseStats()
+  if player.refreshPartyRegen then
+    player:refreshPartyRegen()
+  end
   player:setHealth(player:getMaxHealth())
   player:addMana(player:getMaxMana())
   if player.updateCharacterStats then

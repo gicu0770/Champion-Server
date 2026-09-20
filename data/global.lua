@@ -1010,13 +1010,20 @@ function Player:hasClericPartyRegen()
 	return false
 end
 
+function Player:refreshPartyRegen()
+	if not self or self:isRemoved() then
+		return
+	end
+	if not colleftInfo or not colleftInfo[self:getId()] then
+		return
+	end
+	self:setStatistics()
+	self:updateInspect()
+	self:sendStats()
+end
+
 function getDetails(target)
 	local attrs = colleftInfo[target:getId()].attributesItems
-
-	local clericBonus = 0
-	if target and target.hasClericPartyRegen and target:hasClericPartyRegen() then
-		clericBonus = math.ceil(target:getMaxHealth() * 0.02)
-	end
 
 	local attackspeed = math.floor((1000 / target:getAttackSpeed()) * 100 + 0.5) / 100
 	if attackspeed > 2.5 then
@@ -1026,7 +1033,7 @@ function getDetails(target)
 	local movementSpeedPercent = (((200 - target:getSpeed()) / 200) * 100) * -1
 	local details = {}
 	details[1] = target:getMaxHealth()
-	details[2] = math.floor(target:getTotalHealthGain()) + clericBonus
+	details[2] = math.floor(target:getTotalHealthGain())
 	details[3] = target:getMaxMana()
 	details[4] = math.floor(target:getTotalManaGain())
 	details[5] = math.ceil(target:getPhysicalAttack())
@@ -6018,10 +6025,6 @@ function Player.setStatistics(self)
 	if colleftInfo[self:getId()].attributesItems[20] then -- Energy Shield Regeneration
 		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[20].value
 	end
-	if colleftInfo[self:getId()].attributesItems[33] then -- Warmog's Heart: Regenerate 3% Max Health every second
-		local regenPct = colleftInfo[self:getId()].attributesItems[33].value or 3
-		healthRegen = healthRegen + math.ceil(self:getMaxHealth() * (regenPct / 100))
-	end
 	local movementSpeedFlat = 0
 	if colleftInfo[self:getId()].attributesItems[10] then
 		movementSpeed = movementSpeed + colleftInfo[self:getId()].attributesItems[10].value
@@ -6233,6 +6236,21 @@ function Player.setStatistics(self)
 		conditionES:setParameter(CONDITION_PARAM_TICKS, -1)
 		conditionES:setParameter(CONDITION_PARAM_BUFF_SPELL, false)
 		self:addCondition(conditionES)
+	end
+
+	local warmogBonus = 0
+	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems and colleftInfo[self:getId()].attributesItems[33] then
+		local regenPct = colleftInfo[self:getId()].attributesItems[33].value or 3
+		warmogBonus = math.ceil(self:getMaxHealth() * (regenPct / 100))
+	end
+
+	local clericBonus = 0
+	if self:hasClericPartyRegen() then
+		clericBonus = math.ceil(self:getMaxHealth() * 0.02)
+	end
+
+	if warmogBonus > 0 or clericBonus > 0 then
+		self:addHealthGain(2, healthRegen + warmogBonus + clericBonus, true)
 	end
 end
 
