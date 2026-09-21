@@ -6,33 +6,12 @@ local resizeTo = {
     {1, 1, 1, 1, 1},
     {0, 1, 1, 1, 0}
   },
-
   [2] = {
     {1, 1, 1, 1, 1},
     {1, 1, 1, 1, 1},
     {1, 1, 3, 1, 1},
     {1, 1, 1, 1, 1},
     {1, 1, 1, 1, 1}
-  },
-
-  [3] = {
-    {0, 0, 0, 1, 0, 0, 0},
-    {0, 1, 1, 1, 1, 1, 0},
-    {0, 1, 1, 1, 1, 1, 0},
-    {1, 1, 1, 3, 1, 1, 1},
-    {0, 1, 1, 1, 1, 1, 0},
-    {0, 1, 1, 1, 1, 1, 0},
-    {0, 0, 0, 1, 0, 0, 0}
-  },
-
-  [4] = {
-    {0, 0, 1, 1, 1, 0, 0},
-    {0, 1, 1, 1, 1, 1, 0},
-    {1, 1, 1, 1, 1, 1, 1},
-    {1, 1, 1, 3, 1, 1, 1},
-    {1, 1, 1, 1, 1, 1, 1},
-    {0, 1, 1, 1, 1, 1, 0},
-    {0, 0, 1, 1, 1, 0, 0}
   },
 }
 
@@ -44,7 +23,6 @@ local CONFIG = {
   manaCost = GLOBAL_SPELL_COOLDOWNS[17].manaCost,
   aggressive = true,
   selfTarget = true,
-  aura = 2, -- Using aura effect id 2 for now, change if a specific energy/arcane aura exists
   cooldown = GLOBAL_SPELL_COOLDOWNS[17].cooldown,
   type = COMBAT_ENERGYDAMAGE,
   dmgInfo = "1s",
@@ -56,7 +34,7 @@ local CONFIG = {
     {1, 1, 1}
   },
 
-  supports = table.copy(DMG_AURAS) or {
+  supports = {
     ["dot"] = true,
     ["aoe"] = true,
     ["resize"] = true,
@@ -77,15 +55,28 @@ local function startLoopDamage(id, combat)
     return 
   end
 
+  local manaCost = CONFIG.manaCost or 15
+  if player:getMana() < manaCost then
+    -- Out of mana: deactivate aura
+    if ACTIVE_PLAYERS[id] then
+      stopEvent(ACTIVE_PLAYERS[id].event)
+      spellCleanAfterCast(player, ACTIVE_PLAYERS[id].combat)
+      ACTIVE_PLAYERS[id] = nil
+      spellSetupAuraEnd(player, CONFIG, nil)
+      player:removeManaGain(100 + CONFIG.spellId, true)
+      player:sendTextMessage(MESSAGE_STATUS_SMALL, "Arcane Aura deactivated (no mana).")
+    end
+    return
+  end
+
   if player:getZone() == 0 and not HIDDEN_AURA[id] then
     HIDDEN_AURA[id] = true
-    player:removeActiveAura(CONFIG.aura)
   elseif player:getZone() ~= 0 and HIDDEN_AURA[id] then
     HIDDEN_AURA[id] = nil
-    player:addActiveAura(CONFIG.aura, ACTIVE_PLAYERS[id].size)
   elseif not HIDDEN_AURA[id] then
     local variant = Variant(player)
     combat:execute(player, variant, 0, ACTIVE_PLAYERS[id].critC, ACTIVE_PLAYERS[id].critM, ACTIVE_PLAYERS[id].gamble)
+    player:getPosition():sendMagicEffect(CONST_ME_PURPLEENERGY)
   end
 
   if ACTIVE_PLAYERS[id] then
@@ -121,13 +112,12 @@ local function castSpell(player, item, getInfoOnly, force)
   }
   HIDDEN_AURA[player:getId()] = nil
   startLoopDamage(player:getId(), combat)
-  
-  -- Drain mana per second
-  local manaDrain = math.max(10, player:getMaxMana() * 0.02)
+
+  local manaCost = CONFIG_SUP.manaCost or CONFIG.manaCost or 15
   if CONFIG_SUP.lifeTap then
-    player:addHealthGain(100 + CONFIG.spellId, -manaDrain, true)
+    player:addHealthGain(100 + CONFIG.spellId, -manaCost, true)
   else
-    player:addManaGain(100  + CONFIG.spellId, -manaDrain, true)
+    player:addManaGain(100 + CONFIG.spellId, -manaCost, true)
   end
   spellSetupCooldown(player, CONFIG, CONFIG_SUP)
 end
@@ -162,10 +152,27 @@ local function removeActive(player, item, uid)
   end
 end
 
-function onUse(player, item, fromPosition, target, toPosition, isHotkey)
-  return onCastSpell(player, item, false, false, toPosition)
-end
+SPELLS[CONFIG.spellName] = {
+  cast = function(player, item)
+    onCastSpell(player, item)
+  end,
 
-function getInfo(player, item)
-  return onCastSpell(player, item, true)
-end
+  getInfo = function(player, item)
+    return onCastSpell(player, item, true)
+  end,
+
+  getConfig = function()
+    return CONFIG
+  end,
+
+  disable = function(player, item)
+    removeActive(player, item)
+  end,
+
+  isActive = function(player)
+    return ACTIVE_PLAYERS[player:getId()] ~= nil
+  end,
+
+  spellId = CONFIG.spellId,
+  overTimeMana = true,
+}

@@ -58,35 +58,50 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
 
+  if mousePos then
+    local dir = spellGetDirectionTo(player:getPosition(), mousePos)
+    if dir then
+      player:setDirection(dir)
+    end
+  end
+
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)
-  
-  -- Magic Defense reduction condition
-  local extraFunc = function(player, target)
-      if target:isCreature() then
-          -- In typical Tibia servers we reduce magic level or defense. 
-          -- Here we can apply a custom debuff if one exists, or rely on base conditions.
-          -- Example: applying a heavy dot or magic debuff
-          -- Let's apply a generic condition if needed, but for now we apply standard hit
-          -- Wait, to reduce Magic Defense by 20%, we can use CONDITION_ATTRIBUTES
-          local magicDebuff = Condition(CONDITION_ATTRIBUTES)
-          magicDebuff:setParameter(CONDITION_PARAM_TICKS, 3000)
-          -- Note: Standard TFS doesn't have a direct "Magic Defense %" parameter.
-          -- We'll reduce target's magic level or add a custom flag if available.
-          target:addCondition(magicDebuff)
-      end
+
+  -- Reduce Magic Defense by 20% for 4 seconds on hit targets
+  local extraFunc = function(caster, target)
+    if not target or target:isRemoved() then return end
+    if caster and target:getId() == caster:getId() then return end
+
+    -- Set debuff expiration storage (4 seconds)
+    target:setStorageValue(728003, os.time() + 4)
+    target:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+    Game.sendAnimatedText("-20% MDEF", target:getPosition(), TEXTCOLOR_PURPLE, "Reggae One-12px-bordered")
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
-  spellSetupAuraCast(player, CONFIG, CONFIG_SUP, item)
-  spellExecuteCombat(player, item, combat, CONFIG_SUP, mousePos)
-  spellSetupCooldown(player, CONFIG, CONFIG_SUP)
+
+  local variant = Variant(player, true)
+  if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos) then
+    spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
+    spellCleanAfterCast(player, combat)
+  end
+
+  return true
 end
 
-function onUse(player, item, fromPosition, target, toPosition, isHotkey)
-  return onCastSpell(player, item, false, false, toPosition)
-end
+SPELLS[CONFIG.spellName] = {
+  cast = function(player, item, force, pos)
+    onCastSpell(player, item, false, force, pos)
+  end,
 
-function getInfo(player, item)
-  return onCastSpell(player, item, true)
-end
+  getInfo = function(player, item)
+    return onCastSpell(player, item, true)
+  end,
+
+  getConfig = function()
+    return CONFIG
+  end,
+
+  spellId = CONFIG.spellId,
+}

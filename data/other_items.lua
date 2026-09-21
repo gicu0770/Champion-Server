@@ -1266,35 +1266,6 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
-      {
-        chance = 100000,
-        forceType = 67108864,
-        imps = {
-          {
-            26
-          },
-          {
-            {
-              150,
-              200,
-              400,
-              750
-            }
-          }
-        },
-        monster = "Toxic Hydra",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
       "Champion Trophy",
       38736,
       "Gorok",
@@ -1324,26 +1295,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Energy Soulstone",
-      38639,
-      "Ethereal Seraph",
+      "Flask Relict",
+      38400,
+      "Pheonix",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 67108864,
         imps = {
           {
-            72
+            249
           },
           {
             {
-              5,
-              10,
-              23,
-              42
+              500,
+              700,
+              900,
+              1200
             }
           }
         },
-        monster = "Ethereal Seraph",
+        monster = "Pheonix",
         weight = {
           7,
           10,
@@ -1382,31 +1353,60 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
+      "Mana Soulstone",
+      38640,
+      "Glacier Warlord",
       {
         chance = 100000,
         forceType = 16777216,
         imps = {
           {
-            237
+            110
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              5,
+              10,
+              23,
+              42
             }
           }
         },
-        monster = "Tidal Overlord",
+        monster = "Glacier Warlord",
         weight = {
+          7,
           10,
           12,
-          15,
-          20
+          15
+        }
+      }
+    },
+    {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1585,26 +1585,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Flask Relict",
-      38400,
-      "Pheonix",
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
       {
         chance = 100000,
         forceType = 67108864,
         imps = {
           {
-            249
+            26
           },
           {
             {
-              500,
-              700,
-              900,
-              1200
+              150,
+              200,
+              400,
+              750
             }
           }
         },
-        monster = "Pheonix",
+        monster = "Toxic Hydra",
         weight = {
           7,
           10,
@@ -1614,15 +1614,15 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Mana Soulstone",
-      38640,
-      "Glacier Warlord",
+      "Energy Soulstone",
+      38639,
+      "Ethereal Seraph",
       {
         chance = 100000,
         forceType = 16777216,
         imps = {
           {
-            110
+            72
           },
           {
             {
@@ -1633,7 +1633,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Glacier Warlord",
+        monster = "Ethereal Seraph",
         weight = {
           7,
           10,
@@ -1643,31 +1643,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
       {
         chance = 100000,
-        forceType = 1073741824,
+        forceType = 16777216,
         imps = {
           {
-            267
+            237
           },
           {
             {
-              2,
-              4,
-              7,
-              10
+              15,
+              22,
+              35,
+              50
             }
           }
         },
-        monster = "Ascended Voort",
+        monster = "Tidal Overlord",
         weight = {
-          0,
-          0,
-          0,
-          0
+          10,
+          12,
+          15,
+          20
         }
       }
     }
@@ -1744,7 +1744,7 @@ OTHER_ITEMS = {
       21
     },
     {
-      "Wild Vines",
+      "Arcane Aura",
       37321,
       21
     },
@@ -1914,7 +1914,7 @@ OTHER_ITEMS = {
       1
     },
     {
-      "Aimed Shot",
+      "Arcane Cleave",
       37320,
       1
     },
@@ -2094,7 +2094,7 @@ OTHER_ITEMS = {
       30
     },
     {
-      "Ricochet",
+      "Arcane Strike",
       37322,
       30
     },

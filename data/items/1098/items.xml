@@ -40594,23 +40594,23 @@
 		<attribute key="spellGem" value="15" />
 		<attribute key="spell" value="Divine Judgement" />
 	</item>
-	<item id="37320" article="a" name="Aimed Shot">
+	<item id="37320" article="a" name="Arcane Cleave">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="16" />
-		<attribute key="spell" value="Aimed Shot" />
+		<attribute key="spell" value="Arcane Cleave" />
 	</item>
-	<item id="37321" article="a" name="Wild Vines">
+	<item id="37321" article="a" name="Arcane Aura">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="17" />
-		<attribute key="spell" value="Wild Vines" />
+		<attribute key="spell" value="Arcane Aura" />
 	</item>
-	<item id="37322" article="a" name="Ricochet">
+	<item id="37322" article="a" name="Arcane Strike">
 		<attribute key="containerSize" value="3" />
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="18" />
-		<attribute key="spell" value="Ricochet" />
+		<attribute key="spell" value="Arcane Strike" />
 	</item>
 	<item id="37323" article="a" name="Firestorm">
 		<attribute key="containerSize" value="3" />
@@ -41594,24 +41594,6 @@
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="123" />
 		<attribute key="spell" value="Evasion Aura" />
-	</item>
-	<item id="38133" article="a" name="Arcane Cleave">
-		<attribute key="containerSize" value="3" />
-		<attribute key="slotType" value="Spell1" />
-		<attribute key="spellGem" value="124" />
-		<attribute key="spell" value="Arcane Cleave" />
-	</item>
-	<item id="38134" article="a" name="Arcane Aura">
-		<attribute key="containerSize" value="3" />
-		<attribute key="slotType" value="Spell2" />
-		<attribute key="spellGem" value="125" />
-		<attribute key="spell" value="Arcane Aura" />
-	</item>
-	<item id="38135" article="a" name="Arcane Strike">
-		<attribute key="containerSize" value="3" />
-		<attribute key="slotType" value="Spell3" />
-		<attribute key="spellGem" value="126" />
-		<attribute key="spell" value="Arcane Strike" />
 	</item>
 
 	<item id="37434" article="a" name="rune backpack">

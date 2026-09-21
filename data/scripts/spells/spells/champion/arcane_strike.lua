@@ -3,14 +3,7 @@ local resizeTo = {
     {1, 1, 1},
     {1, 3, 1},
     {1, 1, 1}
-  },
-  [2] = {
-    {0, 1, 1, 1, 0},
-    {1, 1, 1, 1, 1},
-    {1, 1, 3, 1, 1},
-    {1, 1, 1, 1, 1},
-    {0, 1, 1, 1, 0}
-  },
+  }
 }
 
 local CONFIG = {
@@ -36,7 +29,6 @@ local CONFIG = {
 
   supports = {
     ["dot"] = true,
-    ["single"] = true,
     ["aoe"] = true,
     ["resize"] = true,
   }
@@ -55,37 +47,57 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)
 
-  -- Stun for 0.7s
-  local extraFunc = function(player, target)
-      if target:isCreature() then
-          local stun = Condition(CONDITION_PARALYZE)
-          stun:setParameter(CONDITION_PARAM_TICKS, 700)
-          stun:setParameter(CONDITION_PARAM_SPEED, -3000)
-          target:addCondition(stun)
-      end
+  -- Stun for 0.7s (700ms) on hit enemies
+  local extraFunc = function(caster, target)
+    if not target or target:isRemoved() then return end
+    if caster and target:getId() == caster:getId() then return end
+
+    local stun = Condition(CONDITION_STUN)
+    stun:setParameter(CONDITION_PARAM_TICKS, 700)
+    target:addCondition(stun)
+    target:addBuff(STUN, 700)
+    target:setProgressBar(700, false)
+    Game.sendAnimatedText("STUN", target:getPosition(), TEXTCOLOR_YELLOW, "Reggae One-12px-bordered")
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
-  spellSetupAuraCast(player, CONFIG, CONFIG_SUP, item)
-  
-  if mousePos then
-      spellExecuteCombat(player, item, combat, CONFIG_SUP, mousePos)
+
+  local maxRange = CONFIG_SUP.range or CONFIG.range or 4
+  local target = player:getTarget()
+  local impactPos = nil
+
+  if target and not target:isRemoved() and player:targetRechable(target:getPosition(), maxRange, false) then
+    impactPos = target:getPosition()
+  elseif mousePos and player:targetRechable(mousePos, maxRange, false) then
+    impactPos = mousePos
   else
-      local target = player:getTarget()
-      if target then
-          spellExecuteCombat(player, item, combat, CONFIG_SUP, target:getPosition())
-      else
-          spellExecuteCombat(player, item, combat, CONFIG_SUP, player:getPosition())
-      end
+    impactPos = player:getPosition()
   end
 
-  spellSetupCooldown(player, CONFIG, CONFIG_SUP)
+  local variant = Variant(impactPos)
+  player:getPosition():sendDistanceEffect(impactPos, 39)
+
+  if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos) then
+    spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
+    impactPos:sendMagicEffect(CONST_ME_PURPLEENERGY)
+    spellCleanAfterCast(player, combat)
+  end
+
+  return true
 end
 
-function onUse(player, item, fromPosition, target, toPosition, isHotkey)
-  return onCastSpell(player, item, false, false, toPosition)
-end
+SPELLS[CONFIG.spellName] = {
+  cast = function(player, item, force, pos)
+    onCastSpell(player, item, false, force, pos)
+  end,
 
-function getInfo(player, item)
-  return onCastSpell(player, item, true)
-end
+  getInfo = function(player, item)
+    return onCastSpell(player, item, true)
+  end,
+
+  getConfig = function()
+    return CONFIG
+  end,
+
+  spellId = CONFIG.spellId,
+}

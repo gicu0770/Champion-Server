@@ -54,9 +54,9 @@ local config = {
 			{2390, 1}, -- spellblade sword (range 2)
 		},
 		spells = {
-			{38133, 1, CONST_SLOT_SPELL1}, -- Arcane Cleave
-			{38134, 1, CONST_SLOT_SPELL2}, -- Arcane Aura
-			{38135, 1, CONST_SLOT_SPELL3}, -- Arcane Strike
+			{37320, 1, CONST_SLOT_SPELL1}, -- Arcane Cleave
+			{37321, 1, CONST_SLOT_SPELL2}, -- Arcane Aura
+			{37322, 1, CONST_SLOT_SPELL3}, -- Arcane Strike
 		},
 	},
 

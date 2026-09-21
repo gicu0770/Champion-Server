@@ -455,8 +455,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 					defShredMultiplier = defShredMultiplier * 0.70
 				end
 			end
-			-- Any future Champion spells / debuffs reducing Magic Defense can be added here:
-			-- if creature:hasBuff(MAGIC_SHRED_BUFF) then defShredMultiplier = defShredMultiplier * (1.0 - shredPercent) end
+			-- Arcane Cleave: -20% Magic Defense
+			local arcaneCleaveExpiry = creature:getStorageValue(728003)
+			if arcaneCleaveExpiry and arcaneCleaveExpiry > os.time() then
+				defShredMultiplier = defShredMultiplier * 0.80
+			end
 		else
 			-- [31] Carve (Black Cleaver): -6% Physical Defense per stack (up to -30% at 5 stacks)
 			if creature:hasBuff(CARVE_DEBUFF) then
