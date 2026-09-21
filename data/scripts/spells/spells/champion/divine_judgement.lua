@@ -69,7 +69,13 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   
   local extraFunc = function(caster, target)
     if not target or target:isRemoved() then return end
+    if isAlly(caster, target) then return end
+
+    local stun = Condition(CONDITION_STUN)
+    stun:setParameter(CONDITION_PARAM_TICKS, 1000)
+    target:addCondition(stun)
     target:addBuff(STUN, 1000)
+    target:setProgressBar(1000, false)
     Game.sendAnimatedText("STUN", target:getPosition(), TEXTCOLOR_YELLOW, "Reggae One-12px-bordered")
   end
 

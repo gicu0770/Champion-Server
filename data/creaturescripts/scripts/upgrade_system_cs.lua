@@ -902,10 +902,10 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if creature:isMonster() and (creature:getName():lower():find("dummy") or targetMaxHp > 10000000) then
 				targetMaxHp = math.max(1000, attacker:getMagicAttack() * 20)
 			end
-			local rawTickDmg = math.max(5, math.floor(targetMaxHp * 0.01))
-			if creature:isMonster() then
-				rawTickDmg = math.min(rawTickDmg, 150 + math.floor(attacker:getMagicAttack() * 0.5))
-			end
+			local rawTickDmg = math.floor(targetMaxHp * 0.01)
+		--	if creature:isMonster() then
+		--		rawTickDmg = math.min(rawTickDmg, 150 + math.floor(attacker:getMagicAttack() * 0.5))
+		--	end
 			local effMagDef = 0
 			if creature:isMonster() then
 				effMagDef = 15 + creature:getMonsterLevel() * 1

@@ -279,9 +279,10 @@ function Creature:addBuff(id, time, stacks, maxStacks)
   end
 
   local server_time = os.time() * 1000
-  local endTime = server_time + buff.ticks
-  if time then
-    endTime = server_time + time
+  local duration = time or buff.ticks
+  local endTime = server_time + duration
+  if id == STUN and duration > 0 then
+    self:setProgressBar(duration, false)
   end
   stacks = stacks or 1
   CREATURE_ACTIVE_BUFFS[self:getId()][buff.id] = {
@@ -361,18 +362,25 @@ function Creature:updateBuff(id, time, playerList, maxStacks)
       stacks = creatureBuff.stacks,
     }
 
+    if id == STUN then
+      local remaining = creatureBuff.endTime - server_time
+      if remaining > 0 then
+        self:setProgressBar(remaining, false)
+      end
+    end
+
     local data = buff
     local buffToSend = {
-      buff.id,
+      data.id,
       creatureBuff.stacks,
       creatureBuff.endTime - (os.time() * 1000),
-      buff.debuff,
+      data.debuff,
     }
 
     if self:isPlayer() then
       self:sendExtendedOpcode(ExtendedOPCodes.CODE_BUFF, json.encode({2, buffToSend}))
     else
-      for _, player in ipairs(playerList) do
+      for _, player in pairs(playerList) do
         player:sendExtendedOpcode(ExtendedOPCodes.CODE_BOSSBAR, json.encode({3, buffToSend}))
       end
     end
@@ -388,6 +396,10 @@ function Creature:removeBuff(id)
 
   if CREATURE_ACTIVE_BUFFS[self:getId()][id] then
     CREATURE_ACTIVE_BUFFS[self:getId()][id] = nil
+  end
+
+  if id == STUN then
+    self:setProgressBar(0, false)
   end
 
   local playerList = {}
