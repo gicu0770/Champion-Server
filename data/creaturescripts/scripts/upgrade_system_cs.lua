@@ -251,6 +251,7 @@ CHAMPION_STATS = {
 	["Mage"] = {magic_character = true, hp_start = 500, hp_level = 2500, mana = 500, manaPL = 1000, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Mage
 	["Assassin"] = {physical_character = true, hp_start = 500, hp_level = 2500, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Assassin
 	["Cleric"] = {magic_character = true, hp_start = 550, hp_level = 3200, mana = 400, manaPL = 850, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, regen_mana = 1}, -- Cleric
+	["Spellblade"] = {magic_character = true, hp_start = 550, hp_level = 3000, mana = 350, manaPL = 800, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 55, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 75, health_regen = 3, regen_mana = 1}, -- Spellblade
 }
 --[[
 CHAMPION_STATS = {
@@ -1014,6 +1015,60 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if attacker:getCondition(CONDITION_OUTFIT) then
 				attacker:removeCondition(CONDITION_OUTFIT)
 			end
+		end
+
+		-- =====================================================================
+		-- SPELLBLADE - PASSIVE SHIELD & AOE
+		-- =====================================================================
+		if attacker:getVocation():getId() == 6 and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
+			local SPELLBLADE_PASSIVE_STORAGE = 728002
+			local stacks = attacker:getStorageValue(SPELLBLADE_PASSIVE_STORAGE)
+			if stacks < 0 then stacks = 0 end
+			stacks = stacks + 1
+			if stacks >= 3 then
+				stacks = 0
+				
+				-- 1. AoE Damage (3x3)
+				local magicAttack = attacker:getMagicAttack() or 0
+				local aoeDmg = math.floor(magicAttack * 0.5)
+				local aoeCombat = Combat()
+				aoeCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
+				aoeCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_PURPLEENERGY)
+				aoeCombat:setArea(createCombatArea({
+					{1, 1, 1},
+					{1, 3, 1},
+					{1, 1, 1}
+				}))
+				
+				-- We need a custom formula to deal exact damage
+				function spellbladeAoeDmg(player, level, maglevel)
+					return -aoeDmg, -aoeDmg
+				end
+				aoeCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "spellbladeAoeDmg")
+				
+				local var = Variant(creature:getPosition())
+				aoeCombat:execute(attacker, var)
+				
+				-- 2. Energy Shield 5% Max HP
+				local maxHp = attacker:getMaxHealth()
+				local shieldAmount = math.floor(maxHp * 0.05)
+				local curShield = attacker:getEnergyShield() or 0
+				local newShield = curShield + shieldAmount
+				if attacker:getMaxEnergyShield() < newShield then
+					attacker:setMaxEnergyShield(newShield)
+				end
+				attacker:setEnergyShield(newShield)
+				
+				local playerId = attacker:getId()
+				addEvent(function()
+					local p = Player(playerId)
+					if p then
+						local s = p:getEnergyShield() or 0
+						p:setEnergyShield(math.max(0, s - shieldAmount))
+					end
+				end, 5000)
+			end
+			attacker:setStorageValue(SPELLBLADE_PASSIVE_STORAGE, stacks)
 		end
 
 		-- =====================================================================

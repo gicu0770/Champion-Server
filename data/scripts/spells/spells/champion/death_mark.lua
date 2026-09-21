@@ -60,8 +60,8 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   player:setStorageValue(PlayerStorage.deathMarkActive, os.time() + 4) -- lasts up to 4s (same as stealth roughly)
 
   spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
+  Position(player:getPosition().x + 1, player:getPosition().y + 1, player:getPosition().z):sendMagicEffect(506, 1)
   if not force then
-    Position(centerPos.x + 3, centerPos.y + 3, centerPos.z):sendMagicEffect(506, 1)
     spellTakeCost(player, CONFIG, CONFIG_SUP)
   end
   

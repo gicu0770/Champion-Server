@@ -60,5 +60,14 @@
 		<skill id="5" multiplier="1.1" />
 		<skill id="6" multiplier="1.1" />
 	</vocation>
-
+	<vocation id="6" clientid="6" name="Spellblade" description="a spellblade" gaincap="0" gainhp="0" gainmana="0" gainhpticks="0" gainhpamount="0" gainmanaticks="0" gainmanaamount="0" manamultiplier="2.0" attackspeed="1600" basespeed="150" soulmax="100" gainsoulticks="120" >
+		<formula meleeDamage="1.0" distDamage="1.0" defense="1.0" armor="1.0" />
+		<skill id="0" multiplier="1.1" />
+		<skill id="1" multiplier="1.1" />
+		<skill id="2" multiplier="1.1" />
+		<skill id="3" multiplier="1.1" />
+		<skill id="4" multiplier="1.1" />
+		<skill id="5" multiplier="1.1" />
+		<skill id="6" multiplier="1.1" />
+	</vocation>
 </vocations>

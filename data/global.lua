@@ -169,18 +169,20 @@ DUNGEON_MOD_ATTR_ADDED = {
 
 function Player.getCharacterType(self)
 	local typeEx = 1
-	if CHAMPION_STATS[self:getVocation():getName()].physical_character then
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	if vocStats and vocStats.physical_character then
 		typeEx = self:getPhysicalAttack()
-	elseif CHAMPION_STATS[self:getVocation():getName()].magic_character then
+	elseif vocStats and vocStats.magic_character then
 		typeEx = self:getMagicAttack()
 	end
 	return typeEx
 end
 function Player.getCharacterTypeEx(self)
 	local typeMorP = "physical"
-	if CHAMPION_STATS[self:getVocation():getName()].physical_character then
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	if vocStats and vocStats.physical_character then
 		typeMorP = "physical"
-	elseif CHAMPION_STATS[self:getVocation():getName()].magic_character then
+	elseif vocStats and vocStats.magic_character then
 		typeMorP = "magic"
 	end
 	return typeMorP
@@ -189,7 +191,10 @@ end
 
 function Player.getPhysicalAttack(self)
 	if not self then return 0 end
-	local getPhysicalAttack = CHAMPION_STATS[self:getVocation():getName()].physical_attack + (((CHAMPION_STATS[self:getVocation():getName()].physical_attackPL - CHAMPION_STATS[self:getVocation():getName()].physical_attack) / 50) * self:getLevel())
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	local baseAtk = vocStats and vocStats.physical_attack or 50
+	local baseAtkPL = vocStats and vocStats.physical_attackPL or 100
+	local getPhysicalAttack = baseAtk + (((baseAtkPL - baseAtk) / 50) * self:getLevel())
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[6] then
 			getPhysicalAttack = getPhysicalAttack + colleftInfo[self:getId()].attributesItems[6].value
@@ -212,7 +217,10 @@ end
 
 function Player.getMagicAttack(self)
 	if not self then return 0 end
-	local getMagicAttack = CHAMPION_STATS[self:getVocation():getName()].magic_attack + (((CHAMPION_STATS[self:getVocation():getName()].magic_attackPL - CHAMPION_STATS[self:getVocation():getName()].magic_attack) / 50) * self:getLevel()) 
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	local baseAtk = vocStats and vocStats.magic_attack or 0
+	local baseAtkPL = vocStats and vocStats.magic_attackPL or 0
+	local getMagicAttack = baseAtk + (((baseAtkPL - baseAtk) / 50) * self:getLevel()) 
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[7] then
 			getMagicAttack = getMagicAttack + colleftInfo[self:getId()].attributesItems[7].value
@@ -261,8 +269,10 @@ end
 
 function Player.getPhysicalDefense(self)
 	if not self then return 0 end
-	local getPhysicalDefense = 0
-	getPhysicalDefense = CHAMPION_STATS[self:getVocation():getName()].physical_defense + (((CHAMPION_STATS[self:getVocation():getName()].physical_defensePL - CHAMPION_STATS[self:getVocation():getName()].physical_defense) / 50) * self:getLevel())
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	local baseDef = vocStats and vocStats.physical_defense or 25
+	local baseDefPL = vocStats and vocStats.physical_defensePL or 80
+	local getPhysicalDefense = baseDef + (((baseDefPL - baseDef) / 50) * self:getLevel())
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[8] then
 			getPhysicalDefense = getPhysicalDefense + colleftInfo[self:getId()].attributesItems[8].value
@@ -285,8 +295,10 @@ end
 
 function Player.getMagicDefense(self)
 	if not self then return 0 end
-	local getMagicDefense = 0
-	getMagicDefense = CHAMPION_STATS[self:getVocation():getName()].magic_defense + (((CHAMPION_STATS[self:getVocation():getName()].magic_defensePL - CHAMPION_STATS[self:getVocation():getName()].magic_defense) / 50) * self:getLevel())
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	local baseDef = vocStats and vocStats.magic_defense or 25
+	local baseDefPL = vocStats and vocStats.magic_defensePL or 70
+	local getMagicDefense = baseDef + (((baseDefPL - baseDef) / 50) * self:getLevel())
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[9] then
 			getMagicDefense = getMagicDefense + colleftInfo[self:getId()].attributesItems[9].value
@@ -1560,6 +1572,9 @@ GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexte
 	[13] = {name = "Heal", cooldown = 2000, manaCost = 0, range = 5, hits = 1, multipler = 0.7, baseDamage = 100, baseDamagePerLevel = 10, scaling = 1, addDamage = 1, tag = {13, 26, 25}, element = 100, aoe = false},
 	[14] = {name = "Holy Smite", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0.5, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
 	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.9, baseDamage = 150, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
+	[16] = {name = "Arcane Cleave", cooldown = 2000, manaCost = 0, range = 4, hits = 1, multipler = 0.7, baseDamage = 40, baseDamagePerLevel = 10, scaling = 1, addDamage = 1, tag = {13, 15, 20}, element = 100, aoe = true},
+	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 0, range = 0, hits = 1, multipler = 0.25, baseDamage = 15, baseDamagePerLevel = 5, scaling = 1, addDamage = 1, tag = {13, 20}, element = 100, aoe = true},
+	[18] = {name = "Arcane Strike", cooldown = 8000, manaCost = 0, range = 4, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 20, 24}, element = 100, aoe = true},
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -2299,26 +2314,28 @@ function Player.setCollectionInfo(self)
 		end
 	end
 
-	for i = 1, #GOLDEN_ENCHANTMENTS_CONFIG do
-		local level = self:getStorageValue(PlayerStorage.EnchantmentsAltar + i)
-		if level > 0 then
-			local enchant = GOLDEN_ENCHANTMENTS_CONFIG[i].enchant
-			local attr = US_ENCHANTMENTS[enchant]
-			local value = GOLDEN_ENCHANTMENTS_CONFIG[i].value * level
-			if attributesTables[enchant] ~= nil then
-				if attr and attr.unique then
-					attributesTables[enchant].value = math.max(attributesTables[enchant].value, value)
+	if GOLDEN_ENCHANTMENTS_CONFIG then
+		for i = 1, #GOLDEN_ENCHANTMENTS_CONFIG do
+			local level = self:getStorageValue(PlayerStorage.EnchantmentsAltar + i)
+			if level > 0 then
+				local enchant = GOLDEN_ENCHANTMENTS_CONFIG[i].enchant
+				local attr = US_ENCHANTMENTS[enchant]
+				local value = GOLDEN_ENCHANTMENTS_CONFIG[i].value * level
+				if attributesTables[enchant] ~= nil then
+					if attr and attr.unique then
+						attributesTables[enchant].value = math.max(attributesTables[enchant].value, value)
+					else
+						attributesTables[enchant].value = attributesTables[enchant].value + value
+					end
+					attributesTables[enchant].text = attr.name
 				else
-					attributesTables[enchant].value = attributesTables[enchant].value + value
+					attributesTables[enchant] = {
+						text = attr.name,
+						value = value,
+						category = attr.category,
+						percent = attr.percent,
+					}
 				end
-				attributesTables[enchant].text = attr.name
-			else
-				attributesTables[enchant] = {
-					text = attr.name,
-					value = value,
-					category = attr.category,
-					percent = attr.percent,
-				}
 			end
 		end
 	end
@@ -4820,7 +4837,9 @@ function Player.getTotalAttackSpeed(self, checkCollectInfo)
 		return 0
 	end
 
-	local as = (CHAMPION_STATS[self:getVocation():getName()].asPL / 50) * self:getLevel()
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[self:getVocation():getName()]
+	local asPL = vocStats and vocStats.asPL or 50
+	local as = (asPL / 50) * self:getLevel()
 
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[11] then

@@ -306,8 +306,8 @@ function GuildSystem.applyGuildBuffs(player, guildLevel)
     pcall(function()
         player:removeCondition(CONDITION_REGENERATION, CONDITION_SUBID, GuildSystem.SUBID_BUFF_REGEN)
         player:removeCondition(CONDITION_ATTRIBUTES, CONDITION_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
+        player:setCollectionInfo()
     end)
-    player:setCollectionInfo()
 end
 
 function GuildSystem.removeGuildBuffs(player)
@@ -315,8 +315,8 @@ function GuildSystem.removeGuildBuffs(player)
     pcall(function()
         player:removeCondition(CONDITION_REGENERATION, CONDITION_SUBID, GuildSystem.SUBID_BUFF_REGEN)
         player:removeCondition(CONDITION_ATTRIBUTES, CONDITION_SUBID, GuildSystem.SUBID_BUFF_HEALTH)
+        player:setCollectionInfo()
     end)
-    player:setCollectionInfo()
 end
 
 -- Broadcast message to all online guild members

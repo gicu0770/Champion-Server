@@ -3273,13 +3273,12 @@
 		<attribute key="maxHitChance" value="76" />
 		<attribute key="range" value="3" />
 	</item>
-	<item id="2390" article="a" name="magic longsword">
-		<attribute key="weight" value="4300" />
-		<attribute key="attack" value="55" />
+	<item id="2390" article="a" name="spellblade sword">
+		<attribute key="weight" value="3000" />
+		<attribute key="attack" value="1" />
 		<attribute key="weaponType" value="sword" />
-		<attribute key="slotType" value="two-handed" />
-		<attribute key="decayTo" value="0" />
-		<attribute key="duration" value="60" />
+		<attribute key="range" value="2" />
+		<attribute key="moveable" value="0" />
 	</item>
 	<item id="2391" article="a" name="war hammer">
 		<attribute key="weight" value="8500" />
@@ -41595,6 +41594,24 @@
 		<attribute key="slotType" value="Spell1" />
 		<attribute key="spellGem" value="123" />
 		<attribute key="spell" value="Evasion Aura" />
+	</item>
+	<item id="38133" article="a" name="Arcane Cleave">
+		<attribute key="containerSize" value="3" />
+		<attribute key="slotType" value="Spell1" />
+		<attribute key="spellGem" value="124" />
+		<attribute key="spell" value="Arcane Cleave" />
+	</item>
+	<item id="38134" article="a" name="Arcane Aura">
+		<attribute key="containerSize" value="3" />
+		<attribute key="slotType" value="Spell2" />
+		<attribute key="spellGem" value="125" />
+		<attribute key="spell" value="Arcane Aura" />
+	</item>
+	<item id="38135" article="a" name="Arcane Strike">
+		<attribute key="containerSize" value="3" />
+		<attribute key="slotType" value="Spell3" />
+		<attribute key="spellGem" value="126" />
+		<attribute key="spell" value="Arcane Strike" />
 	</item>
 
 	<item id="37434" article="a" name="rune backpack">

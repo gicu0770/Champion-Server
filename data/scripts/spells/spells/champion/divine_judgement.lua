@@ -37,7 +37,7 @@ local CONFIG = {
     ['resize'] = true,
   },
 }
-
+-- 584
 local function isAlly(caster, other)
   if not other or not other:isPlayer() or other:isRemoved() then return false end
   if other:getId() == caster:getId() then return true end
@@ -98,6 +98,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   player:getPosition():sendDistanceEffect(impactPos, 39)
   if spellExecuteCombat(player, combat, CONFIG, CONFIG_SUP, item, variant, mousePos) then
     spellSetupCooldown(player, CONFIG, CONFIG_SUP, force)
+    Position(impactPos.x + 1, impactPos.y + 1, impactPos.z):sendMagicEffect(584, 0)
     impactPos:sendMagicEffect(CONST_ME_HOLYAREA)
     
     -- Collect all allies in 5x5 area around impactPos, plus the caster themselves

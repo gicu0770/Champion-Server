@@ -31,7 +31,9 @@ end
 local LoginEvent = CreatureEvent("EnchantmentsAltarLogin")
 function LoginEvent.onLogin(player)
   player:registerEvent("EnchantmentsAltarExtendedOpcode")
-  player:applyAltarEnchantments()
+  pcall(function()
+    player:applyAltarEnchantments()
+  end)
   return true
 end
 
