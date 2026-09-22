@@ -6823,3 +6823,9 @@ function Item:calculateItemCost()
 
 	return cost
 end
+
+function addEnergyShieldDuration(creature, value, duration, maxCapPercent)
+	if creature and creature.addEnergyShieldDuration then
+		return creature:addEnergyShieldDuration(value, duration, maxCapPercent)
+	end
+end

@@ -238,6 +238,8 @@ local widgets = {
 function AddWidgets()
     for _, widget in ipairs(widgets) do
         local tile = Tile(widget.pos)
-        tile:setWidget(widget.id, widget.data)
+        if tile then
+            tile:setWidget(widget.id, widget.data)
+        end
     end
 end

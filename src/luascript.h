@@ -866,6 +866,8 @@ class LuaScriptInterface
 		static int luaCreatureGetEnergyShield(lua_State* L);
 		static int luaCreatureSetEnergyShield(lua_State* L);
 		static int luaCreatureAddEnergyShield(lua_State* L);
+		static int luaCreatureAddEnergyShieldDuration(lua_State* L);
+		static int luaCreatureResetEnergyShield(lua_State* L);
 
 		static int luaCreatureGetMaxEnergyShield(lua_State* L);
 		static int luaCreatureSetMaxEnergyShield(lua_State* L);

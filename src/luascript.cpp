@@ -2932,6 +2932,8 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Creature", "setHiddenHealth", LuaScriptInterface::luaCreatureSetHiddenHealth);
 
 	registerMethod("Creature", "addEnergyShield", LuaScriptInterface::luaCreatureAddEnergyShield);
+	registerMethod("Creature", "addEnergyShieldDuration", LuaScriptInterface::luaCreatureAddEnergyShieldDuration);
+	registerMethod("Creature", "resetEnergyShield", LuaScriptInterface::luaCreatureResetEnergyShield);
 	registerMethod("Creature", "getEnergyShield", LuaScriptInterface::luaCreatureGetEnergyShield);
 	registerMethod("Creature", "setEnergyShield", LuaScriptInterface::luaCreatureSetEnergyShield);
 
@@ -9323,6 +9325,44 @@ int LuaScriptInterface::luaCreatureAddEnergyShield(lua_State* L)
 	}
 
 	creature->changeEnergyShield(getNumber<int64_t>(L, 2));
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureAddEnergyShieldDuration(lua_State* L)
+{
+	// creature:addEnergyShieldDuration(value, duration[, maxCapPercent])
+	Creature* creature = getUserdata<Creature>(L, 1);
+	if (!creature || creature->isRemoved()) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	int64_t value = getNumber<int64_t>(L, 2);
+	uint32_t duration = getNumber<uint32_t>(L, 3);
+	double maxCapPercent = 0.20;
+	if (lua_gettop(L) >= 4) {
+		maxCapPercent = getNumber<double>(L, 4);
+		if (maxCapPercent > 1.0) {
+			maxCapPercent /= 100.0;
+		}
+	}
+
+	creature->addEnergyShieldDuration(value, duration, maxCapPercent);
+	pushBoolean(L, true);
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureResetEnergyShield(lua_State* L)
+{
+	// creature:resetEnergyShield()
+	Creature* creature = getUserdata<Creature>(L, 1);
+	if (!creature || creature->isRemoved()) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	creature->resetEnergyShield();
+	pushBoolean(L, true);
 	return 1;
 }
 

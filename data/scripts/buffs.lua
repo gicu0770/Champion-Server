@@ -388,11 +388,18 @@ function Creature:updateBuff(id, time, playerList, maxStacks)
 end
 
 function Creature:removeBuff(id)
+  if not id then
+    return
+  end
+
   if not CREATURE_ACTIVE_BUFFS[self:getId()] then
     return
   end
 
   local buff = BUFFS[id]
+  if not buff then
+    return
+  end
 
   if CREATURE_ACTIVE_BUFFS[self:getId()][id] then
     CREATURE_ACTIVE_BUFFS[self:getId()][id] = nil

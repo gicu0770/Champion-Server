@@ -1,20 +1,3 @@
-local function checkIchorShieldDecay(playerId)
-	local player = Player(playerId)
-	if not player then return end
-
-	local expireTime = player:getStorageValue(PlayerStorage.ichorShieldTime)
-	local now = os.time()
-
-	if now >= expireTime then
-		player:setEnergyShield(0)
-		player:setMaxEnergyShield(0)
-		player:removeBuff(ICHOR_SHIELD)
-		player:setStorageValue(PlayerStorage.ichorShieldAmount, -1)
-	else
-		local remainingMs = math.max(1000, (expireTime - now) * 1000)
-		addEvent(checkIchorShieldDecay, remainingMs, playerId)
-	end
-end
 
 function onLogin(player)
 	us_onLogin(player)
@@ -455,11 +438,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 					defShredMultiplier = defShredMultiplier * 0.70
 				end
 			end
-			-- Arcane Cleave: -20% Magic Defense
-			local arcaneCleaveExpiry = creature:getStorageValue(728003)
-			if arcaneCleaveExpiry and arcaneCleaveExpiry > os.time() then
-				defShredMultiplier = defShredMultiplier * 0.80
-			end
 		else
 			-- [31] Carve (Black Cleaver): -6% Physical Defense per stack (up to -30% at 5 stacks)
 			if creature:hasBuff(CARVE_DEBUFF) then
@@ -468,6 +446,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 			-- Any future Champion spells / debuffs reducing Physical Defense can be added here:
 			-- if creature:hasBuff(PHYSICAL_SHRED_BUFF) then defShredMultiplier = defShredMultiplier * (1.0 - shredPercent) end
+		end
+
+		-- [Arcane Cleave] Arcane Shred: -20% Physical & Magic Defense
+		if creature:hasBuff(ARCANE_SHRED_DEBUFF) then
+			defShredMultiplier = defShredMultiplier * 0.80
 		end
 
 		-- Apply total multiplicative % shred
@@ -1021,57 +1004,33 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- =====================================================================
-		-- SPELLBLADE - PASSIVE SHIELD & AOE
+		-- SPELLBLADE - PASSIVE SHIELD & AOE (Arcane Resonance)
 		-- =====================================================================
 		if attacker:getVocation():getId() == 6 and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
 			local SPELLBLADE_PASSIVE_STORAGE = 728002
-			local stacks = attacker:getStorageValue(SPELLBLADE_PASSIVE_STORAGE)
-			if stacks < 0 then stacks = 0 end
-			stacks = stacks + 1
-			if stacks >= 3 then
-				stacks = 0
-				
-				-- 1. AoE Damage (3x3)
-				local magicAttack = attacker:getMagicAttack() or 0
-				local aoeDmg = math.floor(magicAttack * 0.5)
-				local aoeCombat = Combat()
-				aoeCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
-				aoeCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_PURPLEENERGY)
-				aoeCombat:setArea(createCombatArea({
-					{1, 1, 1},
-					{1, 3, 1},
-					{1, 1, 1}
-				}))
-				
-				-- We need a custom formula to deal exact damage
-				function spellbladeAoeDmg(player, level, maglevel)
-					return -aoeDmg, -aoeDmg
+			local SPELLBLADE_PASSIVE_CD = 728004
+			local now = os.time()
+			local cdReady = attacker:getStorageValue(SPELLBLADE_PASSIVE_CD)
+			if cdReady < 0 or now >= cdReady then
+				local stacks = attacker:getStorageValue(SPELLBLADE_PASSIVE_STORAGE)
+				if stacks < 0 then stacks = 0 end
+				stacks = stacks + 1
+				if stacks >= 3 then
+					stacks = 0
+					attacker:setStorageValue(SPELLBLADE_PASSIVE_CD, now + 2)
+					
+					-- 1. AoE Damage (3x3)
+					local magicAttack = attacker:getMagicAttack() or 0
+					local aoeDmg = math.floor(magicAttack * 0.5)
+					doAreaCombat(attacker:getId(), COMBAT_ENERGYDAMAGE, creature:getPosition(), area3x3, -aoeDmg, -aoeDmg, CONST_ME_PURPLEENERGY, ORIGIN_REFLECT, 2000, 110)
+					
+					-- 2. Energy Shield 5% Max HP (capped at 20% Max HP, 5s duration)
+					local maxHp = attacker:getMaxHealth()
+					local shieldAmount = math.floor(maxHp * 0.05)
+					attacker:addEnergyShieldDuration(shieldAmount, 5000, 0.20)
 				end
-				aoeCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "spellbladeAoeDmg")
-				
-				local var = Variant(creature:getPosition())
-				aoeCombat:execute(attacker, var)
-				
-				-- 2. Energy Shield 5% Max HP
-				local maxHp = attacker:getMaxHealth()
-				local shieldAmount = math.floor(maxHp * 0.05)
-				local curShield = attacker:getEnergyShield() or 0
-				local newShield = curShield + shieldAmount
-				if attacker:getMaxEnergyShield() < newShield then
-					attacker:setMaxEnergyShield(newShield)
-				end
-				attacker:setEnergyShield(newShield)
-				
-				local playerId = attacker:getId()
-				addEvent(function()
-					local p = Player(playerId)
-					if p then
-						local s = p:getEnergyShield() or 0
-						p:setEnergyShield(math.max(0, s - shieldAmount))
-					end
-				end, 5000)
+				attacker:setStorageValue(SPELLBLADE_PASSIVE_STORAGE, stacks)
 			end
-			attacker:setStorageValue(SPELLBLADE_PASSIVE_STORAGE, stacks)
 		end
 
 		-- =====================================================================
@@ -1109,28 +1068,14 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				local maxHp = attacker:getMaxHealth()
 				if (curHp + lifestealHeal) > maxHp and attackerAttrs and attackerAttrs[32] and primaryType == COMBAT_PHYSICALDAMAGE then
 					local overheal = (curHp + lifestealHeal) - maxHp
-					local maxShieldCap = math.floor(maxHp * 0.10)
 					local curShield = attacker:getEnergyShield()
-					local newShield = math.min(maxShieldCap, curShield + overheal)
-
-					if newShield > curShield then
-						ichorShieldGain = newShield - curShield
-						if attacker:getMaxEnergyShield() < newShield then
-							attacker:setMaxEnergyShield(newShield)
-						end
-						attacker:setEnergyShield(newShield)
-						attacker:addBuff(ICHOR_SHIELD, 10000)
-						attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
-
-						-- Update expiration timestamp
-						attacker:setStorageValue(PlayerStorage.ichorShieldTime, os.time() + 10)
-
-						-- Spawn only 1 timer per player if not already active
-						if attacker:getStorageValue(PlayerStorage.ichorShieldAmount) ~= 1 then
-							attacker:setStorageValue(PlayerStorage.ichorShieldAmount, 1)
-							addEvent(checkIchorShieldDecay, 10000, attacker:getId())
-						end
+					attacker:addEnergyShieldDuration(overheal, 10000, 0.10)
+					local afterShield = attacker:getEnergyShield()
+					if afterShield > curShield then
+						ichorShieldGain = afterShield - curShield
 					end
+					attacker:addBuff(ICHOR_SHIELD, 10000)
+					attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 				end
 				attacker:addHealth(lifestealHeal)
 				attacker:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
@@ -1290,21 +1235,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if nextCd < 0 or now >= nextCd then
 				creature:setStorageValue(PlayerStorage.guardPassiveCd, now + 60)
 				local shieldAmount = math.floor(maxHp * 0.25)
-				local curShield = creature:getEnergyShield() or 0
-				local newShield = curShield + shieldAmount
-				if creature:getMaxEnergyShield() < newShield then
-					creature:setMaxEnergyShield(newShield)
-				end
-				creature:setEnergyShield(newShield)
+				creature:addEnergyShieldDuration(shieldAmount, 5000, 0.25)
 				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-				local playerId = creature:getId()
-				addEvent(function()
-					local p = Player(playerId)
-					if p then
-						local s = p:getEnergyShield() or 0
-						p:setEnergyShield(math.max(0, s - shieldAmount))
-					end
-				end, 5000)
 			end
 		end
 	end

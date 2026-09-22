@@ -84,7 +84,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
     if not target or target:isRemoved() then return end
     if target:isMonster() or (target:isPlayer() and not caster:hasSecureMode()) then
       if target.addBuff then
-        target:addBuff(12, 1500) -- SILENCE (id 12) for 1.5s
+        target:addBuff(SILENCE, 1500)
       end
     end
   end

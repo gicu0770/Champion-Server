@@ -68,15 +68,14 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)
 
-  -- Reduce Magic Defense by 20% for 4 seconds on hit targets
+  -- Reduce Physical and Magic Defense by 20% for 4 seconds on hit targets
   local extraFunc = function(caster, target)
     if not target or target:isRemoved() then return end
     if caster and target:getId() == caster:getId() then return end
 
-    -- Set debuff expiration storage (4 seconds)
-    target:setStorageValue(728003, os.time() + 4)
+    -- Apply Arcane Shred debuff (-20% Physical & Magic Defense for 4 seconds)
+    target:addBuff(ARCANE_SHRED_DEBUFF, 4000)
     target:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
-    Game.sendAnimatedText("-20% MDEF", target:getPosition(), TEXTCOLOR_PURPLE, "Reggae One-12px-bordered")
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)

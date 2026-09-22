@@ -58,6 +58,11 @@ Creature::~Creature()
 	conditions.clear();
 
 	clearTargetingPlayersList();
+
+	if (energyShieldDurationEvent != 0) {
+		g_dispatcher.stopEvent(energyShieldDurationEvent);
+		energyShieldDurationEvent = 0;
+	}
 }
 
 bool Creature::canSee(const Position& myPos, const Position& pos, int32_t viewRangeX, int32_t viewRangeY)
@@ -857,6 +862,58 @@ void Creature::changeEnergyShield(int64_t energyShieldChange, bool sendEnergyShi
 	if (sendEnergyShieldChange) {
 		g_game.addCreatureHealth(this);
 	}
+}
+
+void Creature::resetEnergyShield()
+{
+	if (energyShieldDurationEvent != 0) {
+		g_dispatcher.stopEvent(energyShieldDurationEvent);
+		energyShieldDurationEvent = 0;
+	}
+	setEnergyShield(0);
+	setMaxEnergyShield(0);
+	g_game.addCreatureHealth(this);
+	if (Player* player = getPlayer()) {
+		player->sendStats(2);
+	}
+}
+
+void Creature::addEnergyShieldDuration(int64_t value, uint32_t durationMs, double maxCapPercent/* = 0.20*/)
+{
+	if (durationMs == 0 || value <= 0) {
+		return;
+	}
+
+	if (durationMs < 1000) {
+		durationMs *= 1000;
+	}
+
+	int64_t maxCap = std::floor(static_cast<double>(getMaxHealth()) * maxCapPercent);
+	int64_t currentShield = getEnergyShield();
+
+	int64_t newShield = std::min<int64_t>(maxCap, currentShield + value);
+
+	if (energyShieldDurationEvent != 0) {
+		g_dispatcher.stopEvent(energyShieldDurationEvent);
+		energyShieldDurationEvent = 0;
+	}
+
+	if (getMaxEnergyShield() < newShield) {
+		setMaxEnergyShield(newShield);
+	}
+	setEnergyShield(newShield);
+	g_game.addCreatureHealth(this);
+	if (Player* player = getPlayer()) {
+		player->sendStats(2);
+	}
+
+	uint32_t cid = getID();
+	energyShieldDurationEvent = g_dispatcher.addEvent(durationMs, [cid]() {
+		Creature* c = g_game.getCreatureByID(cid);
+		if (c && !c->isRemoved()) {
+			c->resetEnergyShield();
+		}
+	});
 }
 
 void Creature::gainHealth(Creature* healer, int64_t healthGain)

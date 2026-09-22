@@ -54,6 +54,8 @@
 	
 
 	<!-- Side Wands -->
+	<wand id="2390" mana="0" type="energy"> <!-- spellblade sword -->
+	</wand>
 	<wand id="18390" mana="0" type="energy"> <!--  -->
 	</wand>
 	<wand id="38656" mana="0" type="fire"> <!-- inferno staff -->

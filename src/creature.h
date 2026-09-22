@@ -331,6 +331,8 @@ class Creature : virtual public Thing
 		void setMaxEnergyShield(int64_t newEnergyShield) {
 			energyShieldMax = newEnergyShield;
 		}
+		void addEnergyShieldDuration(int64_t value, uint32_t durationMs, double maxCapPercent = 0.20);
+		void resetEnergyShield();
 		void setCanRegenerateShield(bool canRegen) {
 			regenerateShield = canRegen;
 		}
@@ -931,6 +933,7 @@ class Creature : virtual public Thing
 		int64_t energyShield = 0;
 		int64_t energyShieldMax = 0;
 		bool regenerateShield = true;
+		uint64_t energyShieldDurationEvent = 0;
 
 
 		double energyShieldRest = 0;

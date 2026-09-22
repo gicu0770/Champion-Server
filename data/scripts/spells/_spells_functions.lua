@@ -1,4 +1,4 @@
-﻿function spellGlobalTotalDamage(player, CONFIG, dot, type)
+function spellGlobalTotalDamage(player, CONFIG, dot, type)
   local totalDamage = 0
 --	if player:hasBuff(ILLUMINATION_DOT_UNIQUE) then
 --		if type == COMBAT_HOLYDAMAGE then
@@ -207,7 +207,9 @@ function spellSetupAuraEnd(player, CONFIG, item, uid)
     player:sendActiveAura(uid or item:getRealUID(), false)
   end
   player:removeReservation(CONFIG.spellId)
-  player:removeBuff(CONFIG.buff)
+  if CONFIG.buff then
+    player:removeBuff(CONFIG.buff)
+  end
   if CONFIG.spellId >= 79 and CONFIG.spellId <= 81 then
     player:removeBuff(MULTI_STRIKE)
     player:removeBuff(BASIC_DAMAGE_SUPPORT)

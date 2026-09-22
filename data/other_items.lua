@@ -1100,114 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Eldritch Heart",
-      38601,
-      "Eldritch Reaver",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            69
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Eldritch Reaver",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Minotaur Helmet",
-      38562,
-      "Minotaur Liberator",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            70
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Minotaur Liberator",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            107
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Soulbound Lich",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Void Stone Relict",
       38693,
       "Void Stone",
@@ -1233,35 +1125,6 @@ OTHER_ITEMS = {
           0,
           0,
           0
-        }
-      }
-    },
-    {
-      "Vampire Heart",
-      38239,
-      "Vampire Queen",
-      {
-        chance = 100000,
-        forceType = 67108864,
-        imps = {
-          {
-            23
-          },
-          {
-            {
-              150,
-              200,
-              400,
-              750
-            }
-          }
-        },
-        monster = "Vampire Queen",
-        weight = {
-          7,
-          10,
-          12,
-          15
         }
       }
     },
@@ -1295,26 +1158,26 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Flask Relict",
-      38400,
-      "Pheonix",
+      "Bone of Energy",
+      32599,
+      "Toxic Hydra",
       {
         chance = 100000,
         forceType = 67108864,
         imps = {
           {
-            249
+            26
           },
           {
             {
-              500,
-              700,
-              900,
-              1200
+              150,
+              200,
+              400,
+              750
             }
           }
         },
-        monster = "Pheonix",
+        monster = "Toxic Hydra",
         weight = {
           7,
           10,
@@ -1353,15 +1216,15 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Mana Soulstone",
-      38640,
-      "Glacier Warlord",
+      "Energy Soulstone",
+      38639,
+      "Ethereal Seraph",
       {
         chance = 100000,
         forceType = 16777216,
         imps = {
           {
-            110
+            72
           },
           {
             {
@@ -1372,7 +1235,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Glacier Warlord",
+        monster = "Ethereal Seraph",
         weight = {
           7,
           10,
@@ -1407,6 +1270,35 @@ OTHER_ITEMS = {
           0,
           0,
           0
+        }
+      }
+    },
+    {
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            237
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Tidal Overlord",
+        weight = {
+          10,
+          12,
+          15,
+          20
         }
       }
     },
@@ -1556,6 +1448,93 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Mana Soulstone",
+      38640,
+      "Glacier Warlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            110
+          },
+          {
+            {
+              5,
+              10,
+              23,
+              42
+            }
+          }
+        },
+        monster = "Glacier Warlord",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Flask Relict",
+      38400,
+      "Pheonix",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            249
+          },
+          {
+            {
+              500,
+              700,
+              900,
+              1200
+            }
+          }
+        },
+        monster = "Pheonix",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
+      "Vampire Heart",
+      38239,
+      "Vampire Queen",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            23
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Vampire Queen",
+        weight = {
+          7,
+          10,
+          12,
+          15
+        }
+      }
+    },
+    {
       "Treasure Goblin Trophy",
       38732,
       "Bilbo",
@@ -1585,89 +1564,110 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Bone of Energy",
-      32599,
-      "Toxic Hydra",
+      "Eldritch Heart",
+      38601,
+      "Eldritch Reaver",
       {
-        chance = 100000,
-        forceType = 67108864,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            26
+            69
           },
           {
             {
-              150,
-              200,
-              400,
-              750
-            }
-          }
-        },
-        monster = "Toxic Hydra",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Energy Soulstone",
-      38639,
-      "Ethereal Seraph",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            72
-          },
-          {
-            {
-              5,
-              10,
-              23,
-              42
-            }
-          }
-        },
-        monster = "Ethereal Seraph",
-        weight = {
-          7,
-          10,
-          12,
-          15
-        }
-      }
-    },
-    {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
-      {
-        chance = 100000,
-        forceType = 16777216,
-        imps = {
-          {
-            237
-          },
-          {
-            {
-              15,
-              22,
-              35,
               50
             }
           }
         },
-        monster = "Tidal Overlord",
+        monster = "Eldritch Reaver",
+        unique = true,
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            68
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Grave Spearlord",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Minotaur Helmet",
+      38562,
+      "Minotaur Liberator",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            70
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Minotaur Liberator",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
+      {
+        chance = 15000,
+        forceType = 33554432,
+        imps = {
+          {
+            107
+          },
+          {
+            {
+              50
+            }
+          }
+        },
+        monster = "Soulbound Lich",
+        unique = true,
+        weight = {
+          0,
+          0,
+          0,
+          0
         }
       }
     }

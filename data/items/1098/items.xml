@@ -3276,7 +3276,8 @@
 	<item id="2390" article="a" name="spellblade sword">
 		<attribute key="weight" value="3000" />
 		<attribute key="attack" value="1" />
-		<attribute key="weaponType" value="sword" />
+		<attribute key="weaponType" value="wand" />
+		<attribute key="shootType" value="218" />
 		<attribute key="range" value="2" />
 		<attribute key="moveable" value="0" />
 	</item>

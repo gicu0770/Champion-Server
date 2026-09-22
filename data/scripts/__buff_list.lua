@@ -1,46 +1,84 @@
+﻿--------------------------------------------------------------------------------
+-- 1. ENGINE PLAYER STATES (OTClient Bitmasks - Fixed by Client Engine)
+--------------------------------------------------------------------------------
 PLAYERSTATE_POISON = 1
 PLAYERSTATE_BURN = 2
-BUFF_GLOBAL_LOOT = 3
 PLAYERSTATE_ENERGY = 4
-BUFF_CRITICAL_DAMAGE = 5
-BUFF_DAMAGE_ATTRIBUTES = 6
-BUFF_EXP_BOOST = 7
 PLAYERSTATE_DRUNK = 8
+PLAYERSTATE_MANASHIELD = 16
+PLAYERSTATE_PARALYZE = 32
+PLAYERSTATE_SWORDS = 128
+PLAYERSTATE_DROWNING = 256
+PLAYERSTATE_FREEZING = 512
+PLAYERSTATE_DAZZLED = 1024
+PLAYERSTATE_CURSED = 2048
+PLAYERSTATE_PZBLOCK = 8192
+PLAYERSTATE_PZ = 16384
+PLAYERSTATE_BLEEDING = 32768
+PLAYERSTATE_HUNGRY = 65536
+
+--------------------------------------------------------------------------------
+-- 2. GLOBAL & ACCOUNT BOOSTS
+--------------------------------------------------------------------------------
+BUFF_GLOBAL_LOOT = 3
+BUFF_EXP_BOOST = 7
 RESTART_IMMORTAL = 9
+BUFF_GLOBAL_EXP = 102
+BUFF_GLOBAL_GOLD = 103
+BLESS = 112
+BLESS_PLUS = 113
+BLESS_ULTRA = 114
+SELF_GOLD_BOOST = 115
+SELF_LOOT_BOOST = 116
+RESURRECTION = 209
+
+--------------------------------------------------------------------------------
+-- 3. CROWD CONTROL & COMBAT CONDITIONS
+--------------------------------------------------------------------------------
 STUN = 10
 BLIND = 11
 SILENCE = 12
 FREEZ = 13
 PVP_CONDITION = 14
+AMOK = 22
+FEAR = 101
+
+--------------------------------------------------------------------------------
+-- 4. VOCATION TRAITS & PATH SPECIALIZATIONS
+--------------------------------------------------------------------------------
+TOXIC_PATH = 23
+ARCHER_TRAIT = 90
+SORCERER_TRAIT = 91
+DRUID_TRAIT = 92
+KNIGHT_TRAIT = 93
+PALADIN_TRAIT = 94
+SHADOW_TRAIT = 95
+PYRO_PATH = 117
+CRYO_PATH = 118
+THUNDER_PATH = 119
+PASSING_PATH = 120
+SACRED_PATH = 121
+BLOODY_PATH = 122
+
+--------------------------------------------------------------------------------
+-- 5. CLASS SPELLS, AURAS & DEBUFFS
+--------------------------------------------------------------------------------
+BUFF_CRITICAL_DAMAGE = 5
+BUFF_DAMAGE_ATTRIBUTES = 6
 AURA_PHYSICAL = 15
-PLAYERSTATE_MANASHIELD = 16
 AURA_ELEMENTAL_PROTECTION = 17
 AURA_PHYSICAL_PROTECTION = 18
 AURA_HEDGEHOG = 19
 AURA_FIRE = 20
 AURA_ANGER = 21
-AMOK = 22
-TOXIC_PATH = 23
 AURA_AFFLICTION = 24
 POISON_PLAGUE = 25
 SUPPORT_ELEMENTAL_REDUCTION = 26
 SUPPORT_PHYSICAL_REDUCTION = 27
 SUPPORT_ELEMENTAL_REDUCTION_ATTACK = 28
 SUPPORT_PHYSICAL_REDUCTION_ATTACK = 29
-ILLUMINATION_DOT = 30
-BLEED_ITEM = 31
-PLAYERSTATE_PARALYZE = 32
-POISON_ITEM = 33
-FROSTBITE_ITEM = 34
-ELECTRO_ITEM = 35
-CURSE_ITEM = 36
-DAZZLE_ITEM = 37
 WEAKNESS_ARROW = 38
-EVANSION = 39
 FIRE_WEAKNESS = 40
-HARD_BLOCK = 41
-CRITICAL_HITS = 42
-HASTE_ITEM = 43
 WEAKNESS_SUNDER = 44
 REND = 45
 SHOCK = 46
@@ -50,26 +88,12 @@ HARVEST = 49
 HARVEST_DEBUFF = 50
 EARTH_WEAKNESS = 51
 FROSTBITE_WEAKNESS = 52
-BUFF_DAMAGE_ATTRIBUTES = 53 -- wolne miejsce
-MONSTER_SOUL_EXP = 54
-MONSTER_SOUL_GOLD = 55
-MONSTER_SOUL_LOOT = 56
-MONSTER_SOUL_DAMAGE = 57
 DOT_ELEMENTAL_AFFLICTION_AURA = 58
 CURSE_RUNE_DOT = 59
-PHANTOM_RUN = 60
 ROTTEN_GAS = 61
-FIRE_BARRIER = 62
-STRONG_IGNITE_ITEM = 63
 SHATTERSTORM = 64
 GEOMANCER_PACT = 65
-STONE_HEART = 66
-SECOND_WIND = 67
 RAGE = 68
-DISARMAMENT = 69
-FLEETFOOT = 70
-WIND_GRACE = 71
-LAST_BREATH = 72
 SWIFT_KILLER = 73
 SHADOW = 74
 ICE = 75
@@ -78,83 +102,37 @@ EARTH = 77
 FIRE = 78
 TOXIC_MARK = 79
 QUICK_STAB = 80
-ASSASSIN_INSTINCT = 81
 DEATH = 82
 HOLY = 83
 ABYSSAL = 84
-HEALTH_REGENERATION_GLOBE = 85
-MANA_REGENERATION_GLOBE = 86
-ENERGYSHIELD_REGENERATION_GLOBE = 87
 AURA_BLESSED = 88
 AURA_HOLLOW = 89
-ARCHER_TRAIT = 90
-SORCERER_TRAIT = 91
-DRUID_TRAIT = 92
-KNIGHT_TRAIT = 93
-PALADIN_TRAIT = 94
-SHADOW_TRAIT = 95
-INFERNAL_WRATH = 96
-BOSS_DAMAGE_REDUCTION = 97
-BOSS_HEALING_REDUCTION = 98
-BOSS_SLOWING = 99
-BOSS_IMMORTAL = 100
-FEAR = 101
-BUFF_GLOBAL_EXP = 102
-BUFF_GLOBAL_GOLD = 103
 BUFF_CRITICAL = 104
 HASTE = 105
 AURA_ELEMENTAL = 106
-IGNITE_ITEM = 107
-JUKI_BURN = 107 -- Alias do IGNITE_ITEM
-TORMENT_BURN = 108 -- Liandry's Torment Burn DoT
-SPELL_SHIELD = 109 -- Banshee's Veil Spell Shield
-GRIEVOUS_WOUNDS = 110 -- Mortal Reminder / Executioner's Calling
-RESURRECTION = 209
-TOXIC_ARROW = 111
-BLESS = 112
-BLESS_PLUS = 113
-BLESS_ULTRA = 114
-SELF_GOLD_BOOST = 115
-SELF_LOOT_BOOST = 116
-
-PYRO_PATH = 117
-CRYO_PATH = 118
-THUNDER_PATH = 119
-PASSING_PATH = 120
-SACRED_PATH = 121
-BLOODY_PATH = 122
 BLAZING_SHOUT = 123
-IMMOBILIZATION = 124
 EARTH_WEAKNESS_SPELL = 125
-PERSISTENCE = 126
 SUPPORT_DUALITY_REDUCTION = 127
 SUPPORT_DUALITY_REDUCTION_ATTACK = 129
 VENOM_NOVA = 130
 DEATH_WEAKNESS = 131
-
 MULTISHOT = 132
 MYSTIC_FOCUS = 133
 CLEAVE = 134
-COUNTER_WEAKNESS = 135
 BASIC_WEAKNESS = 136
-FURY_HITS = 137
 BASIC_WEAKNESS_PLAYER = 138
 COUNTER_WEAKNESS_PLAYER = 139
 AURA_FAN_KNIVES = 140
 AURA_FROZEN_SHARDS = 141
-REFLECTED_ATTACKS = 142
 COUNTER_WEAKNESS_SPELL = 143
 RIPOSTE = 144
 AURA_JUDGEMENT = 145
-LAVA_CRUSH = 146
 POISON_MOB = 147
 WILD_VINES = 148
 MAELSTORM = 149
-HARVEST_FUSION = 150
 DEFERRED_DEATH = 151
 COMBAT_AURA = 152
 FRENZY_AURA = 153
-FROSTY_CHILL = 154
 PLAGUED_BURST = 155
 B_VENOM = 156
 VENOM_ARROW_RAIN = 157
@@ -164,21 +142,9 @@ DEEP_WOUNDS = 160
 VENOM_STING = 161
 TOXIC_SPLIT = 162
 MULTI_STRIKE = 163
-SHRINE_DAMAGE = 164
-SHRINE_REGEN = 165
-SHRINE_MOVEMENT_SPEED = 166
-SHRINE_CRITICAL_CHANCE = 167
-SHRINE_ATTACKSPEED = 168
-SHRINE_EXP = 169
-SHRINE_LOOT = 170
-SHRINE_GOLD = 171
-SHRINE_CORPSE_EXPLOSION = 172
 BLACK_HOLE = 173
 VOID_WALKER = 174
-STATIC_CONDITION = 175
-ILLUMINATION_DOT_UNIQUE = 176
 HOLY_WEAKNESS = 177
-VOIDSTONE_BUFF = 178
 VITAL_SURGE = 179
 BLOODY_SKULLS = 180
 HEMORRHAGE_NOVA = 181
@@ -190,16 +156,66 @@ VENGEANCE_FLAME = 186
 FOCUSING_MARK = 187
 FOCUSING_MARK_DEBUFF = 188
 WEAKNESS_FINDER_DEBUFF = 189
-GORN_SHIELD = 190
-HEAVY_SPIN_BUFF = 191
 CARVE_DEBUFF = 192
 FERVOR_BUFF = 193
 ICHOR_SHIELD = 194
 SPELLBLADE_BUFF = 195
 QUICKEN_BUFF = 196
 MIA_RAPID_FIRE = 197
-MIA_SLOW_DEBUFF = 198
 STORM_SURGE_BUFF = 199
+ARCANE_SHRED_DEBUFF = 211
+AURA_ARCANE = 210
+
+--------------------------------------------------------------------------------
+-- 6. ITEMS, ORBS & EQUIPMENT
+--------------------------------------------------------------------------------
+ILLUMINATION_DOT = 30
+BLEED_ITEM = 31
+POISON_ITEM = 33
+FROSTBITE_ITEM = 34
+ELECTRO_ITEM = 35
+CURSE_ITEM = 36
+DAZZLE_ITEM = 37
+HEALTH_REGENERATION_GLOBE = 85
+MANA_REGENERATION_GLOBE = 86
+ENERGYSHIELD_REGENERATION_GLOBE = 87
+IGNITE_ITEM = 107
+JUKI_BURN = 107 -- Alias do IGNITE_ITEM
+TORMENT_BURN = 108 -- Liandry's Torment Burn DoT
+SPELL_SHIELD = 109 -- Banshee's Veil Spell Shield
+GRIEVOUS_WOUNDS = 110 -- Mortal Reminder / Executioner's Calling
+TOXIC_ARROW = 111
+ILLUMINATION_DOT_UNIQUE = 176
+LICH_BANE_BUFF = 207
+
+--------------------------------------------------------------------------------
+-- 7. SHRINES & MONSTER SOULS
+--------------------------------------------------------------------------------
+MONSTER_SOUL_EXP = 54
+MONSTER_SOUL_GOLD = 55
+MONSTER_SOUL_LOOT = 56
+MONSTER_SOUL_DAMAGE = 57
+SHRINE_DAMAGE = 164
+SHRINE_REGEN = 165
+SHRINE_MOVEMENT_SPEED = 166
+SHRINE_CRITICAL_CHANCE = 167
+SHRINE_ATTACKSPEED = 168
+SHRINE_EXP = 169
+SHRINE_LOOT = 170
+SHRINE_GOLD = 171
+SHRINE_CORPSE_EXPLOSION = 172
+VOIDSTONE_BUFF = 178
+
+--------------------------------------------------------------------------------
+-- 8. BOSS MECHANICS
+--------------------------------------------------------------------------------
+BOSS_HEALING_REDUCTION = 98
+BOSS_SLOWING = 99
+BOSS_IMMORTAL = 100
+
+--------------------------------------------------------------------------------
+-- 9. COOLDOWN TRACKING DEBUFFS
+--------------------------------------------------------------------------------
 LUDENS_ECHO_CD = 200
 TIME_STOP_CD = 201
 CONCUSSIVE_BLAST_CD = 202
@@ -207,1223 +223,12 @@ BRAVE_SMITE_CD = 203
 WEAKNESS_FINDER_CD = 204
 FOCUSING_MARK_CD = 205
 ANNUL_CD = 206
-LICH_BANE_BUFF = 207
 LICH_BANE_CD = 208
 
-
-PLAYERSTATE_SWORDS = 128
-PLAYERSTATE_DROWNING = 256
-PLAYERSTATE_FREEZING = 512
-PLAYERSTATE_DAZZLED = 1024
-PLAYERSTATE_CURSED = 2048
-PLAYERSTATE_PZBLOCK = 8192
-PLAYERSTATE_PZ = 16384
-PLAYERSTATE_BLEEDING = 32768
-PLAYERSTATE_HUNGRY = 65536
-
 BUFFS = {
-    [BUFF_GLOBAL_EXP] = {
-        id = BUFF_GLOBAL_EXP,
-        name = "Experience Boost",
-        description = "Experience gain increased by 20%.",
-        icon = "expglobal",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 0,
-        saveAfterLogout = true,
-        addTime = true
-    },
-    [BUFF_GLOBAL_GOLD] = {
-        id = BUFF_GLOBAL_GOLD,
-        name = "Gold Boost",
-        description = "Gold drop amount increased by 30%.",
-        icon = "goldglobal",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 0,
-        saveAfterLogout = true,
-        addTime = true
-    },
-    [BUFF_GLOBAL_LOOT] = {
-        id = BUFF_GLOBAL_LOOT,
-        name = "Loot Boost",
-        description = "Loot drop chance increased by 20%.",
-        icon = "globalloot",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 0,
-        saveAfterLogout = true,
-        addTime = true
-    },
-   [BUFF_CRITICAL] = {
-        id = BUFF_CRITICAL,
-        name = "Critical Chance Buff",
-        description = "Increase your Critical Chance by 10%.",
-        icon = "criticalchance buff",
-        border = "frame-2-gold",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 10000
-    },
-    [BUFF_CRITICAL_DAMAGE] = {
-        id = BUFF_CRITICAL_DAMAGE,
-       name = "Critical Damage Buff",
-        description = "Increase your Critical Damage by 50%.",
-        icon = "criticaldamagebuff",
-        border = "frame-6-sky",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 10000
-    },
-    [BUFF_EXP_BOOST] = {
-        id = BUFF_EXP_BOOST,
-        name = "Experience Boost",
-        description = "Experience gain increased by 20%.",
-        icon = "SELFEXP",
-        border = "frame-9-red",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 0,
-        saveAfterLogout = true,
-        addTime = true
-    },
-    [HASTE] = {
-        id = HASTE,
-        name = "Speed Buff",
-        description = "Increases your Movementspeed.",
-        icon = "speedbuff",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 30 * 60000
-    },
-    [RESTART_IMMORTAL] = {
-        id = RESTART_IMMORTAL,
-        name = "Protection",
-        description = "You become Immortal.",
-        icon = "protectionn",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 10000
-    },
-    [STUN] = {
-        id = STUN,
-        name = "Stun Debuff",
-        description = "Stunned.",
-        icon = "dazzled",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2000
-    },	
-  [BLIND] = {
-        id = BLIND,
-        name = "Blind Debuff",
-        description = "Blinded.",
-        icon = "blinddebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2000
-    },		
-  [SILENCE] = {
-        id = SILENCE,
-        name = "Silence Debuff",
-        description = "Silenced.",
-        icon = "silencedebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2000
-    },	
-  [FREEZ] = {
-        id = FREEZ,
-        name = "Freez Debuff",
-        description = "Freezed.",
-        icon = "freezdebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 3000
-    },	
-    [PVP_CONDITION] = {
-        id = PVP_CONDITION,
-        name = "PvP",
-        description = "You are in PvP fight!",
-        icon = "riposte",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 30000
-    },
-    [AURA_PHYSICAL] = {
-        id = AURA_PHYSICAL,
-        name = "Physical Aura",
-        description = "Increase your Physical Damage.",
-        icon = "physicalaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_ELEMENTAL] = {
-        id = AURA_ELEMENTAL,
-        name = "Elemental Aura",
-        description = "Increase your Elemental Damage.",
-        icon = "elementalaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_ELEMENTAL_PROTECTION] = {
-        id = AURA_ELEMENTAL_PROTECTION,
-        name = "Elemental Protection Aura",
-        description = "Increase your Elemental Protection.",
-        icon = "elementalprotectionaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_PHYSICAL_PROTECTION] = {
-        id = AURA_PHYSICAL_PROTECTION,
-        name = "Physical Protection Aura",
-        description = "Increase your Physical Protection.",
-        icon = "physicalprotectionaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_HEDGEHOG] = {
-        id = AURA_HEDGEHOG,
-        name = "Thornmail Aura",
-        description = "Your reflect Damage taken as Physical Damage.",
-        icon = "thornmailaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 10,
-        ticks = -1
-    },
-    [AURA_FIRE] = {
-        id = AURA_FIRE,
-        name = "Fire Aura",
-        description = "You deal Elemental Damage around you.",
-        icon = "fireaura",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = -1
-    },
-    [AURA_ANGER] = {
-        id = AURA_ANGER,
-        name = "Anger Aura",
-        description = "You deal Physical Damage around you.",
-        icon = "angeraura",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = -1
-    },
-    [AMOK] = {
-        id = AMOK,
-        name = "Amok",
-        description = "Every stack give you 5% Attack Speed.",
-        icon = "amok",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = 60000
-    },
-    [TOXIC_PATH] = {
-        id = TOXIC_PATH,
-        name = "Toxic Path",
-        description = "Increases your Attack Power by 20%.\nPoisoned targets deal 15% less damage.\nEvery 1% All Ailiments Combined increases 1% Damage.",
-        icon = "toxicpath",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_AFFLICTION] = {
-        id = AURA_AFFLICTION,
-        name = "Affliction Aura",
-        description = "You deal Death Damage Over Time.",
-        icon = "afflictionaura",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = -1
-    },
-    [POISON_PLAGUE] = {
-        id = POISON_PLAGUE,
-        name = "Poison Plague",
-        description = "You taken earth Damage Over Time.",
-        icon = "poisonplague",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500,
-    },
-    [VENOM_STING] = {
-        id = VENOM_STING,
-        name = "Venom Sting",
-        description = "You taken earth Damage Over Time.",
-        icon = "venomsting",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500,
-    },
-    [TOXIC_SPLIT] = {
-        id = TOXIC_SPLIT,
-        name = "Toxic Split",
-        description = "You taken earth Damage Over Time.",
-        icon = "toxicslipt",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500,
-    },
-    [SUPPORT_ELEMENTAL_REDUCTION] = {
-        id = SUPPORT_ELEMENTAL_REDUCTION,
-        name = "Elemental Weakness",
-        description = "Increase Elemental Damage taken.",
-        icon = "elementalpenetration",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [SUPPORT_PHYSICAL_REDUCTION] = {
-        id = SUPPORT_PHYSICAL_REDUCTION,
-        name = "Physical Weakness",
-        description = "Increase Physical Damage taken.",
-        icon = "armorpenetration",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [SUPPORT_DUALITY_REDUCTION] = {
-        id = SUPPORT_DUALITY_REDUCTION,
-        name = "Duality Weakness",
-        description = "Increase Duality Damage taken.",
-        icon = "dualitypenetration",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [SUPPORT_ELEMENTAL_REDUCTION_ATTACK] = {
-        id = SUPPORT_ELEMENTAL_REDUCTION_ATTACK,
-        name = "Elemental Damage Reduction",
-        description = "Decreased Elemental Damage deal.",
-        icon = "elementalweakness",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [SUPPORT_PHYSICAL_REDUCTION_ATTACK] = {
-        id = SUPPORT_PHYSICAL_REDUCTION_ATTACK,
-        name = "Physical Damage Reduction",
-        description = "Decreased Physical Damage deal.",
-        icon = "physicalweakness",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [SUPPORT_DUALITY_REDUCTION_ATTACK] = {
-        id = SUPPORT_DUALITY_REDUCTION_ATTACK,
-        name = "Duality Damage Reduction",
-        description = "Decreased Duality Damage deal.",
-        icon = "Dualityweakness",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
-    [ILLUMINATION_DOT] = {
-        id = ILLUMINATION_DOT,
-        name = "Illumination",
-        description = "Corpse explode after death.",
-        icon = "illuminationdot",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [ILLUMINATION_DOT_UNIQUE] = {
-        id = ILLUMINATION_DOT_UNIQUE,
-        name = "Illumination Buff",
-        description = "Each Stack increase Holy Damage by 5%.",
-        icon = "illuminationunique",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 50,
-        ticks = 60000
-    },
-    [BLEED_ITEM] = {
-        id = BLEED_ITEM,
-        name = "Bleeding",
-        description = "Bleeding.",
-        icon = "bleeding",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 5000,
-        refreshTime = true,
-    },
-    [IGNITE_ITEM] = {
-        id = IGNITE_ITEM,
-        name = "Ignite",
-        description = "Deals Fire Damage Over Time.",
-        icon = "ignite",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        debuff = true,
-        ticks = 5000,
-        refreshTime = true,
-    },
-    [POISON_ITEM] = {
-        id = POISON_ITEM,
-        name = "Poison",
-        description = "Deal Poison Damage.",
-        icon = "poisoned",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        refreshTime = true,
-        ticks = 5000
-    },
-    [POISON_MOB] = {
-        id = POISON_MOB,
-        name = "Poison",
-        description = "Poisoned.",
-        icon = "poisoned",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 5000
-    },
-    [FROSTBITE_ITEM] = {
-        id = FROSTBITE_ITEM,
-        name = "Frost",
-        description = "Chilled.",
-        icon = "frostbite",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [ELECTRO_ITEM] = {
-        id = ELECTRO_ITEM,
-        name = "Electrify",
-        description = "Electrified.",
-        icon = "electrify",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [CURSE_ITEM] = {
-        id = CURSE_ITEM,
-        name = "Curse",
-        description = "Cursed.",
-        icon = "curse",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [DAZZLE_ITEM] = {
-        id = DAZZLE_ITEM,
-        name = "Dazzle",
-        description = "Dazzled.",
-        icon = "dazzled",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [WEAKNESS_ARROW] = {
-        id = WEAKNESS_ARROW,
-        name = "Weakness Explosion Debuff",
-        description = "Targets receive 25% More Damage.",
-        icon = "weaknessarrowdebuff",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 10000
-    },
-    [EVANSION] = {
-        id = EVANSION,
-        name = "Evasion",
-        description = "Each stack increase your Dodge.",
-        icon = "evasion",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 3000
-    },
-    [FIRE_WEAKNESS] = {
-        id = FIRE_WEAKNESS,
-        name = "Fire Weakness",
-        description = "You taken 20% more Fire Damage.",
-        icon = "fireweakness",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 3000
-    },
-    [HARD_BLOCK] = {
-        id = HARD_BLOCK,
-        name = "Hard Block",
-        description = "Damage Reduction increases by 1% per stack.",
-        icon = "hardblock",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 10000
-    },
-    [CRITICAL_HITS] = {
-        id = CRITICAL_HITS,
-        name = "Critical Hits",
-        description = "Every stack gives you 1% Attack Speed.",
-        icon = "criticalhits",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 30,
-        ticks = 3000
-    },
-    [HASTE_ITEM] = {
-        id = HASTE_ITEM,
-        name = "Speed Buff",
-        description = "Increases your Movementspeed.",
-        icon = "speedbuff",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 2000
-    },
-    [WEAKNESS_SUNDER] = {
-        id = WEAKNESS_SUNDER,
-        name = "Weakness Damage Debuff",
-        description = "Decrease Damage deal.",
-        icon = "weaknessdamagedebuff",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 3000
-    },
-    [REND] = {
-        id = REND,
-        name = "REND Debuff",
-        description = "Bleeding.",
-        icon = "renddebuff",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500
-    },
-    [SHOCK] = {
-        id = SHOCK,
-        name = "Shock Debuff",
-        description = "Reduced Lightning Resistance by 20%. (Lightning Resistance does not stack.)",
-        icon = "shockdebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-         refreshTime = true,
-        ticks = 5000
-    },
-    [CHILL] = {
-        id = CHILL,
-        name = "CHILL Debuff",
-        description = "Movementspeed slowed by 30% (Speed does not stack.)",
-        icon = "chilldebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-         refreshTime = true,
-        ticks = 5000
-    },
-    [SUPPRESSION] = {
-        id = SUPPRESSION,
-        name = "Suppression Debuff",
-        description = "Attack reduced by 20% and deal damage over time. (Attack reduction does not stack.)",
-        icon = "suppressiondebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        refreshTime = true,
-        ticks = 5000
-    },
-    [HARVEST] = {
-        id = HARVEST,
-        name = "Harvest Buff",
-        description = "Stacks add more damage by 5%.",
-        icon = "harvestdebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 5,
-    --    addTime = true,
-        debuff = true,
-        ticks = 120000
-    },
-    [HARVEST_DEBUFF] = {
-        id = HARVEST_DEBUFF,
-        name = "Harvest",
-        description = "Restore 1% HP/Mana on cursed kill.",
-        icon = "harvestdebufff",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        refreshTime = true,
-        ticks = 5000
-    },
-    [EARTH_WEAKNESS] = {
-        id = EARTH_WEAKNESS,
-        name = "Earth Weakness Debuff",
-        description = "Reduces Earth Resistance by 20%.",
-        icon = "earthweaknessdebuff",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 10000
-    },
-    [FROSTBITE_WEAKNESS] = {
-        id = FROSTBITE_WEAKNESS,
-        name = "Ice Weakness Debuff",
-        description = "Reduces Ice Resistance by 20%.",
-        icon = "iceweaknessdebuff",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 10000
-    },
-    [BUFF_DAMAGE_ATTRIBUTES] = {
-        id = BUFF_DAMAGE_ATTRIBUTES,
-        name = "Damage Buff",
-        description = "Increases your Damage by 20%.",
-        icon = "damagebuff",
-        border = "frame-2-gold",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 10000
-    },
-    [MONSTER_SOUL_EXP] = {
-        id = MONSTER_SOUL_EXP,
-        name = "Exp Monster Soul Buff",
-        description = "Increased 25% Experience.",
-        icon = "selfexp",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3 * 60000
-    },
-    [MONSTER_SOUL_GOLD] = {
-        id = MONSTER_SOUL_GOLD,
-        name = "Gold Monster Soul Buff",
-        description = "Increased 100% gold drop.",
-        icon = "selfgold",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3 * 60000
-    },
-    [MONSTER_SOUL_LOOT] = {
-        id = MONSTER_SOUL_LOOT,
-        name = "Loot Monster Soul Buff",
-        description = "Increased 20% Loot Chance.",
-        icon = "selfloot",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3 * 60000
-    },
-    [MONSTER_SOUL_DAMAGE] = {
-        id = MONSTER_SOUL_DAMAGE,
-        name = "Damage Monster Soul Buff",
-        description = "Increased 20% Damage deal to monsters.",
-        icon = "knight_single",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3 * 60000
-    },
-    [DOT_ELEMENTAL_AFFLICTION_AURA] = {
-        id = DOT_ELEMENTAL_AFFLICTION_AURA,
-        name = "Affliction Aura DoT",
-        description = "You taken Death Damage Over Time.",
-        icon = "afflictionaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 5000
-    },
-    [CURSE_RUNE_DOT] = {
-        id = CURSE_RUNE_DOT,
-        name = "Curse",
-        description = "Death Damage Over Time.",
-        icon = "cursedot",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 5000
-    },
-    [PHANTOM_RUN] = {
-        id = PHANTOM_RUN,
-        name = "Phantom Run",
-        description = "Increases your Movementspeed & Death Damage by 33% for 2 second.",
-        icon = "phantomrun",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 2000
-    },
-    [ROTTEN_GAS] = {
-        id = ROTTEN_GAS,
-        name = "Gas",
-        description = "Death Damage Over Time.",
-        icon = "rottengas",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 3000
-    },
-    [FIRE_BARRIER] = {
-        id = FIRE_BARRIER,
-        name = "Fire Barrier",
-        description = "Fire Damage Over Time.",
-        icon = "firebarrier",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 300,
-        debuff = true,
-        ticks = 10000
-    },
-    [STRONG_IGNITE_ITEM] = {
-        id = STRONG_IGNITE_ITEM,
-        name = "Strong Ignite",
-        description = "Burned.",
-        icon = "strongignite",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 15,
-        debuff = true,
-        ticks = 5000,
-        refreshTime = true,
-    },
-    [SHATTERSTORM] = {
-        id = SHATTERSTORM,
-        name = "Shatterstorm",
-        description = "Added 3% penetration damage per stack. Max 10.",
-        icon = "shatterstorm",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 10000
-    },
-    [GEOMANCER_PACT] = {
-        id = GEOMANCER_PACT,
-        name = "Geomancer Pact",
-        description = "Increases your Damage Reduction by 0.2% per stack.",
-        icon = "geomancerpact",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 50,
-        ticks = 10000
-    },
-    [STONE_HEART] = {
-        id = STONE_HEART,
-        name = "Stone Heart",
-        description = "Increases your Damage Reduction by 50%.",
-        icon = "stoneheart",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [SECOND_WIND] = {
-        id = SECOND_WIND,
-        name = "Second Wind",
-        description = "You recovery Health Over Time.",
-        icon = "secondwind",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [RAGE] = {
-        id = RAGE,
-        name = "Rage",
-        description = "Increases you 2% more damage per stack.",
-        icon = "rage",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 30,
-        ticks = 60000
-    },
-    [DISARMAMENT] = {
-        id = DISARMAMENT,
-        name = "Disarmament",
-        description = "Target deals 20% less Damage.",
-        icon = "disarmament",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [FLEETFOOT] = {
-        id = FLEETFOOT,
-        name = "Fleetfoot",
-        description = "While moving increases Movments Speed by 15% and 10% Damage Mitigation.",
-        icon = "fleetfoot",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 1000
-    },
-    [WIND_GRACE] = { -- OFF
-        id = WIND_GRACE,
-        name = "Wind's Grace",
-        description = "Increases your Dodge and Health & Energy regeneration while moving.",
-        icon = "windsgrace",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 1000
-    },
-    [LAST_BREATH] = {
-        id = LAST_BREATH,
-        name = "Last Breath",
-        description = "The first time you drop below 30% Health in battle, you recover 50% of your Health and Mana over 3 seconds. During regeneration, your chance to Avoid and Dodge increases by 10%.",
-        icon = "lastbreath",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [SWIFT_KILLER] = {
-        id = SWIFT_KILLER,
-        name = "Swift Killer",
-        description = "Increases your Attack Speed 1% per stack. Max 75 stacks.",
-        icon = "swiftkiller",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 75,
-        ticks = 60000
-    },
-    [SHADOW] = {
-        id = SHADOW,
-        name = "Uncatchable Shadow",
-        description = "You are Immune to Damage.",
-        icon = "uncatchableshadow",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 2500
-    },
-    [ICE] = {
-        id = ICE,
-        name = "Ice Synergy",
-        description = "Your Elemental Spells deal 50% More Damage.",
-        icon = "icesynergy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [LIGHTNING] = {
-        id = LIGHTNING,
-        name = "Lightning Synergy",
-        description = "Your Elemental Spells deal 50% More Damage.",
-        icon = "lightningsynergy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [EARTH] = {
-        id = EARTH,
-        name = "Earth Synergy",
-        description = "Your Elemental Spells deal 50% More Damage.",
-        icon = "earthsynergy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [FIRE] = {
-        id = FIRE,
-        name = "Fire Synergy",
-        description = "Your Elemental Spells deal 50% More Damage.",
-        icon = "firesynergy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [TOXIC_MARK] = {
-        id = TOXIC_MARK,
-        name = "Frosty Eclipse",
-        description = "You take 25% More Damage per stack.",
-        icon = "toxicmark",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 10000
-    },
-    [QUICK_STAB] = {
-        id = QUICK_STAB,
-        name = "Quick Stab",
-        description = "You take Movementspeed and Physical Penetration Damage.",
-        icon = "quickstab",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 60000
-    },
-    [ASSASSIN_INSTINCT] = {
-        id = ASSASSIN_INSTINCT,
-        name = "Assassin Instinct",
-        description = "Your Critical Chance increased by each stack.",
-        icon = "shadowinstinct",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 10,
-        ticks = 60000
-    },
-    [DEATH] = {
-        id = DEATH,
-        name = "Death",
-        description = "Your next Death Spell deal More Damage.",
-        icon = "death",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [HOLY] = {
-        id = HOLY,
-        name = "Holy",
-        description = "Your next Holy Spell deal More Damage.",
-        icon = "holy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [ABYSSAL] = {
-        id = ABYSSAL,
-        name = "Abyssal Curse",
-        description = "You deal 20% less Damage.",
-        icon = "abyssalcurse",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [HEALTH_REGENERATION_GLOBE] = {
-        id = HEALTH_REGENERATION_GLOBE,
-        name = "Health Regeneration Globe",
-        description = "Your Health Regeneration Percent increased by 100%.",
-        icon = "healthregenbuff",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 1 * 60000
-    },
-    [MANA_REGENERATION_GLOBE] = {
-        id = MANA_REGENERATION_GLOBE,
-        name = "Mana Regeneration Globe",
-        description = "Your Mana Regeneration Percent increased by 100%.",
-        icon = "manaregenbuff",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 1 * 60000
-    },
-    [ENERGYSHIELD_REGENERATION_GLOBE] = {
-        id = ENERGYSHIELD_REGENERATION_GLOBE,
-        name = "Energy Shield Regeneration Globe",
-        description = "Your Energy Shield Regeneration Percent increased by 100%.",
-        icon = "energyshieldbuff",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 1 * 60000
-    },
-    [AURA_BLESSED] = {
-        id = AURA_BLESSED,
-        name = "Duality Protection Aura",
-        description = "Increases your Duality Protection.",
-        icon = "blessedaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-    [AURA_HOLLOW] = {
-        id = AURA_HOLLOW,
-        name = "Duality Damage Aura",
-        description = "Increases your Duality Damage.",
-        icon = "hollowaura",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 100,
-        ticks = -1
-    },
-
-    [ARCHER_TRAIT] = {
-        id = ARCHER_TRAIT,
-        name = "Archer Trait",
-        description = "Increases Attack Speed by 5/10/15/20/25%. Movement Speed +15%",
-        icon = "archertrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [SORCERER_TRAIT] = {
-        id = SORCERER_TRAIT,
-        name = "Sorcerer Trait",
-        description = "Increases 5/10/15/20/25% Spell Damage. Elemental Damage +20%.",
-        icon = "sorcerertrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [DRUID_TRAIT] = {
-        id = DRUID_TRAIT,
-        name = "Druid Trait",
-        description = "Increase max Mana by 25/30/35/40/45%. All Aliments chance +20%.",
-        icon = "druidtrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [KNIGHT_TRAIT] = {
-        id = KNIGHT_TRAIT,
-        name = "Knight Trait",
-        description = "Increase max Health by 15/20/25/30/35%. Physical Protection +20%.",
-        icon = "knighttrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [PALADIN_TRAIT] = {
-        id = PALADIN_TRAIT,
-        name = "Paladin Trait",
-        description = "Increase max Energy Shield by 15/20/25/30/35%. Elemental Protection +20%",
-        icon = "paladintrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [SHADOW_TRAIT] = {
-        id = SHADOW_TRAIT,
-        name = "Shadow Trait",
-        description = "Icreases Spell Avoid Chance by 2/4/6/8/10%. Critical Chance +5%",
-        icon = "shadowtrait",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = -1
-    },
-    [INFERNAL_WRATH] = {
-        id = INFERNAL_WRATH,
-        name = "Infernal Wrath",
-        description = "Enemies with over 50% health take 155% more Fire Damage.",
-        icon = "infernalwrath",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = -1
-    },
-    [BOSS_DAMAGE_REDUCTION] = {
-        id = BOSS_DAMAGE_REDUCTION,
-        name = "Weakness",
-        description = "You deal 50% less Damage.",
-        icon = "infernalwrath",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [BOSS_HEALING_REDUCTION] = {
-        id = BOSS_HEALING_REDUCTION,
-        name = "Recovery Weakness",
-        description = "You potions recovery 50% less.",
-        icon = "infernalwrath",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [BOSS_SLOWING] = {
-        id = BOSS_SLOWING,
-        name = "Slowed",
-        description = "You are slowed.",
-        icon = "slowed",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [BOSS_IMMORTAL] = {
-        id = BOSS_IMMORTAL,
-        name = "Immortal",
-        description = "You become immortal.",
-        icon = "holy",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 5000
-    },
-    [SPELL_SHIELD] = {
-        id = SPELL_SHIELD,
-        name = "Spell Shield",
-        description = "Blocks the next hostile spell or ability.",
-        icon = "magic_shield",
-        border = "frame-9-blue",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 40000
-    },
-    [GRIEVOUS_WOUNDS] = {
-        id = GRIEVOUS_WOUNDS,
-        name = "Grievous Wounds",
-        description = "Healing received and health regeneration reduced by 40%.",
-        icon = "bleeding",
-        border = "frame-9-red",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 3000
-    },
-    [FEAR] = {
-        id = FEAR,
-        name = "Feared",
-        description = "You flee in fear.",
-        icon = "infernalwrath",
-        border = "frame-9-red",
-        stacked = true,
-        maxStacks = 1,
-        ticks = 3000
-    },
-    [TORMENT_BURN] = {
-        id = TORMENT_BURN,
-        name = "Torment",
-        description = "Target burns for 1% of Max HP as Fire Damage per second.",
-        icon = "ignite",
-        border = "frame-9-red",
-        stacked = false,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 4000
-    },
-    [RESURRECTION] = {
-        id = RESURRECTION,
-        name = "Resurrection",
-        description = "Resurrection is on cooldown. Wait before it can trigger again.",
-        icon = "resurrection",
-        border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 1,
-        saveAfterLogout = true,
-        ticks = 0,
-        addTime = true
-    },
-    [TOXIC_ARROW] = {
-        id = TOXIC_ARROW,
-        name = "Toxic Arrow",
-        description = "Poison Damage Over Time",
-        icon = "toxicarrow",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 2500,
-    },
-    [BLESS] = {
-        id = BLESS,
-        name = "Bless",
-        description = "The next time you die, youw ill only lose 10% of the experience points\n(Without Bless you lose 20%)",
-        icon = "saint_reflect",
-        border = "frame-2-white",
-        maxStacks = 999,
-        ticks = -1,
-        saveAfterLogout = true,
-    },
-    [BLESS_PLUS] = {
-        id = BLESS_PLUS,
-        name = "Bless Plus",
-        description = "The next time you die, youw ill only lose 6% of the experience points\n(Without Bless you lose 20%)",
-        icon = "saint_reflect",
-        border = "frame-2-blue",
-        maxStacks = 999,
-        ticks = -1,
-        saveAfterLogout = true,
-    },
-    [BLESS_ULTRA] = {
-        id = BLESS_ULTRA,
-        name = "Bless Ultra",
-        description = "The next time you die, reduces level loss by 1.\n(Lvl 1-20: 0 lvl lost | Lvl 21-40: 1 lvl lost | Lvl 41-50: 2 lvl lost)",
-        icon = "saint_reflect",
-        border = "frame-2-gold",
-        maxStacks = 999,
-        ticks = -1,
-        saveAfterLogout = true,
-    },
-
+    ----------------------------------------------------------------------------
+    -- 1. ENGINE PLAYER STATES (OTClient Bitmasks - Fixed by Client Engine)
+    ----------------------------------------------------------------------------
     [PLAYERSTATE_POISON] = {
         id = PLAYERSTATE_POISON,
         name = "Poisoned",
@@ -1589,6 +394,98 @@ BUFFS = {
         description = "You are hungry.",
         state = true
     },
+
+    ----------------------------------------------------------------------------
+    -- 2. GLOBAL & ACCOUNT BOOSTS
+    ----------------------------------------------------------------------------
+    [BUFF_GLOBAL_LOOT] = {
+        id = BUFF_GLOBAL_LOOT,
+        name = "Loot Boost",
+        description = "Loot drop chance increased by 20%.",
+        icon = "globalloot",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 0,
+        saveAfterLogout = true,
+        addTime = true
+    },
+    [BUFF_EXP_BOOST] = {
+        id = BUFF_EXP_BOOST,
+        name = "Experience Boost",
+        description = "Experience gain increased by 20%.",
+        icon = "SELFEXP",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 0,
+        saveAfterLogout = true,
+        addTime = true
+    },
+    [RESTART_IMMORTAL] = {
+        id = RESTART_IMMORTAL,
+        name = "Protection",
+        description = "You become Immortal.",
+        icon = "protectionn",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 10000
+    },
+    [BUFF_GLOBAL_EXP] = {
+        id = BUFF_GLOBAL_EXP,
+        name = "Experience Boost",
+        description = "Experience gain increased by 20%.",
+        icon = "expglobal",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 0,
+        saveAfterLogout = true,
+        addTime = true
+    },
+    [BUFF_GLOBAL_GOLD] = {
+        id = BUFF_GLOBAL_GOLD,
+        name = "Gold Boost",
+        description = "Gold drop amount increased by 30%.",
+        icon = "goldglobal",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 0,
+        saveAfterLogout = true,
+        addTime = true
+    },
+    [BLESS] = {
+        id = BLESS,
+        name = "Bless",
+        description = "The next time you die, youw ill only lose 10% of the experience points\n(Without Bless you lose 20%)",
+        icon = "saint_reflect",
+        border = "frame-2-white",
+        maxStacks = 999,
+        ticks = -1,
+        saveAfterLogout = true,
+    },
+    [BLESS_PLUS] = {
+        id = BLESS_PLUS,
+        name = "Bless Plus",
+        description = "The next time you die, youw ill only lose 6% of the experience points\n(Without Bless you lose 20%)",
+        icon = "saint_reflect",
+        border = "frame-2-blue",
+        maxStacks = 999,
+        ticks = -1,
+        saveAfterLogout = true,
+    },
+    [BLESS_ULTRA] = {
+        id = BLESS_ULTRA,
+        name = "Bless Ultra",
+        description = "The next time you die, reduces level loss by 1.\n(Lvl 1-20: 0 lvl lost | Lvl 21-40: 1 lvl lost | Lvl 41-50: 2 lvl lost)",
+        icon = "saint_reflect",
+        border = "frame-2-gold",
+        maxStacks = 999,
+        ticks = -1,
+        saveAfterLogout = true,
+    },
     [SELF_GOLD_BOOST] = {
         id = SELF_GOLD_BOOST,
         name = "Gold Boost",
@@ -1612,6 +509,171 @@ BUFFS = {
         ticks = 0,
         saveAfterLogout = true,
         addTime = true
+    },
+    [RESURRECTION] = {
+        id = RESURRECTION,
+        name = "Resurrection",
+        description = "Resurrection is on cooldown. Wait before it can trigger again.",
+        icon = "resurrection",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        saveAfterLogout = true,
+        ticks = 0,
+        addTime = true
+    },
+
+    ----------------------------------------------------------------------------
+    -- 3. CROWD CONTROL & COMBAT CONDITIONS
+    ----------------------------------------------------------------------------
+    [STUN] = {
+        id = STUN,
+        name = "Stun Debuff",
+        description = "Stunned.",
+        icon = "dazzled",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2000
+    },	
+  [BLIND] = {
+        id = BLIND,
+        name = "Blind Debuff",
+        description = "Blinded.",
+        icon = "blinddebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2000
+    },		
+  [SILENCE] = {
+        id = SILENCE,
+        name = "Silence Debuff",
+        description = "Silenced.",
+        icon = "silencedebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2000
+    },	
+  [FREEZ] = {
+        id = FREEZ,
+        name = "Freez Debuff",
+        description = "Freezed.",
+        icon = "freezdebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 3000
+    },	
+    [PVP_CONDITION] = {
+        id = PVP_CONDITION,
+        name = "PvP",
+        description = "You are in PvP fight!",
+        icon = "riposte",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 30000
+    },
+    [AMOK] = {
+        id = AMOK,
+        name = "Amok",
+        description = "Every stack give you 5% Attack Speed.",
+        icon = "amok",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = 60000
+    },
+    [FEAR] = {
+        id = FEAR,
+        name = "Feared",
+        description = "You flee in fear.",
+        icon = "infernalwrath",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+
+    ----------------------------------------------------------------------------
+    -- 4. VOCATION TRAITS & PATH SPECIALIZATIONS
+    ----------------------------------------------------------------------------
+    [TOXIC_PATH] = {
+        id = TOXIC_PATH,
+        name = "Toxic Path",
+        description = "Increases your Attack Power by 20%.\nPoisoned targets deal 15% less damage.\nEvery 1% All Ailiments Combined increases 1% Damage.",
+        icon = "toxicpath",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+    [ARCHER_TRAIT] = {
+        id = ARCHER_TRAIT,
+        name = "Archer Trait",
+        description = "Increases Attack Speed by 5/10/15/20/25%. Movement Speed +15%",
+        icon = "archertrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
+    },
+    [SORCERER_TRAIT] = {
+        id = SORCERER_TRAIT,
+        name = "Sorcerer Trait",
+        description = "Increases 5/10/15/20/25% Spell Damage. Elemental Damage +20%.",
+        icon = "sorcerertrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
+    },
+    [DRUID_TRAIT] = {
+        id = DRUID_TRAIT,
+        name = "Druid Trait",
+        description = "Increase max Mana by 25/30/35/40/45%. All Aliments chance +20%.",
+        icon = "druidtrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
+    },
+    [KNIGHT_TRAIT] = {
+        id = KNIGHT_TRAIT,
+        name = "Knight Trait",
+        description = "Increase max Health by 15/20/25/30/35%. Physical Protection +20%.",
+        icon = "knighttrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
+    },
+    [PALADIN_TRAIT] = {
+        id = PALADIN_TRAIT,
+        name = "Paladin Trait",
+        description = "Increase max Energy Shield by 15/20/25/30/35%. Elemental Protection +20%",
+        icon = "paladintrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
+    },
+    [SHADOW_TRAIT] = {
+        id = SHADOW_TRAIT,
+        name = "Shadow Trait",
+        description = "Icreases Spell Avoid Chance by 2/4/6/8/10%. Critical Chance +5%",
+        icon = "shadowtrait",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = -1
     },
     [PYRO_PATH] = {
         id = PYRO_PATH,
@@ -1673,6 +735,503 @@ BUFFS = {
         maxStacks = 100,
         ticks = -1
     },
+
+    ----------------------------------------------------------------------------
+    -- 5. CLASS SPELLS, AURAS & DEBUFFS
+    ----------------------------------------------------------------------------
+    [BUFF_CRITICAL_DAMAGE] = {
+        id = BUFF_CRITICAL_DAMAGE,
+       name = "Critical Damage Buff",
+        description = "Increase your Critical Damage by 50%.",
+        icon = "criticaldamagebuff",
+        border = "frame-6-sky",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 10000
+    },
+    [BUFF_DAMAGE_ATTRIBUTES] = {
+        id = BUFF_DAMAGE_ATTRIBUTES,
+        name = "Damage Buff",
+        description = "Increases your Damage by 20%.",
+        icon = "damagebuff",
+        border = "frame-2-gold",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 10000
+    },
+    [AURA_PHYSICAL] = {
+        id = AURA_PHYSICAL,
+        name = "Physical Aura",
+        description = "Increase your Physical Damage.",
+        icon = "physicalaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+    [AURA_ELEMENTAL_PROTECTION] = {
+        id = AURA_ELEMENTAL_PROTECTION,
+        name = "Elemental Protection Aura",
+        description = "Increase your Elemental Protection.",
+        icon = "elementalprotectionaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+    [AURA_PHYSICAL_PROTECTION] = {
+        id = AURA_PHYSICAL_PROTECTION,
+        name = "Physical Protection Aura",
+        description = "Increase your Physical Protection.",
+        icon = "physicalprotectionaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+    [AURA_HEDGEHOG] = {
+        id = AURA_HEDGEHOG,
+        name = "Thornmail Aura",
+        description = "Your reflect Damage taken as Physical Damage.",
+        icon = "thornmailaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 10,
+        ticks = -1
+    },
+    [AURA_FIRE] = {
+        id = AURA_FIRE,
+        name = "Fire Aura",
+        description = "You deal Elemental Damage around you.",
+        icon = "fireaura",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = -1
+    },
+    [AURA_ANGER] = {
+        id = AURA_ANGER,
+        name = "Anger Aura",
+        description = "You deal Physical Damage around you.",
+        icon = "angeraura",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = -1
+    },
+    [AURA_AFFLICTION] = {
+        id = AURA_AFFLICTION,
+        name = "Affliction Aura",
+        description = "You deal Death Damage Over Time.",
+        icon = "afflictionaura",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = -1
+    },
+    [POISON_PLAGUE] = {
+        id = POISON_PLAGUE,
+        name = "Poison Plague",
+        description = "You taken earth Damage Over Time.",
+        icon = "poisonplague",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500,
+    },
+    [SUPPORT_ELEMENTAL_REDUCTION] = {
+        id = SUPPORT_ELEMENTAL_REDUCTION,
+        name = "Elemental Weakness",
+        description = "Increase Elemental Damage taken.",
+        icon = "elementalpenetration",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        debuff = true,
+        ticks = 5000
+    },
+    [SUPPORT_PHYSICAL_REDUCTION] = {
+        id = SUPPORT_PHYSICAL_REDUCTION,
+        name = "Physical Weakness",
+        description = "Increase Physical Damage taken.",
+        icon = "armorpenetration",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        debuff = true,
+        ticks = 5000
+    },
+    [SUPPORT_ELEMENTAL_REDUCTION_ATTACK] = {
+        id = SUPPORT_ELEMENTAL_REDUCTION_ATTACK,
+        name = "Elemental Damage Reduction",
+        description = "Decreased Elemental Damage deal.",
+        icon = "elementalweakness",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        debuff = true,
+        ticks = 5000
+    },
+    [SUPPORT_PHYSICAL_REDUCTION_ATTACK] = {
+        id = SUPPORT_PHYSICAL_REDUCTION_ATTACK,
+        name = "Physical Damage Reduction",
+        description = "Decreased Physical Damage deal.",
+        icon = "physicalweakness",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        debuff = true,
+        ticks = 5000
+    },
+    [WEAKNESS_ARROW] = {
+        id = WEAKNESS_ARROW,
+        name = "Weakness Explosion Debuff",
+        description = "Targets receive 25% More Damage.",
+        icon = "weaknessarrowdebuff",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 10000
+    },
+    [FIRE_WEAKNESS] = {
+        id = FIRE_WEAKNESS,
+        name = "Fire Weakness",
+        description = "You taken 20% more Fire Damage.",
+        icon = "fireweakness",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        ticks = 3000
+    },
+    [WEAKNESS_SUNDER] = {
+        id = WEAKNESS_SUNDER,
+        name = "Weakness Damage Debuff",
+        description = "Decrease Damage deal.",
+        icon = "weaknessdamagedebuff",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 3000
+    },
+    [REND] = {
+        id = REND,
+        name = "REND Debuff",
+        description = "Bleeding.",
+        icon = "renddebuff",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [SHOCK] = {
+        id = SHOCK,
+        name = "Shock Debuff",
+        description = "Reduced Lightning Resistance by 20%. (Lightning Resistance does not stack.)",
+        icon = "shockdebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+         refreshTime = true,
+        ticks = 5000
+    },
+    [CHILL] = {
+        id = CHILL,
+        name = "CHILL Debuff",
+        description = "Movementspeed slowed by 30% (Speed does not stack.)",
+        icon = "chilldebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+         refreshTime = true,
+        ticks = 5000
+    },
+    [SUPPRESSION] = {
+        id = SUPPRESSION,
+        name = "Suppression Debuff",
+        description = "Attack reduced by 20% and deal damage over time. (Attack reduction does not stack.)",
+        icon = "suppressiondebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        refreshTime = true,
+        ticks = 5000
+    },
+    [HARVEST] = {
+        id = HARVEST,
+        name = "Harvest Buff",
+        description = "Stacks add more damage by 5%.",
+        icon = "harvestdebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 5,
+    --    addTime = true,
+        debuff = true,
+        ticks = 120000
+    },
+    [HARVEST_DEBUFF] = {
+        id = HARVEST_DEBUFF,
+        name = "Harvest",
+        description = "Restore 1% HP/Mana on cursed kill.",
+        icon = "harvestdebufff",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        refreshTime = true,
+        ticks = 5000
+    },
+    [EARTH_WEAKNESS] = {
+        id = EARTH_WEAKNESS,
+        name = "Earth Weakness Debuff",
+        description = "Reduces Earth Resistance by 20%.",
+        icon = "earthweaknessdebuff",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 10000
+    },
+    [FROSTBITE_WEAKNESS] = {
+        id = FROSTBITE_WEAKNESS,
+        name = "Ice Weakness Debuff",
+        description = "Reduces Ice Resistance by 20%.",
+        icon = "iceweaknessdebuff",
+        border = "frame-9-jade",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 10000
+    },
+    [DOT_ELEMENTAL_AFFLICTION_AURA] = {
+        id = DOT_ELEMENTAL_AFFLICTION_AURA,
+        name = "Affliction Aura DoT",
+        description = "You taken Death Damage Over Time.",
+        icon = "afflictionaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 5000
+    },
+    [CURSE_RUNE_DOT] = {
+        id = CURSE_RUNE_DOT,
+        name = "Curse",
+        description = "Death Damage Over Time.",
+        icon = "cursedot",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 5000
+    },
+    [ROTTEN_GAS] = {
+        id = ROTTEN_GAS,
+        name = "Gas",
+        description = "Death Damage Over Time.",
+        icon = "rottengas",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 3000
+    },
+    [SHATTERSTORM] = {
+        id = SHATTERSTORM,
+        name = "Shatterstorm",
+        description = "Added 3% penetration damage per stack. Max 10.",
+        icon = "shatterstorm",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 10,
+        ticks = 10000
+    },
+    [GEOMANCER_PACT] = {
+        id = GEOMANCER_PACT,
+        name = "Geomancer Pact",
+        description = "Increases your Damage Reduction by 0.2% per stack.",
+        icon = "geomancerpact",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 50,
+        ticks = 10000
+    },
+    [RAGE] = {
+        id = RAGE,
+        name = "Rage",
+        description = "Increases you 2% more damage per stack.",
+        icon = "rage",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 30,
+        ticks = 60000
+    },
+    [SWIFT_KILLER] = {
+        id = SWIFT_KILLER,
+        name = "Swift Killer",
+        description = "Increases your Attack Speed 1% per stack. Max 75 stacks.",
+        icon = "swiftkiller",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 75,
+        ticks = 60000
+    },
+    [SHADOW] = {
+        id = SHADOW,
+        name = "Uncatchable Shadow",
+        description = "You are Immune to Damage.",
+        icon = "uncatchableshadow",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 2500
+    },
+    [ICE] = {
+        id = ICE,
+        name = "Ice Synergy",
+        description = "Your Elemental Spells deal 50% More Damage.",
+        icon = "icesynergy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+    [LIGHTNING] = {
+        id = LIGHTNING,
+        name = "Lightning Synergy",
+        description = "Your Elemental Spells deal 50% More Damage.",
+        icon = "lightningsynergy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+    [EARTH] = {
+        id = EARTH,
+        name = "Earth Synergy",
+        description = "Your Elemental Spells deal 50% More Damage.",
+        icon = "earthsynergy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+    [FIRE] = {
+        id = FIRE,
+        name = "Fire Synergy",
+        description = "Your Elemental Spells deal 50% More Damage.",
+        icon = "firesynergy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+    [TOXIC_MARK] = {
+        id = TOXIC_MARK,
+        name = "Frosty Eclipse",
+        description = "You take 25% More Damage per stack.",
+        icon = "toxicmark",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 10,
+        ticks = 10000
+    },
+    [QUICK_STAB] = {
+        id = QUICK_STAB,
+        name = "Quick Stab",
+        description = "You take Movementspeed and Physical Penetration Damage.",
+        icon = "quickstab",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 10,
+        ticks = 60000
+    },
+    [DEATH] = {
+        id = DEATH,
+        name = "Death",
+        description = "Your next Death Spell deal More Damage.",
+        icon = "death",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 5000
+    },
+    [HOLY] = {
+        id = HOLY,
+        name = "Holy",
+        description = "Your next Holy Spell deal More Damage.",
+        icon = "holy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 5000
+    },
+    [ABYSSAL] = {
+        id = ABYSSAL,
+        name = "Abyssal Curse",
+        description = "You deal 20% less Damage.",
+        icon = "abyssalcurse",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 5000
+    },
+    [AURA_BLESSED] = {
+        id = AURA_BLESSED,
+        name = "Duality Protection Aura",
+        description = "Increases your Duality Protection.",
+        icon = "blessedaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+    [AURA_HOLLOW] = {
+        id = AURA_HOLLOW,
+        name = "Duality Damage Aura",
+        description = "Increases your Duality Damage.",
+        icon = "hollowaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
+   [BUFF_CRITICAL] = {
+        id = BUFF_CRITICAL,
+        name = "Critical Chance Buff",
+        description = "Increase your Critical Chance by 10%.",
+        icon = "criticalchance buff",
+        border = "frame-2-gold",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 10000
+    },
+    [HASTE] = {
+        id = HASTE,
+        name = "Speed Buff",
+        description = "Increases your Movementspeed.",
+        icon = "speedbuff",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 30 * 60000
+    },
+    [AURA_ELEMENTAL] = {
+        id = AURA_ELEMENTAL,
+        name = "Elemental Aura",
+        description = "Increase your Elemental Damage.",
+        icon = "elementalaura",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 100,
+        ticks = -1
+    },
     [BLAZING_SHOUT] = {
         id = BLAZING_SHOUT,
         name = "Blazing Shout",
@@ -1683,17 +1242,6 @@ BUFFS = {
         maxStacks = 1,
         debuff = true,
         ticks = 2500
-    },
-    [IMMOBILIZATION] = {
-        id = IMMOBILIZATION,
-        name = "Immobilization",
-        description = "You are immobilized.",
-        icon = "illuminationdot",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 1000
     },
     [EARTH_WEAKNESS_SPELL] = {
         id = EARTH_WEAKNESS_SPELL,
@@ -1706,16 +1254,27 @@ BUFFS = {
         debuff = true,
         ticks = 10000
     },
-    [PERSISTENCE] = {
-        id = PERSISTENCE,
-        name = "Enduring Power",
-        description = "Damage taken increases Damage & Counterattack (max 100 stacks).\nRegen 1% max Health per second.",
-        icon = "enduringpower",
+    [SUPPORT_DUALITY_REDUCTION] = {
+        id = SUPPORT_DUALITY_REDUCTION,
+        name = "Duality Weakness",
+        description = "Increase Duality Damage taken.",
+        icon = "dualitypenetration",
         border = "frame-9-jade",
-        stacked = false,
-        maxStacks = 100,
+        stacked = true,
+        maxStacks = 10,
         debuff = true,
-        ticks = 60000
+        ticks = 5000
+    },
+    [SUPPORT_DUALITY_REDUCTION_ATTACK] = {
+        id = SUPPORT_DUALITY_REDUCTION_ATTACK,
+        name = "Duality Damage Reduction",
+        description = "Decreased Duality Damage deal.",
+        icon = "Dualityweakness",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 10,
+        debuff = true,
+        ticks = 5000
     },
     [VENOM_NOVA] = {
         id = VENOM_NOVA,
@@ -1790,17 +1349,6 @@ BUFFS = {
         debuff = true,
         ticks = -1
     },
-   [COUNTER_WEAKNESS] = {
-        id = COUNTER_WEAKNESS,
-        name = "Counterattack Weakness",
-        description = "Increase Counterattack Damage taken.",
-        icon = "counterrrr",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-        debuff = true,
-        ticks = 5000
-    },
    [COUNTER_WEAKNESS_PLAYER] = {
         id = COUNTER_WEAKNESS_PLAYER,
         name = "Counterattack Weakness",
@@ -1811,16 +1359,6 @@ BUFFS = {
         maxStacks = 10,
         debuff = true,
         ticks = -1
-    },
-    [FURY_HITS] = {
-        id = FURY_HITS,
-        name = "Fury Hits",
-        description = "Every stack give you 0.3% Basic Damage. Stack up to 600 times",
-        icon = "furyhits",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 600,
-        ticks = 3000
     },
     [AURA_FAN_KNIVES] = {
         id = AURA_FAN_KNIVES,
@@ -1841,16 +1379,6 @@ BUFFS = {
         stacked = false,
         maxStacks = 1,
         ticks = -1
-    },
-    [REFLECTED_ATTACKS] = {
-        id = REFLECTED_ATTACKS,
-        name = "Reflected Attacks",
-        description = "Receiving damage grants you stacks that increase Basic Damage by 1% and Counterattack by 2% per stack. Maximum stacks 500.",
-        icon = "reflectedattacks",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 500,
-        ticks = 5000
     },
    [COUNTER_WEAKNESS_SPELL] = {
         id = COUNTER_WEAKNESS_SPELL,
@@ -1883,18 +1411,17 @@ BUFFS = {
         maxStacks = 1,
         ticks = -1
     },
-    [LAVA_CRUSH] = {
-        id = LAVA_CRUSH,
-        name = "Lava Crush Ignite",
-        description = "Burned.",
-        icon = "lavacrush",
+    [POISON_MOB] = {
+        id = POISON_MOB,
+        name = "Poison",
+        description = "Poisoned.",
+        icon = "poisoned",
         border = "frame-9-grey",
         stacked = true,
         maxStacks = 1,
         debuff = true,
         ticks = 5000
     },
-
     [WILD_VINES] = {
         id = WILD_VINES,
         name = "Wild Vines",
@@ -1914,29 +1441,6 @@ BUFFS = {
         stacked = false,
         maxStacks = 1,
         ticks = -1
-    },
-    [STATIC_CONDITION] = {
-        id = STATIC_CONDITION,
-        name = "Static Condition",
-        description = "You deal Lightning Damage around you.",
-        icon = "maelstrom",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = -1
-    },
-    [HARVEST_FUSION] = {
-        id = HARVEST_FUSION,
-        name = "Harvest Buff",
-        description = "Stacks add more damage by 5%.",
-        icon = "harvestdebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 10,
-    --    addTime = true,
-        debuff = true,
-        ticks = -1,
-        refreshTime = true,
     },
     [DEFERRED_DEATH] = {
         id = DEFERRED_DEATH,
@@ -1968,18 +1472,6 @@ BUFFS = {
         stacked = true,
         maxStacks = 10,
         ticks = -1
-    },
-    [FROSTY_CHILL] = {
-        id = FROSTY_CHILL,
-        name = "Frosty Chill Debuff",
-        description = "Each stack reduces Ice Resistance by 3.5%.",
-        icon = "chilldebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 1,
-        debuff = true,
-        ticks = 5000,
-        refreshTime = true,
     },
     [PLAGUED_BURST] = {
         id = PLAGUED_BURST,
@@ -2044,6 +1536,28 @@ BUFFS = {
         maxStacks = 30,
         ticks = 60000
     },
+    [VENOM_STING] = {
+        id = VENOM_STING,
+        name = "Venom Sting",
+        description = "You taken earth Damage Over Time.",
+        icon = "venomsting",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500,
+    },
+    [TOXIC_SPLIT] = {
+        id = TOXIC_SPLIT,
+        name = "Toxic Split",
+        description = "You taken earth Damage Over Time.",
+        icon = "toxicslipt",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500,
+    },
     [MULTI_STRIKE] = {
         id = MULTI_STRIKE,
         name = "Multi Strike Support",
@@ -2053,107 +1567,6 @@ BUFFS = {
         stacked = true,
         maxStacks = 10,
         ticks = -1
-    },
-
-    [SHRINE_DAMAGE] = {
-        id = SHRINE_DAMAGE,
-        name = "Shrine Damage",
-        description = "You have 50% increased Overpower damage.",
-        icon = "shrinedamage",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [VOID_WALKER] = {
-        id = VOID_WALKER,
-        name = "Void Walker",
-        description = "You have 20% increased Overpower damage per stack.",
-        icon = "shadow_evansion",
-        border = "frame-9-grey",
-        stacked = true,
-        maxStacks = 5,
-        ticks = 60000
-    },
-    [SHRINE_REGEN] = {
-        id = SHRINE_REGEN,
-        name = "Shrine Regeneration",
-        description = "You regenerate 200% more of Life, Energy Shield, and Mana.",
-        icon = "shrineregen",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_MOVEMENT_SPEED] = {
-        id = SHRINE_MOVEMENT_SPEED,
-        name = "Shrine Movement Speed",
-        description = "Increases your Movement Speed by 150%.",
-        icon = "shrinemovement",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_CRITICAL_CHANCE] = {
-        id = SHRINE_CRITICAL_CHANCE,
-        name = "Shrine Critical",
-        description = "Increases your Critical Chance by 100%.",
-        icon = "shrinecritical",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_ATTACKSPEED] = {
-        id = SHRINE_ATTACKSPEED,
-        name = "Shrine Attack Speed",
-        description = "Increases your Attack Speed by 300%.",
-        icon = "shrineattackspeed",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_EXP] = {
-        id = SHRINE_EXP,
-        name = "Shrine Experience",
-        description = "Increases your Experience by 50%.",
-        icon = "shrineexp",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_LOOT] = {
-        id = SHRINE_LOOT,
-        name = "Shrine Loot",
-        description = "Increases your Loot chance by 30%.",
-        icon = "shrineloot",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_GOLD] = {
-        id = SHRINE_GOLD,
-        name = "Shrine Gold",
-        description = "Increases your Gold drop by 100%.",
-        icon = "shrinegold",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
-    },
-    [SHRINE_CORPSE_EXPLOSION] = {
-        id = SHRINE_CORPSE_EXPLOSION,
-        name = "Shrine Corpse Explosion",
-        description = "Slain enemies explode, dealing damage to nearby enemies.",
-        icon = "shrinecorpseexplosion",
-        border = "frame-9-grey",
-        stacked = false,
-        maxStacks = 1,
-        ticks = 120000
     },
     [BLACK_HOLE] = {
         id = BLACK_HOLE,
@@ -2166,6 +1579,16 @@ BUFFS = {
         debuff = true,
         ticks = 2500
     },
+    [VOID_WALKER] = {
+        id = VOID_WALKER,
+        name = "Void Walker",
+        description = "You have 20% increased Overpower damage per stack.",
+        icon = "shadow_evansion",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        ticks = 60000
+    },
     [HOLY_WEAKNESS] = {
         id = HOLY_WEAKNESS,
         name = "Holy Weakness Debuff",
@@ -2176,16 +1599,6 @@ BUFFS = {
         maxStacks = 1,
         debuff = true,
         ticks = 10000
-    },
-    [VOIDSTONE_BUFF] = {
-        id = VOIDSTONE_BUFF,
-        name = "Void Blessing",
-        description = "Increase Overpower Damage by 2% per stack.",
-        icon = "voidstonebuff",
-        border = "frame-9-jade",
-        stacked = true,
-        maxStacks = 100,
-        ticks = 300000
     },
     [VITAL_SURGE] = {
         id = VITAL_SURGE,
@@ -2303,26 +1716,6 @@ BUFFS = {
 		debuff = true,
 		ticks = 1000
 	},
-	[GORN_SHIELD] = {
-		id = GORN_SHIELD,
-		name = "Tai Chi Shield",
-		description = "Absorbs incoming damage with an Energy Shield.",
-		icon = "stoneform",
-		border = "frame-9-gold",
-		stacked = false,
-		maxStacks = 1,
-		ticks = 4000
-	},
-	[HEAVY_SPIN_BUFF] = {
-		id = HEAVY_SPIN_BUFF,
-		name = "Heavy Spin",
-		description = "Spinning continuously, dealing Physical Damage to nearby enemies every 1s.",
-		icon = "whirlwind",
-		border = "frame-9-red",
-		stacked = false,
-		maxStacks = 1,
-		ticks = 4000
-	},
 	[CARVE_DEBUFF] = {
 		id = CARVE_DEBUFF,
 		name = "Carve",
@@ -2384,17 +1777,6 @@ BUFFS = {
 		maxStacks = 1,
 		ticks = 5000
 	},
-	[MIA_SLOW_DEBUFF] = {
-		id = MIA_SLOW_DEBUFF,
-		name = "Slowed",
-		description = "Movement Speed reduced by 20%.",
-		icon = "slowed",
-		border = "frame-9-grey",
-		stacked = false,
-		maxStacks = 1,
-		debuff = true,
-		ticks = 1500
-	},
 	[STORM_SURGE_BUFF] = {
 		id = STORM_SURGE_BUFF,
 		name = "Storm Surge",
@@ -2405,6 +1787,397 @@ BUFFS = {
 		maxStacks = 8,
 		ticks = 4000
 	},
+	[ARCANE_SHRED_DEBUFF] = {
+		id = ARCANE_SHRED_DEBUFF,
+		name = "Arcane Shred",
+		description = "Physical and Magic Defense reduced by 20%.",
+		icon = "arcane_cleave",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 4000
+	},
+	[AURA_ARCANE] = {
+		id = AURA_ARCANE,
+		name = "Arcane Aura",
+		description = "Deals Magic Damage to nearby enemies while draining mana.",
+		icon = "arcane_aura",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = -1
+	},
+
+    ----------------------------------------------------------------------------
+    -- 6. ITEMS, ORBS & EQUIPMENT
+    ----------------------------------------------------------------------------
+    [ILLUMINATION_DOT] = {
+        id = ILLUMINATION_DOT,
+        name = "Illumination",
+        description = "Corpse explode after death.",
+        icon = "illuminationdot",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [BLEED_ITEM] = {
+        id = BLEED_ITEM,
+        name = "Bleeding",
+        description = "Bleeding.",
+        icon = "bleeding",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 5000,
+        refreshTime = true,
+    },
+    [POISON_ITEM] = {
+        id = POISON_ITEM,
+        name = "Poison",
+        description = "Deal Poison Damage.",
+        icon = "poisoned",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        refreshTime = true,
+        ticks = 5000
+    },
+    [FROSTBITE_ITEM] = {
+        id = FROSTBITE_ITEM,
+        name = "Frost",
+        description = "Chilled.",
+        icon = "frostbite",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [ELECTRO_ITEM] = {
+        id = ELECTRO_ITEM,
+        name = "Electrify",
+        description = "Electrified.",
+        icon = "electrify",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [CURSE_ITEM] = {
+        id = CURSE_ITEM,
+        name = "Curse",
+        description = "Cursed.",
+        icon = "curse",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [DAZZLE_ITEM] = {
+        id = DAZZLE_ITEM,
+        name = "Dazzle",
+        description = "Dazzled.",
+        icon = "dazzled",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500
+    },
+    [HEALTH_REGENERATION_GLOBE] = {
+        id = HEALTH_REGENERATION_GLOBE,
+        name = "Health Regeneration Globe",
+        description = "Your Health Regeneration Percent increased by 100%.",
+        icon = "healthregenbuff",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 1 * 60000
+    },
+    [MANA_REGENERATION_GLOBE] = {
+        id = MANA_REGENERATION_GLOBE,
+        name = "Mana Regeneration Globe",
+        description = "Your Mana Regeneration Percent increased by 100%.",
+        icon = "manaregenbuff",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 1 * 60000
+    },
+    [ENERGYSHIELD_REGENERATION_GLOBE] = {
+        id = ENERGYSHIELD_REGENERATION_GLOBE,
+        name = "Energy Shield Regeneration Globe",
+        description = "Your Energy Shield Regeneration Percent increased by 100%.",
+        icon = "energyshieldbuff",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 1 * 60000
+    },
+    [IGNITE_ITEM] = {
+        id = IGNITE_ITEM,
+        name = "Ignite",
+        description = "Deals Fire Damage Over Time.",
+        icon = "ignite",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 5,
+        debuff = true,
+        ticks = 5000,
+        refreshTime = true,
+    },
+    [TORMENT_BURN] = {
+        id = TORMENT_BURN,
+        name = "Torment",
+        description = "Target burns for 1% of Max HP as Fire Damage per second.",
+        icon = "ignite",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 4000
+    },
+    [SPELL_SHIELD] = {
+        id = SPELL_SHIELD,
+        name = "Spell Shield",
+        description = "Blocks the next hostile spell or ability.",
+        icon = "magic_shield",
+        border = "frame-9-blue",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 40000
+    },
+    [GRIEVOUS_WOUNDS] = {
+        id = GRIEVOUS_WOUNDS,
+        name = "Grievous Wounds",
+        description = "Healing received and health regeneration reduced by 40%.",
+        icon = "bleeding",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 3000
+    },
+    [TOXIC_ARROW] = {
+        id = TOXIC_ARROW,
+        name = "Toxic Arrow",
+        description = "Poison Damage Over Time",
+        icon = "toxicarrow",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2500,
+    },
+    [ILLUMINATION_DOT_UNIQUE] = {
+        id = ILLUMINATION_DOT_UNIQUE,
+        name = "Illumination Buff",
+        description = "Each Stack increase Holy Damage by 5%.",
+        icon = "illuminationunique",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 50,
+        ticks = 60000
+    },
+	[LICH_BANE_BUFF] = {
+		id = LICH_BANE_BUFF,
+		name = "Spellweaver",
+		description = "Next basic attack deals 80% PA + 40% MA bonus damage.",
+		icon = "weapon_strike",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 10000
+	},
+
+    ----------------------------------------------------------------------------
+    -- 7. SHRINES & MONSTER SOULS
+    ----------------------------------------------------------------------------
+    [MONSTER_SOUL_EXP] = {
+        id = MONSTER_SOUL_EXP,
+        name = "Exp Monster Soul Buff",
+        description = "Increased 25% Experience.",
+        icon = "selfexp",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3 * 60000
+    },
+    [MONSTER_SOUL_GOLD] = {
+        id = MONSTER_SOUL_GOLD,
+        name = "Gold Monster Soul Buff",
+        description = "Increased 100% gold drop.",
+        icon = "selfgold",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3 * 60000
+    },
+    [MONSTER_SOUL_LOOT] = {
+        id = MONSTER_SOUL_LOOT,
+        name = "Loot Monster Soul Buff",
+        description = "Increased 20% Loot Chance.",
+        icon = "selfloot",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3 * 60000
+    },
+    [MONSTER_SOUL_DAMAGE] = {
+        id = MONSTER_SOUL_DAMAGE,
+        name = "Damage Monster Soul Buff",
+        description = "Increased 20% Damage deal to monsters.",
+        icon = "knight_single",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3 * 60000
+    },
+    [SHRINE_DAMAGE] = {
+        id = SHRINE_DAMAGE,
+        name = "Shrine Damage",
+        description = "You have 50% increased Overpower damage.",
+        icon = "shrinedamage",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_REGEN] = {
+        id = SHRINE_REGEN,
+        name = "Shrine Regeneration",
+        description = "You regenerate 200% more of Life, Energy Shield, and Mana.",
+        icon = "shrineregen",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_MOVEMENT_SPEED] = {
+        id = SHRINE_MOVEMENT_SPEED,
+        name = "Shrine Movement Speed",
+        description = "Increases your Movement Speed by 150%.",
+        icon = "shrinemovement",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_CRITICAL_CHANCE] = {
+        id = SHRINE_CRITICAL_CHANCE,
+        name = "Shrine Critical",
+        description = "Increases your Critical Chance by 100%.",
+        icon = "shrinecritical",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_ATTACKSPEED] = {
+        id = SHRINE_ATTACKSPEED,
+        name = "Shrine Attack Speed",
+        description = "Increases your Attack Speed by 300%.",
+        icon = "shrineattackspeed",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_EXP] = {
+        id = SHRINE_EXP,
+        name = "Shrine Experience",
+        description = "Increases your Experience by 50%.",
+        icon = "shrineexp",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_LOOT] = {
+        id = SHRINE_LOOT,
+        name = "Shrine Loot",
+        description = "Increases your Loot chance by 30%.",
+        icon = "shrineloot",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_GOLD] = {
+        id = SHRINE_GOLD,
+        name = "Shrine Gold",
+        description = "Increases your Gold drop by 100%.",
+        icon = "shrinegold",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [SHRINE_CORPSE_EXPLOSION] = {
+        id = SHRINE_CORPSE_EXPLOSION,
+        name = "Shrine Corpse Explosion",
+        description = "Slain enemies explode, dealing damage to nearby enemies.",
+        icon = "shrinecorpseexplosion",
+        border = "frame-9-grey",
+        stacked = false,
+        maxStacks = 1,
+        ticks = 120000
+    },
+    [VOIDSTONE_BUFF] = {
+        id = VOIDSTONE_BUFF,
+        name = "Void Blessing",
+        description = "Increase Overpower Damage by 2% per stack.",
+        icon = "voidstonebuff",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 100,
+        ticks = 300000
+    },
+
+    ----------------------------------------------------------------------------
+    -- 8. BOSS MECHANICS
+    ----------------------------------------------------------------------------
+    [BOSS_HEALING_REDUCTION] = {
+        id = BOSS_HEALING_REDUCTION,
+        name = "Recovery Weakness",
+        description = "You potions recovery 50% less.",
+        icon = "infernalwrath",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 5000
+    },
+    [BOSS_SLOWING] = {
+        id = BOSS_SLOWING,
+        name = "Slowed",
+        description = "You are slowed.",
+        icon = "slowed",
+        border = "frame-9-grey",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 3000
+    },
+    [BOSS_IMMORTAL] = {
+        id = BOSS_IMMORTAL,
+        name = "Immortal",
+        description = "You become immortal.",
+        icon = "holy",
+        border = "frame-9-red",
+        stacked = true,
+        maxStacks = 1,
+        ticks = 5000
+    },
+
+    ----------------------------------------------------------------------------
+    -- 9. COOLDOWN TRACKING DEBUFFS
+    ----------------------------------------------------------------------------
 	[LUDENS_ECHO_CD] = {
 		id = LUDENS_ECHO_CD,
 		name = "Echo (Cooldown)",
@@ -2482,16 +2255,6 @@ BUFFS = {
 		debuff = true,
 		ticks = 40000
 	},
-	[LICH_BANE_BUFF] = {
-		id = LICH_BANE_BUFF,
-		name = "Spellweaver",
-		description = "Next basic attack deals 80% PA + 40% MA bonus damage.",
-		icon = "weapon_strike",
-		border = "frame-9-jade",
-		stacked = false,
-		maxStacks = 1,
-		ticks = 10000
-	},
 	[LICH_BANE_CD] = {
 		id = LICH_BANE_CD,
 		name = "Spellweaver (Cooldown)",
@@ -2503,8 +2266,8 @@ BUFFS = {
 		debuff = true,
 		ticks = 3000
 	},
-}
 
+}
 
 DOT_BUFFS = {
 	[BLACK_HOLE] = {
@@ -2660,19 +2423,6 @@ DOT_BUFFS = {
 		type = COMBAT_DEATHDAMAGE,
         maxStacks = 10,
 	},
-	[FIRE_BARRIER] = {
-		ticks = 500,
-		effect = 16,
-		id = FIRE_BARRIER,
-		type = COMBAT_FIREDAMAGE,
-	},
-	[STRONG_IGNITE_ITEM] = {
-		ticks = 500,
-		effect = 16,
-		id = STRONG_IGNITE_ITEM,
-		type = COMBAT_FIREDAMAGE,
-        maxStacks = 10,
-	},
 	[TORMENT_BURN] = {
 		ticks = 1000,
 		effect = 16,
@@ -2694,21 +2444,6 @@ DOT_BUFFS = {
 		id = BLAZING_SHOUT,
 		type = COMBAT_FIREDAMAGE,
         maxStacks = 10,
-	},
-	[LAVA_CRUSH] = {
-		ticks = 500,
-		effect = 16,
-		id = LAVA_CRUSH,
-		type = COMBAT_FIREDAMAGE,
-        maxStacks = 10,
-	},
-	[FROSTY_CHILL] = {
-		ticks = 500,
-		effect = 44,
-		id = FROSTY_CHILL,
-		type = COMBAT_ICEDAMAGE,
-        maxStacks = 10,
-        refreshTime = true,
 	},
 	[PLAGUED_BURST] = {
 		ticks = 500,
@@ -2767,5 +2502,5 @@ DOT_BUFFS = {
 		type = COMBAT_PHYSICALDAMAGE,
         maxStacks = 10,
 	},
+}
 
-  }
