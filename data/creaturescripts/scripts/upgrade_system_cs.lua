@@ -1213,8 +1213,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				local hpRatio = (immolateBase >= 20) and 0.01 or 0.005
 				local rawImmolate = immolateBase + math.floor(creature:getMaxHealth() * hpRatio)
 				local cPos = creature:getPosition()
-				cPos:sendMagicEffect(CONST_ME_FIREAREA)
-				doAreaCombat(creature:getId(), COMBAT_FIREDAMAGE, cPos, area5x5nocenter, -rawImmolate, -rawImmolate, CONST_ME_HITBYFIRE, ORIGIN_REFLECT, 0, 0)
+				doAreaCombat(creature:getId(), COMBAT_FIREDAMAGE, cPos, area5x5nocenter, -rawImmolate, -rawImmolate, 80, ORIGIN_REFLECT, 0, 0)
 			end
 		end
 	end
