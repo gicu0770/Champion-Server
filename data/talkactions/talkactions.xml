@@ -14,6 +14,7 @@
 	<talkaction words="/spelllevel" separator=" " script="sl.lua" />
 	<talkaction words="/keytier" separator=" " script="keytier.lua" />
 	<talkaction words="/setdungeontier" separator=" " script="setdungeontier.lua" />
+	<talkaction words="/scale" separator=" " script="scale.lua" />
 
 	<talkaction words="/addforge" separator=" " script="add_forge.lua" />
 	<talkaction words="/uniquemap" separator=" " script="uniqueMap.lua" />

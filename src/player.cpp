@@ -3682,6 +3682,12 @@ void Player::onAddCondition(ConditionType_t type)
 {
 	Creature::onAddCondition(type);
 
+	if (type == CONDITION_STUN || type == CONDITION_ROOT) {
+		stopWalk();
+		sendCancelWalk();
+		sendNewCancelWalk();
+	}
+
 	#if GAME_FEATURE_MOUNTS > 0
 	//if (type == CONDITION_OUTFIT && isMounted()) {
 	if (type == CONDITION_OUTFIT) {
@@ -3729,6 +3735,14 @@ void Player::onAddCombatCondition(ConditionType_t type)
 			
 		case CONDITION_STUN:
 			sendTextMessage(MESSAGE_STATUS_DEFAULT, "You have been stunned.");
+			break;
+
+		case CONDITION_ROOT:
+			sendTextMessage(MESSAGE_STATUS_DEFAULT, "You have been rooted.");
+			break;
+
+		case CONDITION_SILENCE:
+			sendTextMessage(MESSAGE_STATUS_DEFAULT, "You have been silenced.");
 			break;
 		
 		case CONDITION_HARD_DRUNK:

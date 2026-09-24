@@ -1100,93 +1100,6 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Energy Soulstone",
       38639,
       "Ethereal Seraph",
@@ -1419,6 +1332,122 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
+      {
+        chance = 100000,
+        forceType = 134217728,
+        imps = {
+          {
+            264
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Bilbo",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
+      {
+        chance = 100000,
+        forceType = 1073741824,
+        imps = {
+          {
+            267
+          },
+          {
+            {
+              2,
+              4,
+              7,
+              10
+            }
+          }
+        },
+        monster = "Ascended Voort",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Eldritch Heart",
       38601,
       "Eldritch Reaver",
@@ -1639,35 +1668,6 @@ OTHER_ITEMS = {
           10,
           12,
           15
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
         }
       }
     }

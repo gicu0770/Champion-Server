@@ -1593,6 +1593,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnum(CONDITION_MAGIC)
 	registerEnum(CONDITION_FIZIK)
 	registerEnum(CONDITION_DISABLECRIT)
+	registerEnum(CONDITION_SILENCE)
 
 	registerEnum(CONDITIONID_DEFAULT)
 	registerEnum(CONDITIONID_COMBAT)
@@ -13216,8 +13217,12 @@ int LuaScriptInterface::luaPlayerSpellCheck(lua_State* L)
 		return 1;
 	}
 
-	if (player->hasFear() || player->hasCondition(CONDITION_STUN)) {
-		player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
+	if (player->hasFear() || player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_SILENCE)) {
+		if (player->hasCondition(CONDITION_SILENCE)) {
+			player->sendCancelMessage("You are silenced.");
+		} else {
+			player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
+		}
 		pushBoolean(L, false);
 		return 1;
 	}

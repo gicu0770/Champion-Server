@@ -405,7 +405,8 @@ enum ConditionType_t : uint64_t {
     CONDITION_HARD_DRUNK = 1ULL << 29,
     CONDITION_MAGIC = 1ULL << 30,
     CONDITION_FIZIK = 1ULL << 31,
-    CONDITION_DISABLECRIT = 1ULL << 32
+    CONDITION_DISABLECRIT = 1ULL << 32,
+    CONDITION_SILENCE = 1ULL << 33
 };
 
 enum ConditionId_t : int8_t {

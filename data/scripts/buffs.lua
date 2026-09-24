@@ -283,6 +283,20 @@ function Creature:addBuff(id, time, stacks, maxStacks)
   local endTime = server_time + duration
   if id == STUN and duration > 0 then
     self:setProgressBar(duration, false)
+  elseif id == SILENCE and duration > 0 then
+    self:setProgressBar(duration, false)
+    if not self:hasCondition(CONDITION_SILENCE) then
+      local c = Condition(CONDITION_SILENCE)
+      c:setParameter(CONDITION_PARAM_TICKS, duration)
+      self:addCondition(c)
+    end
+  elseif id == ROOT and duration > 0 then
+    self:setProgressBar(duration, false)
+    if not self:hasCondition(CONDITION_ROOT) then
+      local c = Condition(CONDITION_ROOT)
+      c:setParameter(CONDITION_PARAM_TICKS, duration)
+      self:addCondition(c)
+    end
   end
   stacks = stacks or 1
   CREATURE_ACTIVE_BUFFS[self:getId()][buff.id] = {
@@ -367,6 +381,22 @@ function Creature:updateBuff(id, time, playerList, maxStacks)
       if remaining > 0 then
         self:setProgressBar(remaining, false)
       end
+    elseif id == SILENCE then
+      local remaining = creatureBuff.endTime - server_time
+      if remaining > 0 then
+        self:setProgressBar(remaining, false)
+        local c = Condition(CONDITION_SILENCE)
+        c:setParameter(CONDITION_PARAM_TICKS, remaining)
+        self:addCondition(c)
+      end
+    elseif id == ROOT then
+      local remaining = creatureBuff.endTime - server_time
+      if remaining > 0 then
+        self:setProgressBar(remaining, false)
+        local c = Condition(CONDITION_ROOT)
+        c:setParameter(CONDITION_PARAM_TICKS, remaining)
+        self:addCondition(c)
+      end
     end
 
     local data = buff
@@ -407,6 +437,13 @@ function Creature:removeBuff(id)
 
   if id == STUN then
     self:setProgressBar(0, false)
+    self:removeCondition(CONDITION_STUN)
+  elseif id == SILENCE then
+    self:setProgressBar(0, false)
+    self:removeCondition(CONDITION_SILENCE)
+  elseif id == ROOT then
+    self:setProgressBar(0, false)
+    self:removeCondition(CONDITION_ROOT)
   end
 
   local playerList = {}

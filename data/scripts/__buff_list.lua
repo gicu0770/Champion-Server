@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- 1. ENGINE PLAYER STATES (OTClient Bitmasks - Fixed by Client Engine)
 --------------------------------------------------------------------------------
 PLAYERSTATE_POISON = 1
@@ -40,6 +40,7 @@ BLIND = 11
 SILENCE = 12
 FREEZ = 13
 PVP_CONDITION = 14
+ROOT = 16
 AMOK = 22
 FEAR = 101
 
@@ -156,6 +157,7 @@ VENGEANCE_FLAME = 186
 FOCUSING_MARK = 187
 FOCUSING_MARK_DEBUFF = 188
 WEAKNESS_FINDER_DEBUFF = 189
+COLOSSUS_RAMPAGE = 191
 CARVE_DEBUFF = 192
 FERVOR_BUFF = 193
 ICHOR_SHIELD = 194
@@ -580,6 +582,17 @@ BUFFS = {
         maxStacks = 1,
         debuff = true,
         ticks = 30000
+    },
+    [ROOT] = {
+        id = ROOT,
+        name = "Root Debuff",
+        description = "Rooted.",
+        icon = "angry_roots",
+        border = "frame-9-jade",
+        stacked = true,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 2000
     },
     [AMOK] = {
         id = AMOK,
@@ -1715,6 +1728,16 @@ BUFFS = {
 		maxStacks = 1,
 		debuff = true,
 		ticks = 1000
+	},
+	[COLOSSUS_RAMPAGE] = {
+		id = COLOSSUS_RAMPAGE,
+		name = "Colossus Rampage",
+		description = "Transforms into a Colossus: grants +50% Damage Reduction, immunity to slows/stuns, and basic attacks deal extra 4% Max HP Physical Damage on-hit.",
+		icon = "knight_ultimate",
+		border = "frame-9-jade",
+		stacked = false,
+		maxStacks = 1,
+		ticks = 7000
 	},
 	[CARVE_DEBUFF] = {
 		id = CARVE_DEBUFF,

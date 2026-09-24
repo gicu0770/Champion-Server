@@ -1133,6 +1133,12 @@ void Creature::onAddCondition(ConditionType_t type)
 	} else if (type == CONDITION_HASTE && hasCondition(CONDITION_PARALYZE)) {
 		removeCondition(CONDITION_PARALYZE);
 	}
+
+	if (type == CONDITION_STUN || type == CONDITION_ROOT) {
+		stopEventWalk();
+		listWalkDir.clear();
+		cancelNextWalk = true;
+	}
 }
 
 void Creature::onAddCombatCondition(ConditionType_t)

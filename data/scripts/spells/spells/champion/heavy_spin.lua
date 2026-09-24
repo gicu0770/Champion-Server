@@ -83,6 +83,9 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local expireTime = os.time() + 7
   player:setStorageValue(PlayerStorage.colossusRampageTime, expireTime)
 
+  -- Add Colossus Rampage buff icon for 7s (7000 ms)
+  player:addBuff(COLOSSUS_RAMPAGE, 7000)
+
   -- CC Cleanse: remove any active paralyze/slow
   player:removeCondition(CONDITION_PARALYZE)
 
@@ -91,6 +94,9 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   playerPos:sendMagicEffect(CONST_ME_MAGIC_RED)
   playerPos:sendMagicEffect(517)
   player:say("COLOSSUS!", TALKTYPE_MONSTER_SAY)
+
+  -- Dynamic character scale (grow to 140% over 300ms for 7s, then shrink back)
+  player:setScale(1.4, 7000, 300)
 
   -- Pulse visual effect and cleanse CC every 1s for 7 seconds
   local playerId = player:getId()

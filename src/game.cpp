@@ -2082,6 +2082,12 @@ void Game::playerMove(Player* player, Direction direction)
 	player->resetIdleTime();
 	player->stopNextWalkActionTask();
 
+	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_ROOT)) {
+		player->sendCancelWalk();
+		player->sendNewCancelWalk();
+		return;
+	}
+
 	player->startAutoWalk(direction);
 }
 
@@ -2554,6 +2560,13 @@ void Game::playerAutoWalk(uint32_t playerId, std::vector<Direction>& listDir)
 	player->resetIdleTime();
 	player->stopNextWalkTask();
 	player->stopNextWalkActionTask();
+
+	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_ROOT)) {
+		player->sendCancelWalk();
+		player->sendNewCancelWalk();
+		return;
+	}
+
 	player->startAutoWalk(std::move(listDir));
 }
 
@@ -3687,7 +3700,7 @@ bool Game::playerSaySpell(Player* player, SpeakClasses type, const std::string& 
 		}
 	}
 
-	if (player->hasCondition(CONDITION_MUTED)) {
+	if (player->hasCondition(CONDITION_MUTED) || player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_SILENCE)) {
 		player->sendTextMessage(MESSAGE_STATUS_SMALL, "You are silenced.");
 		return false;
 	}

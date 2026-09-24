@@ -879,7 +879,11 @@ bool Monster::canUseSpell(const Position& pos, const Position& targetPos,
 	inRange = true;
 	
 	if (hasCondition(CONDITION_STUN)) {
-    return false;
+		return false;
+	}
+
+	if (!sb.isMelee && hasCondition(CONDITION_SILENCE)) {
+		return false;
 	}
 
 	if (sb.isMelee) {
@@ -947,8 +951,9 @@ void Monster::onThinkDefense(uint32_t interval)
 	bool resetTicks = true;
 	defenseTicks += interval;
 	
-	if (hasCondition(CONDITION_STUN)) {
-    defenseTicks = 0;
+	if (hasCondition(CONDITION_STUN) || hasCondition(CONDITION_SILENCE)) {
+		defenseTicks = 0;
+		return;
 	}
 
 	for (const spellBlock_t& spellBlock : mType->info.defenseSpells) {

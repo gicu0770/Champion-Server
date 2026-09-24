@@ -307,12 +307,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		local function getDefenseMultiplier(defFlat)
-			if defFlat >= 0 then
-				return 100 / (100 + defFlat)
-			else
-				local cappedDef = math.max(-60, defFlat)
-				return 2 - (100 / (100 - cappedDef))
-			end
+			local def = math.max(0, defFlat)
+			return 100 / (100 + def)
 		end
 
 		local function applyOnHitEffectsToTarget(attacker, target, isNegative, attackerAttrs)
@@ -324,7 +320,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if attrs[36] then
 				local frayValue = US_ENCHANTMENTS[36].subvalue
 				local def = target:isMonster() and (15 + target:getMonsterLevel() * 1) or target:getMagicDefense()
-				local magMult = getDefenseMultiplier(def - attacker:getMagicPenetration())
+				local magMult = getDefenseMultiplier(math.max(0, def - attacker:getMagicPenetration()))
 				local dmg = math.max(1, math.ceil(frayValue * magMult))
 				totalEnergy = totalEnergy + dmg
 			end
@@ -334,7 +330,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				local ap = attacker:getMagicAttack()
 				local biteBase = 15 + math.floor(ap * 0.15)
 				local def = target:isMonster() and (15 + target:getMonsterLevel() * 1) or target:getMagicDefense()
-				local magMult = getDefenseMultiplier(def - attacker:getMagicPenetration())
+				local magMult = getDefenseMultiplier(math.max(0, def - attacker:getMagicPenetration()))
 				local dmg = math.max(1, math.ceil(biteBase * magMult))
 				totalEnergy = totalEnergy + dmg
 			end
@@ -348,7 +344,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 					hpDmg = math.min(hpDmg, target:isBoss() and 100 or 500)
 				end
 				local def = target:isMonster() and (10 + target:getMonsterLevel() * 1) or target:getPhysicalDefense()
-				local mult = getDefenseMultiplier(def - attacker:getArmorPenetrationFlat())
+				local mult = getDefenseMultiplier(math.max(0, def - attacker:getPhysicalPenetration()))
 				local dmg = math.max(1, math.ceil(hpDmg * mult))
 				totalPhysical = totalPhysical + dmg
 			end
@@ -390,14 +386,6 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				end
 			end
 		end
-		local function getDefenseMultiplier(defFlat)
-			if defFlat >= 0 then
-				return 100 / (100 + defFlat)
-			else
-				local cappedDef = math.max(-60, defFlat)
-				return 2 - (100 / (100 - cappedDef))
-			end
-		end
 
 		local baseDmgBeforeDef = primaryDamage
 		local rawDef = 0
@@ -409,11 +397,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		local penGainPct = 0
 
 		-- =====================================================================
-		-- DEFENSE CALCULATION (LoL & MLBB Multiplicative Order of Operations)
+		-- DEFENSE CALCULATION (LoL Multiplicative Order of Operations)
 		-- 1. Base Target Defense (Monster Level or Player Armor/MR)
 		-- 2. Flat Defense Reduction
 		-- 3. Multiplicative % Defense Shred (Def * (1 - r1) * (1 - r2) ...)
-		-- 4. Flat Penetration (Raw Def - Pen, allows negative defense down to -60)
+		-- 4. Flat Penetration (Cannot reduce defense below 0, as in LoL)
 		-- =====================================================================
 		local isPhysical = (primaryType == COMBAT_PHYSICALDAMAGE)
 		local baseTargetDef = 0
@@ -454,11 +442,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 
 		-- Apply total multiplicative % shred
-		rawDef = math.floor(rawDef * defShredMultiplier)
+		rawDef = math.max(0, math.floor(rawDef * defShredMultiplier))
 
-		-- Step 3: Flat Penetration
+		-- Step 3: Flat Penetration (cannot reduce defense below 0, as in LoL)
 		penetration = isPhysical and physical_penetration or magic_penetration
-		effectiveDef = rawDef - penetration
+		effectiveDef = math.max(0, rawDef - penetration)
 
 		local rawMult = getDefenseMultiplier(rawDef)
 		rawReductionPct = (1 - rawMult) * 100
@@ -700,7 +688,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				frayDef = creature:getMagicDefense()
 			end
 			local magPen = attacker:getMagicPenetration()
-			local effMagDef = frayDef - magPen
+			local effMagDef = math.max(0, frayDef - magPen)
 			local magMult = getDefenseMultiplier(effMagDef)
 			local finalFray = math.max(1, math.ceil(frayValue * magMult))
 
@@ -723,7 +711,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				biteDef = creature:getMagicDefense()
 			end
 			local magPen = attacker:getMagicPenetration()
-			local effMagDef = biteDef - magPen
+			local effMagDef = math.max(0, biteDef - magPen)
 			local magMult = getDefenseMultiplier(effMagDef)
 			local finalBite = math.max(1, math.ceil(biteBase * magMult))
 
@@ -788,7 +776,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				elseif creature:isPlayer() then
 					stormDef = creature:getMagicDefense()
 				end
-				local effStormDef = stormDef - attacker:getMagicPenetration()
+				local effStormDef = math.max(0, stormDef - attacker:getMagicPenetration())
 				local stormMult = getDefenseMultiplier(effStormDef)
 				local finalStorm = math.max(1, math.ceil(stormBonus * stormMult))
 				if isNegative then
@@ -857,13 +845,13 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 		local appliedDotSummary = nil
 
-		-- Mage (Vocation 3) - nakłada Burn
+		-- Mage (Vocation 1) - nakłada Burn
 		if attacker:getVocation():getId() == 1 then
 			local targetMaxHp = creature:getMaxHealth()
 			if creature:isMonster() and (creature:getName():lower():find("dummy") or targetMaxHp > 10000000) then
 				targetMaxHp = math.max(1000, attacker:getMagicAttack() * 20)
 			end
-			local totalDotDamage = math.max(10, math.floor(targetMaxHp * 0.02))
+			local totalDotDamage = math.max(10, 30 + math.floor(targetMaxHp * 0.03))
 			local totalTicks = 4
 			local dmgPerTick = math.max(1, math.ceil((totalDotDamage * targetDefMult) / totalTicks))
 			local sumDotDamage = dmgPerTick * totalTicks
@@ -899,7 +887,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			elseif creature:isPlayer() then
 				effMagDef = creature:getMagicDefense()
 			end
-			effMagDef = effMagDef - attacker:getMagicPenetration()
+			effMagDef = math.max(0, effMagDef - attacker:getMagicPenetration())
 			local magMult = getDefenseMultiplier(effMagDef)
 			local dmgPerTick = math.max(1, math.ceil(rawTickDmg * magMult))
 
@@ -914,9 +902,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				interval = 1000,
 				effect = 16
 			})
-			if creature.setShader then
-				creature:setShader("Burn", 4)
-			end
+		--	if creature.setShader then
+		--		creature:setShader("Burn", 4)
+		--	end
 		end
 
 		-- [47] Grievous Wounds (Executioner's Calling / Mortal Reminder): Physical damage inflicts Grievous Wounds for 3s (-40% healing)
@@ -1111,23 +1099,59 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		-- Log Outgoing Damage (Attacker Player)
 		if attacker:getStorageValue(PlayerStorage.damageLog) ~= -1 then
 			local shredPct = math.floor((1.0 - defShredMultiplier) * 100 + 0.5)
+			local rawReduStr = ""
+			if math.abs(rawReductionPct) < 0.05 then
+				rawReduStr = "0.0% Redu"
+			elseif rawReductionPct < 0 then
+				rawReduStr = string.format("+%.1f%% Amp", math.abs(rawReductionPct))
+			else
+				rawReduStr = string.format("-%.1f%% Redu", rawReductionPct)
+			end
+
+			local effReduStr = ""
+			if math.abs(effectiveReductionPct) < 0.05 then
+				effReduStr = "0.0% Redu"
+			elseif effectiveReductionPct < 0 then
+				effReduStr = string.format("+%.1f%% Amp", math.abs(effectiveReductionPct))
+			else
+				effReduStr = string.format("-%.1f%% Redu", effectiveReductionPct)
+			end
+
 			local defStr = (shredPct > 0)
-				and string.format("Def: %d (-%.1f%% Redu) [Shred: -%d%% (Base: %d)]", rawDef, rawReductionPct, shredPct, baseTargetDef)
-				or string.format("Def: %d (-%.1f%% Redu)", rawDef, rawReductionPct)
+				and string.format("Def: %d (%s) [Shred: -%d%% (Base: %d)]", rawDef, rawReduStr, shredPct, baseTargetDef)
+				or string.format("Def: %d (%s)", rawDef, rawReduStr)
 
 			local logMsg = string.format(
-				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (-%.1f%% Redu) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s",
-				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effectiveReductionPct, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix
+				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (%s) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s",
+				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effReduStr, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix
 			)
 			attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, logMsg)
 		end
 
 		-- Log Incoming Damage (Target Player in PvP)
 		if creature:isPlayer() and creature:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+			local rawTakenRedu = ""
+			if math.abs(rawReductionPct) < 0.05 then
+				rawTakenRedu = "0.0%"
+			elseif rawReductionPct < 0 then
+				rawTakenRedu = string.format("+%.1f%% Amp", math.abs(rawReductionPct))
+			else
+				rawTakenRedu = string.format("-%.1f%%", rawReductionPct)
+			end
+
+			local effTakenRedu = ""
+			if math.abs(effectiveReductionPct) < 0.05 then
+				effTakenRedu = "0.0%"
+			elseif effectiveReductionPct < 0 then
+				effTakenRedu = string.format("+%.1f%% Amp", math.abs(effectiveReductionPct))
+			else
+				effTakenRedu = string.format("-%.1f%%", effectiveReductionPct)
+			end
+
 			local takenCritSuffix = isCrit and " [CRIT]" or ""
 			local takenMsg = string.format(
-				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (-%.1f%%) | Pen: %d -> Eff.Def: %d (-%.1f%%) | Final Taken: %d",
-				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawReductionPct, penetration, effectiveDef, effectiveReductionPct, primaryDamage
+				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (%s) | Pen: %d -> Eff.Def: %d (%s) | Final Taken: %d",
+				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawTakenRedu, penetration, effectiveDef, effTakenRedu, primaryDamage
 			)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
 		end
@@ -1224,7 +1248,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		creature:removeCondition(CONDITION_PARALYZE)
 	end
 	
-	-- Guard Passive (Niezlomny Bastion): When HP drops below 35%, gain Energy Shield equal to 25% Max HP for 5s (60s cooldown)
+	-- Guard Passive (Niezlomny Bastion): When HP drops below 35%, gain Energy Shield equal to 25% Max HP for 15s (60s cooldown)
 	if creature:isPlayer() and creature:getVocation():getId() == 2 and primaryType ~= COMBAT_HEALING then
 		local remainingHp = creature:getHealth() - primaryDamage
 		local maxHp = creature:getMaxHealth()
@@ -1234,7 +1258,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			if nextCd < 0 or now >= nextCd then
 				creature:setStorageValue(PlayerStorage.guardPassiveCd, now + 60)
 				local shieldAmount = math.floor(maxHp * 0.25)
-				creature:addEnergyShieldDuration(shieldAmount, 5000, 0.25)
+				creature:addEnergyShieldDuration(shieldAmount, 15000, 0.25)
 				creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			end
 		end

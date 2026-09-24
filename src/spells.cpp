@@ -748,7 +748,7 @@ bool Spell::playerRuneSpellCheck(Player* player, const Position& toPos)
 		return false;
 	}
 	
-	if (player->hasCondition(CONDITION_STUN)) {
+	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_SILENCE)) {
 		return false;
 	}
 
@@ -927,7 +927,7 @@ bool InstantSpell::playerCastInstant(Player* player, std::string& param)
 		return false;
 	}
 	
-	if (player->hasCondition(CONDITION_STUN)) {
+	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_SILENCE)) {
 		return false;
 	}
 

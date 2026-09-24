@@ -2345,6 +2345,7 @@ function applyEliteAffix(monster, chance, pos, dungeon)
             local cloneOutfit = clone:getOutfit()
             cloneOutfit.lookHealthBar = 2
             clone:setOutfit(cloneOutfit)
+            clone:setScale(1.5, -1, 0)
             if dungeon then
               local instance = monster:getInstance()
               if instance then
@@ -2363,6 +2364,7 @@ function applyEliteAffix(monster, chance, pos, dungeon)
           local outfit = monster:getOutfit()
           outfit.lookHealthBar = 2
           monster:setOutfit(outfit)
+          monster:setScale(1.5, -1, 0)
       end
   end
 end

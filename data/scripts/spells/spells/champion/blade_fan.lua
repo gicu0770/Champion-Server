@@ -66,6 +66,18 @@ local CONFIG = {
   },
 }
 
+local function isAlly(caster, other)
+  if not other or not other:isPlayer() or other:isRemoved() then return false end
+  if other:getId() == caster:getId() then return true end
+  local p1 = caster:getParty()
+  local p2 = other:getParty()
+  if p1 and p2 and p1 == p2 then return true end
+  local g1 = caster:getGuild()
+  local g2 = other:getGuild()
+  if g1 and g2 and g1:getId() == g2:getId() then return true end
+  return false
+end
+
 local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   if not spellCheckForCast(player, item, CONFIG.spellId, getInfoOnly, force) then return end
   local CONFIG_SUP = item:applySupportSpells(CONFIG, player:getId())
@@ -75,18 +87,24 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
     return spellGetInfoToSend(player, CONFIG, CONFIG_SUP, item, tempArea)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
+
+  print("[Blade Fan] Cast by: " .. player:getName())
   
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)
-  local variant = spellSetupVariant(player, CONFIG, CONFIG_SUP, mousePos)
+  local variant = Variant(player:getPosition())
   
   local extraFunc = function(caster, target)
     if not target or target:isRemoved() then return end
-    if target:isMonster() or (target:isPlayer() and not caster:hasSecureMode()) then
-      if target.addBuff then
-        target:addBuff(SILENCE, 1500)
-      end
-    end
+    if isAlly(caster, target) then return end
+
+    local silence = Condition(CONDITION_SILENCE)
+    silence:setParameter(CONDITION_PARAM_TICKS, 1500)
+    target:addCondition(silence)
+    target:addBuff(SILENCE, 1500)
+    target:setProgressBar(1500, false)
+    Game.sendAnimatedText("SILENCE", target:getPosition(), TEXTCOLOR_LIGHTBLUE, "Reggae One-12px-bordered")
+  --  print(string.format("[Blade Fan] Silenced target: %s for 1,5s", target:getName()))
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)

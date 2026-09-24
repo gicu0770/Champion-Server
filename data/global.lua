@@ -283,7 +283,7 @@ function Player.getPhysicalDefense(self)
 			getPhysicalDefense = math.ceil(getPhysicalDefense * (1 + pct / 100))
 		end
 	end
-	return getPhysicalDefense
+	return math.max(0, getPhysicalDefense)
 end
 
 function Player.getPhysicalDefensePercent(self)
@@ -309,7 +309,7 @@ function Player.getMagicDefense(self)
 			getMagicDefense = math.ceil(getMagicDefense * (1 + pct / 100))
 		end
 	end
-	return getMagicDefense
+	return math.max(0, getMagicDefense)
 end
 
 function Player.getMagicDefensePercent(self)
@@ -1224,6 +1224,7 @@ ExtendedOPCodes = {
 	CODE_POTION_UPGRADE = 238,
 	CODE_GUILD = 239,
 	CODE_PLAYER_LEVEL = 240,
+	CODE_CREATURE_SCALE = 241,
 }
 
 -- Ensure lost_items column exists in player_deaths table
@@ -1566,24 +1567,24 @@ TAGS = {
 	[31] = {"slow", "#55AAFF"}
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
-	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
-	[2] = {name = "Frost Wave", cooldown = 3500, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
-	[3] = {name = "Thunderstorm", cooldown = 6000, manaCost = 20, range = 5, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
+	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 90, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
+	[2] = {name = "Frost Wave", cooldown = 4000, manaCost = 15, range = 4, hits = 1, multipler = 1.1, baseDamage = 140, baseDamagePerLevel = 35, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
+	[3] = {name = "Thunderstorm", cooldown = 6000, manaCost = 20, range = 5, hits = 1, multipler = 0.6, baseDamage = 150, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
 	[4] = {name = "Colossal Grasp", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 30}, element = 100, aoe = false},-- "Colossal Grasp",
 	[5] = {name = "Ground Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 31}, element = 100, aoe = true},-- "Ground Slam",
 	[6] = {name = "Colossus Rampage", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Colossus Rampage",
 	[7] = {name = "Rapid Fire", cooldown = 6000, manaCost = 0, range = 6, hits = 2, multipler = 0.8, baseDamage = 40, baseDamagePerLevel = 15, scaling = 2, addDamage = 3, tag = {1, 25}, element = 100, aoe = false},-- "Rapid FIre",
-	[8] = {name = "Arrow Volley", cooldown = 12000, manaCost = 0, range = 6, hits = 1, multipler = 1.2, baseDamage = 80, baseDamagePerLevel = 25, scaling = 2, addDamage = 3, tag = {1, 16, 20}, element = 100, aoe = false},-- "Arrow Volley",
-	[9] = {name = "Snipe", cooldown = 6000, manaCost = 0, range = 9, hits = 1, multipler = 3.5, baseDamage = 300, baseDamagePerLevel = 50, scaling = 2, addDamage = 3, tag = {1, 26}, element = 100, aoe = false},-- "Snipe",
-	[10] = {name = "Shadowstep", cooldown = 6000, manaCost = 0, range = 5, hits = 1, multipler = 1.0, baseDamage = 120, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 15, 26}, element = 100, aoe = false},-- "Shadowstep",
-	[11] = {name = "Blade Fan", cooldown = 5000, manaCost = 0, range = 0, hits = 1, multipler = 1.2, baseDamage = 100, baseDamagePerLevel = 20, scaling = 3, addDamage = 2, tag = {1, 20, 30}, element = 100, aoe = true},-- "Blade Fan",
+	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 1.5, baseDamage = 60, baseDamagePerLevel = 40, scaling = 2, addDamage = 3, tag = {1, 16, 20}, element = 100, aoe = false},-- "Arrow Volley",
+	[9] = {name = "Snipe", cooldown = 6000, manaCost = 0, range = 9, hits = 1, multipler = 0.8, baseDamage = 100, baseDamagePerLevel = 30, scaling = 2, addDamage = 3, tag = {1, 26}, element = 100, aoe = false},-- "Snipe",
+	[10] = {name = "Shadowstep", cooldown = 3000, manaCost = 0, range = 5, hits = 1, multipler = 1.0, baseDamage = 120, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 15, 26}, element = 100, aoe = false},-- "Shadowstep",
+	[11] = {name = "Blade Fan", cooldown = 3000, manaCost = 0, range = 0, hits = 1, multipler = 1.2, baseDamage = 120, baseDamagePerLevel = 20, scaling = 3, addDamage = 2, tag = {1, 20, 30}, element = 100, aoe = true},-- "Blade Fan",
 	[12] = {name = "Death Mark", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 3, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Death Mark",
-	[13] = {name = "Heal", cooldown = 2000, manaCost = 0, range = 5, hits = 1, multipler = 0.7, baseDamage = 100, baseDamagePerLevel = 10, scaling = 1, addDamage = 1, tag = {13, 26, 25}, element = 100, aoe = false},
-	[14] = {name = "Holy Smite", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0.5, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
-	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.9, baseDamage = 150, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
+	[13] = {name = "Heal", cooldown = 2500, manaCost = 0, range = 5, hits = 1, multipler = 0.5, baseDamage = 170, baseDamagePerLevel = 60, scaling = 1, addDamage = 1, tag = {13, 26, 25}, element = 100, aoe = false},
+	[14] = {name = "Holy Smite", cooldown = 4000, manaCost = 0, range = 0, hits = 1, multipler = 0.8, baseDamage = 120, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
+	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.9, baseDamage = 150, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
 	[16] = {name = "Arcane Cleave", cooldown = 2000, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},
-	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 15, range = 0, hits = 1, multipler = 0.25, baseDamage = 40, baseDamagePerLevel = 5, scaling = 1, addDamage = 1, tag = {13, 22}, element = 100, aoe = true},
-	[18] = {name = "Arcane Strike", cooldown = 8000, manaCost = 25, range = 4, hits = 1, multipler = 1.0, baseDamage = 120, baseDamagePerLevel = 25, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
+	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 15, range = 0, hits = 1, multipler = 0.2, baseDamage = 30, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 22}, element = 100, aoe = true},
+	[18] = {name = "Arcane Strike", cooldown = 6000, manaCost = 25, range = 4, hits = 1, multipler = 1.0, baseDamage = 170, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -4966,6 +4967,28 @@ function Creature.setWings(self, wingsId, ticks_seconds)
 		lookMount = outfit.lookMount, lookWings = wingsId, lookAura = outfit.lookAura,
 		lookHealthBar = outfit.lookHealthBar, lookShader = outfit.lookShader })
 	self:addCondition(conditionOutfit)
+	return true
+end
+
+function Creature.setScale(self, scale, duration_ms, anim_ms)
+	if not self then return false end
+	scale = scale or 1.0
+	if duration_ms == nil then
+		duration_ms = -1
+	end
+	anim_ms = anim_ms or 300
+	local payload = json.encode({
+		id = self:getId(),
+		scale = scale,
+		ms = anim_ms,
+		duration = duration_ms
+	})
+	local spectators = Game.getSpectators(self:getPosition(), false, true, 15, 15, 15, 15)
+	for _, spectator in ipairs(spectators) do
+		if spectator:isPlayer() then
+			spectator:sendExtendedOpcode(ExtendedOPCodes.CODE_CREATURE_SCALE, payload)
+		end
+	end
 	return true
 end
 

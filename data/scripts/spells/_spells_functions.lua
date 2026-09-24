@@ -631,6 +631,7 @@ function spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraF
     combat:setCallback(CALLBACK_PARAM_TARGETCREATURE, "onTargetCombat")
   else
     function clean(player, target)
+      print("[Combat Callback clean] Hit target: " .. (target and target:getName() or "nil"))
       if extraFunc then
         extraFunc(player, target)
       end
