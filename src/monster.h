@@ -134,6 +134,9 @@ class Monster final : public Creature
 		bool canSeeInvisibility() const override {
 			return isImmune(CONDITION_INVISIBLE);
 		}
+		void removeTarget(Creature* creature);
+		void clearTargetList();
+		void onCreatureFound(Creature* creature, bool pushFront = false);
 		uint32_t getManaCost() const {
 			return mType->info.manaCost;
 		}
@@ -174,7 +177,7 @@ class Monster final : public Creature
 
 		void onThink(uint32_t interval) override;
 
-		bool challengeCreature(Creature* creature) override;
+		bool challengeCreature(Creature* creature, uint32_t duration = 5000) override;
 
 		void setNormalCreatureLight() override;
 		bool getCombatValues(int64_t& min, int64_t& max) override;
@@ -258,17 +261,14 @@ class Monster final : public Creature
 
 		void onCreatureEnter(Creature* creature);
 		void onCreatureLeave(Creature* creature);
-		void onCreatureFound(Creature* creature, bool pushFront = false);
 
 		void updateLookDirection();
 
 		void addFriend(Creature* creature);
 		void removeFriend(Creature* creature);
 		void addTarget(Creature* creature, bool pushFront = false);
-		void removeTarget(Creature* creature);
 
 		void updateTargetList();
-		void clearTargetList();
 		void clearFriendList();
 
 		void death(Creature* lastHitCreature) override;

@@ -831,8 +831,10 @@ class LuaScriptInterface
 
 		static int luaCreatureGetTarget(lua_State* L);
 		static int luaCreatureSetTarget(lua_State* L);
+		static int luaCreatureChallengeCreature(lua_State* L);
 
 		static int luaCreatureGetTargetingPlayers(lua_State* L);
+		static int luaCreatureCancelTargeters(lua_State* L);
 
 		static int luaCreatureGetFollowCreature(lua_State* L);
 		static int luaCreatureSetFollowCreature(lua_State* L);

@@ -36,19 +36,19 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   -- Smoke cloud effect
   player:getPosition():sendMagicEffect(CONST_ME_POFF)
 
-  -- Real Invisibility via Outfit (Custom LookType 9 + hide health bar)
+  -- Invisibility condition (TFS 1.3 stealth - monsters ignore, no sparkles)
+  local invisible = Condition(CONDITION_INVISIBLE)
+  invisible:setParameter(CONDITION_PARAM_TICKS, 3500)
+  player:addCondition(invisible)
+
+  -- Stealth Outfit (Custom LookType 9 + hide health/mana/aura/wings)
   local invisibleOutfit = Condition(CONDITION_OUTFIT)
   invisibleOutfit:setParameter(CONDITION_PARAM_TICKS, 3500)
   invisibleOutfit:setOutfit({lookType = 9, lookHealthBar = 0, lookManaBar = 0, lookAura = 0, lookWings = 0})
   player:addCondition(invisibleOutfit)
 
-  -- Drop monster aggro to simulate stealth (since we can't use CONDITION_INVISIBLE which forces sparkles)
-  local spectators = Game.getSpectators(player:getPosition(), false, false, 9, 9, 7, 7)
-  for _, spec in ipairs(spectators) do
-    if spec:isMonster() and spec:getTarget() == player then
-      spec:setTarget(nil)
-    end
-  end
+  -- Instantly cancel target on all players & drop monster aggro
+  player:cancelTargeters()
 
   -- Speed boost +35%
   local speed = Condition(CONDITION_HASTE)

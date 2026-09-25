@@ -90,6 +90,12 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
       slowCondition:setParameter(CONDITION_PARAM_SPEED, -slow)
       target:addCondition(slowCondition)
     end
+
+    if target:isMonster() then
+      target:challengeCreature(caster, 5000)
+      target:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+      Game.sendAnimatedText("CHALLENGE", target:getPosition(), TEXTCOLOR_RED, "Reggae One-12px-bordered")
+    end
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)

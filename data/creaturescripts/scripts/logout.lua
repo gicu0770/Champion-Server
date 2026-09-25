@@ -22,6 +22,10 @@ function onLogout(player)
 
 	colleftInfo[player:getId()] = nil
 
+	if PVP_RECENT_ATTACKERS and playerId then
+		PVP_RECENT_ATTACKERS[playerId] = nil
+	end
+
 	if ACTIVATED_DOT and ACTIVATED_DOT[playerId] then
 		ACTIVATED_DOT[playerId] = nil
 	end

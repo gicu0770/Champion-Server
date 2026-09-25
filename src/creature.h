@@ -712,7 +712,7 @@ class Creature : virtual public Thing
 		void gainHealth(Creature* healer, int64_t healthGain);
 		virtual void drainHealth(Creature* attacker, int64_t damage);
 
-		virtual bool challengeCreature(Creature*) {
+		virtual bool challengeCreature(Creature*, uint32_t = 5000) {
 			return false;
 		}
 
@@ -869,6 +869,7 @@ class Creature : virtual public Thing
 		}
 
 		void clearTargetingPlayersList();
+		void cancelTargeters();
 		void addTargetingPlayer(Creature* creature);
 		void removeTargetingPlayer(Creature* creature);
 		const CreatureList& getTargetingPlayers() const {

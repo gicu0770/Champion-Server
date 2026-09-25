@@ -232,7 +232,7 @@ void Monster::onCreatureMove(Creature* creature, const Tile* newTile, const Posi
 		bool canSeeNewPos = canSee(newPos);
 		bool canSeeOldPos = canSee(oldPos);
 
-		if (canSeeNewPos && !canSeeOldPos) {
+		if ((canSeeNewPos && !canSeeOldPos) || (isIdle && canSeeNewPos)) {
 			onCreatureEnter(creature);
 		} else if (!canSeeNewPos && canSeeOldPos) {
 			onCreatureLeave(creature);
@@ -411,6 +411,10 @@ void Monster::onCreatureFound(Creature* creature, bool pushFront/* = false*/)
 	}
 
 	updateIdleStatus();
+
+	if (!isSummon() && !attackedCreature && !targetList.empty()) {
+		searchTarget();
+	}
 }
 
 void Monster::onCreatureEnter(Creature* creature)
@@ -2018,15 +2022,19 @@ void Monster::changeHealth(int64_t healthChange, bool sendHealthChange/* = true*
 	Creature::changeHealth(healthChange, sendHealthChange);
 }
 
-bool Monster::challengeCreature(Creature* creature)
+bool Monster::challengeCreature(Creature* creature, uint32_t duration /*= 5000*/)
 {
-	if (isSummon()) {
+	if (isSummon() || !creature || creature == this) {
 		return false;
+	}
+
+	if (isTarget(creature)) {
+		addTarget(creature, true);
 	}
 
 	bool result = selectTarget(creature);
 	if (result) {
-		targetChangeCooldown = 8000;
+		targetChangeCooldown = duration;
 		targetChangeTicks = 0;
 	}
 	return result;

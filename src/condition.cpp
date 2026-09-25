@@ -21,6 +21,7 @@
 
 #include "condition.h"
 #include "game.h"
+#include "monster.h"
 
 extern Game g_game;
 
@@ -1486,6 +1487,7 @@ bool ConditionInvisible::startCondition(Creature* creature)
 		return false;
 	}
 
+	creature->cancelTargeters();
 	g_game.internalCreatureChangeVisible(creature, false);
 	return true;
 }
@@ -1494,6 +1496,14 @@ void ConditionInvisible::endCondition(Creature* creature)
 {
 	if (!creature->isInvisible()) {
 		g_game.internalCreatureChangeVisible(creature, true);
+
+		SpectatorVector spectators;
+		g_game.map.getSpectators(spectators, creature->getPosition(), true, false);
+		for (Creature* spectator : spectators) {
+			if (Monster* monster = spectator->getMonster()) {
+				monster->onCreatureFound(creature, true);
+			}
+		}
 	}
 }
 

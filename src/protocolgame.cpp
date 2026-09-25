@@ -4904,9 +4904,21 @@ void ProtocolGame::AddCreature(const Creature* creature, bool known, uint32_t re
 	if (!creature->isInGhostMode() && !creature->isInvisible()) {
 		const Outfit_t& outfit = creature->getCurrentOutfit();
 		AddOutfit(outfit);
-	} else {
-		static Outfit_t outfit;
+	} else if (player->canSeeInvisibility()) {
+		const Outfit_t& outfit = creature->getCurrentOutfit();
 		AddOutfit(outfit);
+	} else {
+		static Outfit_t invisibleOutfit;
+		static bool initInvisible = false;
+		if (!initInvisible) {
+			invisibleOutfit.lookType = 9;
+			invisibleOutfit.lookHealthBar = 0;
+			invisibleOutfit.lookManaBar = 0;
+			invisibleOutfit.lookAura = 0;
+			invisibleOutfit.lookWings = 0;
+			initInvisible = true;
+		}
+		AddOutfit(invisibleOutfit);
 	}
 
 	LightInfo lightInfo = creature->getCreatureLight();

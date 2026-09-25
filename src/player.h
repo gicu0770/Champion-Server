@@ -1220,15 +1220,24 @@ class Player final : public Creature, public Cylinder
 				return;
 			}
 
-			if (creature->getPlayer()) {
+			if (canSeeInvisibility()) {
+				client->sendCreatureOutfit(creature, creature->getCurrentOutfit());
+			} else if (creature->getPlayer()) {
 				if (visible) {
 					client->sendCreatureOutfit(creature, creature->getCurrentOutfit());
 				} else {
-					static Outfit_t outfit;
-					client->sendCreatureOutfit(creature, outfit);
+					static Outfit_t invisibleOutfit;
+					static bool initInvisible = false;
+					if (!initInvisible) {
+						invisibleOutfit.lookType = 9;
+						invisibleOutfit.lookHealthBar = 0;
+						invisibleOutfit.lookManaBar = 0;
+						invisibleOutfit.lookAura = 0;
+						invisibleOutfit.lookWings = 0;
+						initInvisible = true;
+					}
+					client->sendCreatureOutfit(creature, invisibleOutfit);
 				}
-			} else if (canSeeInvisibility()) {
-				client->sendCreatureOutfit(creature, creature->getCurrentOutfit());
 			} else {
 				int32_t stackpos = creature->getTile()->getStackposOfCreature(this, creature);
 				if (stackpos == -1) {

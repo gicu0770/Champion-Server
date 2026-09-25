@@ -201,6 +201,10 @@ ReturnValue Combat::canTargetCreature(Player* attacker, Creature* target)
 		return RETURNVALUE_EMPTY; //you may not atttack this player
 	}
 
+	if (target->isInvisible() && !attacker->canSeeInvisibility()) {
+		return RETURNVALUE_EMPTY;
+	}
+
 	if (!attacker->hasFlag(PlayerFlag_IgnoreProtectionZone)) {
 		//pz-zone
 		if (attacker->getZone() == ZONE_PROTECTION) {

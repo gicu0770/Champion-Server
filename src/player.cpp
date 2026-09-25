@@ -3483,6 +3483,14 @@ void Player::internalAddThing(uint32_t index, Thing* thing)
 
 bool Player::setFollowCreature(Creature* creature)
 {
+	if (creature && creature->isInvisible() && !canSeeInvisibility()) {
+		setFollowCreature(nullptr);
+		sendCancelMessage(RETURNVALUE_THEREISNOWAY);
+		sendCancelTarget();
+		stopWalk();
+		return false;
+	}
+
 	if (!Creature::setFollowCreature(creature)) {
 		setFollowCreature(nullptr);
 		setAttackedCreature(nullptr);
@@ -3497,6 +3505,11 @@ bool Player::setFollowCreature(Creature* creature)
 
 bool Player::setAttackedCreature(Creature* creature)
 {
+	if (creature && creature->isInvisible() && !canSeeInvisibility()) {
+		sendCancelTarget();
+		return false;
+	}
+
 	if (!Creature::setAttackedCreature(creature)) {
 		sendCancelTarget();
 		return false;

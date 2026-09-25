@@ -2901,8 +2901,10 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Creature", "getTarget", LuaScriptInterface::luaCreatureGetTarget);
 	registerMethod("Creature", "setTarget", LuaScriptInterface::luaCreatureSetTarget);
+	registerMethod("Creature", "challengeCreature", LuaScriptInterface::luaCreatureChallengeCreature);
 
 	registerMethod("Creature", "getTargetingPlayers", LuaScriptInterface::luaCreatureGetTargetingPlayers);
+	registerMethod("Creature", "cancelTargeters", LuaScriptInterface::luaCreatureCancelTargeters);
 
 	registerMethod("Creature", "getFollowCreature", LuaScriptInterface::luaCreatureGetFollowCreature);
 	registerMethod("Creature", "setFollowCreature", LuaScriptInterface::luaCreatureSetFollowCreature);
@@ -4480,7 +4482,7 @@ int LuaScriptInterface::luaDoTargetCombat(lua_State* L)
 
 int LuaScriptInterface::luaDoChallengeCreature(lua_State* L)
 {
-	//doChallengeCreature(cid, target)
+	//doChallengeCreature(cid, target[, duration = 5000])
 	Creature* creature = getCreature(L, 1);
 	if (!creature || creature->isRemoved()) {
 		reportErrorFunc(getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
@@ -4495,8 +4497,8 @@ int LuaScriptInterface::luaDoChallengeCreature(lua_State* L)
 		return 1;
 	}
 
-	target->challengeCreature(creature);
-	pushBoolean(L, true);
+	uint32_t duration = getNumber<uint32_t>(L, 3, 5000);
+	pushBoolean(L, target->challengeCreature(creature, duration));
 	return 1;
 }
 
@@ -8987,17 +8989,53 @@ int LuaScriptInterface::luaCreatureGetTarget(lua_State* L)
 
 int LuaScriptInterface::luaCreatureSetTarget(lua_State* L)
 {
-	// creature:setTarget(target)
+	// creature:setTarget([target = nil])
 	Creature* creature = getUserdata<Creature>(L, 1);
-	if (creature && !creature->isRemoved()) {
-		Creature* target = getCreature(L, 2);
-		if (!target || target->isRemoved()) {
-			lua_pushnil(L);
-			return 1;
-		}
-		pushBoolean(L, creature->setAttackedCreature(target));
-	} else {
+	if (!creature || creature->isRemoved()) {
 		lua_pushnil(L);
+		return 1;
+	}
+
+	if (lua_isnil(L, 2) || lua_gettop(L) < 2) {
+		creature->setAttackedCreature(nullptr);
+		if (Player* player = creature->getPlayer()) {
+			player->sendCancelTarget();
+		}
+		pushBoolean(L, true);
+		return 1;
+	}
+
+	Creature* target = getCreature(L, 2);
+	if (!target || target->isRemoved()) {
+		lua_pushnil(L);
+		return 1;
+	}
+	pushBoolean(L, creature->setAttackedCreature(target));
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureChallengeCreature(lua_State* L)
+{
+	// creature:challengeCreature(target[, duration = 5000])
+	Creature* self = getUserdata<Creature>(L, 1);
+	if (!self || self->isRemoved()) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Creature* other = getCreature(L, 2);
+	if (!other || other->isRemoved()) {
+		pushBoolean(L, false);
+		return 1;
+	}
+
+	uint32_t duration = getNumber<uint32_t>(L, 3, 5000);
+	if (self->getMonster()) {
+		pushBoolean(L, self->challengeCreature(other, duration));
+	} else if (other->getMonster()) {
+		pushBoolean(L, other->challengeCreature(self, duration));
+	} else {
+		pushBoolean(L, false);
 	}
 	return 1;
 }
@@ -13809,6 +13847,20 @@ int LuaScriptInterface::luaCreatureGetTargetingPlayers(lua_State* L)
 		lua_rawseti(L, -2, index++);
 	}
 
+	return 1;
+}
+
+int LuaScriptInterface::luaCreatureCancelTargeters(lua_State* L)
+{
+	// creature:cancelTargeters()
+	Creature* creature = getUserdata<Creature>(L, 1);
+	if (!creature || creature->isRemoved()) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	creature->cancelTargeters();
+	pushBoolean(L, true);
 	return 1;
 }
 

@@ -1567,24 +1567,24 @@ TAGS = {
 	[31] = {"slow", "#55AAFF"}
 }
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
-	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 90, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
-	[2] = {name = "Frost Wave", cooldown = 4000, manaCost = 15, range = 4, hits = 1, multipler = 1.1, baseDamage = 140, baseDamagePerLevel = 35, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
-	[3] = {name = "Thunderstorm", cooldown = 6000, manaCost = 20, range = 5, hits = 1, multipler = 0.6, baseDamage = 150, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
-	[4] = {name = "Colossal Grasp", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.4, baseDamage = 30, baseDamagePerLevel = 30, scaling = 2, addDamage = 2, tag = {12, 15, 30}, element = 100, aoe = false},-- "Colossal Grasp",
+	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
+	[2] = {name = "Frost Wave", cooldown = 4000, manaCost = 15, range = 4, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 35, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
+	[3] = {name = "Thunderstorm", cooldown = 6000, manaCost = 20, range = 5, hits = 1, multipler = 0.4, baseDamage = 120, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 25}, element = 100, aoe = true},-- "Thunderstorm",
+	[4] = {name = "Colossal Grasp", cooldown = 4000, manaCost = 0, range = 4, hits = 1, multipler = 1.2, baseDamage = 40, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 15, 30}, element = 100, aoe = false},-- "Colossal Grasp",
 	[5] = {name = "Ground Slam", cooldown = 3500, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 100, baseDamagePerLevel = 20, scaling = 2, addDamage = 2, tag = {12, 20, 31}, element = 100, aoe = true},-- "Ground Slam",
 	[6] = {name = "Colossus Rampage", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 2, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Colossus Rampage",
 	[7] = {name = "Rapid Fire", cooldown = 6000, manaCost = 0, range = 6, hits = 2, multipler = 0.8, baseDamage = 40, baseDamagePerLevel = 15, scaling = 2, addDamage = 3, tag = {1, 25}, element = 100, aoe = false},-- "Rapid FIre",
-	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 1.5, baseDamage = 60, baseDamagePerLevel = 40, scaling = 2, addDamage = 3, tag = {1, 16, 20}, element = 100, aoe = false},-- "Arrow Volley",
-	[9] = {name = "Snipe", cooldown = 6000, manaCost = 0, range = 9, hits = 1, multipler = 0.8, baseDamage = 100, baseDamagePerLevel = 30, scaling = 2, addDamage = 3, tag = {1, 26}, element = 100, aoe = false},-- "Snipe",
-	[10] = {name = "Shadowstep", cooldown = 3000, manaCost = 0, range = 5, hits = 1, multipler = 1.0, baseDamage = 120, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 15, 26}, element = 100, aoe = false},-- "Shadowstep",
-	[11] = {name = "Blade Fan", cooldown = 3000, manaCost = 0, range = 0, hits = 1, multipler = 1.2, baseDamage = 120, baseDamagePerLevel = 20, scaling = 3, addDamage = 2, tag = {1, 20, 30}, element = 100, aoe = true},-- "Blade Fan",
+	[8] = {name = "Arrow Volley", cooldown = 4000, manaCost = 0, range = 6, hits = 1, multipler = 1.1, baseDamage = 120, baseDamagePerLevel = 40, scaling = 2, addDamage = 3, tag = {1, 16, 20}, element = 100, aoe = false},-- "Arrow Volley",
+	[9] = {name = "Snipe", cooldown = 6000, manaCost = 0, range = 9, hits = 1, multipler = 0.7, baseDamage = 90, baseDamagePerLevel = 30, scaling = 2, addDamage = 3, tag = {1, 26}, element = 100, aoe = false},-- "Snipe",
+	[10] = {name = "Shadowstep", cooldown = 3000, manaCost = 0, range = 5, hits = 1, multipler = 1.0, baseDamage = 85, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 15, 26}, element = 100, aoe = false},-- "Shadowstep",
+	[11] = {name = "Blade Fan", cooldown = 3000, manaCost = 0, range = 0, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 30, scaling = 3, addDamage = 2, tag = {1, 20, 30}, element = 100, aoe = true},-- "Blade Fan",
 	[12] = {name = "Death Mark", cooldown = 6000, manaCost = 0, range = 0, hits = 1, multipler = 0, baseDamage = 0, baseDamagePerLevel = 0, scaling = 3, addDamage = 2, tag = {25}, element = 100, aoe = false},-- "Death Mark",
 	[13] = {name = "Heal", cooldown = 2500, manaCost = 0, range = 5, hits = 1, multipler = 0.5, baseDamage = 170, baseDamagePerLevel = 60, scaling = 1, addDamage = 1, tag = {13, 26, 25}, element = 100, aoe = false},
-	[14] = {name = "Holy Smite", cooldown = 4000, manaCost = 0, range = 0, hits = 1, multipler = 0.8, baseDamage = 120, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
-	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.9, baseDamage = 150, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
-	[16] = {name = "Arcane Cleave", cooldown = 2000, manaCost = 15, range = 4, hits = 1, multipler = 0.7, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},
-	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 15, range = 0, hits = 1, multipler = 0.2, baseDamage = 30, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 22}, element = 100, aoe = true},
-	[18] = {name = "Arcane Strike", cooldown = 6000, manaCost = 25, range = 4, hits = 1, multipler = 1.0, baseDamage = 170, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
+	[14] = {name = "Holy Smite", cooldown = 4000, manaCost = 0, range = 0, hits = 1, multipler = 0.8, baseDamage = 100, baseDamagePerLevel = 30, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
+	[15] = {name = "Divine Judgement", cooldown = 5000, manaCost = 0, range = 5, hits = 1, multipler = 0.8, baseDamage = 120, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30, 25}, element = 100, aoe = true},
+	[16] = {name = "Arcane Cleave", cooldown = 2000, manaCost = 15, range = 4, hits = 1, multipler = 0.6, baseDamage = 80, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 16, 20}, element = 100, aoe = true},
+	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 15, range = 0, hits = 1, multipler = 0.15, baseDamage = 30, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 22}, element = 100, aoe = true},
+	[18] = {name = "Arcane Strike", cooldown = 6000, manaCost = 25, range = 4, hits = 1, multipler = 1.0, baseDamage = 130, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
 }
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
@@ -5242,42 +5242,42 @@ function goldFormula(monsterLevel)
 	return gold
 end
 function damageFormula(monsterLevel)
-	local damage = 20 + (monsterLevel * 2)
+	local damage = 20 + (monsterLevel * 4)
 	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
 		damage = damage + 5
 	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
-		damage = damage + 10
-	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
 		damage = damage + 15
+	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
+		damage = damage + 27
 	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
-		damage = damage + 20
-	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
-		damage = damage + 25
-	elseif monsterLevel >= 26 and monsterLevel <= 60 then
-		damage = damage + 30
-	elseif monsterLevel >= 40 and monsterLevel <= 70 then
 		damage = damage + 35
-	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
-		damage = damage + 40
-	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
+	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons
 		damage = damage + 45
-	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
-		damage = damage + 50
-	elseif monsterLevel >= 96 then
+	elseif monsterLevel >= 26 and monsterLevel <= 60 then
 		damage = damage + 60
+	elseif monsterLevel >= 40 and monsterLevel <= 70 then
+		damage = damage + 80
+	elseif monsterLevel >= 52 and monsterLevel <= 80 then -- burning i undeady
+		damage = damage + 100
+	elseif monsterLevel >= 61 and monsterLevel <= 90 then -- do prison
+		damage = damage + 125
+	elseif monsterLevel >= 70 and monsterLevel <= 95 then -- Undearworlds
+		damage = damage + 150
+	elseif monsterLevel >= 96 then
+		damage = damage + 190
 	end
 
 	return damage
 end
 
 function healthFormula(monsterLevel)
-    local health = 100 + (monsterLevel * 5)
+    local health = 100 + (monsterLevel * 15)
 	if monsterLevel >= 1 and monsterLevel <= 10 then -- Goblins
 		health = health * 1.10
 	elseif monsterLevel >= 11 and monsterLevel <= 20 then -- cyclops
-		health = health * 1.25
+		health = health * 1.35
 	elseif monsterLevel >= 12 and monsterLevel <= 30 then -- dragon
-		health = health * 1.40
+		health = health * 1.50
 	elseif monsterLevel >= 15 and monsterLevel <= 40 then -- herous
 		health = health * 1.70
 	elseif monsterLevel >= 19 and monsterLevel <= 50 then	-- demons

@@ -1,5 +1,77 @@
 
+-- =====================================================================
+-- ANTI-GANG / FOCUS PROTECTION (PVP ONLY)
+-- Redukuje otrzymywane obrazenia, gdy 1 gracza bije 3 lub wiecej graczy w krotkim czasie
+-- =====================================================================
+PVP_FOCUS_PROTECTION = {
+	enabled = true,
+	window = 4,        -- Okno czasowe w sekundach (czas od ostatniego uderzenia danego gracza)
+	minAttackers = 3,  -- Minimalna liczba unikalnych graczy atakujacych cel
+	reductions = {
+		[3] = 20,      -- 20% redukcji obrazen przy 3 atakujacych
+		[4] = 35,      -- 35% redukcji obrazen przy 4 atakujacych
+		[5] = 50,      -- 50% redukcji obrazen przy 5+ atakujacych
+	}
+}
+
+if not PVP_RECENT_ATTACKERS then
+	PVP_RECENT_ATTACKERS = {}
+end
+
+local function getPvPFocusReduction(targetPlayer, attackerPlayer)
+	if not PVP_FOCUS_PROTECTION.enabled then
+		return 0, 1
+	end
+
+	if not targetPlayer or not targetPlayer:isPlayer() then
+		return 0, 1
+	end
+
+	local atk = attackerPlayer
+	if not atk then
+		return 0, 1
+	end
+	if not atk:isPlayer() and atk.getMaster and atk:getMaster() and atk:getMaster():isPlayer() then
+		atk = atk:getMaster()
+	end
+
+	if not atk:isPlayer() or atk:getId() == targetPlayer:getId() then
+		return 0, 1
+	end
+
+	local targetId = targetPlayer:getId()
+	local attackerId = atk:getId()
+	local now = os.time()
+
+	if not PVP_RECENT_ATTACKERS[targetId] then
+		PVP_RECENT_ATTACKERS[targetId] = {}
+	end
+
+	-- Zapisz biezace uderzenie dla tego atakujacego gracza
+	PVP_RECENT_ATTACKERS[targetId][attackerId] = now
+
+	-- Zlicz unikalnych atakujacych w oknie czasowym i wyczysc starych
+	local count = 0
+	for aId, lastHit in pairs(PVP_RECENT_ATTACKERS[targetId]) do
+		if (now - lastHit) <= PVP_FOCUS_PROTECTION.window then
+			count = count + 1
+		else
+			PVP_RECENT_ATTACKERS[targetId][aId] = nil
+		end
+	end
+
+	if count >= PVP_FOCUS_PROTECTION.minAttackers then
+		local reductionPct = PVP_FOCUS_PROTECTION.reductions[count] or PVP_FOCUS_PROTECTION.reductions[5] or 50
+		return reductionPct, count
+	end
+
+	return 0, count
+end
+
 function onLogin(player)
+	if player then
+		PVP_RECENT_ATTACKERS[player:getId()] = nil
+	end
 	us_onLogin(player)
 	return true
 end
@@ -69,6 +141,9 @@ function onManaChange(creature, attacker, primaryDamage, primaryType, secondaryD
 	return us_onManaChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin,critical, spellUID, critChance, distance)
 end
 function onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitunjustified, mostdamageunjustified)
+	if creature and creature:isPlayer() and PVP_RECENT_ATTACKERS then
+		PVP_RECENT_ATTACKERS[creature:getId()] = nil
+	end
 	return us_onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitunjustified, mostdamageunjustified)
 end
 function onKill(player, target, lastHit)
@@ -843,6 +918,22 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		})
 		--]]
 
+		-- =====================================================================
+		-- ANTI-GANG / FOCUS PROTECTION (PVP: 3+ graczy atakuje 1 cel w krotkim czasie)
+		-- =====================================================================
+		local focusReduPct, focusAttackerCount = 0, 0
+		if creature:isPlayer() then
+			focusReduPct, focusAttackerCount = getPvPFocusReduction(creature, attacker)
+			if focusReduPct > 0 then
+				local focusMult = (1.0 - (focusReduPct / 100))
+				primaryDamage = math.ceil(primaryDamage * focusMult)
+				if secondaryDamage and secondaryDamage ~= 0 then
+					local sSign = (secondaryDamage < 0) and -1 or 1
+					secondaryDamage = sSign * math.ceil(math.abs(secondaryDamage) * focusMult)
+				end
+			end
+		end
+
 		local appliedDotSummary = nil
 
 		-- Mage (Vocation 1) - nakłada Burn
@@ -854,6 +945,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local totalDotDamage = math.max(10, 30 + math.floor(targetMaxHp * 0.03))
 			local totalTicks = 4
 			local dmgPerTick = math.max(1, math.ceil((totalDotDamage * targetDefMult) / totalTicks))
+			if focusReduPct > 0 then
+				dmgPerTick = math.max(1, math.ceil(dmgPerTick * (1.0 - (focusReduPct / 100))))
+			end
 			local sumDotDamage = dmgPerTick * totalTicks
 
 			creature:applyDot(attacker, {
@@ -890,6 +984,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			effMagDef = math.max(0, effMagDef - attacker:getMagicPenetration())
 			local magMult = getDefenseMultiplier(effMagDef)
 			local dmgPerTick = math.max(1, math.ceil(rawTickDmg * magMult))
+			if focusReduPct > 0 then
+				dmgPerTick = math.max(1, math.ceil(dmgPerTick * (1.0 - (focusReduPct / 100))))
+			end
 
 			creature:applyDot(attacker, {
 				buffId = TORMENT_BURN,
@@ -986,6 +1083,9 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			end
 			
 			-- Przerwanie niewidzialności po zaatakowaniu czegokolwiek (tylko dla zwykłych graczy)
+			if attacker:getCondition(CONDITION_INVISIBLE) then
+				attacker:removeCondition(CONDITION_INVISIBLE)
+			end
 			if attacker:getCondition(CONDITION_OUTFIT) then
 				attacker:removeCondition(CONDITION_OUTFIT)
 			end
@@ -1117,19 +1217,27 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				effReduStr = string.format("-%.1f%% Redu", effectiveReductionPct)
 			end
 
+			local focusSuffix = (focusReduPct > 0)
+				and string.format(" [Anti-Gang: -%d%% (%d vs 1)]", focusReduPct, focusAttackerCount)
+				or ""
+
 			local defStr = (shredPct > 0)
 				and string.format("Def: %d (%s) [Shred: -%d%% (Base: %d)]", rawDef, rawReduStr, shredPct, baseTargetDef)
 				or string.format("Def: %d (%s)", rawDef, rawReduStr)
 
 			local logMsg = string.format(
-				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (%s) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s",
-				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effReduStr, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix
+				"[DMG] [%s] Target: %s | Base: %d (%s) | %s | Pen: %d -> Eff.Def: %d (%s) | Pen Gain: +%d (+%.1f%%) | Final: %d%s%s%s%s",
+				sourceStr, creature:getName(), baseDmgBeforeDef, dmgTypeStr, defStr, penetration, effectiveDef, effReduStr, penGain, penGainPct, primaryDamage, dotSuffix, lsSuffix, critSuffix, focusSuffix
 			)
 			attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, logMsg)
 		end
 
 		-- Log Incoming Damage (Target Player in PvP)
 		if creature:isPlayer() and creature:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+			local focusSuffix = (focusReduPct > 0)
+				and string.format(" [Anti-Gang: -%d%% (%d vs 1)]", focusReduPct, focusAttackerCount)
+				or ""
+
 			local rawTakenRedu = ""
 			if math.abs(rawReductionPct) < 0.05 then
 				rawTakenRedu = "0.0%"
@@ -1150,8 +1258,8 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 
 			local takenCritSuffix = isCrit and " [CRIT]" or ""
 			local takenMsg = string.format(
-				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (%s) | Pen: %d -> Eff.Def: %d (%s) | Final Taken: %d",
-				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawTakenRedu, penetration, effectiveDef, effTakenRedu, primaryDamage
+				"[TAKEN] [%s]%s From: %s | Base: %d (%s) | Your Def: %d (%s) | Pen: %d -> Eff.Def: %d (%s) | Final Taken: %d%s",
+				sourceStr, takenCritSuffix, attacker:getName(), baseDmgBeforeDef, dmgTypeStr, rawDef, rawTakenRedu, penetration, effectiveDef, effTakenRedu, primaryDamage, focusSuffix
 			)
 			creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, takenMsg)
 		end

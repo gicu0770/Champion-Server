@@ -2023,6 +2023,57 @@ void Creature::clearTargetingPlayersList()
 	targetingPlayersList.clear();
 }
 
+void Creature::cancelTargeters()
+{
+	CreatureList list = targetingPlayersList;
+	for (Creature* creature : list) {
+		creature->incrementReferenceCounter();
+	}
+	clearTargetingPlayersList();
+
+	for (Creature* creature : list) {
+		if (!creature->isRemoved()) {
+			if (creature->getAttackedCreature() == this) {
+				creature->setAttackedCreature(nullptr);
+				if (Player* p = creature->getPlayer()) {
+					p->sendCancelTarget();
+					p->sendTextMessage(MESSAGE_STATUS_SMALL, "Target lost.");
+				}
+			}
+			if (creature->getFollowCreature() == this) {
+				creature->setFollowCreature(nullptr);
+				if (Player* p = creature->getPlayer()) {
+					p->sendCancelTarget();
+				}
+			}
+		}
+		creature->decrementReferenceCounter();
+	}
+
+	SpectatorVector spectators;
+	g_game.map.getSpectators(spectators, getPosition(), true, false);
+	for (Creature* spectator : spectators) {
+		if (spectator == this) {
+			continue;
+		}
+
+		if (spectator->getAttackedCreature() == this) {
+			spectator->setAttackedCreature(nullptr);
+			if (Player* p = spectator->getPlayer()) {
+				p->sendCancelTarget();
+				p->sendTextMessage(MESSAGE_STATUS_SMALL, "Target lost.");
+			}
+		}
+
+		if (spectator->getFollowCreature() == this) {
+			spectator->setFollowCreature(nullptr);
+			if (Player* p = spectator->getPlayer()) {
+				p->sendCancelTarget();
+			}
+		}
+	}
+}
+
 void Creature::addTargetingPlayer(Creature* creature)
 {
 	assert(creature != this);
