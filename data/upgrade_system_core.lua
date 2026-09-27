@@ -60,6 +60,9 @@ function Player:addPlayerModifiersFromItem(item, slot)
         end
       end
 
+      -- Modifiers (Health, Mana, Energy Shield, Speed, Crit, etc.) are managed dynamically and centrally by Player:setCollectionInfo() / Player:setStatistics()
+      -- Directly adding conditions here caused them to stack with setStatistics(), resulting in double stats (e.g. 2x HP on Doran's Wand).
+      --[[
       if attr.combatType == US_TYPES.CONDITION then
         if not US_CONDITIONS[bonusId] then
           US_CONDITIONS[bonusId] = {}
@@ -89,6 +92,7 @@ function Player:addPlayerModifiersFromItem(item, slot)
           self:addCondition(condition)
         end
       end
+      --]]
     end
   end
 end
@@ -433,8 +437,87 @@ function us_onKill(player, target, lastHit)
   end
 end
 
+function handleGuardianAngelRebirth(player)
+  if not player or not player:isPlayer() then
+    return false
+  end
+
+  local hasGA = false
+  if colleftInfo and colleftInfo[player:getId()] and colleftInfo[player:getId()].attributesItems and colleftInfo[player:getId()].attributesItems[69] then
+    hasGA = true
+  else
+    local armor = player:getSlotItem(CONST_SLOT_ARMOR)
+    if armor and armor:getId() == 8885 then
+      hasGA = true
+    end
+  end
+
+  if not hasGA then
+    return false
+  end
+
+  local now = os.time()
+  local cdKey = PlayerStorage.guardianAngelCooldown
+  local nextProc = player:getStorageValue(cdKey)
+  if (nextProc and nextProc > now) or (GA_COOLDOWN and player:hasBuff(GA_COOLDOWN)) then
+    return false
+  end
+
+  -- 300 seconds cooldown + 4 seconds resurrection stasis = 304s total
+  player:setStorageValue(cdKey, now + 304)
+  if GA_COOLDOWN then
+    player:addBuff(GA_COOLDOWN, 304000)
+  end
+
+  -- Prevent death and keep player alive at 1 HP during resurrection
+  player:setHealth(1)
+  player:stopAllDots()
+
+  -- Immortality during 4-second resurrection
+  player:addBuff(RESTART_IMMORTAL, 4000)
+  player:addBuff(BOSS_IMMORTAL, 4000)
+
+  -- Stasis condition: player is stunned / unable to act for 4 seconds
+  local stun = Condition(CONDITION_STUN)
+  stun:setParameter(CONDITION_PARAM_TICKS, 4000)
+  player:addCondition(stun)
+  if STUN then
+    player:addBuff(STUN, 4000)
+  end
+  player:setProgressBar(4000, false)
+
+  -- Visual effects: Golden shader and holy effects
+  if player.setShader then
+    player:setShader("Golden", 4)
+  end
+  player:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
+  player:getPosition():sendMagicEffect(421)
+
+  player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Guardian Angel] Rebirth activated! You enter resurrection for 4 seconds...")
+
+  local playerId = player:getId()
+  addEvent(function()
+    local p = Player(playerId)
+    if not p then return end
+
+    -- Revive restoring 50% max health and 100% max mana
+    local reviveHp = math.max(1, math.floor(p:getMaxHealth() * 0.5))
+    p:setHealth(reviveHp)
+    p:addMana(p:getMaxMana())
+
+    p:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
+    p:getPosition():sendMagicEffect(421)
+    p:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Guardian Angel] You have resurrected with 50% Health and 100% Mana!")
+  end, 4000)
+
+  return true
+end
+
 function us_onPrepareDeath(creature, killer)
   if creature:isPlayer() then
+    if handleGuardianAngelRebirth(creature) then
+      return false
+    end
     if colleftInfo[creature:getId()].attributesItems[207] then -- Resurrection
       if creature:getBuff(RESURRECTION) then
       else

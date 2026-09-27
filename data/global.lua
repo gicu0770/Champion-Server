@@ -4890,6 +4890,9 @@ function Player.getAST(self)
 	if self:hasBuff(STORM_SURGE_BUFF) then
 		as = as + (self:getBuff(STORM_SURGE_BUFF).stacks * 4)
 	end
+	if self:hasBuff(ARDENT_CENSER_BUFF) then
+		as = as + 20
+	end
 	if colleftInfo[self:getId()] and colleftInfo[self:getId()].attributesItems then
 		if colleftInfo[self:getId()].attributesItems[55] then
 			as = as + colleftInfo[self:getId()].attributesItems[55].value
@@ -6019,6 +6022,10 @@ function Player:removeAllOldStats()
 	self:removeCondition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT, 731571)
 	self:removeCondition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT, 812002)
 	self:removeEnergyShieldGainForce(1)
+	for subId = 1000, 1200 do
+		self:removeCondition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT, subId)
+		self:removeCondition(CONDITION_HASTE, CONDITIONID_COMBAT, subId)
+	end
 end
 
 function Player.setStatistics(self)
@@ -6067,11 +6074,20 @@ function Player.setStatistics(self)
 	if colleftInfo[self:getId()].attributesItems[2] then -- max mana
 		Manaadded = Manaadded + colleftInfo[self:getId()].attributesItems[2].value
 	end
+	if colleftInfo[self:getId()].attributesItems[3] then -- max energy shield
+		energyShieldadded = energyShieldadded + colleftInfo[self:getId()].attributesItems[3].value
+	end
 	if colleftInfo[self:getId()].attributesItems[4] then -- health regeneration
 		healthRegen = healthRegen + colleftInfo[self:getId()].attributesItems[4].value
 	end
 	if colleftInfo[self:getId()].attributesItems[5] then -- mana regeneration
 		manaRegen = manaRegen + colleftInfo[self:getId()].attributesItems[5].value
+	end
+	if colleftInfo[self:getId()].attributesItems[12] then -- critical chance
+		CriticalChance = CriticalChance + colleftInfo[self:getId()].attributesItems[12].value
+	end
+	if colleftInfo[self:getId()].attributesItems[13] then -- critical damage
+		CriticalDamage = CriticalDamage + colleftInfo[self:getId()].attributesItems[13].value
 	end
 	if colleftInfo[self:getId()].attributesItems[20] then -- Energy Shield Regeneration
 		energyshieldregen = energyshieldregen + colleftInfo[self:getId()].attributesItems[20].value
@@ -6587,7 +6603,7 @@ end
 
 local CUSTOM_RECOMBINER_SLOT_TYPES = {
   [37790] = 15, -- Seeker's Armguard (gloves)
-  [20002] = 9,  -- Zhonya's Hourglass (head)
+  [24164] = 9,  -- Zhonya's Hourglass (head)
   [2180]  = 9,  -- Verdant Barrier (head)
   [2174]  = 9,  -- Banshee's Veil (head)
   [8856]  = 9,  -- Last Whisper (head)
@@ -6849,6 +6865,13 @@ end
 
 function addEnergyShieldDuration(creature, value, duration, maxCapPercent)
 	if creature and creature.addEnergyShieldDuration then
+		if creature:isPlayer() then
+			local info = colleftInfo[creature:getId()]
+			if info and info.attributesItems and info.attributesItems[67] then
+				creature:addBuff(ARDENT_CENSER_BUFF, 6000)
+				creature:getTotalAttackSpeed()
+			end
+		end
 		return creature:addEnergyShieldDuration(value, duration, maxCapPercent)
 	end
 end

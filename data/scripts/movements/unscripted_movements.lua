@@ -10,6 +10,8 @@ local items = {
 	{itemid = 36108, type = "deequip", slot = "feet", client_version = 1098},
 	{itemid = 36112, type = "equip", slot = "shield", client_version = 1098},
 	{itemid = 36112, type = "deequip", slot = "shield", client_version = 1098},
+	{itemid = 5884, type = "equip", slot = "shield", client_version = 1098},
+	{itemid = 5884, type = "deequip", slot = "shield", client_version = 1098},
 	{itemid = 36138, type = "equip", slot = "hand", client_version = 1098},
 	{itemid = 36138, type = "deequip", slot = "hand", client_version = 1098},
 	{itemid = 36109, type = "equip", slot = "hand", client_version = 1098},
@@ -3170,8 +3172,12 @@ local items = {
 	-- Custom Recombiner Items
 	{itemid = 37790, type = "equip", slot = "gloves", client_version = 0}, -- seeker's armguard
 	{itemid = 37790, type = "deequip", slot = "gloves", client_version = 0},
-	{itemid = 20002, type = "equip", slot = "head", client_version = 0}, -- zhonya's hourglass
-	{itemid = 20002, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 24164, type = "equip", slot = "head", client_version = 0}, -- zhonya's hourglass
+	{itemid = 24164, type = "deequip", slot = "head", client_version = 0},
+	{itemid = 11261, type = "equip", slot = "necklace", client_version = 0}, -- locket of the iron solari
+	{itemid = 11261, type = "deequip", slot = "necklace", client_version = 0},
+	{itemid = 8885, type = "equip", slot = "armor", client_version = 0}, -- guardian angel
+	{itemid = 8885, type = "deequip", slot = "armor", client_version = 0},
 	{itemid = 8883, type = "equip", slot = "head", client_version = 0}, -- force of nature
 	{itemid = 8883, type = "deequip", slot = "head", client_version = 0},
 	{itemid = 8886, type = "equip", slot = "head", client_version = 0}, -- heartsteel

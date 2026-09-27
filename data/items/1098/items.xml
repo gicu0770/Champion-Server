@@ -9381,9 +9381,9 @@
 		<attribute key="weight" value="120" />
 		<attribute key="showcount" value="0" />
 	</item>
-	<item id="5884" article="a" name="spirit container">
-		<attribute key="description" value="It contains pure fighting spirit." />
-		<attribute key="weight" value="600" />
+	<item id="5884" article="an" name="Ardent Censer">
+		<attribute key="weight" value="1200" />
+		<attribute key="weaponType" value="shield" />
 	</item>
 	<item id="5885" article="a" name="flask of warrior's sweat">
 		<attribute key="description" value="It contains the sweat spilled in many battles and is said to be used for certain perfumes too." />
@@ -15842,29 +15842,29 @@
 	<item fromid="8861" toid="8862" article="an" name="energy fence" />
 	<item id="8863" name="shallow water" />
 	<item id="8864" article="a" name="dead tree" />
-	<item id="8865" article="a" name="dark lord's cape">
-		<attribute key="description" value="There is a dark aura surrounding it." />
+	<item id="8865" article="a" name="Gargoyle Stoneplate">
+
 		<attribute key="weight" value="2900" />
 		
 		
 		
 		<attribute key="slotType" value="body" />
 	</item>
-	<item id="8866" name="the robe of the ice queen">
+	<item id="8866" name="Zeke's Convergence">
 		<attribute key="weight" value="2950" />
 		
 		<attribute key="slotType" value="body" />
 	</item>
-	<item id="8867" article="a" name="dragon robe">
-		<attribute key="description" value="It is covered with runic symbols." />
+	<item id="8867" article="a" name="Frozen Heart">
+
 		<attribute key="weight" value="2850" />
 		<attribute key="slotType" value="body" />
 		
 		
 		
 	</item>
-	<item id="8868" article="a" name="velvet mantle">
-		<attribute key="description" value="The smooth tissue seems to sparkle." />
+	<item id="8868" article="a" name="Redemption">
+
 		<attribute key="weight" value="2850" />
 		
 		
@@ -15951,12 +15951,9 @@
 		
 		<attribute key="slotType" value="body" />
 	</item>
-	<item id="8885" article="a" name="divine plate">
-		
-		<attribute key="slotType" value="body" />
+	<item id="8885" article="a" name="Guardian Angel">
 		<attribute key="weight" value="7500" />
-		
-		
+		<attribute key="slotType" value="body" />
 	</item>
 	<item id="37946" article="a" name="divine plate">
 		
@@ -19720,9 +19717,9 @@
 		<attribute key="weight" value="1000" />
 		<attribute key="description" value="The Spiritual Shielding is contained in it." />
 	</item>
-	<item id="11261" article="a" name="twin sun charm">
-		<attribute key="weight" value="1000" />
-		<attribute key="description" value="The Fire of the Suns is contained in it." />
+	<item id="11261" article="a" name="Locket of the Iron Solari">
+		<attribute key="weight" value="450" />
+		<attribute key="slotType" value="necklace" />
 	</item>
 	<item id="11262" article="a" name="solitude charm">
 		<attribute key="weight" value="1000" />
@@ -26995,10 +26992,7 @@
 		<attribute key="duration" value="300" />
 		<attribute key="corpseType" value="blood" />
 	</item>
-	<item id="20002" article="a" name="zhonya's hourglass">
-		<attribute key="weight" value="1000" />
-		<attribute key="slotType" value="head" />
-	</item>
+	<item id="20002" article="an" name="hourglass" />
 	<item fromid="20003" toid="20004" article="a" name="filigree statue" />
 	<item fromid="20005" toid="20080" article="a" name="sign">
 		<attribute key="allowDistRead" value="true" />
@@ -33031,9 +33025,9 @@
 	<item id="24163" article="an" name="ancient sundial">
 		<attribute key="description" value="It seems strangely out of place in this surrounding." />
 	</item>
-	<item id="24164" article="a" name="time compass">
-		<attribute key="weight" value="80" />
-		<attribute key="description" value="It shows the cardinal directions and also many other symbols that you cannot decipher." />
+	<item id="24164" article="a" name="Zhonya's Hourglass">
+		<attribute key="weight" value="1000" />
+		<attribute key="slotType" value="head" />
 	</item>
 	<item id="24165" article="a" name="nacre altar">
 		<attribute key="description" value="The mother-of-pearl inlaid work shimmers in unearthly beauty." />

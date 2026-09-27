@@ -204,29 +204,7 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 						return primaryDamage, primaryType, secondaryDamage, secondaryType
 					end
 
-					-- [45] Time Stop (Zhonya's Hourglass): When falling below 30% HP or taking lethal damage, grants IMMORTAL for 3s (120s cooldown)
-					local defInfo = colleftInfo[creature:getId()]
-					local defAttrs = defInfo and defInfo.attributesItems
-					if defAttrs and defAttrs[45] then
-						local curHp = creature:getHealth()
-						local maxHp = creature:getMaxHealth()
-						local totalIncoming = math.abs(primaryDamage or 0) + math.abs(secondaryDamage or 0)
-						local predictedHp = curHp - totalIncoming
-						if predictedHp <= math.floor(maxHp * 0.30) then
-							local now = os.time()
-							local nextProc = creature:getStorageValue(PlayerStorage.zhonyaCooldown)
-							if nextProc < 0 or now >= nextProc then
-								creature:setStorageValue(PlayerStorage.zhonyaCooldown, now + 120)
-								creature:addBuff(RESTART_IMMORTAL, 3000)
-								creature:addBuff(TIME_STOP_CD, 120000)
-								creature:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
-								creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Zhonya's Hourglass] Time Stop activated! You are Immortal for 3 seconds (Cooldown: 120s).")
-								primaryDamage = 0
-								secondaryDamage = 0
-								return primaryDamage, primaryType, secondaryDamage, secondaryType
-							end
-						end
-					end
+					-- [45] Time Stop (Zhonya's Hourglass): Now an Active on-use ability (see actions/custom_items/zhonya.lua)
 
 					-- [46] Annul / Spell Shield (Banshee's Veil): Blocks the next hostile ability / spell
 					if creature:hasBuff(SPELL_SHIELD) and (origin == ORIGIN_SPELL or primaryType ~= COMBAT_PHYSICALDAMAGE) then
@@ -261,15 +239,37 @@ function us_onHealthChange(creature, attacker, primaryDamage, primaryType, secon
 		if creature:isPlayer() then
 			local defInfo = colleftInfo[creature:getId()]
 			local defAttrs = defInfo and defInfo.attributesItems
-			if defAttrs and defAttrs[43] then
+			if defAttrs and defAttrs[43] then -- Boundless Vitality
 				healingPrimary = healingPrimary + (defAttrs[43].value or 25)
+			end
+			if defAttrs and defAttrs[65] then -- Intervention
+				healingPrimary = healingPrimary + 16
+			end
+			if defAttrs and defAttrs[67] then -- Sanctify
+				healingPrimary = healingPrimary + 8
 			end
 			if creature:hasBuff(GRIEVOUS_WOUNDS) then
 				healingPrimary = healingPrimary - 40
 			end
-			if healingPrimary ~= 0 then
-				primaryDamage = math.max(0, math.floor(primaryDamage + (primaryDamage * healingPrimary / 100)))
+		end
+		if attacker and attacker:isPlayer() then
+			local attInfo = colleftInfo[attacker:getId()]
+			local attAttrs = attInfo and attInfo.attributesItems
+			if attAttrs and attAttrs[65] and attacker:getId() ~= creature:getId() then -- Intervention
+				healingPrimary = healingPrimary + 16
 			end
+			if attAttrs and attAttrs[67] then -- Sanctify
+				healingPrimary = healingPrimary + 8
+				attacker:addBuff(ARDENT_CENSER_BUFF, 6000)
+				attacker:getTotalAttackSpeed()
+				if creature:isPlayer() and creature:getId() ~= attacker:getId() then
+					creature:addBuff(ARDENT_CENSER_BUFF, 6000)
+					creature:getTotalAttackSpeed()
+				end
+			end
+		end
+		if healingPrimary ~= 0 then
+			primaryDamage = math.max(0, math.floor(primaryDamageStart + (primaryDamageStart * healingPrimary / 100)))
 		end
 		---end
 		if creature:isPlayer() then
@@ -378,6 +378,27 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				if bonusPercent > 0 then
 					primaryDamage = math.ceil(primaryDamage * (1 + bonusPercent / 100))
 				end
+			end
+		end
+
+		-- [63] Convergence: Target takes 10% more damage from you
+		if attackerAttrs and attackerAttrs[63] then
+			if creature:hasBuff(ZEKES_CONVERGENCE) then
+				primaryDamage = math.ceil(primaryDamage * 1.10)
+				secondaryDamage = math.ceil(secondaryDamage * 1.10)
+			end
+			creature:addBuff(ZEKES_CONVERGENCE, 5000)
+		end
+
+		-- [64] Winter's Caress: Target attack speed is reduced by 30%
+		if attackerAttrs and attackerAttrs[64] then
+			creature:addBuff(WINTERS_CARESS_DEBUFF, 5000)
+			-- Apply attack speed slow to players
+			if creature:isPlayer() then
+				local slowCondition = Condition(CONDITION_ATTRIBUTES, CONDITIONID_COMBAT)
+				slowCondition:setParameter(CONDITION_PARAM_TICKS, 5000)
+				slowCondition:setParameter(CONDITION_PARAM_ATTACKSPEED, -30) -- 30% slower
+				creature:addCondition(slowCondition)
 			end
 		end
 
@@ -545,6 +566,15 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			local defAttrs = defInfo and defInfo.attributesItems
 			if defAttrs and defAttrs[41] then
 				primaryDamage = math.ceil(primaryDamage * 0.90)
+			end
+		end
+
+		-- [64] Winter's Caress: Passively reduces incoming physical damage by 15%
+		if creature:isPlayer() and primaryType == COMBAT_PHYSICALDAMAGE then
+			local defInfo = colleftInfo[creature:getId()]
+			local defAttrs = defInfo and defInfo.attributesItems
+			if defAttrs and defAttrs[64] then
+				primaryDamage = math.ceil(primaryDamage * 0.85)
 			end
 		end
 
@@ -863,6 +893,26 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 			else
 				creature:getPosition():sendMagicEffect(CONST_ME_BLUE_ENERGY_SPARK)
 			end
+		end
+
+		-- [67] Sanctify (Ardent Censer): While buffed with Sanctify, basic attacks deal +20 bonus Magic Damage on-hit
+		if attacker:hasBuff(ARDENT_CENSER_BUFF) and (origin == ORIGIN_MELEE or origin == ORIGIN_RANGED or origin == ORIGIN_WAND or (primaryType == COMBAT_PHYSICALDAMAGE and origin ~= ORIGIN_REFLECT)) then
+			local sanctifyBonus = 20
+			local sanctifyDef = 0
+			if creature:isMonster() then
+				sanctifyDef = (15 + creature:getMonsterLevel() * 1)
+			elseif creature:isPlayer() then
+				sanctifyDef = creature:getMagicDefense()
+			end
+			local effSanctifyDef = math.max(0, sanctifyDef - attacker:getMagicPenetration())
+			local sanctifyMult = getDefenseMultiplier(effSanctifyDef)
+			local finalSanctify = math.max(1, math.ceil(sanctifyBonus * sanctifyMult))
+			if isNegative then
+				finalSanctify = -finalSanctify
+			end
+			secondaryDamage = secondaryDamage + finalSanctify
+			secondaryType = COMBAT_ENERGYDAMAGE
+			creature:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
 		end
 
 		-- [50] Colossal Consumption (Heartsteel): Every 12s, basic attacks deal extra 50 (+6% Max HP) Physical Damage on-hit
@@ -1285,6 +1335,11 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		end
 		-- [25] Weakness Finder: reduces monster attack power/speed by 30%
 		if attacker:hasBuff(WEAKNESS_FINDER_DEBUFF) then
+			primaryDamage = math.ceil(primaryDamage * 0.70)
+		end
+		
+		-- [64] Winter's Caress: reduces monster attack speed (simulated by reducing damage) by 30%
+		if attacker:hasBuff(WINTERS_CARESS_DEBUFF) then
 			primaryDamage = math.ceil(primaryDamage * 0.70)
 		end
 

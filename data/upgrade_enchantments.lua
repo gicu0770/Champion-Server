@@ -383,8 +383,8 @@ US_ENCHANTMENTS = {
     },
     [45] = {
         name = "Time Stop",
-        desc = "Upon falling below 30% HP, gain Immortality for 3 seconds (120s cooldown).",
-        category = 2,
+        desc = "Active: Put yourself in Stasis, becoming Golden and Immortal for 3 seconds (120s cooldown).",
+        category = 1,
         percent = false,
         noValue = true,
         unique = true,
@@ -533,6 +533,69 @@ US_ENCHANTMENTS = {
     [62] = {
         name = "Wind's Fury",
         desc = "Basic attacks fire additional bolts at up to 2 nearby enemies, each dealing 65% Physical Attack as physical damage.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [63] = {
+        name = "Convergence",
+        desc = "Your attacks and spells apply a debuff to the target. Enemies with this debuff take 10% more damage from you.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [64] = {
+        name = "Winter's Caress",
+        desc = "Your attacks reduce target's attack speed by 30%. You take 15% less damage from physical attacks.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [65] = {
+        name = "Intervention",
+        desc = "Active: Calls down a beam of light. After 2.5s, heals allies and burns enemies for 10% Max HP true damage (90s CD). Passive: +16% Heal and Shield power.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [66] = {
+        name = "Monolith",
+        desc = "Active: Gain an Energy Shield equal to 100 (+25% Max HP) for 4 seconds (90s cooldown).",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [67] = {
+        name = "Sanctify",
+        desc = "Healing or shielding an ally grants both of you +20% Attack Speed and +20 bonus Magic Damage on-hit for 6 seconds. Passive: +8% Heal and Shield power.",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [68] = {
+        name = "Devotion",
+        desc = "Active: Grant you and nearby allies a 300 HP Energy Shield for 3.5 seconds (90s cooldown).",
+        category = 1,
+        percent = false,
+        noValue = true,
+        unique = true,
+        itemType = US_ITEM_TYPES.ALL
+    },
+    [69] = {
+        name = "Rebirth",
+        desc = "Upon taking lethal damage, enter resurrection for 4 seconds, becoming invulnerable and unable to act, then revive restoring 50% Max HP and 100% Max Mana (300s cooldown).",
         category = 1,
         percent = false,
         noValue = true,

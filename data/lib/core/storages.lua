@@ -117,6 +117,8 @@ GlobalStorageKeys = {
 PlayerStorage = {
 	phantomStepCrit = 728000,
 	deathMarkActive = 728001,
+	redemptionCooldown = 728010,
+	gargoyleActiveCd = 728020,
 	portals = 727500, -- 727500 - 727599 reserved
 	portalSelected = 727600,
 
@@ -167,10 +169,12 @@ PlayerStorage = {
 	ichorShieldAmount = 801137,
 	zhonyaCooldown = 801138,
 	bansheeCooldown = 801139,
+	solariCooldown = 801140,
 	heartsteelCooldown = 801141,
 	ludensCooldown = 801142,
 	lichBaneCooldown = 801143,
 	lichBaneProc = 801144,
+	guardianAngelCooldown = 801145,
 
 	dungeonTp = 801115, -- reserver 50
 	bossCloneEX = 435007,

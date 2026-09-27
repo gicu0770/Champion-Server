@@ -88,7 +88,6 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   end
   if not checkCastableSpell(player, CONFIG, CONFIG_SUP, force) then return end
 
-  print("[Blade Fan] Cast by: " .. player:getName())
   
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)
   local combat = spellSetupCombat(player, CONFIG, CONFIG_SUP, area, dmg, force)

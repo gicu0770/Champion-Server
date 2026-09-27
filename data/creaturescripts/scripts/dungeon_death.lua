@@ -1,4 +1,7 @@
 function onPrepareDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
+    if handleGuardianAngelRebirth and handleGuardianAngelRebirth(player) then
+        return false
+    end
     local dungeon = player:getDungeon()
     if dungeon then
         player:addDeath();

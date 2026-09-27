@@ -8,8 +8,37 @@ PATH_BUFFS = {
 	{buff = BLOODY_PATH},
 }
 
+local function restoreItemCooldowns(player)
+  if not player then return end
+  local now = os.time()
+  local itemCooldowns = {
+    { storage = PlayerStorage.gargoyleActiveCd, buff = GARGOYLE_STONEPLATE_CD },
+    { storage = PlayerStorage.redemptionCooldown, buff = REDEMPTION_CD },
+    { storage = PlayerStorage.zhonyaCooldown, buff = TIME_STOP_CD },
+    { storage = PlayerStorage.bansheeCooldown, buff = ANNUL_CD },
+    { storage = PlayerStorage.solariCooldown, buff = SOLARI_CD },
+    { storage = PlayerStorage.guardianAngelCooldown, buff = GA_COOLDOWN },
+  }
+
+  for _, entry in ipairs(itemCooldowns) do
+    if entry.storage and entry.buff then
+      local cdEnd = player:getStorageValue(entry.storage)
+      if cdEnd and cdEnd > now then
+        local remainingMs = (cdEnd - now) * 1000
+        if not player:hasBuff(entry.buff) then
+          player:addBuff(entry.buff, remainingMs)
+        else
+          local buffData = { entry.buff, 1, remainingMs, true }
+          player:sendExtendedOpcode(ExtendedOPCodes.CODE_BUFF, json.encode({1, buffData}))
+        end
+      end
+    end
+  end
+end
+
 local LoginEvent = CreatureEvent("LoginEventBuff")
 function LoginEvent.onLogin(player)
+  restoreItemCooldowns(player)
   player:getActiveBuffs()
   player:registerEvent("BuffExtendedOpcode")
   player:registerEvent("ReconnectEventBuff")
@@ -20,6 +49,7 @@ function LoginEvent.onLogin(player)
       return
     end
 
+    restoreItemCooldowns(player)
     player:autoOpenContainers()
   end, 100)
   return true
@@ -27,6 +57,7 @@ end
 
 local ReconnectEvent = CreatureEvent("ReconnectEventBuff")
 function ReconnectEvent.onReconnect(player)
+  restoreItemCooldowns(player)
   player:getActiveBuffs()
   local playerId = player:getId()
   addEvent(function()
@@ -35,6 +66,7 @@ function ReconnectEvent.onReconnect(player)
       return
     end
 
+    restoreItemCooldowns(player)
     player:autoOpenContainers()
   end, 100)
   return true
@@ -364,10 +396,14 @@ function Creature:updateBuff(id, time, playerList, maxStacks)
     if not creatureBuff.stacks then
       creatureBuff.stacks = 1
     end
-    creatureBuff.stacks = creatureBuff.stacks + 1
-    local possibleMaxStacks = maxStacks or buff.maxStacks
-    if possibleMaxStacks <= creatureBuff.stacks then
-      creatureBuff.stacks = possibleMaxStacks
+    if buff.stacked then
+      creatureBuff.stacks = creatureBuff.stacks + 1
+      local possibleMaxStacks = maxStacks or buff.maxStacks
+      if possibleMaxStacks and possibleMaxStacks <= creatureBuff.stacks then
+        creatureBuff.stacks = possibleMaxStacks
+      end
+    else
+      creatureBuff.stacks = 1
     end
 
     CREATURE_ACTIVE_BUFFS[self:getId()][id] = {

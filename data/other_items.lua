@@ -1100,31 +1100,147 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
+      "Boss Relict",
+      38459,
+      "Ascended Voort",
       {
         chance = 100000,
-        forceType = 134217728,
+        forceType = 1073741824,
         imps = {
           {
-            264
+            267
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              2,
+              4,
+              7,
+              10
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Ascended Voort",
         weight = {
           0,
           0,
           0,
           0
+        }
+      }
+    },
+    {
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Elemental Emblem",
+      38519,
+      "Fleshrend",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            238
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Fleshrend",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            240
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Sand Colossus",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Vampire Heart",
+      38239,
+      "Vampire Queen",
+      {
+        chance = 100000,
+        forceType = 67108864,
+        imps = {
+          {
+            23
+          },
+          {
+            {
+              150,
+              200,
+              400,
+              750
+            }
+          }
+        },
+        monster = "Vampire Queen",
+        weight = {
+          7,
+          10,
+          12,
+          15
         }
       }
     },
@@ -1266,31 +1382,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Vampire Heart",
-      38239,
-      "Vampire Queen",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 67108864,
+        forceType = 134217728,
         imps = {
           {
-            23
+            264
           },
           {
             {
+              50,
+              100,
               150,
-              200,
-              400,
-              750
+              200
             }
           }
         },
-        monster = "Vampire Queen",
+        monster = "Bilbo",
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1440,31 +1556,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Elemental Emblem",
-      38519,
-      "Fleshrend",
+      "Champion Trophy",
+      38736,
+      "Gorok",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 268435456,
         imps = {
           {
-            238
+            265
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Fleshrend",
+        monster = "Gorok",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1498,122 +1614,6 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            240
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "The Epic Wisdom",
-      13946,
-      "Toxic Witch",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            241
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Toxic Witch",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            242
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Molten Abyss",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Boss Relict",
-      38459,
-      "Ascended Voort",
-      {
-        chance = 100000,
-        forceType = 1073741824,
-        imps = {
-          {
-            267
-          },
-          {
-            {
-              2,
-              4,
-              7,
-              10
-            }
-          }
-        },
-        monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
       "Strongbox Relict",
       38733,
       "Viliaan",
@@ -1643,31 +1643,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "The Epic Wisdom",
+      13946,
+      "Toxic Witch",
       {
         chance = 100000,
-        forceType = 268435456,
+        forceType = 33554432,
         imps = {
           {
-            265
+            241
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              3,
+              7,
+              15,
+              30
             }
           }
         },
-        monster = "Gorok",
+        monster = "Toxic Witch",
         weight = {
-          0,
-          0,
-          0,
-          0
+          5,
+          10,
+          15,
+          20
         }
       }
     }

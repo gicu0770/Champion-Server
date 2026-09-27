@@ -28,9 +28,7 @@
 		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="768" centery="1039" centerz="7" radius="1">
-		<monster name="Void Imp" x="1" y="-1" z="7" spawntime="163216128" />
 		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Void Imp" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="754" centery="1040" centerz="7" radius="1">
 		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
@@ -63,7 +61,6 @@
 		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="785" centery="1051" centerz="7" radius="1">
-		<monster name="Voidfang" x="0" y="-1" z="7" spawntime="163216128" />
 		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="730" centery="1052" centerz="7" radius="1">
@@ -71,7 +68,6 @@
 	</spawn>
 	<spawn centerx="799" centery="1052" centerz="7" radius="1">
 		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Voidfang" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="753" centery="1054" centerz="7" radius="1">
 		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
@@ -141,7 +137,6 @@
 	</spawn>
 	<spawn centerx="793" centery="1065" centerz="7" radius="1">
 		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Voidforged" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="639" centery="1066" centerz="7" radius="1">
 		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
@@ -171,7 +166,6 @@
 		<monster name="Goblin" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="761" centery="1068" centerz="7" radius="1">
-		<monster name="Void Imp" x="0" y="-1" z="7" spawntime="163216128" />
 		<monster name="Void Imp" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="731" centery="1069" centerz="7" radius="1">
@@ -203,7 +197,6 @@
 	</spawn>
 	<spawn centerx="767" centery="1071" centerz="7" radius="1">
 		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Voidforged" x="0" y="1" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="544" centery="1072" centerz="7" radius="1">
 		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
@@ -212,8 +205,6 @@
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="748" centery="1072" centerz="7" radius="1">
-		<monster name="Voidforged" x="0" y="-1" z="7" spawntime="163216128" />
-		<monster name="Voidforged" x="1" y="-1" z="7" spawntime="163216128" />
 		<monster name="Voidforged" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="777" centery="1072" centerz="7" radius="1">
@@ -260,7 +251,6 @@
 	</spawn>
 	<spawn centerx="771" centery="1075" centerz="7" radius="1">
 		<monster name="Voidfang" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Voidfang" x="0" y="1" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="588" centery="1076" centerz="7" radius="1">
 		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
@@ -314,7 +304,6 @@
 		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="632" centery="1080" centerz="7" radius="1">
-		<monster name="Orc Shaman" x="0" y="-1" z="7" spawntime="163216128" />
 		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="759" centery="1080" centerz="7" radius="1">
@@ -432,11 +421,9 @@
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="639" centery="1092" centerz="7" radius="1">
-		<monster name="Orc Warrior" x="-1" y="0" z="7" spawntime="163216128" />
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="613" centery="1093" centerz="7" radius="1">
-		<monster name="Orc Warrior" x="0" y="-1" z="7" spawntime="163216128" />
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="671" centery="1093" centerz="7" radius="1">
@@ -516,14 +503,12 @@
 	</spawn>
 	<spawn centerx="542" centery="1105" centerz="7" radius="1">
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Betrayed Wraith" x="0" y="1" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="559" centery="1105" centerz="7" radius="1">
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="579" centery="1105" centerz="7" radius="1">
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Cyclops Drone" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="648" centery="1105" centerz="7" radius="1">
 		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
@@ -595,7 +580,6 @@
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="519" centery="1119" centerz="7" radius="1">
-		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="527" centery="1119" centerz="7" radius="1">
@@ -609,7 +593,6 @@
 	</spawn>
 	<spawn centerx="656" centery="1120" centerz="7" radius="1">
 		<monster name="Orc Shaman" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc Shaman" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="543" centery="1121" centerz="7" radius="1">
 		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />
@@ -657,7 +640,6 @@
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="545" centery="1130" centerz="7" radius="1">
-		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="523" centery="1131" centerz="7" radius="1">
@@ -736,7 +718,6 @@
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="589" centery="1149" centerz="7" radius="1">
-		<monster name="Betrayed Wraith" x="-1" y="0" z="7" spawntime="163216128" />
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="657" centery="1150" centerz="7" radius="1">
@@ -819,7 +800,6 @@
 	</spawn>
 	<spawn centerx="619" centery="1186" centerz="7" radius="1">
 		<monster name="Betrayed Wraith" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Betrayed Wraith" x="1" y="0" z="7" spawntime="163216128" />
 	</spawn>
 	<spawn centerx="631" centery="1187" centerz="7" radius="1">
 		<monster name="Demon" x="0" y="0" z="7" spawntime="60" />

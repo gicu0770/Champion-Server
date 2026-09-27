@@ -187,6 +187,9 @@ TORMENT_BURN = 108 -- Liandry's Torment Burn DoT
 SPELL_SHIELD = 109 -- Banshee's Veil Spell Shield
 GRIEVOUS_WOUNDS = 110 -- Mortal Reminder / Executioner's Calling
 TOXIC_ARROW = 111
+ZEKES_CONVERGENCE = 112
+WINTERS_CARESS_DEBUFF = 113
+ARDENT_CENSER_BUFF = 114
 ILLUMINATION_DOT_UNIQUE = 176
 LICH_BANE_BUFF = 207
 
@@ -226,6 +229,10 @@ WEAKNESS_FINDER_CD = 204
 FOCUSING_MARK_CD = 205
 ANNUL_CD = 206
 LICH_BANE_CD = 208
+GARGOYLE_STONEPLATE_CD = 209
+REDEMPTION_CD = 210
+SOLARI_CD = 212
+GA_COOLDOWN = 213
 
 BUFFS = {
     ----------------------------------------------------------------------------
@@ -1999,6 +2006,39 @@ BUFFS = {
         debuff = true,
         ticks = 2500,
     },
+    [ZEKES_CONVERGENCE] = {
+        id = ZEKES_CONVERGENCE,
+        name = "Convergence",
+        description = "Target takes 10% more damage from you.",
+        icon = "rune_sudden_death",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 5000,
+    },
+    [WINTERS_CARESS_DEBUFF] = {
+        id = WINTERS_CARESS_DEBUFF,
+        name = "Winter's Caress",
+        description = "Attack speed reduced by 30%.",
+        icon = "chilled_foots",
+        border = "frame-9-blue",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 5000,
+    },
+    [ARDENT_CENSER_BUFF] = {
+        id = ARDENT_CENSER_BUFF,
+        name = "Sanctify",
+        description = "Your basic attacks deal +20 bonus Magic Damage and you gain +20% Attack Speed.",
+        icon = "holyshine",
+        border = "frame-9-yellow",
+        stacked = false,
+        maxStacks = 1,
+        debuff = false,
+        ticks = 6000,
+    },
     [ILLUMINATION_DOT_UNIQUE] = {
         id = ILLUMINATION_DOT_UNIQUE,
         name = "Illumination Buff",
@@ -2221,7 +2261,8 @@ BUFFS = {
 		stacked = false,
 		maxStacks = 1,
 		debuff = true,
-		ticks = 120000
+		ticks = 120000,
+		saveAfterLogout = true,
 	},
 	[CONCUSSIVE_BLAST_CD] = {
 		id = CONCUSSIVE_BLAST_CD,
@@ -2288,6 +2329,54 @@ BUFFS = {
 		maxStacks = 1,
 		debuff = true,
 		ticks = 3000
+	},
+	[GARGOYLE_STONEPLATE_CD] = {
+		id = GARGOYLE_STONEPLATE_CD,
+		name = "Gargoyle Stoneplate (Cooldown)",
+		description = "Gargoyle Stoneplate is on cooldown. Cannot activate shield until recharged.",
+		icon = "energyshieldbuff",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 90000,
+		saveAfterLogout = true,
+	},
+	[REDEMPTION_CD] = {
+		id = REDEMPTION_CD,
+		name = "Redemption (Cooldown)",
+		description = "Redemption is on cooldown. Cannot call beam until recharged.",
+		icon = "holy_shield",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 90000,
+		saveAfterLogout = true,
+	},
+	[SOLARI_CD] = {
+		id = SOLARI_CD,
+		name = "Locket of the Iron Solari (Cooldown)",
+		description = "Locket of the Iron Solari is on cooldown. Cannot activate Devotion until recharged.",
+		icon = "holy_shield",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 90000,
+		saveAfterLogout = true,
+	},
+	[GA_COOLDOWN] = {
+		id = GA_COOLDOWN,
+		name = "Guardian Angel (Cooldown)",
+		description = "Guardian Angel is on cooldown. Rebirth cannot trigger until recharged.",
+		icon = "holy_shield",
+		border = "frame-9-grey",
+		stacked = false,
+		maxStacks = 1,
+		debuff = true,
+		ticks = 304000,
+		saveAfterLogout = true,
 	},
 
 }

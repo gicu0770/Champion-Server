@@ -7,6 +7,7 @@
 
 	<action itemid="31109" script="orbs.lua" /> <!-- Orb of Spellbound -->
 	<action itemid="5881" script="voidrelict.lua" /> <!-- void relict -->
+	<action itemid="8865" script="gargoyle.lua" /> <!-- Gargoyle Stoneplate -->
 	
 	<action itemid="38541" script="selfboostfragment.lua" /> <!-- loot -->
 	<action itemid="38542" script="selfboostfragment.lua" /> <!-- gold -->

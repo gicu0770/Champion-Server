@@ -801,10 +801,10 @@ RECOMB_ITEM_RECIPES = {
     },
   },
 
-  -- Step 2: Seeker's Armguard (37790) + Eclipse Wand (8920) + 450 Gold -> Zhonya's Hourglass (20002)
+  -- Step 2: Seeker's Armguard (37790) + Eclipse Wand (8920) + 450 Gold -> Zhonya's Hourglass (24164)
   {
     items = {37790, 8920},
-    result = 20002,
+    result = 24164,
     gold = 26000,
     name = "Zhonya's Hourglass",
     rarity = 4,
@@ -812,7 +812,7 @@ RECOMB_ITEM_RECIPES = {
     implicits = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {8, 50},   -- ID 8 (Physical Defense): +50
-      {45, 3},   -- ID 45 (Time Stop): When falling below 30% HP, gain Immortality for 3 seconds (120s cooldown)
+      {45, 3},   -- ID 45 (Time Stop): Active: Gain Immortality for 3 seconds (120s cooldown)
     },
   },
 
@@ -847,10 +847,10 @@ RECOMB_ITEM_RECIPES = {
   },
 
   -- [PHYSICAL LETHALITY / SPELL SHIELD TREE - EDGE OF NIGHT]
-  -- Step 1: Bronze Axe (26618) + Bronze Axe (26618) + 300 Gold -> Serrated Dirk (8859)
+  -- Step 1: Bronze Axe (26618) + Bronze Axe (26618) + 300 Gold -> Serrated Dirk (8854)
   {
     items = {26618, 26618},
-    result = 8859,
+    result = 8854,
     gold = 1000,
     name = "Serrated Dirk",
     rarity = 1,
@@ -861,10 +861,10 @@ RECOMB_ITEM_RECIPES = {
     },
   },
 
-  -- Step 2: Bronze Axe (26618) + Elven Plate (26491) + 400 Gold -> Tunneler (8860)
+  -- Step 2: Bronze Axe (26618) + Elven Plate (26491) + 400 Gold -> Tunneler (8858)
   {
     items = {26618, 26491},
-    result = 8860,
+    result = 8858,
     gold = 1000,
     name = "Tunneler",
     rarity = 1,
@@ -875,9 +875,9 @@ RECOMB_ITEM_RECIPES = {
     },
   },
 
-  -- Step 3: Serrated Dirk (8859) + Tunneler (8860) + 850 Gold -> Edge of Night (8861)
+  -- Step 3: Serrated Dirk (8854) + Tunneler (8858) + 850 Gold -> Edge of Night (8861)
   {
-    items = {8859, 8860},
+    items = {8854, 8858},
     result = 8861,
     gold = 26000,
     name = "Edge of Night",
@@ -1132,6 +1132,119 @@ RECOMB_ITEM_RECIPES = {
       {11, 25},  -- ID 11 (Attack Speed): +25%
       {12, 20},  -- ID 12 (Critical Chance): +20%
       {58, 4},   -- ID 58 (Storm Surge): Basic attacks grant +4% Attack Speed for 4s (stacks up to 8x -> +32% Attack Speed). At 8 stacks, deals +40 bonus magic damage on-hit
+    },
+  },
+
+  -- [SUPPORT / TANK - ZEKE'S CONVERGENCE]
+  -- Step 1: Chain Vest (2464) + Amplifying Tome (1955) + 1000 Gold -> Zeke's Convergence (8866)
+  {
+    items = {2464, 1955},
+    result = 8866,
+    gold = 1000,
+    name = "Zeke's Convergence",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 250},  -- ID 1 (Health): +250
+      {2, 250},  -- ID 2 (Mana): +250
+      {8, 35},   -- ID 8 (Physical Defense / Armor): +35
+      {16, 20},  -- ID 16 (Cooldown Reduction): +20%
+      {63, 1},   -- ID 63 (Convergence): Target takes 10% more damage from you
+    },
+  },
+  
+  -- [TANK - FROZEN HEART]
+  {
+    items = {2464, 2175},
+    result = 8867,
+    gold = 1500,
+    name = "Frozen Heart",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {2, 400},  -- ID 2 (Mana): +400
+      {8, 90},   -- ID 8 (Physical Defense / Armor): +90
+      {16, 20},  -- ID 16 (Cooldown Reduction): +20%
+      {64, 1},   -- ID 64 (Winter's Caress)
+    },
+  },
+
+  -- [SUPPORT - REDEMPTION]
+  {
+    items = {2656, 2152},
+    result = 8868,
+    gold = 1500,
+    name = "Redemption",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 200},  -- ID 1 (Health): +200
+      {5, 7},    -- ID 5 (Mana Regen): +7 per sec
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {65, 1},   -- ID 65 (Divine Intervention)
+    },
+  },
+
+  -- [TANK - GARGOYLE STONEPLATE]
+  {
+    items = {2464, 2656},
+    result = 8865,
+    gold = 1500,
+    name = "Gargoyle Stoneplate",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 300},  -- ID 1 (Health): +300
+      {8, 60},   -- ID 8 (Physical Defense / Armor): +60
+      {16, 15},  -- ID 16 (Cooldown Reduction): +15%
+      {66, 1},   -- ID 66 (Monolith)
+    },
+  },
+
+  -- [SUPPORT - ARDENT CENSER]
+  {
+    items = {1955, 2656},
+    result = 5884,
+    gold = 1500,
+    name = "Ardent Censer",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {7, 60},   -- ID 7 (Magic Attack): +60
+      {5, 7},    -- ID 5 (Mana Regen): +7 per sec
+      {67, 1},   -- ID 67 (Sanctify)
+    },
+  },
+
+  -- [SUPPORT / TANK - LOCKET OF THE IRON SOLARI]
+  {
+    items = {38641, 2464},
+    result = 11261,
+    gold = 1500,
+    name = "Locket of the Iron Solari",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {1, 200},  -- ID 1 (Health): +200
+      {8, 30},   -- ID 8 (Physical Defense / Armor): +30
+      {9, 30},   -- ID 9 (Magic Defense / Magic Resist): +30
+      {16, 10},  -- ID 16 (Cooldown Reduction): +10%
+      {68, 1},   -- ID 68 (Devotion)
+    },
+  },
+
+  -- [AD / TANK - GUARDIAN ANGEL]
+  {
+    items = {2393, 2464},
+    result = 8885,
+    gold = 1500,
+    name = "Guardian Angel",
+    rarity = 4,
+    itemlevel = 50,
+    implicits = {
+      {6, 55},   -- ID 6 (Physical Attack): +55
+      {8, 45},   -- ID 8 (Physical Defense / Armor): +45
+      {69, 1},   -- ID 69 (Rebirth)
     },
   },
 }
