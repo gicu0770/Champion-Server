@@ -480,6 +480,8 @@ function Creature:removeBuff(id)
   elseif id == ROOT then
     self:setProgressBar(0, false)
     self:removeCondition(CONDITION_ROOT)
+  elseif id == ARDENT_CENSER_BUFF and self:isPlayer() then
+    self:getTotalAttackSpeed()
   end
 
   local playerList = {}

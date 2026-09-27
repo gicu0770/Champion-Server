@@ -318,6 +318,29 @@ function Player.getMagicDefensePercent(self)
 	return getMagicDefensePercent
 end
 
+function Player.getBaseHealthRegen(self, customLevel)
+	if not self then return 0 end
+	local vocation = self:getVocation()
+	if not vocation then return 3 end
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[vocation:getName()]
+	local baseH = vocStats and vocStats.health_regen or 3
+	local baseH_PL = vocStats and vocStats.health_regenPL or baseH
+	local level = customLevel or self:getLevel()
+	return math.floor(baseH + (((baseH_PL - baseH) / 50) * level))
+end
+
+function Player.getBaseManaRegen(self, customLevel)
+	if not self then return 0 end
+	local vocation = self:getVocation()
+	if not vocation then return 1 end
+	local vocStats = CHAMPION_STATS and CHAMPION_STATS[vocation:getName()]
+	local baseM = vocStats and vocStats.regen_mana or 1
+	local baseM_PL = vocStats and vocStats.regen_manaPL or baseM
+	local level = customLevel or self:getLevel()
+	return math.floor(baseM + (((baseM_PL - baseM) / 50) * level))
+end
+
+
 function Player.getMonsterPhysicalDefensePercent(self)
 	if not self then return 0 end
 	local getPhysicalDefensePercent = math.ceil((MONSTER_CONFIG[self:getType():tier()].physical_defense / (100 + MONSTER_CONFIG[self:getType():tier()].physical_defense)) * 100)
@@ -1566,6 +1589,50 @@ TAGS = {
 	[30] = {"cc", "#FF4444"},
 	[31] = {"slow", "#55AAFF"}
 }
+GLOBAL_SPELL_COOLDOWNS = {
+	-- =========================================================================
+	-- MAGE (AP / Ranged) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[1] = {name = "Fireball", cooldown = 2500, manaCost = 45, range = 5, hits = 1, multipler = 0.60, baseDamage = 85, baseDamagePerLevel = 40, tag = {13, 19, 20, 31}, aoe = true},
+	[2] = {name = "Frost Wave", cooldown = 4500, manaCost = 65, range = 4, hits = 1, multipler = 0.70, baseDamage = 110, baseDamagePerLevel = 50, tag = {13, 16, 20, 31}, aoe = true},
+	[3] = {name = "Thunderstorm", cooldown = 60000, manaCost = 150, range = 5, hits = 1, multipler = 1.00, baseDamage = 250, baseDamagePerLevel = 120, tag = {13, 25}, aoe = true}, -- ULT
+
+	-- =========================================================================
+	-- GUARD (STR / Melee) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[4] = {name = "Colossal Grasp", cooldown = 5000, manaCost = 30, range = 4, hits = 1, multipler = 0.50, baseDamage = 25, baseDamagePerLevel = 25, tag = {12, 15, 30}, aoe = false},
+	[5] = {name = "Ground Slam", cooldown = 4000, manaCost = 35, range = 0, hits = 1, multipler = 0.45, baseDamage = 35, baseDamagePerLevel = 30, tag = {12, 20, 31}, aoe = true},
+	[6] = {name = "Colossus Rampage", cooldown = 75000, manaCost = 90, range = 0, hits = 1, multipler = 0.75, baseDamage = 140, baseDamagePerLevel = 90, tag = {25}, aoe = false}, -- ULT
+
+	-- =========================================================================
+	-- HUNTER (DEX / Ranged) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[7] = {name = "Rapid Fire", cooldown = 6000, manaCost = 30, range = 6, hits = 2, multipler = 0.30, baseDamage = 15, baseDamagePerLevel = 15, tag = {1, 25}, aoe = false},
+	[8] = {name = "Arrow Volley", cooldown = 4500, manaCost = 50, range = 6, hits = 1, multipler = 0.55, baseDamage = 30, baseDamagePerLevel = 35, tag = {1, 16, 20}, aoe = false},
+	[9] = {name = "Snipe", cooldown = 90000, manaCost = 110, range = 10, hits = 1, multipler = 1.10, baseDamage = 180, baseDamagePerLevel = 110, tag = {1, 26}, aoe = false}, -- ULT
+
+	-- =========================================================================
+	-- ASSASSIN (DEX / Melee) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[10] = {name = "Shadowstep", cooldown = 4000, manaCost = 35, range = 5, hits = 1, multipler = 0.50, baseDamage = 30, baseDamagePerLevel = 30, tag = {1, 15, 26}, aoe = false},
+	[11] = {name = "Blade Fan", cooldown = 3500, manaCost = 35, range = 0, hits = 1, multipler = 0.45, baseDamage = 35, baseDamagePerLevel = 30, tag = {1, 20, 30}, aoe = true},
+	[12] = {name = "Death Mark", cooldown = 60000, manaCost = 100, range = 0, hits = 1, multipler = 0.95, baseDamage = 130, baseDamagePerLevel = 100, tag = {25}, aoe = false}, -- ULT
+
+	-- =========================================================================
+	-- CLERIC (AP / Support) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[13] = {name = "Heal", cooldown = 3000, manaCost = 60, range = 5, hits = 1, multipler = 0.45, baseDamage = 75, baseDamagePerLevel = 35, tag = {13, 26, 25}, aoe = false},
+	[14] = {name = "Holy Smite", cooldown = 4500, manaCost = 50, range = 4, hits = 1, multipler = 0.55, baseDamage = 70, baseDamagePerLevel = 35, tag = {13, 20, 30}, aoe = true},
+	[15] = {name = "Divine Judgement", cooldown = 75000, manaCost = 130, range = 5, hits = 1, multipler = 0.85, baseDamage = 200, baseDamagePerLevel = 110, tag = {13, 20, 30, 25}, aoe = true}, -- ULT
+
+	-- =========================================================================
+	-- SPELLBLADE (AP / Melee Hybrid) - Max Spell Level: 5 (Ult: 3)
+	-- =========================================================================
+	[16] = {name = "Arcane Cleave", cooldown = 3000, manaCost = 45, range = 2, hits = 1, multipler = 0.50, baseDamage = 55, baseDamagePerLevel = 30, tag = {13, 16, 20}, aoe = true},
+	[17] = {name = "Arcane Aura", cooldown = 1500, manaCost = 15, range = 0, hits = 1, multipler = 0.15, baseDamage = 15, baseDamagePerLevel = 10, tag = {13, 22}, aoe = true},
+	[18] = {name = "Arcane Strike", cooldown = 60000, manaCost = 120, range = 4, hits = 1, multipler = 0.90, baseDamage = 190, baseDamagePerLevel = 105, tag = {13, 20, 30}, aoe = true}, -- ULT
+}
+--[[
 GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexterity, addDamage 1 = magic, addDamage 2 = melee, addDamage 3 = ranged        PATH nie istnieja mozan dodac cos innego
 	[1] = {name = "Fireball", cooldown = 2000, manaCost = 12, range = 5, hits = 1, multipler = 0.5, baseDamage = 70, baseDamagePerLevel = 20, scaling = 1, addDamage = 1, tag = {13, 19, 20, 31}, element = 100, aoe = true},-- "Fireball",
 	[2] = {name = "Frost Wave", cooldown = 4000, manaCost = 15, range = 4, hits = 1, multipler = 1.0, baseDamage = 100, baseDamagePerLevel = 35, scaling = 1, addDamage = 1, tag = {13, 16, 20, 31}, element = 100, aoe = true},-- "Frost Wave",
@@ -1586,6 +1653,7 @@ GLOBAL_SPELL_COOLDOWNS = { -- scaling 1 = "Inteligence", 2 = Strenght, 3 = Dexte
 	[17] = {name = "Arcane Aura", cooldown = 1000, manaCost = 15, range = 0, hits = 1, multipler = 0.15, baseDamage = 30, baseDamagePerLevel = 15, scaling = 1, addDamage = 1, tag = {13, 22}, element = 100, aoe = true},
 	[18] = {name = "Arcane Strike", cooldown = 6000, manaCost = 25, range = 4, hits = 1, multipler = 1.0, baseDamage = 130, baseDamagePerLevel = 40, scaling = 1, addDamage = 1, tag = {13, 20, 30}, element = 100, aoe = true},
 }
+--]]
 -- SCALING NIE JEST JUZ AKTYWNY!
 --[[
 TAGS = {
@@ -6060,11 +6128,8 @@ function Player.setStatistics(self)
 	local manaPercent = 0
 	local energyshieldregen = 1
 	-- bazowa regeneracja
-	local base_healthRegen = 3
-	local base_manaRegen = 1
-
-
-
+	local base_healthRegen = self:getBaseHealthRegen()
+	local base_manaRegen = self:getBaseManaRegen()
 
 	self:addHealthGain(1, base_healthRegen, true)
 	self:addManaGain(1, base_manaRegen, true)
@@ -6395,6 +6460,9 @@ function Player:recalculateBaseStats()
 		if supposedmana ~= self:getMaxMana() then
 			self:setMaxMana(supposedmana)
 		end
+
+		self:addHealthGain(1, self:getBaseHealthRegen(), true)
+		self:addManaGain(1, self:getBaseManaRegen(), true)
 	end
 
 	local capson = 0

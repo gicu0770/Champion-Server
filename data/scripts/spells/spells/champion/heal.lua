@@ -116,6 +116,52 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
     healAmount = 100
   end
 
+  local healingBonusPercent = 0
+  local ARDENT_CENSER_BUFF = _G.ARDENT_CENSER_BUFF or 114
+  local GRIEVOUS_WOUNDS = _G.GRIEVOUS_WOUNDS or 110
+
+  -- Target heal bonuses & penalties
+  if healTarget:isPlayer() then
+    local defInfo = colleftInfo and colleftInfo[healTarget:getId()]
+    local defAttrs = defInfo and defInfo.attributesItems
+    if defAttrs then
+      if defAttrs[43] then -- Boundless Vitality (+25%)
+        healingBonusPercent = healingBonusPercent + (defAttrs[43].value or 25)
+      end
+      if defAttrs[65] then -- Intervention (+16% Heal and Shield power)
+        healingBonusPercent = healingBonusPercent + 16
+      end
+      if defAttrs[67] then -- Sanctify (+8% Heal and Shield power)
+        healingBonusPercent = healingBonusPercent + 8
+      end
+    end
+    if healTarget:hasBuff(GRIEVOUS_WOUNDS) then
+      healingBonusPercent = healingBonusPercent - 40
+    end
+  end
+
+  -- Caster heal bonuses & Sanctify proc
+  local attInfo = colleftInfo and colleftInfo[player:getId()]
+  local attAttrs = attInfo and attInfo.attributesItems
+  if attAttrs then
+    if attAttrs[65] and player:getId() ~= healTarget:getId() then -- Intervention (+16% on allies)
+      healingBonusPercent = healingBonusPercent + 16
+    end
+    if attAttrs[67] then -- Sanctify (+8% Heal and Shield power)
+      healingBonusPercent = healingBonusPercent + 8
+      player:addBuff(ARDENT_CENSER_BUFF, 6000)
+      player:getTotalAttackSpeed()
+      if healTarget:isPlayer() and healTarget:getId() ~= player:getId() then
+        healTarget:addBuff(ARDENT_CENSER_BUFF, 6000)
+        healTarget:getTotalAttackSpeed()
+      end
+    end
+  end
+
+  if healingBonusPercent ~= 0 then
+    healAmount = math.max(0, math.floor(healAmount * (1 + healingBonusPercent / 100)))
+  end
+
   -- 8. Apply heal & visual animated text
   healTarget:addHealth(healAmount)
 --  Game.sendAnimatedText("+" .. healAmount, targetPos, TEXTCOLOR_LIGHTGREEN, "Reggae One-14px-bordered")

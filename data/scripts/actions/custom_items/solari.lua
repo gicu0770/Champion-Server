@@ -21,8 +21,23 @@ function solari.onUse(player, item, fromPosition, target, toPosition, isHotkey)
     local centerPos = player:getPosition()
     local radius = 5
 
+    local ARDENT_CENSER_BUFF = _G.ARDENT_CENSER_BUFF or 114
+    local casterInfo = colleftInfo and colleftInfo[player:getId()]
+    local casterAttrs = casterInfo and casterInfo.attributesItems
+    local hasSanctify = casterAttrs and casterAttrs[67]
+    local hasIntervention = casterAttrs and casterAttrs[65]
+
+    local casterShield = shieldAmount
+    if hasSanctify then
+        casterShield = math.ceil(casterShield * 1.08)
+    end
+
     -- Grant shield to the caster
-    player:addEnergyShieldDuration(shieldAmount, shieldDuration, 1.0)
+    player:addEnergyShieldDuration(casterShield, shieldDuration, 1.0)
+    if hasSanctify then
+        player:addBuff(ARDENT_CENSER_BUFF, 6000)
+        player:getTotalAttackSpeed()
+    end
     player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
     player:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
 
@@ -39,16 +54,37 @@ function solari.onUse(player, item, fromPosition, target, toPosition, isHotkey)
             end
 
             if isAlly then
-                spec:addEnergyShieldDuration(shieldAmount, shieldDuration, 1.0)
+                local allyShield = shieldAmount
+                if hasIntervention then
+                    allyShield = math.ceil(allyShield * 1.16)
+                end
+                if hasSanctify then
+                    allyShield = math.ceil(allyShield * 1.08)
+                    spec:addBuff(ARDENT_CENSER_BUFF, 6000)
+                    spec:getTotalAttackSpeed()
+                end
+
+                local specInfo = colleftInfo and colleftInfo[spec:getId()]
+                local specAttrs = specInfo and specInfo.attributesItems
+                if specAttrs then
+                    if specAttrs[65] then
+                        allyShield = math.ceil(allyShield * 1.16)
+                    end
+                    if specAttrs[67] then
+                        allyShield = math.ceil(allyShield * 1.08)
+                    end
+                end
+
+                spec:addEnergyShieldDuration(allyShield, shieldDuration, 1.0)
                 spec:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
                 spec:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
-                spec:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("[Locket of the Iron Solari] You received a %d HP Energy Shield from %s!", shieldAmount, player:getName()))
+                spec:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("[Locket of the Iron Solari] You received a %d HP Energy Shield from %s!", allyShield, player:getName()))
                 alliesShielded = alliesShielded + 1
             end
         end
     end
 
-    player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("[Locket of the Iron Solari] Devotion activated! You granted a %d HP Energy Shield to yourself and %d allies for 3.5 seconds (Cooldown: 90s).", shieldAmount, alliesShielded))
+    player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("[Locket of the Iron Solari] Devotion activated! You granted a %d HP Energy Shield to yourself and %d allies for 3.5 seconds (Cooldown: 90s).", casterShield, alliesShielded))
     return true
 end
 

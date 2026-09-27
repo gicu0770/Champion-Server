@@ -110,10 +110,53 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
       end
     end
 
+    local ARDENT_CENSER_BUFF = _G.ARDENT_CENSER_BUFF or 114
+    local GRIEVOUS_WOUNDS = _G.GRIEVOUS_WOUNDS or 110
+    local attInfo = colleftInfo and colleftInfo[player:getId()]
+    local attAttrs = attInfo and attInfo.attributesItems
+    local hasSanctify = attAttrs and attAttrs[67]
+    local hasIntervention = attAttrs and attAttrs[65]
+
+    if hasSanctify then
+      player:addBuff(ARDENT_CENSER_BUFF, 6000)
+      player:getTotalAttackSpeed()
+    end
+
     -- Apply 25% max HP heal + Immortality (RESTART_IMMORTAL) + floating text to all affected players
     for _, p in pairs(affectedPlayers) do
       if p and not p:isRemoved() then
         local healAmount = math.floor(p:getMaxHealth() * 0.25)
+        local healMult = 1.0
+
+        if hasIntervention and p:getId() ~= player:getId() then
+          healMult = healMult + 0.16
+        end
+        if hasSanctify then
+          healMult = healMult + 0.08
+          if p:getId() ~= player:getId() then
+            p:addBuff(ARDENT_CENSER_BUFF, 6000)
+            p:getTotalAttackSpeed()
+          end
+        end
+
+        local defInfo = colleftInfo and colleftInfo[p:getId()]
+        local defAttrs = defInfo and defInfo.attributesItems
+        if defAttrs then
+          if defAttrs[43] then
+            healMult = healMult + ((defAttrs[43].value or 25) / 100)
+          end
+          if defAttrs[65] then
+            healMult = healMult + 0.16
+          end
+          if defAttrs[67] then
+            healMult = healMult + 0.08
+          end
+        end
+        if p:hasBuff(GRIEVOUS_WOUNDS) then
+          healMult = math.max(0, healMult - 0.40)
+        end
+
+        healAmount = math.max(0, math.floor(healAmount * healMult))
         p:addHealth(healAmount)
         local pPos = p:getPosition()
  --       Game.sendAnimatedText("+" .. healAmount, pPos, TEXTCOLOR_LIGHTGREEN, "Reggae One-14px-bordered")

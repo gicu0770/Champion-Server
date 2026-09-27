@@ -71,12 +71,47 @@ function redemption.onUse(player, item, fromPosition, target, toPosition, isHotk
                 if healTarget then
                     local pLvl = spec:getLevel()
                     local heal = math.floor(180 + (pLvl * 1.6))
+                    local healMult = 1.0
+                    local ARDENT_CENSER_BUFF = _G.ARDENT_CENSER_BUFF or 114
+                    local GRIEVOUS_WOUNDS = _G.GRIEVOUS_WOUNDS or 110
+
                     if p then
                         local colleftInfo = _G.colleftInfo
-                        if colleftInfo and colleftInfo[pid] and colleftInfo[pid].attributesItems and colleftInfo[pid].attributesItems[65] then
-                            heal = math.ceil(heal * 1.16)
+                        local attAttrs = colleftInfo and colleftInfo[pid] and colleftInfo[pid].attributesItems
+                        if attAttrs then
+                            if attAttrs[65] and spec:getId() ~= pid then
+                                healMult = healMult + 0.16
+                            end
+                            if attAttrs[67] then
+                                healMult = healMult + 0.08
+                                p:addBuff(ARDENT_CENSER_BUFF, 6000)
+                                p:getTotalAttackSpeed()
+                                if spec:getId() ~= pid then
+                                    spec:addBuff(ARDENT_CENSER_BUFF, 6000)
+                                    spec:getTotalAttackSpeed()
+                                end
+                            end
                         end
                     end
+
+                    local specInfo = colleftInfo and colleftInfo[spec:getId()]
+                    local specAttrs = specInfo and specInfo.attributesItems
+                    if specAttrs then
+                        if specAttrs[43] then
+                            healMult = healMult + ((specAttrs[43].value or 25) / 100)
+                        end
+                        if specAttrs[65] then
+                            healMult = healMult + 0.16
+                        end
+                        if specAttrs[67] then
+                            healMult = healMult + 0.08
+                        end
+                    end
+                    if spec:hasBuff(GRIEVOUS_WOUNDS) then
+                        healMult = math.max(0, healMult - 0.40)
+                    end
+
+                    heal = math.max(0, math.floor(heal * healMult))
                     spec:addHealth(heal)
                     spec:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
                 else

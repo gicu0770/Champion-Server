@@ -304,12 +304,12 @@ end
 
 
 CHAMPION_STATS = {
-	["Hunter"] = {physical_character = true, hp_start = 550, hp_level = 3000, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, regen_mana = 1}, -- Hunter
-	["Guard"] = {physical_character = true, hp_start = 600, hp_level = 4000, mana = 200, manaPL = 500, physical_attack = 65, physical_attackPL = 140, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 40, physical_defensePL = 125, magic_defense = 30, magic_defensePL = 90, health_regen = 3, regen_mana = 1}, -- Guard
-	["Mage"] = {magic_character = true, hp_start = 500, hp_level = 2500, mana = 500, manaPL = 1000, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Mage
-	["Assassin"] = {physical_character = true, hp_start = 500, hp_level = 2500, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, regen_mana = 1}, -- Assassin
-	["Cleric"] = {magic_character = true, hp_start = 550, hp_level = 3200, mana = 400, manaPL = 850, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, regen_mana = 1}, -- Cleric
-	["Spellblade"] = {magic_character = true, hp_start = 550, hp_level = 3000, mana = 350, manaPL = 800, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 55, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 75, health_regen = 3, regen_mana = 1}, -- Spellblade
+	["Hunter"] = {physical_character = true, hp_start = 550, hp_level = 3000, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 3, health_regenPL = 11, regen_mana = 3, regen_manaPL = 12}, -- Hunter
+	["Guard"] = {physical_character = true, hp_start = 600, hp_level = 4000, mana = 200, manaPL = 500, physical_attack = 65, physical_attackPL = 140, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 40, physical_defensePL = 125, magic_defense = 30, magic_defensePL = 90, health_regen = 6, health_regenPL = 15, regen_mana = 3, regen_manaPL = 11}, -- Guard
+	["Mage"] = {magic_character = true, hp_start = 500, hp_level = 2500, mana = 500, manaPL = 1000, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 40, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, health_regenPL = 10, regen_mana = 8, regen_manaPL = 17}, -- Mage
+	["Assassin"] = {physical_character = true, hp_start = 500, hp_level = 2500, mana = 250, manaPL = 700, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 60, physical_defense = 25, physical_defensePL = 80, magic_defense = 30, magic_defensePL = 55, health_regen = 3, health_regenPL = 11, regen_mana = 3, regen_manaPL = 12}, -- Assassin
+	["Cleric"] = {magic_character = true, hp_start = 550, hp_level = 3200, mana = 400, manaPL = 850, physical_attack = 55, physical_attackPL = 120, magic_attack = 0, magic_attackPL = 0, asPL = 50, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 70, health_regen = 4, health_regenPL = 11, regen_mana = 7, regen_manaPL = 16}, -- Cleric
+	["Spellblade"] = {magic_character = true, hp_start = 550, hp_level = 3000, mana = 350, manaPL = 800, physical_attack = 60, physical_attackPL = 130, magic_attack = 0, magic_attackPL = 0, asPL = 55, physical_defense = 30, physical_defensePL = 100, magic_defense = 30, magic_defensePL = 75, health_regen = 4, health_regenPL = 12, regen_mana = 5, regen_manaPL = 12}, -- Spellblade
 }
 --[[
 CHAMPION_STATS = {
@@ -1155,17 +1155,17 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				stacks = stacks + 1
 				if stacks >= 3 then
 					stacks = 0
-					attacker:setStorageValue(SPELLBLADE_PASSIVE_CD, now + 2)
+					attacker:setStorageValue(SPELLBLADE_PASSIVE_CD, now + 5)
 					
 					-- 1. AoE Damage (3x3)
 					local magicAttack = attacker:getMagicAttack() or 0
 					local aoeDmg = math.floor(magicAttack * 0.5)
 					doAreaCombat(attacker:getId(), COMBAT_ENERGYDAMAGE, creature:getPosition(), area3x3, -aoeDmg, -aoeDmg, CONST_ME_PURPLEENERGY, ORIGIN_REFLECT, 2000, 110)
 					
-					-- 2. Energy Shield 5% Max HP (capped at 20% Max HP, 5s duration)
+					-- 2. Energy Shield 10% Max HP (capped at 20% Max HP, 2s duration)
 					local maxHp = attacker:getMaxHealth()
-					local shieldAmount = math.floor(maxHp * 0.05)
-					attacker:addEnergyShieldDuration(shieldAmount, 5000, 0.20)
+					local shieldAmount = math.floor(maxHp * 0.10)
+					attacker:addEnergyShieldDuration(shieldAmount, 2000, 0.20)
 				end
 				attacker:setStorageValue(SPELLBLADE_PASSIVE_STORAGE, stacks)
 			end
