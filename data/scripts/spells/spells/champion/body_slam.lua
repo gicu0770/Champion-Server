@@ -90,12 +90,6 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
       slowCondition:setParameter(CONDITION_PARAM_SPEED, -slow)
       target:addCondition(slowCondition)
     end
-
-    if target:isMonster() then
-      target:challengeCreature(caster, 5000)
-      target:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
-      Game.sendAnimatedText("CHALLENGE", target:getPosition(), TEXTCOLOR_RED, "Reggae One-12px-bordered")
-    end
   end
 
   spellSetupTargetCombat(player, combat, CONFIG, CONFIG_SUP, item, extraFunc)
@@ -115,6 +109,20 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
       end
     end
     position:sendMagicEffect(effect, 0)
+
+    local challengeRadius = 3
+    if CONFIG_SUP.resizeTo then
+      challengeRadius = math.max(3, 2 + CONFIG_SUP.resizeTo)
+    end
+    local spectators = Game.getSpectators(playerPos, false, false, challengeRadius, challengeRadius, challengeRadius, challengeRadius)
+    for _, spectator in ipairs(spectators) do
+      if spectator:isMonster() and not spectator:getMaster() then
+        spectator:challengeCreature(player, 5000)
+        spectator:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+        Game.sendAnimatedText("CHALLENGE", spectator:getPosition(), TEXTCOLOR_RED, "Reggae One-12px-bordered")
+      end
+    end
+
     spellCleanAfterCast(player, combat)
   end
   return true

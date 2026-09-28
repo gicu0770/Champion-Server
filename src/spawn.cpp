@@ -381,8 +381,28 @@ void Spawn::removeSpawnBlocker(Creature* creature)
 	}
 }
 
+bool Spawn::isSpawnBlocking(Creature* creature) const
+{
+	if (!g_config.getBoolean(ConfigManager::ANTI_BLOCK_SYSTEM)) {
+		return false;
+	}
+	return spawnBlockers.find(creature) != spawnBlockers.end();
+}
+
+bool Spawn::isPreSpawnBlocking(Creature* creature) const
+{
+	if (!g_config.getBoolean(ConfigManager::ANTI_BLOCK_SYSTEM)) {
+		return false;
+	}
+	return preSpawnBlockers.find(creature) != preSpawnBlockers.end();
+}
+
 void Spawn::addPreSpawnBlocker(Creature* creature, Monster* monster)
 {
+	if (!g_config.getBoolean(ConfigManager::ANTI_BLOCK_SYSTEM)) {
+		return;
+	}
+
 	if (isPreSpawnBlocking(creature)) {
 		addSpawnBlocker(creature);
 		if (Player* player = creature->getPlayer()) {
@@ -399,6 +419,10 @@ void Spawn::addPreSpawnBlocker(Creature* creature, Monster* monster)
 
 void Spawn::checkSpawnBlockers(Monster* monster)
 {
+	if (!g_config.getBoolean(ConfigManager::ANTI_BLOCK_SYSTEM)) {
+		return;
+	}
+
 	SpectatorVector spectators;
 	g_game.map.getSpectators(spectators, centerPos, true);
 	spectators.erase(monster);

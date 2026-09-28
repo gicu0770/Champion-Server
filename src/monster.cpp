@@ -916,6 +916,10 @@ bool Monster::canUseSpell(const Position& pos, const Position& targetPos,
 void Monster::onThinkTarget(uint32_t interval)
 {
 	if (!isSummon()) {
+		if (challengeCooldown > 0) {
+			challengeCooldown = std::max<int32_t>(0, challengeCooldown - interval);
+		}
+
 		if (mType->info.changeTargetSpeed != 0) {
 			bool canChangeTarget = true;
 
@@ -1342,9 +1346,11 @@ bool Monster::getDistanceStep(const Position& targetPos, Direction& direction, b
 
 	int32_t distance = std::max<int32_t>(dx, dy);
 
-	if (!flee && (distance > mType->info.targetDistance || !g_game.isSightClear(creaturePos, targetPos, true))) {
+	int32_t targetDist = (challengeCooldown > 0) ? 1 : mType->info.targetDistance;
+
+	if (!flee && (distance > targetDist || !g_game.isSightClear(creaturePos, targetPos, true))) {
 		return false; // let the A* calculate it
-	} else if (!flee && distance == mType->info.targetDistance) {
+	} else if (!flee && distance == targetDist) {
 		return true; // we don't really care here, since it's what we wanted to reach (a dancestep will take of dancing in that position)
 	}
 
@@ -2035,7 +2041,10 @@ bool Monster::challengeCreature(Creature* creature, uint32_t duration /*= 5000*/
 	bool result = selectTarget(creature);
 	if (result) {
 		targetChangeCooldown = duration;
+		challengeCooldown = duration;
 		targetChangeTicks = 0;
+		isUpdatingPath = false;
+		goToFollowCreature();
 	}
 	return result;
 }
@@ -2045,7 +2054,7 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 	Creature::getPathSearchParams(creature, fpp);
 
 	fpp.minTargetDist = 1;
-	fpp.maxTargetDist = mType->info.targetDistance;
+	fpp.maxTargetDist = (challengeCooldown > 0) ? 1 : mType->info.targetDistance;
 	if (fpp.maxTargetDist > 1) {
 		fpp.clearSight = true;
 	}
@@ -2066,7 +2075,7 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 		fpp.clearSight = false;
 		fpp.keepDistance = true;
 		fpp.fullPathSearch = false;
-	} else if (mType->info.targetDistance <= 1) {
+	} else if (mType->info.targetDistance <= 1 || challengeCooldown > 0) {
 		fpp.fullPathSearch = true;
 	} else {
 		fpp.fullPathSearch = !canUseAttack(getPosition(), creature);

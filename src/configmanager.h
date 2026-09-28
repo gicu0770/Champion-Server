@@ -46,6 +46,7 @@ class ConfigManager
 			STATS_TRACK_LUA_ADD_EVENTS,
 			STATS_TRACK_LUA_ADD_EVENTS_HASHES,
 			WHITELIST_ENABLED,
+			ANTI_BLOCK_SYSTEM,
 
 			LAST_BOOLEAN_CONFIG /* this must be the last one */
 		};

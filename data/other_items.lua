@@ -1129,6 +1129,64 @@ OTHER_ITEMS = {
       }
     },
     {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Gorok",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
+      {
+        chance = 100000,
+        forceType = 536870912,
+        imps = {
+          {
+            266
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Viliaan",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
       "Eldritch Heart",
       38601,
       "Eldritch Reaver",
@@ -1156,26 +1214,24 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "Grave Trophy",
+      38593,
+      "Grave Spearlord",
       {
-        chance = 100000,
-        forceType = 268435456,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            265
+            68
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              50
             }
           }
         },
-        monster = "Gorok",
+        monster = "Grave Spearlord",
+        unique = true,
         weight = {
           0,
           0,
@@ -1212,26 +1268,24 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
+      "Lich Voodoo Mask",
+      38566,
+      "Soulbound Lich",
       {
-        chance = 100000,
-        forceType = 536870912,
+        chance = 15000,
+        forceType = 33554432,
         imps = {
           {
-            266
+            107
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              50
             }
           }
         },
-        monster = "Viliaan",
+        monster = "Soulbound Lich",
+        unique = true,
         weight = {
           0,
           0,
@@ -1609,60 +1663,6 @@ OTHER_ITEMS = {
           }
         },
         monster = "Ascended Voort",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Lich Voodoo Mask",
-      38566,
-      "Soulbound Lich",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            107
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Soulbound Lich",
-        unique = true,
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Grave Trophy",
-      38593,
-      "Grave Spearlord",
-      {
-        chance = 15000,
-        forceType = 33554432,
-        imps = {
-          {
-            68
-          },
-          {
-            {
-              50
-            }
-          }
-        },
-        monster = "Grave Spearlord",
-        unique = true,
         weight = {
           0,
           0,

@@ -85,12 +85,8 @@ class Spawn
 		void addSpawnBlocker(Creature* creature);
 		void removeSpawnBlocker(Creature* creature);
 		void clearSpawnBlockers();
-		bool isSpawnBlocking(Creature* creature) const {
-			return spawnBlockers.find(creature) != spawnBlockers.end();
-		}
-		bool isPreSpawnBlocking(Creature* creature) const {
-			return preSpawnBlockers.find(creature) != preSpawnBlockers.end();
-		}
+		bool isSpawnBlocking(Creature* creature) const;
+		bool isPreSpawnBlocking(Creature* creature) const;
 		void checkSpawnBlockers(Monster* monster);
 
 		uint32_t getInterval() const {

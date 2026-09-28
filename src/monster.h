@@ -200,7 +200,10 @@ class Monster final : public Creature
 
 		bool isTarget(const Creature* creature) const;
 		bool isFleeing() const {
-			return !isSummon() && getHealth() <= mType->info.runAwayHealth;
+			return !isSummon() && challengeCooldown <= 0 && getHealth() <= mType->info.runAwayHealth;
+		}
+		bool isChallenged() const {
+			return challengeCooldown > 0;
 		}
 
 		void setInstance(DungeonInstance* instance) {
@@ -249,6 +252,7 @@ class Monster final : public Creature
 		uint32_t spread = 0;
 		uint32_t target = 0;
 		int32_t targetChangeCooldown = 0;
+		int32_t challengeCooldown = 0;
 		int32_t stepDuration = 0;
 
 		DungeonInstance* instance = nullptr;
