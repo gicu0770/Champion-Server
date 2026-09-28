@@ -340,7 +340,6 @@ function Player.getBaseManaRegen(self, customLevel)
 	return math.floor(baseM + (((baseM_PL - baseM) / 50) * level))
 end
 
-
 function Player.getMonsterPhysicalDefensePercent(self)
 	if not self then return 0 end
 	local getPhysicalDefensePercent = math.ceil((MONSTER_CONFIG[self:getType():tier()].physical_defense / (100 + MONSTER_CONFIG[self:getType():tier()].physical_defense)) * 100)

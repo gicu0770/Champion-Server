@@ -315,6 +315,11 @@ function Creature:addBuff(id, time, stacks, maxStacks)
   local endTime = server_time + duration
   if id == STUN and duration > 0 then
     self:setProgressBar(duration, false)
+    if not self:hasCondition(CONDITION_STUN) then
+      local c = Condition(CONDITION_STUN)
+      c:setParameter(CONDITION_PARAM_TICKS, duration)
+      self:addCondition(c)
+    end
   elseif id == SILENCE and duration > 0 then
     self:setProgressBar(duration, false)
     if not self:hasCondition(CONDITION_SILENCE) then

@@ -233,6 +233,7 @@ GARGOYLE_STONEPLATE_CD = 209
 REDEMPTION_CD = 210
 SOLARI_CD = 212
 GA_COOLDOWN = 213
+ASSASSIN_EXPOSED = 214
 
 BUFFS = {
     ----------------------------------------------------------------------------
@@ -2038,6 +2039,17 @@ BUFFS = {
         maxStacks = 1,
         debuff = false,
         ticks = 6000,
+    },
+    [ASSASSIN_EXPOSED] = {
+        id = ASSASSIN_EXPOSED,
+        name = "Exposed",
+        description = "Exposed to Assassin: attacks deal +20% damage and land guaranteed Critical Hits.",
+        icon = "death",
+        border = "frame-9-red",
+        stacked = false,
+        maxStacks = 1,
+        debuff = true,
+        ticks = 1500,
     },
     [ILLUMINATION_DOT_UNIQUE] = {
         id = ILLUMINATION_DOT_UNIQUE,

@@ -87,6 +87,36 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   if aimDir then
     player:setDirection(aimDir)
   end
+
+  -- Stun target for 0.75s (750ms)
+  local isAllyTarget = false
+  if target:isPlayer() then
+    local p1 = player:getParty()
+    local p2 = target:getParty()
+    if p1 and p2 and p1 == p2 then isAllyTarget = true end
+    local g1 = player:getGuild()
+    local g2 = target:getGuild()
+    if g1 and g2 and g1:getId() == g2:getId() then isAllyTarget = true end
+    if player:getId() == target:getId() then isAllyTarget = true end
+  end
+
+  if not isAllyTarget and (target:isMonster() or (target:isPlayer() and not player:hasSecureMode())) then
+    local stunCond = Condition(CONDITION_STUN)
+    stunCond:setParameter(CONDITION_PARAM_TICKS, 750)
+    target:addCondition(stunCond)
+    if target.addBuff then
+      target:addBuff(STUN, 750)
+    end
+    if target.setProgressBar then
+      target:setProgressBar(750, false)
+    end
+    Game.sendAnimatedText("STUN", target:getPosition(), TEXTCOLOR_WHITE, "Reggae One-12px-bordered")
+  end
+
+  -- Expose target for 1.5s (Grace period for backstab)
+  if target.addBuff then
+    target:addBuff(ASSASSIN_EXPOSED, 1500)
+  end
   
   -- Damage
   local dmg = spellGlobalFormule(player, CONFIG, CONFIG_SUP, item)

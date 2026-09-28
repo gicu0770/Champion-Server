@@ -1098,28 +1098,43 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 		-- =====================================================================
 		-- ASSASSIN PASSIVES & DEATH MARK
 		-- =====================================================================
-		if attacker:getVocation():getId() == 4 and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
-			-- Phantom Steps (Guaranteed Crit from behind or after dash)
+		if (attacker:getVocation():getId() == 4 or attacker:getVocation():getName() == "Assassin") and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING then
+			-- Direction check (Attacking from behind)
+			local targetDir = creature:getDirection()
+			local aPos = attacker:getPosition()
+			local cPos = creature:getPosition()
+			local isBehind = false
+			if targetDir == DIRECTION_NORTH and aPos.y > cPos.y then isBehind = true
+			elseif targetDir == DIRECTION_SOUTH and aPos.y < cPos.y then isBehind = true
+			elseif targetDir == DIRECTION_EAST and aPos.x < cPos.x then isBehind = true
+			elseif targetDir == DIRECTION_WEST and aPos.x > cPos.x then isBehind = true
+			end
+
+			-- Apply / refresh ASSASSIN_EXPOSED debuff when attacking from behind
+			if isBehind and creature.addBuff then
+				creature:addBuff(ASSASSIN_EXPOSED, 1500)
+			end
+
+			local isBackstab = isBehind or (creature.hasBuff and creature:hasBuff(ASSASSIN_EXPOSED))
+
+			-- Phantom Steps (Guaranteed Crit from behind/exposed or after dash)
 			local phantomStepCrit = false
 			if attacker:getStorageValue(PlayerStorage.phantomStepCrit) == 1 then
 				phantomStepCrit = true
 				attacker:setStorageValue(PlayerStorage.phantomStepCrit, -1)
-			else
-				local targetDir = creature:getDirection()
-				local aPos = attacker:getPosition()
-				local cPos = creature:getPosition()
-				local isBehind = false
-				if targetDir == DIRECTION_NORTH and aPos.y > cPos.y then isBehind = true
-				elseif targetDir == DIRECTION_SOUTH and aPos.y < cPos.y then isBehind = true
-				elseif targetDir == DIRECTION_EAST and aPos.x < cPos.x then isBehind = true
-				elseif targetDir == DIRECTION_WEST and aPos.x > cPos.x then isBehind = true
-				end
-				if isBehind then
-					phantomStepCrit = true
-				end
+			elseif isBackstab then
+				phantomStepCrit = true
 			end
 			if phantomStepCrit then
 				critical = true
+			end
+
+			-- Backstab (+20% damage from behind or during Exposed)
+			if isBackstab then
+				primaryDamage = math.ceil(primaryDamage * 1.20)
+				if secondaryDamage and secondaryDamage > 0 then
+					secondaryDamage = math.ceil(secondaryDamage * 1.20)
+				end
 			end
 
 			-- Death Mark
