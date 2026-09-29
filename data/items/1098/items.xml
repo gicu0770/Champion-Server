@@ -3307,11 +3307,9 @@
 		<attribute key="attack" value="15" />
 		<attribute key="weaponType" value="club" />
 	</item>
-	<item id="26591" article="a" name="assassin dagger"> 
-		<attribute key="weight" value="5400" />
-		<attribute key="defense" value="5" />
-		<attribute key="attack" value="15" />
-		<attribute key="weaponType" value="club" />
+	<item id="26591" article="an" name="Edge of Night"> 
+		<attribute key="weight" value="2500" />
+		<attribute key="slotType" value="body" />
 	</item>
 	<item id="2395" article="a" name="carlin sword">
 		<attribute key="weight" value="4000" />
@@ -15805,12 +15803,7 @@
 	</item>
 	<item id="8854" article="a" name="Warsinger Bow">
 		<attribute key="weight" value="4500" />
-		<attribute key="weaponType" value="distance"/>
-		<attribute key="shootType" value="arrow"/>
-		<attribute key="range" value="6" />
-		<attribute key="hitChance" value="5" />
-		<attribute key="attack" value="3" />
-		<attribute key="slotType" value="two-handed" />
+		<attribute key="slotType" value="head"/>
 	</item>
 	<item id="8855" article="a" name="recurve bow">
 		<attribute key="weight" value="520" />
@@ -15826,10 +15819,7 @@
 	</item>
 	<item id="8858" name="Elethriel's elemental Bow">
 		<attribute key="weight" value="4400" />
-		<attribute key="weaponType" value="distance"/>
-		<attribute key="shootType" value="arrow"/>
-		<attribute key="range" value="4" />
-		<attribute key="attack" value="7" />
+		<attribute key="slotType" value="head"/>
 	</item>
 	<item id="8859" name="spider fangs">
 		<attribute key="showcount" value="0" />

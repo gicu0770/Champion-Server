@@ -875,10 +875,10 @@ RECOMB_ITEM_RECIPES = {
     },
   },
 
-  -- Step 3: Serrated Dirk (8854) + Tunneler (8858) + 850 Gold -> Edge of Night (8861)
+  -- Step 3: Serrated Dirk (8854) + Tunneler (8858) + 850 Gold -> Edge of Night (26591)
   {
     items = {8854, 8858},
-    result = 8861,
+    result = 26591,
     gold = 26000,
     name = "Edge of Night",
     rarity = 4,

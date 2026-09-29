@@ -12,6 +12,8 @@ local items = {
 	{itemid = 36112, type = "deequip", slot = "shield", client_version = 1098},
 	{itemid = 5884, type = "equip", slot = "shield", client_version = 1098},
 	{itemid = 5884, type = "deequip", slot = "shield", client_version = 1098},
+	{itemid = 26591, type = "equip", slot = "armor", client_version = 0},
+	{itemid = 26591, type = "deequip", slot = "armor", client_version = 0},
 	{itemid = 36138, type = "equip", slot = "hand", client_version = 1098},
 	{itemid = 36138, type = "deequip", slot = "hand", client_version = 1098},
 	{itemid = 36109, type = "equip", slot = "hand", client_version = 1098},
