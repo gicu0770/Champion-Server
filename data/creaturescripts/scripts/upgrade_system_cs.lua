@@ -891,7 +891,7 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 				secondaryType = COMBAT_ENERGYDAMAGE
 				creature:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
 			else
-				creature:getPosition():sendMagicEffect(CONST_ME_BLUE_ENERGY_SPARK)
+				creature:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
 			end
 		end
 

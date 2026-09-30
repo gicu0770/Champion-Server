@@ -34,7 +34,7 @@ function zhonya.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
     -- Visual effects
     player:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
-    player:getPosition():sendMagicEffect(CONST_ME_YELLOW_ENERGY_SPARK)
+    player:getPosition():sendMagicEffect(CONST_ME_YELLOWENERGY)
 
     player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "[Zhonya's Hourglass] Time Stop activated! You are in Stasis for 3 seconds (Cooldown: 120s).")
     return true

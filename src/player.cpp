@@ -3699,6 +3699,7 @@ void Player::onAddCondition(ConditionType_t type)
 		stopWalk();
 		sendCancelWalk();
 		sendNewCancelWalk();
+		sendCreatureTurn(this);
 	}
 
 	#if GAME_FEATURE_MOUNTS > 0

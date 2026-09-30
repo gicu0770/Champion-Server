@@ -313,6 +313,13 @@ function Creature:addBuff(id, time, stacks, maxStacks)
   local server_time = os.time() * 1000
   local duration = time or buff.ticks
   local endTime = server_time + duration
+  stacks = stacks or 1
+  CREATURE_ACTIVE_BUFFS[self:getId()][buff.id] = {
+    id = buff.id,
+    endTime = endTime,
+    stacks = stacks,
+  }
+
   if id == STUN and duration > 0 then
     self:setProgressBar(duration, false)
     if not self:hasCondition(CONDITION_STUN) then
@@ -335,12 +342,6 @@ function Creature:addBuff(id, time, stacks, maxStacks)
       self:addCondition(c)
     end
   end
-  stacks = stacks or 1
-  CREATURE_ACTIVE_BUFFS[self:getId()][buff.id] = {
-    id = buff.id,
-    endTime = endTime,
-    stacks = stacks,
-  }
 
   local buffToSend = {
     buff.id,
@@ -622,3 +623,28 @@ LogoutEvent:register()
 
 ExtendedEvent:type("extendedopcode")
 ExtendedEvent:register()
+
+if not Creature._originalAddCondition then
+  Creature._originalAddCondition = Creature.addCondition
+  function Creature:addCondition(condition)
+    if condition and condition:getType() == CONDITION_STUN then
+      local ticks = condition:getTicks()
+      if ticks > 0 and not self:hasBuff(STUN) then
+        self:addBuff(STUN, ticks)
+      end
+    end
+    return self:_originalAddCondition(condition)
+  end
+end
+
+if not Creature._originalRemoveCondition then
+  Creature._originalRemoveCondition = Creature.removeCondition
+  function Creature:removeCondition(conditionType, conditionId, subId, force)
+    if conditionType == CONDITION_STUN then
+      if self:hasBuff(STUN) then
+        self:removeBuff(STUN)
+      end
+    end
+    return self:_originalRemoveCondition(conditionType, conditionId, subId, force)
+  end
+end

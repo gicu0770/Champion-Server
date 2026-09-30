@@ -3734,7 +3734,7 @@ void ProtocolGame::sendLineEffect(const Position& from, const Position& to, uint
 
 void ProtocolGame::sendMagicEffect(const Position& pos, uint16_t type, uint8_t bottom /*= 0*/, const std::string color /*= 0*/)
 {
-	if (!canSee(pos)) {
+	if (!canSee(pos) || type == CONST_ME_NONE) {
 		return;
 	}
 
@@ -3749,7 +3749,7 @@ void ProtocolGame::sendMagicEffect(const Position& pos, uint16_t type, uint8_t b
 
 void ProtocolGame::sendCreatureEffect(const Creature* creature, uint16_t type, uint8_t bottom /*= 0*/)
 {
-	if (!canSee(creature)) {
+	if (!canSee(creature) || type == CONST_ME_NONE) {
 		return;
 	}
 

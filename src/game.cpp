@@ -2085,6 +2085,7 @@ void Game::playerMove(Player* player, Direction direction)
 	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_ROOT)) {
 		player->sendCancelWalk();
 		player->sendNewCancelWalk();
+		player->sendCreatureTurn(player);
 		return;
 	}
 
@@ -2564,6 +2565,7 @@ void Game::playerAutoWalk(uint32_t playerId, std::vector<Direction>& listDir)
 	if (player->hasCondition(CONDITION_STUN) || player->hasCondition(CONDITION_ROOT)) {
 		player->sendCancelWalk();
 		player->sendNewCancelWalk();
+		player->sendCreatureTurn(player);
 		return;
 	}
 
@@ -3467,7 +3469,11 @@ void Game::playerTurn(Player* player, Direction dir)
 	}
 
 	player->resetIdleTime();
-	internalCreatureTurn(player, dir);
+	if (!internalCreatureTurn(player, dir)) {
+		if (player->hasCondition(CONDITION_STUN)) {
+			player->sendCreatureTurn(player);
+		}
+	}
 }
 
 void Game::playerRequestOutfit(Player* player)
@@ -5023,6 +5029,10 @@ void Game::addMagicEffect(const Position& pos, uint16_t effect, uint8_t bottom /
 
 void Game::addMagicEffect(const SpectatorVector& spectators, const Position& pos, uint16_t effect, uint8_t bottom /* 0 */, const std::string color /* 0 */)
 {
+	if (effect == CONST_ME_NONE) {
+		return;
+	}
+
 	for (Creature* spectator : spectators) {
 		if (Player* tmpPlayer = spectator->getPlayer()) {
 			tmpPlayer->sendMagicEffect(pos, effect, bottom, color);
@@ -5056,6 +5066,10 @@ void Game::addCreatureEffect(const Creature* creature, uint16_t effect, uint8_t 
 
 void Game::addCreatureEffect(const SpectatorVector& spectators, const Creature* creature, uint16_t effect, uint8_t bottom /* 0 */)
 {
+	if (effect == CONST_ME_NONE) {
+		return;
+	}
+
 	for (Creature* spectator : spectators) {
 		if (Player* tmpPlayer = spectator->getPlayer()) {
 			tmpPlayer->sendCreatureEffect(creature, effect, bottom);
