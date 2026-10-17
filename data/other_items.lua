@@ -1100,6 +1100,64 @@ OTHER_ITEMS = {
   },
   RELICS = {
     {
+      "Dulimar Emblem",
+      38561,
+      "Arbaziloth",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            239
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Arbaziloth",
+        weight = {
+          10,
+          12,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "The Epic Wisdom",
+      13946,
+      "Toxic Witch",
+      {
+        chance = 100000,
+        forceType = 33554432,
+        imps = {
+          {
+            241
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Toxic Witch",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
       "Eldritch Heart",
       38601,
       "Eldritch Reaver",
@@ -1208,15 +1266,15 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Void Stone Relict",
-      38693,
-      "Void Stone",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
-        chance = 5000,
-        forceType = -2147483648,
+        chance = 100000,
+        forceType = 134217728,
         imps = {
           {
-            288
+            264
           },
           {
             {
@@ -1227,7 +1285,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Void Stone",
+        monster = "Bilbo",
         weight = {
           0,
           0,
@@ -1382,31 +1440,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Knight Emblem",
-      38447,
-      "Tidal Overlord",
+      "Champion Trophy",
+      38736,
+      "Gorok",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 268435456,
         imps = {
           {
-            237
+            265
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Tidal Overlord",
+        monster = "Gorok",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1440,31 +1498,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Dulimar Emblem",
-      38561,
-      "Arbaziloth",
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
       {
         chance = 100000,
-        forceType = 16777216,
+        forceType = 536870912,
         imps = {
           {
-            239
+            266
           },
           {
             {
-              15,
-              22,
-              35,
-              50
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Arbaziloth",
+        monster = "Viliaan",
         weight = {
-          10,
-          12,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1494,122 +1552,6 @@ OTHER_ITEMS = {
           10,
           15,
           20
-        }
-      }
-    },
-    {
-      "The Epic Wisdom",
-      13946,
-      "Toxic Witch",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            241
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Toxic Witch",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
-      {
-        chance = 100000,
-        forceType = 134217728,
-        imps = {
-          {
-            264
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Bilbo",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Champion Trophy",
-      38736,
-      "Gorok",
-      {
-        chance = 100000,
-        forceType = 268435456,
-        imps = {
-          {
-            265
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Gorok",
-        weight = {
-          0,
-          0,
-          0,
-          0
-        }
-      }
-    },
-    {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
-      {
-        chance = 100000,
-        forceType = 536870912,
-        imps = {
-          {
-            266
-          },
-          {
-            {
-              50,
-              100,
-              150,
-              200
-            }
-          }
-        },
-        monster = "Viliaan",
-        weight = {
-          0,
-          0,
-          0,
-          0
         }
       }
     },
@@ -1666,6 +1608,64 @@ OTHER_ITEMS = {
         weight = {
           5,
           10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Void Stone Relict",
+      38693,
+      "Void Stone",
+      {
+        chance = 5000,
+        forceType = -2147483648,
+        imps = {
+          {
+            288
+          },
+          {
+            {
+              50,
+              100,
+              150,
+              200
+            }
+          }
+        },
+        monster = "Void Stone",
+        weight = {
+          0,
+          0,
+          0,
+          0
+        }
+      }
+    },
+    {
+      "Knight Emblem",
+      38447,
+      "Tidal Overlord",
+      {
+        chance = 100000,
+        forceType = 16777216,
+        imps = {
+          {
+            237
+          },
+          {
+            {
+              15,
+              22,
+              35,
+              50
+            }
+          }
+        },
+        monster = "Tidal Overlord",
+        weight = {
+          10,
+          12,
           15,
           20
         }
