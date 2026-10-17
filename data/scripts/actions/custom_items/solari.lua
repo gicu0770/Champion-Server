@@ -45,15 +45,7 @@ function solari.onUse(player, item, fromPosition, target, toPosition, isHotkey)
     local spectators = Game.getSpectators(centerPos, false, true, radius, radius, radius, radius)
     local alliesShielded = 0
     for _, spec in ipairs(spectators) do
-        if spec:isPlayer() and spec:getId() ~= player:getId() then
-            local isAlly = false
-            if player:getParty() and spec:getParty() and player:getParty() == spec:getParty() then
-                isAlly = true
-            elseif not player:getParty() then
-                isAlly = true
-            end
-
-            if isAlly then
+        if spec:isPlayer() and spec:getId() ~= player:getId() and isAlly(player, spec) then
                 local allyShield = shieldAmount
                 if hasIntervention then
                     allyShield = math.ceil(allyShield * 1.16)

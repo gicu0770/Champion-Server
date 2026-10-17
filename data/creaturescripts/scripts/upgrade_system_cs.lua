@@ -339,6 +339,33 @@ function us_onDamaged(creature, attacker, primaryDamage, primaryType, secondaryD
 	local isNegative = (primaryDamage < 0)
 	primaryDamage = math.abs(primaryDamage)
 
+	-- =====================================================================
+	-- BLIND DEBUFF (Holy Smite / Cleric): 40% chance for attacker's attack to miss
+	-- =====================================================================
+	local blindId = BLIND or 11
+	local isBlinded = false
+	if attacker and attacker.hasBuff then
+		if attacker:hasBuff(blindId) then
+			isBlinded = true
+		elseif attacker.getMaster and attacker:getMaster() and attacker:getMaster().hasBuff and attacker:getMaster():hasBuff(blindId) then
+			isBlinded = true
+		end
+	end
+
+	if isBlinded and origin ~= ORIGIN_CONDITION and origin ~= ORIGIN_DOT and origin ~= ORIGIN_REFLECT and primaryType ~= COMBAT_HEALING and secondaryType ~= COMBAT_HEALING then
+		if math.random(100) <= 40 then
+			Game.sendAnimatedText("MISS", creature:getPosition(), TEXTCOLOR_WHITE_EXP, "Reggae One-12px-bordered")
+			creature:getPosition():sendMagicEffect(CONST_ME_POFF)
+			if attacker:isPlayer() and attacker:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+				attacker:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "[ATTACK] Missed " .. creature:getName() .. " (Blinded - 40% miss chance).")
+			end
+			if creature:isPlayer() and creature:getStorageValue(PlayerStorage.damageLog) ~= -1 then
+				creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, "[EVADED] " .. attacker:getName() .. "'s attack missed you (Blinded).")
+			end
+			return 0, primaryType, 0, secondaryType
+		end
+	end
+
 	-- GRACZ ATAKUJE
 	if attacker:isPlayer() then -- atakujacym jest gracz
 		local attackerAttrs = colleftInfo[attacker:getId()] and colleftInfo[attacker:getId()].attributesItems

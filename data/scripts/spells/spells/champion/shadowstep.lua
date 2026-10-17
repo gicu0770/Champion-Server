@@ -89,16 +89,7 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   end
 
   -- Stun target for 0.75s (750ms)
-  local isAllyTarget = false
-  if target:isPlayer() then
-    local p1 = player:getParty()
-    local p2 = target:getParty()
-    if p1 and p2 and p1 == p2 then isAllyTarget = true end
-    local g1 = player:getGuild()
-    local g2 = target:getGuild()
-    if g1 and g2 and g1:getId() == g2:getId() then isAllyTarget = true end
-    if player:getId() == target:getId() then isAllyTarget = true end
-  end
+  local isAllyTarget = isAlly(player, target)
 
   if not isAllyTarget and (target:isMonster() or (target:isPlayer() and not player:hasSecureMode())) then
     local stunCond = Condition(CONDITION_STUN)

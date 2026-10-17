@@ -15,7 +15,7 @@ BASE_ITEMS = {
       {17, 3}, -- ID 17 (Physical Lifesteal): +3%
     }, 0, 10000},
     {"Doran's Ring", 2124, { 
-      {7, 18}, -- ID 7 (Magic Attack): +18
+      {7, 10}, -- ID 7 (Magic Attack): +10
       {1, 90}, -- ID 1 (Health): +90
       {5, 5},  -- ID 5 (Mana Regeneration): +5
     }, 0, 10000},

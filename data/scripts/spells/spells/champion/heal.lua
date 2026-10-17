@@ -20,14 +20,21 @@ local CONFIG = {
   },
 }
 
-local function getPlayerOnTile(pos)
+local function getAllyOnTile(player, pos)
   if not pos then return nil end
   local tile = Tile(pos)
   if not tile then return nil end
   local creatures = tile:getCreatures()
   if creatures then
+    -- First preference: allied player other than self (party or guild)
     for _, c in ipairs(creatures) do
-      if c:isPlayer() and not c:isRemoved() then
+      if c:isPlayer() and not c:isRemoved() and isAlly(player, c) and c:getId() ~= player:getId() then
+        return c
+      end
+    end
+    -- Second preference: self
+    for _, c in ipairs(creatures) do
+      if c:isPlayer() and not c:isRemoved() and c:getId() == player:getId() then
         return c
       end
     end
@@ -48,34 +55,30 @@ local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   local maxRange = CONFIG_SUP.range or CONFIG.range or 5
   local healTarget = nil
 
-  -- 1. Check current targeted creature (if it's a player)
-  local target = player:getTarget()
-  if target and not target:isRemoved() and target:isPlayer() then
-    healTarget = target
-  end
-
-  -- 2. Check mousePos (if hovering over a player or near a player)
-  if not healTarget and mousePos then
-    healTarget = getPlayerOnTile(mousePos)
-    if not healTarget then
-      for dx = -1, 1 do
-        for dy = -1, 1 do
-          if dx ~= 0 or dy ~= 0 then
-            local nearby = getPlayerOnTile(Position(mousePos.x + dx, mousePos.y + dy, mousePos.z))
-            if nearby then
-              healTarget = nearby
-              break
-            end
-          end
-        end
-        if healTarget then break end
-      end
+  -- 1. Check mousePos first: if hovering over an ally from party or guild
+  if mousePos then
+    local mouseAlly = getAllyOnTile(player, mousePos)
+    if mouseAlly and mouseAlly:getId() ~= player:getId() then
+      healTarget = mouseAlly
     end
   end
 
-  -- 3. Default to caster if no other player target found
+  -- 2. If no ally under mouse, check current targeted creature (only if it's an ally from party or guild)
+  if not healTarget then
+    local target = player:getTarget()
+    if target and not target:isRemoved() and target:isPlayer() and isAlly(player, target) and target:getId() ~= player:getId() then
+      healTarget = target
+    end
+  end
+
+  -- 3. Default to caster (heal self if enemy targeted, no ally targeted, or no ally under mouse)
   if not healTarget or healTarget:isRemoved() then
     healTarget = player
+  end
+
+  -- 4. Guard check: only allies (self, party, or guild) can ever be healed
+  if not isAlly(player, healTarget) then
+    return false
   end
 
   -- 4. Check range and reachability

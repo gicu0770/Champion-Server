@@ -66,18 +66,6 @@ local CONFIG = {
   },
 }
 
-local function isAlly(caster, other)
-  if not other or not other:isPlayer() or other:isRemoved() then return false end
-  if other:getId() == caster:getId() then return true end
-  local p1 = caster:getParty()
-  local p2 = other:getParty()
-  if p1 and p2 and p1 == p2 then return true end
-  local g1 = caster:getGuild()
-  local g2 = other:getGuild()
-  if g1 and g2 and g1:getId() == g2:getId() then return true end
-  return false
-end
-
 local function onCastSpell(player, item, getInfoOnly, force, mousePos)
   if not spellCheckForCast(player, item, CONFIG.spellId, getInfoOnly, force) then return end
   local CONFIG_SUP = item:applySupportSpells(CONFIG, player:getId())

@@ -54,21 +54,8 @@ function redemption.onUse(player, item, fromPosition, target, toPosition, isHotk
         local spectators = Game.getSpectators(targetPos, false, false, rad, rad, rad, rad)
         if not spectators then return end
 
-        local party
-        if p then
-            party = p:getParty()
-        end
-
         for _, spec in ipairs(spectators) do
-            if spec:isPlayer() then
-                local healTarget = false
-                if p and spec == p then
-                    healTarget = true
-                elseif party and party == spec:getParty() then
-                    healTarget = true
-                end
-
-                if healTarget then
+            if spec:isPlayer() and isAlly(p, spec) then
                     local pLvl = spec:getLevel()
                     local heal = math.floor(180 + (pLvl * 1.6))
                     local healMult = 1.0

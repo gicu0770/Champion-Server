@@ -1095,3 +1095,42 @@ function getNextPositionByDir(pos, newPos, dir, steps)
 
   return copyPos
 end
+
+function isAlly(caster, other)
+  if not caster or not other then
+    return false
+  end
+  if not caster:isPlayer() or not other:isPlayer() then
+    return false
+  end
+  if caster:isRemoved() or other:isRemoved() then
+    return false
+  end
+  if caster:getId() == other:getId() then
+    return true
+  end
+  local p1 = caster:getParty()
+  local p2 = other:getParty()
+  if p1 and p2 and p1 == p2 then
+    return true
+  end
+  local g1 = caster:getGuild()
+  local g2 = other:getGuild()
+  if g1 and g2 and g1:getId() == g2:getId() then
+    return true
+  end
+  return false
+end
+
+if Player then
+  function Player.isAlly(self, other)
+    return isAlly(self, other)
+  end
+end
+
+if Creature then
+  function Creature.isAlly(self, other)
+    return isAlly(self, other)
+  end
+end
+
