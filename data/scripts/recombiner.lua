@@ -1637,6 +1637,7 @@ function Player:addItemToRecomb(id, item)
 
   local dataToSend = {
     i = itemType:getClientId(),
+    id = item:getId(),
     u = uid,
     r = rarity,
     c = count,
