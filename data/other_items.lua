@@ -1237,31 +1237,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Vampire Heart",
-      38239,
-      "Vampire Queen",
+      "Treasure Goblin Trophy",
+      38732,
+      "Bilbo",
       {
         chance = 100000,
-        forceType = 67108864,
+        forceType = 134217728,
         imps = {
           {
-            23
+            264
           },
           {
             {
+              50,
+              100,
               150,
-              200,
-              400,
-              750
+              200
             }
           }
         },
-        monster = "Vampire Queen",
+        monster = "Bilbo",
         weight = {
-          7,
-          10,
-          12,
-          15
+          0,
+          0,
+          0,
+          0
         }
       }
     },
@@ -1295,31 +1295,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Treasure Goblin Trophy",
-      38732,
-      "Bilbo",
+      "Flask Relict",
+      38400,
+      "Pheonix",
       {
         chance = 100000,
-        forceType = 134217728,
+        forceType = 67108864,
         imps = {
           {
-            264
+            249
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              500,
+              700,
+              900,
+              1200
             }
           }
         },
-        monster = "Bilbo",
+        monster = "Pheonix",
         weight = {
-          0,
-          0,
-          0,
-          0
+          7,
+          10,
+          12,
+          15
         }
       }
     },
@@ -1469,31 +1469,31 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Champion Trophy",
-      38736,
-      "Gorok",
+      "Warrior Trophy",
+      38448,
+      "Sand Colossus",
       {
         chance = 100000,
-        forceType = 268435456,
+        forceType = 33554432,
         imps = {
           {
-            265
+            240
           },
           {
             {
-              50,
-              100,
-              150,
-              200
+              3,
+              7,
+              15,
+              30
             }
           }
         },
-        monster = "Gorok",
+        monster = "Sand Colossus",
         weight = {
-          0,
-          0,
-          0,
-          0
+          5,
+          10,
+          15,
+          20
         }
       }
     },
@@ -1527,15 +1527,44 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Strongbox Relict",
-      38733,
-      "Viliaan",
+      "Cursed Skull Emblem",
+      25546,
+      "Molten Abyss",
       {
         chance = 100000,
-        forceType = 536870912,
+        forceType = 33554432,
         imps = {
           {
-            266
+            242
+          },
+          {
+            {
+              3,
+              7,
+              15,
+              30
+            }
+          }
+        },
+        monster = "Molten Abyss",
+        weight = {
+          5,
+          10,
+          15,
+          20
+        }
+      }
+    },
+    {
+      "Champion Trophy",
+      38736,
+      "Gorok",
+      {
+        chance = 100000,
+        forceType = 268435456,
+        imps = {
+          {
+            265
           },
           {
             {
@@ -1546,7 +1575,7 @@ OTHER_ITEMS = {
             }
           }
         },
-        monster = "Viliaan",
+        monster = "Gorok",
         weight = {
           0,
           0,
@@ -1585,84 +1614,55 @@ OTHER_ITEMS = {
       }
     },
     {
-      "Cursed Skull Emblem",
-      25546,
-      "Molten Abyss",
+      "Strongbox Relict",
+      38733,
+      "Viliaan",
       {
         chance = 100000,
-        forceType = 33554432,
+        forceType = 536870912,
         imps = {
           {
-            242
+            266
           },
           {
             {
-              3,
-              7,
-              15,
-              30
+              50,
+              100,
+              150,
+              200
             }
           }
         },
-        monster = "Molten Abyss",
+        monster = "Viliaan",
         weight = {
-          5,
-          10,
-          15,
-          20
+          0,
+          0,
+          0,
+          0
         }
       }
     },
     {
-      "Warrior Trophy",
-      38448,
-      "Sand Colossus",
-      {
-        chance = 100000,
-        forceType = 33554432,
-        imps = {
-          {
-            240
-          },
-          {
-            {
-              3,
-              7,
-              15,
-              30
-            }
-          }
-        },
-        monster = "Sand Colossus",
-        weight = {
-          5,
-          10,
-          15,
-          20
-        }
-      }
-    },
-    {
-      "Flask Relict",
-      38400,
-      "Pheonix",
+      "Vampire Heart",
+      38239,
+      "Vampire Queen",
       {
         chance = 100000,
         forceType = 67108864,
         imps = {
           {
-            249
+            23
           },
           {
             {
-              500,
-              700,
-              900,
-              1200
+              150,
+              200,
+              400,
+              750
             }
           }
         },
-        monster = "Pheonix",
+        monster = "Vampire Queen",
         weight = {
           7,
           10,

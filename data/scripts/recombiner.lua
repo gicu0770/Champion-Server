@@ -62,7 +62,7 @@ RECOMB_ITEM_RECIPES = {
   -- Example: 1 item + Gold recipe (Bronze Axe + 1000 Gold = Ravenwing 7433 with 20 Physical Attack)
   {
     items = {26618},
-    gold = 3500,
+    gold = 800,
     result = 7433,
     name = "Ravenwing",
     rarity = 2,
@@ -77,7 +77,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 25522},
     result = 7402,
-    gold = 3500,
+    gold = 3000,
     name = "Dragon Sword",
     rarity = 2,
     itemlevel = 25,
@@ -90,19 +90,8 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676},
     result = 36678,
-    gold = 3500,
+    gold = 3000,
     name = "Culling Dagger",
-    rarity = 2,
-    itemlevel = 25,
-    implicits = {
-      {12, 15},   -- Critical Chance
-    },
-  },
-  {
-    items = {36676, 36676, 36676},
-    result = 7402,
-    gold = 3500,
-    name = "X X",
     rarity = 2,
     itemlevel = 25,
     implicits = {
@@ -115,7 +104,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26445, 26445},
     result = 2191,
-    gold = 2000,
+    gold = 1200,
     name = "Dragon Wand",
     rarity = 1,
     itemlevel = 25,
@@ -128,7 +117,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2191, 2184},
     result = 8920,
-    gold = 8500,
+    gold = 5000,
     name = "Eclipse Wand",
     rarity = 3,
     itemlevel = 35,
@@ -141,10 +130,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8920, 8920},
     result = 8820,
-    gold = 26000,
+    gold = 25000,
     name = "Rabadon's Deathcap",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 100},  -- ID 7 (Magic Attack): +100
       {2, 300},  -- ID 2 (Mana): +300
@@ -157,7 +146,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26442, 26442},
     result = 8870,
-    gold = 2000,
+    gold = 1200,
     name = "Negatron Cloak",
     rarity = 1,
     itemlevel = 25,
@@ -170,7 +159,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 7900},
     result = 38641,
-    gold = 2000,
+    gold = 1200,
     name = "Kindlegem",
     rarity = 1,
     itemlevel = 25,
@@ -184,10 +173,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {38641, 8870},
     result = 9778,
-    gold = 26000,
+    gold = 20000,
     name = "Abyssal Mask",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 300},  -- ID 1 (Health): +300
       {9, 45},   -- ID 9 (Magic Defense): +45
@@ -201,7 +190,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955},
     result = 2178,
-    gold = 2000,
+    gold = 1000,
     name = "Blighting Jewel",
     rarity = 1,
     itemlevel = 25,
@@ -215,7 +204,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26445, 26445},
     result = 2189,
-    gold = 2000,
+    gold = 1200,
     name = "Blasting Wand",
     rarity = 1,
     itemlevel = 25,
@@ -228,10 +217,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2178, 2189},
     result = 7424,
-    gold = 26000,
+    gold = 20000,
     name = "Void Staff",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 95},   -- ID 7 (Magic Attack): +95
       {15, 40},  -- ID 15 (Magic Penetration): +40
@@ -243,7 +232,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26491},
     result = 7415,
-    gold = 2000,
+    gold = 1200,
     name = "Phage",
     rarity = 1,
     itemlevel = 25,
@@ -257,10 +246,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7415, 38641, 4874},
     result = 7419,
-    gold = 26000,
+    gold = 20000,
     name = "Black Cleaver",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {16, 20},  -- ID 16 (Cooldown Reduction): +20%
@@ -274,7 +263,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618},
     result = 2393,
-    gold = 8500,
+    gold = 5000,
     name = "B. F. Sword",
     rarity = 3,
     itemlevel = 35,
@@ -287,7 +276,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26832},
     result = 2424,
-    gold = 2000,
+    gold = 1200,
     name = "Vampiric Scepter",
     rarity = 1,
     itemlevel = 25,
@@ -301,10 +290,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 2424, 4874},
     result = 7416,
-    gold = 26000,
+    gold = 25000,
     name = "Bloodthirster",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 80},   -- ID 6 (Physical Attack): +80
       {17, 15},  -- ID 17 (Physical Lifesteal): +15%
@@ -317,7 +306,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676},
     result = 2660,
-    gold = 2000,
+    gold = 1200,
     name = "Cloak of Agility",
     rarity = 1,
     itemlevel = 25,
@@ -330,10 +319,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 4874, 2660},
     result = 7417,
-    gold = 26000,
+    gold = 25000,
     name = "Infinity Edge",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 70},   -- ID 6 (Physical Attack): +70
       {12, 25},  -- ID 12 (Critical Chance): +25%
@@ -346,7 +335,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26491},
     result = 2487,
-    gold = 2000,
+    gold = 1200,
     name = "Giant's Belt",
     rarity = 1,
     itemlevel = 25,
@@ -359,7 +348,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26438},
     result = 2486,
-    gold = 2000,
+    gold = 1200,
     name = "Winged Moonplate",
     rarity = 1,
     itemlevel = 25,
@@ -373,7 +362,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 38860},
     result = 2469,
-    gold = 2000,
+    gold = 1200,
     name = "Crystalline Bracer",
     rarity = 1,
     itemlevel = 25,
@@ -387,10 +376,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2486, 2469},
     result = 8878,
-    gold = 26000,
+    gold = 25000,
     name = "Warmog's Armor",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 1000}, -- ID 1 (Health): +1000
       {4, 15},   -- ID 4 (Health Regeneration): +15
@@ -404,7 +393,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7900},
     result = 7418,
-    gold = 3500,
+    gold = 3000,
     name = "Sheen",
     rarity = 2,
     itemlevel = 25,
@@ -433,10 +422,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7418, 7415, 7411},
     result = 8927,
-    gold = 26000,
+    gold = 25000,
     name = "Trinity Force",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 36},   -- ID 6 (Physical Attack): +36
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -452,7 +441,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676},
     result = 8855,
-    gold = 2000,
+    gold = 1000,
     name = "Recurve Bow",
     rarity = 1,
     itemlevel = 25,
@@ -466,10 +455,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8855, 8870, 8855},
     result = 7407,
-    gold = 26000,
+    gold = 20000,
     name = "Wit's End",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {9, 45},   -- ID 9 (Magic Defense): +45
       {11, 50},  -- ID 11 (Attack Speed): +50%
@@ -483,7 +472,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 7900},
     result = 8902,
-    gold = 2000,
+    gold = 1200,
     name = "Fiendish Codex",
     rarity = 1,
     itemlevel = 25,
@@ -497,10 +486,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8855, 2189, 8902},
     result = 7408,
-    gold = 26000,
+    gold = 22000,
     name = "Nashor's Tooth",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 80},   -- ID 7 (Magic Attack): +80
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -514,10 +503,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7418, 2189, 8902},
     result = 8930,
-    gold = 26000,
+    gold = 22000,
     name = "Lich Bane",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 85},   -- ID 7 (Magic Attack): +85
       {10, 8},   -- ID 10 (Movement Speed Percent): +8%
@@ -531,7 +520,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2660, 36676},
     result = 8850,
-    gold = 2000,
+    gold = 3000,
     name = "Zeal",
     rarity = 2,
     itemlevel = 35,
@@ -546,7 +535,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {36676, 36676},
     result = 8851,
-    gold = 1000,
+    gold = 1200,
     name = "Scout's Slingshot",
     rarity = 1,
     itemlevel = 25,
@@ -559,10 +548,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8850, 8851},
     result = 8852,
-    gold = 26000,
+    gold = 20000,
     name = "Runaan's Hurricane",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {11, 40},  -- ID 11 (Attack Speed): +40%
       {12, 25},  -- ID 12 (Critical Chance): +25%
@@ -576,10 +565,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2424, 8855, 4874},
     result = 7405,
-    gold = 26000,
+    gold = 25000,
     name = "Blade of the Ruined King",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {11, 25},  -- ID 11 (Attack Speed): +25%
@@ -593,7 +582,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26393},
     result = 2464,
-    gold = 2000,
+    gold = 1000,
     name = "Chain Vest",
     rarity = 1,
     itemlevel = 25,
@@ -606,7 +595,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26393, 26393},
     result = 2483,
-    gold = 2000,
+    gold = 1200,
     name = "Bramble Vest",
     rarity = 1,
     itemlevel = 25,
@@ -620,10 +609,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2483, 2464, 26491},
     result = 8882,
-    gold = 26000,
+    gold = 20000,
     name = "Thornmail",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {8, 75},   -- ID 8 (Physical Defense): +75
       {1, 150},  -- ID 1 (Health): +150
@@ -636,7 +625,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 7900},
     result = 2156,
-    gold = 2000,
+    gold = 1200,
     name = "Bami's Cinder",
     rarity = 1,
     itemlevel = 25,
@@ -651,10 +640,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2156, 2464, 26491},
     result = 8881,
-    gold = 26000,
+    gold = 20000,
     name = "Sunfire Aegis",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 350},  -- ID 1 (Health): +350
       {8, 50},   -- ID 8 (Physical Defense): +50
@@ -668,7 +657,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 36676, 36676},
     result = 2646,
-    gold = 5000,
+    gold = 2500,
     name = "Berserker's Greaves",
     rarity = 2,
     itemlevel = 35,
@@ -682,7 +671,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 26393},
     result = 2645,
-    gold = 5000,
+    gold = 2500,
     name = "Plated Steelcaps",
     rarity = 2,
     itemlevel = 35,
@@ -697,7 +686,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 26438},
     result = 2195,
-    gold = 5000,
+    gold = 2500,
     name = "Boots of Swiftness",
     rarity = 2,
     itemlevel = 35,
@@ -712,7 +701,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 7900},
     result = 2640,
-    gold = 5000,
+    gold = 2500,
     name = "Ionian Boots of Lucidity",
     rarity = 2,
     itemlevel = 35,
@@ -726,7 +715,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26438, 1955},
     result = 7893,
-    gold = 5000,
+    gold = 2500,
     name = "Sorcerer's Shoes",
     rarity = 2,
     itemlevel = 35,
@@ -741,7 +730,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26491, 26442, 38860},
     result = 8871,
-    gold = 2000,
+    gold = 1500,
     name = "Spectre's Cowl",
     rarity = 1,
     itemlevel = 25,
@@ -756,10 +745,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8871, 38641},
     result = 8880,
-    gold = 26000,
+    gold = 20000,
     name = "Spirit Visage",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 400},  -- ID 1 (Health): +400
       {9, 50},   -- ID 9 (Magic Defense): +50
@@ -774,10 +763,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2189, 2487, 26833},
     result = 2501,
-    gold = 26000,
+    gold = 20000,
     name = "Liandry's Torment",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 50},   -- ID 7 (Magic Attack): +50
       {1, 400},  -- ID 1 (Health): +400
@@ -791,7 +780,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 1955, 26393},
     result = 37790,
-    gold = 2000,
+    gold = 1500,
     name = "Seeker's Armguard",
     rarity = 1,
     itemlevel = 25,
@@ -805,10 +794,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {37790, 8920},
     result = 24164,
-    gold = 26000,
+    gold = 20000,
     name = "Zhonya's Hourglass",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {8, 50},   -- ID 8 (Physical Defense): +50
@@ -821,7 +810,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 1955, 26442},
     result = 2180,
-    gold = 2000,
+    gold = 1500,
     name = "Verdant Barrier",
     rarity = 1,
     itemlevel = 25,
@@ -835,10 +824,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2180, 8920},
     result = 2174,
-    gold = 26000,
+    gold = 20000,
     name = "Banshee's Veil",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {9, 40},   -- ID 9 (Magic Defense): +40
@@ -851,7 +840,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618},
     result = 8854,
-    gold = 1000,
+    gold = 1200,
     name = "Serrated Dirk",
     rarity = 1,
     itemlevel = 25,
@@ -865,7 +854,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26491},
     result = 8858,
-    gold = 1000,
+    gold = 1200,
     name = "Tunneler",
     rarity = 1,
     itemlevel = 25,
@@ -879,10 +868,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8854, 8858},
     result = 26591,
-    gold = 26000,
+    gold = 20000,
     name = "Edge of Night",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {14, 15},  -- ID 14 (Physical Penetration): +15
@@ -896,7 +885,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618},
     result = 7404,
-    gold = 2000,
+    gold = 1000,
     name = "Executioner's Calling",
     rarity = 1,
     itemlevel = 25,
@@ -910,7 +899,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {26618, 26618},
     result = 8856,
-    gold = 5000,
+    gold = 3500,
     name = "Last Whisper",
     rarity = 2,
     itemlevel = 35,
@@ -924,10 +913,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {7404, 8856, 2660},
     result = 8857,
-    gold = 26000,
+    gold = 20000,
     name = "Mortal Reminder",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 35},   -- ID 6 (Physical Attack): +35
       {14, 30},  -- ID 14 (Physical Penetration): +30
@@ -941,7 +930,7 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955},
     result = 2176,
-    gold = 2000,
+    gold = 1000,
     name = "Oblivion Orb",
     rarity = 1,
     itemlevel = 25,
@@ -955,10 +944,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2176, 2189, 38641},
     result = 8903,
-    gold = 26000,
+    gold = 20000,
     name = "Morellonomicon",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 75},   -- ID 7 (Magic Attack): +75
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -972,10 +961,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8870, 2486, 26491},
     result = 8883,
-    gold = 26000,
+    gold = 20000,
     name = "Force of Nature",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 400},  -- ID 1 (Health): +400
       {9, 55},   -- ID 9 (Magic Defense): +55
@@ -989,10 +978,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2487, 2469},
     result = 8886,
-    gold = 26000,
+    gold = 25000,
     name = "Heartsteel",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 900},  -- ID 1 (Health): +900
       {4, 15},   -- ID 4 (Health Regeneration): +15
@@ -1005,10 +994,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 2464, 8870},
     result = 8887,
-    gold = 26000,
+    gold = 20000,
     name = "Jak'Sho, The Protean",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 350},  -- ID 1 (Health): +350
       {8, 45},   -- ID 8 (Physical Defense): +45
@@ -1022,10 +1011,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8902, 26491, 1955},
     result = 8922,
-    gold = 26000,
+    gold = 20000,
     name = "Riftmaker",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 70},   -- ID 7 (Magic Attack): +70
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -1039,10 +1028,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2189, 2487, 2656},
     result = 7426,
-    gold = 26000,
+    gold = 20000,
     name = "Rod of Ages",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 45},   -- ID 7 (Magic Attack): +45
       {1, 350},  -- ID 1 (Health): +350
@@ -1056,10 +1045,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {8902, 2656, 1955},
     result = 7429,
-    gold = 26000,
+    gold = 20000,
     name = "Archangel's Staff",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 70},   -- ID 7 (Magic Attack): +70
       {16, 25},  -- ID 16 (Cooldown Reduction): +25%
@@ -1073,10 +1062,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 2656, 7900},
     result = 2190,
-    gold = 26000,
+    gold = 20000,
     name = "Luden's Echo",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 100},  -- ID 7 (Magic Attack): +100
       {16, 10},  -- ID 16 (Cooldown Reduction): +10%
@@ -1090,10 +1079,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {4874, 2656, 7900},
     result = 7390,
-    gold = 26000,
+    gold = 20000,
     name = "Muramana",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -1107,10 +1096,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2487, 4874, 4874},
     result = 8889,
-    gold = 26000,
+    gold = 20000,
     name = "Overlord's Bloodmail",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {1, 550},  -- ID 1 (Health): +550
@@ -1123,10 +1112,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 2660, 36676},
     result = 2412,
-    gold = 26000,
+    gold = 20000,
     name = "Stormrazor",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {11, 25},  -- ID 11 (Attack Speed): +25%
@@ -1140,10 +1129,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2464, 1955},
     result = 8866,
-    gold = 1000,
+    gold = 16000,
     name = "Zeke's Convergence",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 250},  -- ID 1 (Health): +250
       {2, 250},  -- ID 2 (Mana): +250
@@ -1157,10 +1146,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2464, 2175},
     result = 8867,
-    gold = 1500,
+    gold = 20000,
     name = "Frozen Heart",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {2, 400},  -- ID 2 (Mana): +400
       {8, 90},   -- ID 8 (Physical Defense / Armor): +90
@@ -1173,10 +1162,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2656, 2152},
     result = 8868,
-    gold = 1500,
+    gold = 16000,
     name = "Redemption",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 200},  -- ID 1 (Health): +200
       {5, 7},    -- ID 5 (Mana Regen): +7 per sec
@@ -1189,10 +1178,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2464, 2656},
     result = 8865,
-    gold = 1500,
+    gold = 20000,
     name = "Gargoyle Stoneplate",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 300},  -- ID 1 (Health): +300
       {8, 60},   -- ID 8 (Physical Defense / Armor): +60
@@ -1205,10 +1194,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {1955, 2656},
     result = 5884,
-    gold = 1500,
+    gold = 16000,
     name = "Ardent Censer",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {7, 60},   -- ID 7 (Magic Attack): +60
       {5, 7},    -- ID 5 (Mana Regen): +7 per sec
@@ -1220,10 +1209,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {38641, 2464},
     result = 11261,
-    gold = 1500,
+    gold = 16000,
     name = "Locket of the Iron Solari",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {1, 200},  -- ID 1 (Health): +200
       {8, 30},   -- ID 8 (Physical Defense / Armor): +30
@@ -1237,10 +1226,10 @@ RECOMB_ITEM_RECIPES = {
   {
     items = {2393, 2464},
     result = 8885,
-    gold = 1500,
+    gold = 25000,
     name = "Guardian Angel",
     rarity = 4,
-    itemlevel = 50,
+    itemlevel = 40,
     implicits = {
       {6, 55},   -- ID 6 (Physical Attack): +55
       {8, 45},   -- ID 8 (Physical Defense / Armor): +45
@@ -2059,3 +2048,4 @@ LoginEvent:type("login")
 LoginEvent:register()
 ExtendedEvent:type("extendedopcode")
 ExtendedEvent:register()
+

@@ -61,6 +61,12 @@ local JONNY_ITEMS = {
     {1, 50}, -- Health: +50
     {18, 3}, -- Magic Lifesteal: +3%
   }, 0, 450},
+  {"Dagger", 36676, {
+    {11, 10}, -- Attack Speed: +10%
+  }, 0, 300},
+  {"Boots", 26438, {
+    {21, 15}, -- Movement Speed: +15
+  }, 0, 350},
 }
 
 local function setupBaseItem(item, baseData)

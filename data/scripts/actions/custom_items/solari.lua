@@ -74,7 +74,6 @@ function solari.onUse(player, item, fromPosition, target, toPosition, isHotkey)
                 alliesShielded = alliesShielded + 1
             end
         end
-    end
 
     player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("[Locket of the Iron Solari] Devotion activated! You granted a %d HP Energy Shield to yourself and %d allies for 3.5 seconds (Cooldown: 90s).", casterShield, alliesShielded))
     return true

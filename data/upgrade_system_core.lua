@@ -208,9 +208,15 @@ function us_onMoveItem(player, item, fromPosition, toPosition)
     end
   end
 
-  -- Block equipping duplicate Legendary items (Rarity 4)
+  -- Block equipping duplicate Legendary items (Rarity 4) and enforce level 40 requirement
   local itemRarity = item:getRarityId()
   if itemRarity == 4 and toPosition.y <= CONST_SLOT_RING2 and toPosition.y ~= CONST_SLOT_BACKPACK then
+    if player:getLevel() < 40 and not item:isLimitless() then
+      player:sendTextMessage(MESSAGE_STATUS_SMALL, "You need level 40 to equip Legendary items.")
+      player:say("Need level 40!", TALKTYPE_MONSTER_SAY)
+      return false
+    end
+
     local itemId = item:getId()
     local itemName = item:getName()
     local itemUid = item:getRealUID()
