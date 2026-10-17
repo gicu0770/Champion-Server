@@ -941,6 +941,18 @@ function Monster:onDropLoot(corpse)
 --  end
 --  bagRarirty = generateBossFragments(player, corpse, lootItems, self, fragmentCount)
   if bagRarirty > highestRarity then highestRarity = bagRarirty end
+
+  if name == "Voidfang" or name == "Voidforged" or name == "Void Imp" then
+    local voidChance = (eliteMonster == 8 and 35000) or (eliteMonster == 7 and 15000) or 5000
+    if math.random(1, 100000) <= voidChance then
+      local vItem = corpse:addItem(5881, 1)
+      if vItem then
+        local rarity = addToLootInfo(vItem, lootItems, looted)
+        if rarity > highestRarity then highestRarity = rarity end
+      end
+    end
+  end
+
   generateGold(player, monsterTier, 0, eliteMonster, boss, monsterLevel, strongBox, strongBoxBoss, typeItems, mapBonus, name, self)
 
   local items = corpse:getItems()

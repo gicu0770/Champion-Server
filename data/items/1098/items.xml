@@ -9370,6 +9370,7 @@
 	<item id="5881" article="a" name="Void Fragment">
 		<attribute key="color" value="5" />
 		<attribute key="lootindex" value="3" />
+		<attribute key="description" value="A pulsating essence from the Void. Required as a catalyst to forge Legendary items." />
 	</item>
 	<item id="5882" article="a" name="red dragon scale">
 		<attribute key="weight" value="90" />

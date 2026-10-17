@@ -1,4 +1,4 @@
-local ACTION = 1
+﻿local ACTION = 1
 local ACTIONS = {
   ADD_ITEM = 1,
   UPDATE_ITEM = 2,
@@ -134,6 +134,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Rabadon's Deathcap",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 100},  -- ID 7 (Magic Attack): +100
       {2, 300},  -- ID 2 (Mana): +300
@@ -177,6 +178,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Abyssal Mask",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 300},  -- ID 1 (Health): +300
       {9, 45},   -- ID 9 (Magic Defense): +45
@@ -221,6 +223,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Void Staff",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 95},   -- ID 7 (Magic Attack): +95
       {15, 40},  -- ID 15 (Magic Penetration): +40
@@ -250,6 +253,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Black Cleaver",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {16, 20},  -- ID 16 (Cooldown Reduction): +20%
@@ -294,6 +298,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Bloodthirster",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 80},   -- ID 6 (Physical Attack): +80
       {17, 15},  -- ID 17 (Physical Lifesteal): +15%
@@ -323,6 +328,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Infinity Edge",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 70},   -- ID 6 (Physical Attack): +70
       {12, 25},  -- ID 12 (Critical Chance): +25%
@@ -380,6 +386,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Warmog's Armor",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 1000}, -- ID 1 (Health): +1000
       {4, 15},   -- ID 4 (Health Regeneration): +15
@@ -426,6 +433,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Trinity Force",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 36},   -- ID 6 (Physical Attack): +36
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -459,6 +467,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Wit's End",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {9, 45},   -- ID 9 (Magic Defense): +45
       {11, 50},  -- ID 11 (Attack Speed): +50%
@@ -490,6 +499,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Nashor's Tooth",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 80},   -- ID 7 (Magic Attack): +80
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -507,6 +517,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Lich Bane",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 85},   -- ID 7 (Magic Attack): +85
       {10, 8},   -- ID 10 (Movement Speed Percent): +8%
@@ -552,6 +563,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Runaan's Hurricane",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {11, 40},  -- ID 11 (Attack Speed): +40%
       {12, 25},  -- ID 12 (Critical Chance): +25%
@@ -569,6 +581,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Blade of the Ruined King",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {11, 25},  -- ID 11 (Attack Speed): +25%
@@ -613,6 +626,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Thornmail",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {8, 75},   -- ID 8 (Physical Defense): +75
       {1, 150},  -- ID 1 (Health): +150
@@ -644,6 +658,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Sunfire Aegis",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 350},  -- ID 1 (Health): +350
       {8, 50},   -- ID 8 (Physical Defense): +50
@@ -749,6 +764,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Spirit Visage",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 400},  -- ID 1 (Health): +400
       {9, 50},   -- ID 9 (Magic Defense): +50
@@ -767,6 +783,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Liandry's Torment",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 50},   -- ID 7 (Magic Attack): +50
       {1, 400},  -- ID 1 (Health): +400
@@ -798,6 +815,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Zhonya's Hourglass",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {8, 50},   -- ID 8 (Physical Defense): +50
@@ -828,6 +846,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Banshee's Veil",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 105},  -- ID 7 (Magic Attack): +105
       {9, 40},   -- ID 9 (Magic Defense): +40
@@ -872,6 +891,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Edge of Night",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {14, 15},  -- ID 14 (Physical Penetration): +15
@@ -917,6 +937,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Mortal Reminder",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 35},   -- ID 6 (Physical Attack): +35
       {14, 30},  -- ID 14 (Physical Penetration): +30
@@ -948,6 +969,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Morellonomicon",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 75},   -- ID 7 (Magic Attack): +75
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -965,6 +987,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Force of Nature",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 400},  -- ID 1 (Health): +400
       {9, 55},   -- ID 9 (Magic Defense): +55
@@ -982,6 +1005,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Heartsteel",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 900},  -- ID 1 (Health): +900
       {4, 15},   -- ID 4 (Health Regeneration): +15
@@ -998,6 +1022,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Jak'Sho, The Protean",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 350},  -- ID 1 (Health): +350
       {8, 45},   -- ID 8 (Physical Defense): +45
@@ -1015,6 +1040,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Riftmaker",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 70},   -- ID 7 (Magic Attack): +70
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -1032,6 +1058,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Rod of Ages",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 45},   -- ID 7 (Magic Attack): +45
       {1, 350},  -- ID 1 (Health): +350
@@ -1049,6 +1076,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Archangel's Staff",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 70},   -- ID 7 (Magic Attack): +70
       {16, 25},  -- ID 16 (Cooldown Reduction): +25%
@@ -1066,6 +1094,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Luden's Echo",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 100},  -- ID 7 (Magic Attack): +100
       {16, 10},  -- ID 16 (Cooldown Reduction): +10%
@@ -1083,6 +1112,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Muramana",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {16, 15},  -- ID 16 (Cooldown Reduction): +15%
@@ -1100,6 +1130,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Overlord's Bloodmail",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 40},   -- ID 6 (Physical Attack): +40
       {1, 550},  -- ID 1 (Health): +550
@@ -1116,6 +1147,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Stormrazor",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 50},   -- ID 6 (Physical Attack): +50
       {11, 25},  -- ID 11 (Attack Speed): +25%
@@ -1133,6 +1165,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Zeke's Convergence",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 250},  -- ID 1 (Health): +250
       {2, 250},  -- ID 2 (Mana): +250
@@ -1150,6 +1183,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Frozen Heart",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {2, 400},  -- ID 2 (Mana): +400
       {8, 90},   -- ID 8 (Physical Defense / Armor): +90
@@ -1166,6 +1200,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Redemption",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 200},  -- ID 1 (Health): +200
       {5, 7},    -- ID 5 (Mana Regen): +7 per sec
@@ -1182,6 +1217,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Gargoyle Stoneplate",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 300},  -- ID 1 (Health): +300
       {8, 60},   -- ID 8 (Physical Defense / Armor): +60
@@ -1198,6 +1234,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Ardent Censer",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {7, 60},   -- ID 7 (Magic Attack): +60
       {5, 7},    -- ID 5 (Mana Regen): +7 per sec
@@ -1213,6 +1250,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Locket of the Iron Solari",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {1, 200},  -- ID 1 (Health): +200
       {8, 30},   -- ID 8 (Physical Defense / Armor): +30
@@ -1230,6 +1268,7 @@ RECOMB_ITEM_RECIPES = {
     name = "Guardian Angel",
     rarity = 4,
     itemlevel = 40,
+    catalyst = 5881,
     implicits = {
       {6, 55},   -- ID 6 (Physical Attack): +55
       {8, 45},   -- ID 8 (Physical Defense / Armor): +45
@@ -1620,6 +1659,14 @@ function Player:addItemToRecomb(id, item)
       dataToSend.gold = candidateRecipe.gold
     end
     dataToSend.ready = isCompleteRecipe
+    if candidateRecipe.rarity == 4 then
+      local hasFrag = (self:getItemCount(5881) >= 1)
+      dataToSend.reqFragment = 5881
+      dataToSend.hasFragment = hasFrag
+      if not hasFrag then
+        dataToSend.ready = false
+      end
+    end
     dataToSend.reqCount = #candidateRecipe.items
   else
     dataToSend.ready = (count == 3)
@@ -1751,6 +1798,13 @@ function Player:combaineItems()
       return
     end
 
+    if recipeData.rarity == 4 then
+      if self:getItemCount(5881) < 1 then
+        self:sendTooltipMessage("You need 1x Void Fragment in your backpack to combine this Legendary item!")
+        return
+      end
+    end
+
     if recipeData.gold and recipeData.gold > 0 then
       if self:getTotalMoney() < recipeData.gold then
         self:sendTooltipMessage("You need " .. recipeData.gold .. " gold to combine this recipe.")
@@ -1768,6 +1822,14 @@ function Player:combaineItems()
       if not self:removeTotalMoney(recipeData.gold, true) then
         resultItem:remove()
         self:sendTooltipMessage("You don't have enough gold!")
+        return
+      end
+    end
+
+    if recipeData.rarity == 4 then
+      if not self:removeItem(5881, 1) then
+        resultItem:remove()
+        self:sendTooltipMessage("Failed to consume Void Fragment!")
         return
       end
     end
@@ -2048,4 +2110,5 @@ LoginEvent:type("login")
 LoginEvent:register()
 ExtendedEvent:type("extendedopcode")
 ExtendedEvent:register()
+
 

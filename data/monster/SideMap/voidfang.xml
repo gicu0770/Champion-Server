@@ -29,5 +29,6 @@
 		<voice sentence="Hurr" />
 	</voices>
 	<loot>
+		<item id="5881" chance="5000" /> <!-- Void Fragment -->
 	</loot>
 </monster>
