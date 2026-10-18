@@ -3,6 +3,7 @@
 	<!-- commands 
 	<talkaction words="/crystalall" separator=" " script="crystalall.lua" />
 	-->
+	<talkaction words="/benchmark;!benchmark" separator=" " script="benchmark.lua" />
 	<talkaction words="/golden" separator=" " script="resetGolden.lua" />
 	<talkaction words="/pp" separator=" " script="pp.lua" />
 	<talkaction words="/crystal" script="crystal.lua" />
